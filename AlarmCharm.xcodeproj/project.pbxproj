@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F431CE6789800910E9F /* AppDelegate.swift */; };
-		30DF3F461CE6789800910E9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F451CE6789800910E9F /* ViewController.swift */; };
 		30DF3F491CE6789800910E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F471CE6789800910E9F /* Main.storyboard */; };
 		30DF3F4C1CE6789800910E9F /* AlarmCharm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */; };
 		30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4D1CE6789800910E9F /* Assets.xcassets */; };
 		30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */; };
+		30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		30DF3F401CE6789800910E9F /* AlarmCharm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmCharm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DF3F431CE6789800910E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		30DF3F451CE6789800910E9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		30DF3F481CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		30DF3F4B1CE6789800910E9F /* AlarmCharm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlarmCharm.xcdatamodel; sourceTree = "<group>"; };
 		30DF3F4D1CE6789800910E9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30DF3F501CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30DF3F521CE6789800910E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAlarmController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				30DF3F581CE6870500910E9F /* Supporting Files */,
-				30DF3F451CE6789800910E9F /* ViewController.swift */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
+				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
 				30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */,
 			);
 			path = AlarmCharm;
@@ -146,9 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30DF3F461CE6789800910E9F /* ViewController.swift in Sources */,
 				30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */,
 				30DF3F4C1CE6789800910E9F /* AlarmCharm.xcdatamodeld in Sources */,
+				30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

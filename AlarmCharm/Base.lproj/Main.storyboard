@@ -37,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="107"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6eo-Mx-WAA" id="JR5-1q-oRY">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="107"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="106.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Laura Brouckman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-qm-IQa">
@@ -104,12 +104,15 @@
                                                 <constraint firstItem="Hem-Po-ER6" firstAttribute="top" secondItem="6Nr-Oc-LhQ" secondAttribute="topMargin" constant="-5" id="Qy3-3m-QzG"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="XBa-fK-bK8" kind="show" id="NeQ-Yu-wHk"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="RingtoneCell" id="5gN-dx-5t1">
                                         <rect key="frame" x="0.0" y="108" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5gN-dx-5t1" id="1V6-7U-jGo">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Ringtone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1P-1Y-tCo">
@@ -170,6 +173,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8c-kg-t2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1444" y="784"/>
+        </scene>
+        <!--Set Alarm Controller-->
+        <scene sceneID="cff-wm-jZb">
+            <objects>
+                <viewController id="XBa-fK-bK8" customClass="SetAlarmController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EMu-3W-NqJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="rDi-LN-8dp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oxf-3g-2Nz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="l0U-WT-21c">
+                                <rect key="frame" x="0.0" y="64" width="600" height="313"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <date key="date" timeIntervalSinceReferenceDate="484870269.848993">
+                                    <!--2016-05-13 22:11:09 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Af-V5-dmJ">
+                                <rect key="frame" x="36" y="402" width="114" height="41"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <state key="normal" title="Set Alarm"/>
+                                <connections>
+                                    <action selector="setAlarm" destination="XBa-fK-bK8" eventType="touchUpInside" id="IB5-EN-rFN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPt-R6-Fnm">
+                                <rect key="frame" x="176" y="402" width="149" height="41"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <state key="normal" title="Remove Alarm"/>
+                                <connections>
+                                    <action selector="removeAlarm" destination="XBa-fK-bK8" eventType="touchUpInside" id="bIz-ft-u0s"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="l0U-WT-21c" secondAttribute="trailing" id="5y6-Me-13C"/>
+                            <constraint firstItem="l0U-WT-21c" firstAttribute="leading" secondItem="Oxf-3g-2Nz" secondAttribute="leading" id="NG3-fS-wme"/>
+                            <constraint firstItem="l0U-WT-21c" firstAttribute="top" secondItem="EMu-3W-NqJ" secondAttribute="bottom" id="QLl-rB-HFV"/>
+                            <constraint firstItem="l0U-WT-21c" firstAttribute="bottom" secondItem="rDi-LN-8dp" secondAttribute="top" id="mzv-HG-ChK"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mzv-HG-ChK"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="l0U-WT-21c" id="kI3-dr-sdB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X67-07-Fz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2134" y="801"/>
         </scene>
         <!--User Settings-->
         <scene sceneID="VVr-of-GcW">
