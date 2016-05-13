@@ -56,15 +56,23 @@
 		30DF3F421CE6789800910E9F /* AlarmCharm */ = {
 			isa = PBXGroup;
 			children = (
-				30DF3F431CE6789800910E9F /* AppDelegate.swift */,
+				30DF3F581CE6870500910E9F /* Supporting Files */,
 				30DF3F451CE6789800910E9F /* ViewController.swift */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
-				30DF3F4D1CE6789800910E9F /* Assets.xcassets */,
-				30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */,
-				30DF3F521CE6789800910E9F /* Info.plist */,
 				30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */,
 			);
 			path = AlarmCharm;
+			sourceTree = "<group>";
+		};
+		30DF3F581CE6870500910E9F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				30DF3F431CE6789800910E9F /* AppDelegate.swift */,
+				30DF3F4D1CE6789800910E9F /* Assets.xcassets */,
+				30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */,
+				30DF3F521CE6789800910E9F /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
