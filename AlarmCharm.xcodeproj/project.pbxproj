@@ -13,6 +13,7 @@
 		30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4D1CE6789800910E9F /* Assets.xcassets */; };
 		30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */; };
 		30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */; };
+		B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38CBFE31CEE71DF0099899D /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		30DF3F501CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30DF3F521CE6789800910E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAlarmController.swift; sourceTree = "<group>"; };
+		B38CBFE31CEE71DF0099899D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				30DF3F581CE6870500910E9F /* Supporting Files */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
 				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
+				B38CBFE31CEE71DF0099899D /* Constants.swift */,
 				30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */,
 			);
 			path = AlarmCharm;
@@ -107,6 +110,7 @@
 				TargetAttributes = {
 					30DF3F3F1CE6789800910E9F = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 755GJW67BJ;
 					};
 				};
 			};
@@ -149,6 +153,7 @@
 				30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */,
 				30DF3F4C1CE6789800910E9F /* AlarmCharm.xcdatamodeld in Sources */,
 				30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */,
+				B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,10 +268,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AlarmCharm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.lbrouckm.AlarmCharm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -274,10 +282,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AlarmCharm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.lbrouckm.AlarmCharm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -300,6 +311,7 @@
 				30DF3F571CE6789800910E9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
