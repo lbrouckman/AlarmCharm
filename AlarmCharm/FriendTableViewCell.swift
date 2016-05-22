@@ -21,6 +21,7 @@ class FriendTableViewCell: UITableViewCell {
         }
     }
     
+    
     private func updateUI() {
         contactName?.text = nil
         contactAlarmTime?.text = nil

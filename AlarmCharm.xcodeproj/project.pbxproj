@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		304094F71CF230C70054D4EF /* FriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */; };
 		304094F91CF236930054D4EF /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094F81CF236930054D4EF /* FriendTableViewCell.swift */; };
+		304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */; };
+		304094FE1CF246F10054D4EF /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 304094FC1CF246F10054D4EF /* Model.xcdatamodeld */; };
+		304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094FF1CF247650054D4EF /* Alarm+CoreDataProperties.swift */; };
+		304095021CF247650054D4EF /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304095001CF247650054D4EF /* Alarm.swift */; };
+		304095051CF247EC0054D4EF /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */; };
 		30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F431CE6789800910E9F /* AppDelegate.swift */; };
 		30DF3F491CE6789800910E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F471CE6789800910E9F /* Main.storyboard */; };
 		30DF3F4C1CE6789800910E9F /* AlarmCharm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */; };
@@ -21,6 +26,11 @@
 /* Begin PBXFileReference section */
 		304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewController.swift; sourceTree = "<group>"; };
 		304094F81CF236930054D4EF /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAlarmsTableViewController.swift; sourceTree = "<group>"; };
+		304094FD1CF246F10054D4EF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		304094FF1CF247650054D4EF /* Alarm+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alarm+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		304095001CF247650054D4EF /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		30DF3F401CE6789800910E9F /* AlarmCharm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmCharm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DF3F431CE6789800910E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30DF3F481CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +53,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		304095031CF247860054D4EF /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				304094FF1CF247650054D4EF /* Alarm+CoreDataProperties.swift */,
+				304095001CF247650054D4EF /* Alarm.swift */,
+				304094FC1CF246F10054D4EF /* Model.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		30DF3F371CE6789800910E9F = {
 			isa = PBXGroup;
 			children = (
@@ -62,11 +82,14 @@
 		30DF3F421CE6789800910E9F /* AlarmCharm */ = {
 			isa = PBXGroup;
 			children = (
+				304095031CF247860054D4EF /* CoreData */,
+				304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */,
 				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
 				30DF3F581CE6870500910E9F /* Supporting Files */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
 				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
 				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
+				304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */,
 				B38CBFE31CEE71DF0099899D /* Constants.swift */,
 				30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */,
 			);
@@ -159,9 +182,14 @@
 				30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */,
 				30DF3F4C1CE6789800910E9F /* AlarmCharm.xcdatamodeld in Sources */,
 				304094F71CF230C70054D4EF /* FriendsListTableViewController.swift in Sources */,
+				304094FE1CF246F10054D4EF /* Model.xcdatamodeld in Sources */,
 				304094F91CF236930054D4EF /* FriendTableViewCell.swift in Sources */,
+				304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */,
 				30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */,
+				304095021CF247650054D4EF /* Alarm.swift in Sources */,
+				304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */,
 				B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */,
+				304095051CF247EC0054D4EF /* CoreDataTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +352,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		304094FC1CF246F10054D4EF /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				304094FD1CF246F10054D4EF /* Model.xcdatamodel */,
+			);
+			currentVersion = 304094FD1CF246F10054D4EF /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

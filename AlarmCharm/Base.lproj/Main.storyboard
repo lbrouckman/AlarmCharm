@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="-262" y="412"/>
         </scene>
-        <!--Friends List Table View Controller-->
+        <!--Friends-->
         <scene sceneID="hku-f6-DfB">
             <objects>
                 <tableViewController storyboardIdentifier="Friends" id="r2F-uo-2Ux" customClass="FriendsListTableViewController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
@@ -50,17 +50,17 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Laura Brouckman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-qm-IQa">
-                                                    <rect key="frame" x="70" y="0.0" width="405" height="91"/>
+                                                    <rect key="frame" x="70" y="0.0" width="397" height="91"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9:00am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="lJk-GJ-Udh">
-                                                    <rect key="frame" x="485" y="0.0" width="66" height="91"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9:00am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="lJk-GJ-Udh">
+                                                    <rect key="frame" x="477" y="0.0" width="74" height="91"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="86" id="50l-m5-ZYq"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
@@ -92,27 +92,41 @@
                             <outlet property="delegate" destination="r2F-uo-2Ux" id="1LG-Ii-mhJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="toF-nK-Sy7"/>
+                    <navigationItem key="navigationItem" title="Friends" id="toF-nK-Sy7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsK-Sb-hRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1348" y="-67"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Saved Alarms-->
         <scene sceneID="0KJ-jS-ekg">
             <objects>
-                <tableViewController id="wwr-5K-78N" sceneMemberID="viewController">
+                <tableViewController title="Saved Alarms" id="wwr-5K-78N" customClass="SavedAlarmsTableViewController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wkw-hO-gfJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="S7J-q1-Lia">
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Create New Alarm"/>
+                        </button>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fAR-Lu-Ys2">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SavedAlarmCell" textLabel="PtS-O9-xar" style="IBUITableViewCellStyleDefault" id="fAR-Lu-Ys2">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fAR-Lu-Ys2" id="W0S-oh-jnO">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="561" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PtS-O9-xar">
+                                            <rect key="frame" x="15" y="0.0" width="546" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -121,6 +135,8 @@
                             <outlet property="delegate" destination="wwr-5K-78N" id="x2Q-c8-ccN"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4l-ya-kbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
