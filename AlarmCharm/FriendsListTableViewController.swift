@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 
 class FriendsListTableViewController: UITableViewController {
-
+    
     var objects = [CNContact]()
     
     func getContacts() {
@@ -30,15 +30,11 @@ class FriendsListTableViewController: UITableViewController {
     
     func retrieveContactsWithStore(store: CNContactStore) {
         do {
-            let groups = try store.groupsMatchingPredicate(nil)
-            let predicate = CNContact.predicateForContactsInGroupWithIdentifier(groups[0].identifier)
             let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactEmailAddressesKey, CNContactImageDataKey]
-            
-            let contacts = try store.unifiedContactsMatchingPredicate(predicate, keysToFetch: keysToFetch)
+            let containerId = CNContactStore().defaultContainerIdentifier()
+            let predicate: NSPredicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
+            let contacts = try CNContactStore().unifiedContactsMatchingPredicate(predicate, keysToFetch: keysToFetch)
             self.objects = contacts
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.tableView.reloadData()
-            })
         } catch {
             print(error)
         }
@@ -49,7 +45,7 @@ class FriendsListTableViewController: UITableViewController {
         super.viewDidLoad()
         getContacts()
     }
-
+    
     
     func insertNewObject(sender: NSNotification) {
         if let contact = sender.userInfo?["contactToAdd"] as? CNContact {
@@ -60,12 +56,12 @@ class FriendsListTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return objects.count
@@ -83,13 +79,13 @@ class FriendsListTableViewController: UITableViewController {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
