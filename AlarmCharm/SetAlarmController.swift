@@ -12,7 +12,7 @@ class SetAlarmController: UIViewController {
     
     
     @IBOutlet weak var datePicker: UIDatePicker!
-    //We rely on previous view controller to set if we have a previous date
+    //We rely on previous view controller to set if we have a previous date.
     var previousDate : NSDate?
     
     @IBAction func removeAlarm() {
