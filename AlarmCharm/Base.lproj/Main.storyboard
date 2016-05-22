@@ -203,6 +203,9 @@
                                                 <constraint firstItem="H1P-1Y-tCo" firstAttribute="centerY" secondItem="1V6-7U-jGo" secondAttribute="centerY" id="FhJ-Px-MFT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="iGz-i0-hN1" kind="show" id="e20-Xc-Q3t"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MessageCell" id="OTN-Ie-If4">
                                         <rect key="frame" x="0.0" y="152" width="600" height="44"/>
@@ -245,6 +248,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8c-kg-t2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1444" y="784"/>
+        </scene>
+        <!--Set Default Sound View Controller-->
+        <scene sceneID="H4T-2H-EAQ">
+            <objects>
+                <viewController id="iGz-i0-hN1" customClass="SetDefaultSoundViewController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kH8-x9-yqZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="GIW-uF-p1r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mZU-1b-7vi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-GA-EEN">
+                                <rect key="frame" x="128" y="238" width="168" height="73"/>
+                                <state key="normal" title="Slow Piano"/>
+                                <connections>
+                                    <action selector="playMusic:" destination="iGz-i0-hN1" eventType="touchUpInside" id="bZ3-21-mtC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OlN-Rg-7g1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1960" y="1503"/>
         </scene>
         <!--Set Alarm Controller-->
         <scene sceneID="cff-wm-jZb">
