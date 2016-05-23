@@ -204,7 +204,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="iGz-i0-hN1" kind="show" id="e20-Xc-Q3t"/>
+                                            <segue destination="7T3-jK-Axn" kind="show" id="LtZ-T7-HMz"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MessageCell" id="OTN-Ie-If4">
@@ -248,33 +248,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8c-kg-t2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1444" y="784"/>
-        </scene>
-        <!--Set Default Sound View Controller-->
-        <scene sceneID="H4T-2H-EAQ">
-            <objects>
-                <viewController id="iGz-i0-hN1" customClass="SetDefaultSoundViewController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kH8-x9-yqZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="GIW-uF-p1r"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mZU-1b-7vi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-GA-EEN">
-                                <rect key="frame" x="128" y="238" width="168" height="73"/>
-                                <state key="normal" title="Slow Piano"/>
-                                <connections>
-                                    <action selector="playMusic:" destination="iGz-i0-hN1" eventType="touchUpInside" id="bZ3-21-mtC"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OlN-Rg-7g1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1960" y="1503"/>
         </scene>
         <!--Set Alarm Controller-->
         <scene sceneID="cff-wm-jZb">
@@ -336,6 +309,79 @@
             </objects>
             <point key="canvasLocation" x="2134" y="801"/>
         </scene>
+        <!--Set Default Sound Table View Controller-->
+        <scene sceneID="96Z-Um-Ubs">
+            <objects>
+                <tableViewController id="7T3-jK-Axn" customClass="SetDefaultSoundTableViewController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="4wl-Ny-Dzt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SoundCell" id="qhu-gs-kPB" customClass="DefaultSoundTableViewCell" customModule="AlarmCharm" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qhu-gs-kPB" id="6rl-KY-Gha">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="fn1-Ni-Rvt">
+                                            <rect key="frame" x="348" y="5" width="154" height="30"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2G8-ql-seh">
+                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
+                                                    <state key="normal">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="Play">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="Play:" destination="qhu-gs-kPB" eventType="touchUpInside" id="vAw-aZ-ukT"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ah-ak-MlW">
+                                                    <rect key="frame" x="61" y="0.0" width="32" height="30"/>
+                                                    <state key="normal" title="Stop"/>
+                                                    <connections>
+                                                        <action selector="Stop:" destination="qhu-gs-kPB" eventType="touchUpInside" id="RSp-Ks-7AO"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yn-Yh-Iyn">
+                                                    <rect key="frame" x="122" y="0.0" width="32" height="30"/>
+                                                    <state key="normal" title="Set"/>
+                                                    <connections>
+                                                        <action selector="Set:" destination="qhu-gs-kPB" eventType="touchUpInside" id="OFD-8d-uZ1"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sound Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6V3-xa-Red">
+                                            <rect key="frame" x="14" y="14" width="326" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="SongNameLabel" destination="6V3-xa-Red" id="DWr-Av-ZcA"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7T3-jK-Axn" id="i01-mt-yAc"/>
+                            <outlet property="delegate" destination="7T3-jK-Axn" id="U4e-nl-OH4"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Qd-jm-BjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1936" y="1660"/>
+        </scene>
         <!--User Settings-->
         <scene sceneID="VVr-of-GcW">
             <objects>
@@ -373,6 +419,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EWc-n9-d2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="536" y="-67"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="lLd-to-ZB7">
+            <objects>
+                <tableViewController id="nlc-xg-tSE" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qYq-9Y-iYG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EWp-Ie-rTn">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EWp-Ie-rTn" id="aR8-iw-mic">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nlc-xg-tSE" id="vG8-EP-MqF"/>
+                            <outlet property="delegate" destination="nlc-xg-tSE" id="fAR-0R-3i5"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2vk-wb-oyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
 </document>

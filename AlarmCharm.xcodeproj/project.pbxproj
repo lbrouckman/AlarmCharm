@@ -14,12 +14,6 @@
 		304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094FF1CF247650054D4EF /* Alarm+CoreDataProperties.swift */; };
 		304095021CF247650054D4EF /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304095001CF247650054D4EF /* Alarm.swift */; };
 		304095051CF247EC0054D4EF /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */; };
-		304095071CF26EA20054D4EF /* SetDefaultSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304095061CF26EA20054D4EF /* SetDefaultSoundViewController.swift */; };
-		304095101CF26F5E0054D4EF /* 13281733_1335571023124725_869924_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 304095081CF26F5E0054D4EF /* 13281733_1335571023124725_869924_n.png */; };
-		304095111CF26F5E0054D4EF /* 13275894_1335571009791393_1217806830_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 304095091CF26F5E0054D4EF /* 13275894_1335571009791393_1217806830_n.png */; };
-		304095121CF26F5E0054D4EF /* 13295308_1335571013124726_882858557_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 3040950A1CF26F5E0054D4EF /* 13295308_1335571013124726_882858557_n.png */; };
-		304095131CF26F5E0054D4EF /* 13275784_1335571016458059_563945174_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 3040950B1CF26F5E0054D4EF /* 13275784_1335571016458059_563945174_n.png */; };
-		304095141CF26F5E0054D4EF /* 13292889_1335571019791392_1416633684_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 3040950C1CF26F5E0054D4EF /* 13292889_1335571019791392_1416633684_n.png */; };
 		304095151CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950D1CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav */; };
 		304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */; };
 		304095171CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */; };
@@ -30,6 +24,8 @@
 		30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */; };
 		30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */; };
 		B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38CBFE31CEE71DF0099899D /* Constants.swift */; };
+		B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */; };
+		B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,12 +36,6 @@
 		304094FF1CF247650054D4EF /* Alarm+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alarm+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		304095001CF247650054D4EF /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
-		304095061CF26EA20054D4EF /* SetDefaultSoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultSoundViewController.swift; sourceTree = "<group>"; };
-		304095081CF26F5E0054D4EF /* 13281733_1335571023124725_869924_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13281733_1335571023124725_869924_n.png; sourceTree = "<group>"; };
-		304095091CF26F5E0054D4EF /* 13275894_1335571009791393_1217806830_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13275894_1335571009791393_1217806830_n.png; sourceTree = "<group>"; };
-		3040950A1CF26F5E0054D4EF /* 13295308_1335571013124726_882858557_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13295308_1335571013124726_882858557_n.png; sourceTree = "<group>"; };
-		3040950B1CF26F5E0054D4EF /* 13275784_1335571016458059_563945174_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13275784_1335571016458059_563945174_n.png; sourceTree = "<group>"; };
-		3040950C1CF26F5E0054D4EF /* 13292889_1335571019791392_1416633684_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13292889_1335571019791392_1416633684_n.png; sourceTree = "<group>"; };
 		3040950D1CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Soothing_Piano.wav; sourceTree = "<group>"; };
 		3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Obnoxious_Synth.wav; sourceTree = "<group>"; };
 		3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Soothing_Guitar.wav; sourceTree = "<group>"; };
@@ -58,6 +48,8 @@
 		30DF3F521CE6789800910E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAlarmController.swift; sourceTree = "<group>"; };
 		B38CBFE31CEE71DF0099899D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultSoundTableViewController.swift; sourceTree = "<group>"; };
+		B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSoundTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,11 +85,6 @@
 		304095191CF26F780054D4EF /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				304095081CF26F5E0054D4EF /* 13281733_1335571023124725_869924_n.png */,
-				304095091CF26F5E0054D4EF /* 13275894_1335571009791393_1217806830_n.png */,
-				3040950B1CF26F5E0054D4EF /* 13275784_1335571016458059_563945174_n.png */,
-				3040950A1CF26F5E0054D4EF /* 13295308_1335571013124726_882858557_n.png */,
-				3040950C1CF26F5E0054D4EF /* 13292889_1335571019791392_1416633684_n.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -136,13 +123,14 @@
 				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
 				30DF3F581CE6870500910E9F /* Supporting Files */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
-				304095061CF26EA20054D4EF /* SetDefaultSoundViewController.swift */,
 				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
 				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
 				304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */,
 				B38CBFE31CEE71DF0099899D /* Constants.swift */,
 				30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */,
 				304095181CF26F650054D4EF /* Media Files */,
+				B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */,
+				B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */,
 			);
 			path = AlarmCharm;
 			sourceTree = "<group>";
@@ -218,13 +206,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				304095171CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav in Resources */,
-				304095111CF26F5E0054D4EF /* 13275894_1335571009791393_1217806830_n.png in Resources */,
 				30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */,
-				304095101CF26F5E0054D4EF /* 13281733_1335571023124725_869924_n.png in Resources */,
-				304095131CF26F5E0054D4EF /* 13275784_1335571016458059_563945174_n.png in Resources */,
-				304095121CF26F5E0054D4EF /* 13295308_1335571013124726_882858557_n.png in Resources */,
 				30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */,
-				304095141CF26F5E0054D4EF /* 13292889_1335571019791392_1416633684_n.png in Resources */,
 				304095151CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav in Resources */,
 				304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */,
 				30DF3F491CE6789800910E9F /* Main.storyboard in Resources */,
@@ -238,10 +221,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */,
 				30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */,
+				B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */,
 				30DF3F4C1CE6789800910E9F /* AlarmCharm.xcdatamodeld in Sources */,
 				304094F71CF230C70054D4EF /* FriendsListTableViewController.swift in Sources */,
-				304095071CF26EA20054D4EF /* SetDefaultSoundViewController.swift in Sources */,
 				304094FE1CF246F10054D4EF /* Model.xcdatamodeld in Sources */,
 				304094F91CF236930054D4EF /* FriendTableViewCell.swift in Sources */,
 				304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */,

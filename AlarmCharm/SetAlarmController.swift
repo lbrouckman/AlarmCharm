@@ -24,12 +24,11 @@ class SetAlarmController: UIViewController {
     
     
     @IBAction func setAlarm() {
-        print("got clicked")
+        // Still need to look to see if time should be today or tomorrow
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         let date = datePicker.date
-        print( dateFormatter.stringFromDate(date))
         
         var alarmDictionary = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_NOTIFICATION_USER_DEFAULTS_KEY) ?? Dictionary()
         
@@ -55,18 +54,24 @@ class SetAlarmController: UIViewController {
         notification.category = Constants.WAKE_UP_CATEGORY
         // In did finish with launching this will tell us that the user's alarm went off
         notification.fireDate =  datePicker.date //Date to wake up with
-        notification.soundName = UILocalNotificationDefaultSoundName // Change by looking up in icloud settings
+        
+        var alarmDefaultDict = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_DEFAULT)
+        print(alarmDefaultDict)
+        if let songName = alarmDefaultDict?[Constants.USER_KEY_TO_GET_SONG_DEFAULT] as? String{
+            let songNameFormatted = songName + ".wav"
+            print(songNameFormatted)
+            print("here")
+            notification.soundName = songNameFormatted
+        }else{
+            notification.soundName = UILocalNotificationDefaultSoundName
+        }
         notification.userInfo = ["AlarmId": Constants.User_Alarm_ID ] // assign a unique identifier to the notification so that we can retrieve it later
-        
-        
         //CANCEL ALL PREVIOUS NOTIFICATIONS BECAUSE USER HAS CHANGED THEIR ALARM TIME
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         //Set new notification
         
         print("Made and set notification")
-        
-        
     }
     
     override func viewDidLoad() {
