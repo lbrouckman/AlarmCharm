@@ -37,7 +37,8 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
             )
         } else {
             fetchedResultsController = nil
-        }    }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,19 +54,48 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
                     name = savedAlarm.name
                 }
                 cell.textLabel?.text = name
+                if indexPath.row == checkedIndex {
+                    cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .None
+                }
             }
             return cell
     }
+    
+    private var checkedIndex: Int?
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+            if cell.accessoryType == .None {
+                cell.accessoryType = .Checkmark
+                //Set all of the other ones to unchecked
+                if checkedIndex != nil {
+                    for i in 0...tableView.numberOfRowsInSection(0) {
+                        if let c = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) {
+                            c.accessoryType = .None
+                        }
+                    }
+                }
+                cell.accessoryType = .Checkmark
+                checkedIndex = indexPath.row
+            }
+        }    
+    }
  
+//send the next VC the managedObjectContext
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == "CreateNewAlarm"{
+                if let createvc = segue.destinationViewController as? CreateAlarmViewController {
+                    createvc.managedObjectContext = managedObjectContext
+                }
+            }
+        }
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

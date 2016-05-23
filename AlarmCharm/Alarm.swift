@@ -12,6 +12,20 @@ import CoreData
 
 class Alarm: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
-
+    //add audio recording functionality
+    class func addAlarmToDB(name: String, videoURL: String?, imageData: NSData?,inManagedObjectContext context: NSManagedObjectContext) -> Alarm? {
+        print("Adding alarm with name \(name) to DB")
+        let request = NSFetchRequest(entityName: "Alarm")
+        request.predicate = NSPredicate(format: "name = %@", name)
+        
+        if let result = (try? context.executeFetchRequest(request))?.first as? Alarm {
+            return result
+        } else if let result = NSEntityDescription.insertNewObjectForEntityForName("Alarm", inManagedObjectContext: context) as? Alarm {
+            result.name = name
+            result.videoURL = videoURL
+            result.image = imageData
+            return result
+        }
+        return nil
+    }
 }

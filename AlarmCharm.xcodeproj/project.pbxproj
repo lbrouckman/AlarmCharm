@@ -23,9 +23,9 @@
 		304095151CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950D1CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav */; };
 		304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */; };
 		304095171CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */; };
+		3040951C1CF27CDE0054D4EF /* CreateAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040951B1CF27CDE0054D4EF /* CreateAlarmViewController.swift */; };
 		30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F431CE6789800910E9F /* AppDelegate.swift */; };
 		30DF3F491CE6789800910E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F471CE6789800910E9F /* Main.storyboard */; };
-		30DF3F4C1CE6789800910E9F /* AlarmCharm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */; };
 		30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4D1CE6789800910E9F /* Assets.xcassets */; };
 		30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */; };
 		30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */; };
@@ -49,10 +49,10 @@
 		3040950D1CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Soothing_Piano.wav; sourceTree = "<group>"; };
 		3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Obnoxious_Synth.wav; sourceTree = "<group>"; };
 		3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Soothing_Guitar.wav; sourceTree = "<group>"; };
+		3040951B1CF27CDE0054D4EF /* CreateAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAlarmViewController.swift; sourceTree = "<group>"; };
 		30DF3F401CE6789800910E9F /* AlarmCharm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmCharm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DF3F431CE6789800910E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30DF3F481CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		30DF3F4B1CE6789800910E9F /* AlarmCharm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AlarmCharm.xcdatamodel; sourceTree = "<group>"; };
 		30DF3F4D1CE6789800910E9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30DF3F501CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30DF3F521CE6789800910E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,12 +136,12 @@
 				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
 				30DF3F581CE6870500910E9F /* Supporting Files */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
+				3040951B1CF27CDE0054D4EF /* CreateAlarmViewController.swift */,
 				304095061CF26EA20054D4EF /* SetDefaultSoundViewController.swift */,
 				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
 				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
 				304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */,
 				B38CBFE31CEE71DF0099899D /* Constants.swift */,
-				30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */,
 				304095181CF26F650054D4EF /* Media Files */,
 			);
 			path = AlarmCharm;
@@ -239,7 +239,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */,
-				30DF3F4C1CE6789800910E9F /* AlarmCharm.xcdatamodeld in Sources */,
 				304094F71CF230C70054D4EF /* FriendsListTableViewController.swift in Sources */,
 				304095071CF26EA20054D4EF /* SetDefaultSoundViewController.swift in Sources */,
 				304094FE1CF246F10054D4EF /* Model.xcdatamodeld in Sources */,
@@ -250,6 +249,7 @@
 				304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */,
 				B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */,
 				304095051CF247EC0054D4EF /* CoreDataTableViewController.swift in Sources */,
+				3040951C1CF27CDE0054D4EF /* CreateAlarmViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,16 +419,6 @@
 			);
 			currentVersion = 304094FD1CF246F10054D4EF /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		30DF3F4A1CE6789800910E9F /* AlarmCharm.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				30DF3F4B1CE6789800910E9F /* AlarmCharm.xcdatamodel */,
-			);
-			currentVersion = 30DF3F4B1CE6789800910E9F /* AlarmCharm.xcdatamodel */;
-			path = AlarmCharm.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

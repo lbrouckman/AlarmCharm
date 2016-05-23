@@ -15,5 +15,8 @@ import CoreData
 extension Alarm {
 
     @NSManaged var name: String?
+    @NSManaged var image: NSData?
+    @NSManaged var videoURL: String?
+    @NSManaged var audioRecording: NSData?
 
 }
