@@ -1,11 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Y1J-Ej-ooR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="PBh-At-VcQ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Welcome Screen View Controller-->
+        <scene sceneID="GEy-E2-bwA">
+            <objects>
+                <viewController id="PBh-At-VcQ" customClass="WelcomeScreenViewController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wGd-qn-3d6"/>
+                        <viewControllerLayoutGuide type="bottom" id="F6g-iv-M7q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WZm-Gv-PWf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovx-iY-WJa">
+                                <rect key="frame" x="254" y="254" width="93" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="93" id="Tr2-uR-dH6"/>
+                                </constraints>
+                                <state key="normal" title="Enter!"/>
+                                <connections>
+                                    <segue destination="Y1J-Ej-ooR" kind="presentation" id="4aa-Ec-ZJi"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phone Number..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jcj-5g-vE7">
+                                <rect key="frame" x="142" y="178" width="317" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="317" id="9zj-qy-1o0"/>
+                                    <constraint firstAttribute="height" constant="30" id="Ckg-Cg-LsI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ovx-iY-WJa" firstAttribute="centerX" secondItem="WZm-Gv-PWf" secondAttribute="centerX" id="0SI-Ie-NBl"/>
+                            <constraint firstItem="F6g-iv-M7q" firstAttribute="top" secondItem="Ovx-iY-WJa" secondAttribute="bottom" constant="254" id="AdX-e4-EUi"/>
+                            <constraint firstItem="Ovx-iY-WJa" firstAttribute="top" secondItem="jcj-5g-vE7" secondAttribute="bottom" constant="46" id="Oxt-d2-6Qq"/>
+                            <constraint firstItem="jcj-5g-vE7" firstAttribute="centerX" secondItem="Ovx-iY-WJa" secondAttribute="centerX" id="RCp-XR-i4u"/>
+                            <constraint firstItem="Ovx-iY-WJa" firstAttribute="centerY" secondItem="WZm-Gv-PWf" secondAttribute="centerY" id="VGy-Vl-RoR"/>
+                            <constraint firstItem="jcj-5g-vE7" firstAttribute="top" secondItem="wGd-qn-3d6" secondAttribute="bottom" constant="158" id="gcl-Cr-uhO"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="AdX-e4-EUi"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <segue destination="Y1J-Ej-ooR" kind="show" identifier="ShowMain" id="96a-fA-aVo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="04B-vU-tdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1001" y="412"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GTq-cP-8O8">
             <objects>
@@ -469,4 +524,7 @@
             </objects>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="96a-fA-aVo"/>
+    </inferredMetricsTieBreakers>
 </document>
