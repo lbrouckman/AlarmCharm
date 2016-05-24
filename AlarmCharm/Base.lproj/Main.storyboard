@@ -148,7 +148,7 @@
         <!--Create Alarm-->
         <scene sceneID="7G2-bI-DhS">
             <objects>
-                <viewController title="Create Alarm" id="8cV-HQ-ofw" customClass="CreateAlarmViewController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Create Alarm" id="8cV-HQ-ofw" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IxT-Qf-kV3"/>
                         <viewControllerLayoutGuide type="bottom" id="Hns-DU-SxW"/>
@@ -343,13 +343,13 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qhu-gs-kPB" id="6rl-KY-Gha">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="fn1-Ni-Rvt">
                                             <rect key="frame" x="348" y="5" width="154" height="30"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2G8-ql-seh">
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2G8-ql-seh">
                                                     <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
                                                     <state key="normal">
                                                         <attributedString key="attributedTitle">
@@ -454,7 +454,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EWp-Ie-rTn" id="aR8-iw-mic">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
