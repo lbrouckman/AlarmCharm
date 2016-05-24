@@ -148,7 +148,7 @@
         <!--Create Alarm-->
         <scene sceneID="7G2-bI-DhS">
             <objects>
-                <viewController title="Create Alarm" id="8cV-HQ-ofw" sceneMemberID="viewController">
+                <viewController title="Create Alarm" id="8cV-HQ-ofw" customClass="CreateNewAlarmViewController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IxT-Qf-kV3"/>
                         <viewControllerLayoutGuide type="bottom" id="Hns-DU-SxW"/>
