@@ -29,12 +29,6 @@ class FriendTableViewCell: UITableViewCell {
         
         contactName?.text = contact!.givenName + " " + contact!.familyName
         
-        print(contact!.givenName)
-        if(contact!.phoneNumbers.count > 0) {
-            let a = contact!.phoneNumbers[0].value as! CNPhoneNumber
-            print("\(a.stringValue)")
-        }
-        
         //maybe have a default image to set this to
         if(contact!.isKeyAvailable("imageData")) {
             setImage()

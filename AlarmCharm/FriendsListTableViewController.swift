@@ -20,13 +20,39 @@ class FriendsListTableViewController: UITableViewController {
             store.requestAccessForEntityType(.Contacts) { (authorized: Bool, error: NSError?) -> Void in
                 if authorized {
                     self.retrieveContactsWithStore(store)
+                    self.editContactsList()
                 }
             }
         } else if CNContactStore.authorizationStatusForEntityType(.Contacts) == .Authorized {
             self.retrieveContactsWithStore(store)
+            editContactsList()
         }
     }
     
+    func extractNumber(phoneNumber: String) -> String {
+        var num = ""
+        for character in phoneNumber.characters {
+            let value = Int(String(character))
+            if value != nil {
+                num.append(character)
+            }
+        }
+        if num[num.startIndex] == "1" {
+            num = String(num.characters.dropFirst())
+        }
+        return num
+    }
+    
+    //Functional as long as person is from the US
+    func editContactsList() {
+        for contact in objects {
+            if(contact.phoneNumbers.count > 0) {
+                let a = contact.phoneNumbers[0].value as! CNPhoneNumber
+                let num = extractNumber(a.stringValue)
+                print(num)
+            }
+        }
+    }
     
     func retrieveContactsWithStore(store: CNContactStore) {
         do {
