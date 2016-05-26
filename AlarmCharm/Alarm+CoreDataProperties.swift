@@ -18,5 +18,4 @@ extension Alarm {
     @NSManaged var image: NSData?
     @NSManaged var videoURL: String?
     @NSManaged var audioRecording: NSData?
-
 }

@@ -7,26 +7,35 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseDatabase
 class WelcomeScreenViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         let launchedBefore = NSUserDefaults.standardUserDefaults().boolForKey("launchedBefore")
         if launchedBefore  {
-            print("Not first launch.")
+            self.performSegueWithIdentifier("ShowMain", sender: self)
         }
         else {
-            print("First launch, setting NSUserDefault.")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "launchedBefore")
-            self.performSegueWithIdentifier("ShowMain", sender: self)
         }
     }
     
+
+    @IBOutlet weak var textBox: UITextField!
+    private var ref = FIRDatabaseReference.init()
+
+    //If the user doesn't enter a phone number this will crash
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("SEGUE")
-        if segue.identifier == "ShowMain" {
-            print("should segue")
+        if segue.identifier == "StorePhoneNumber" {
+            let phoneNumber = textBox.text!
+            NSUserDefaults.standardUserDefaults().setValue(phoneNumber, forKey: "PhoneNumber")
+            ref = FIRDatabase.database().reference()
+            let usersRef = ref.child("users");
+            let newUser = ["alarm_time": 0, "image_file": "", "audio_file": ""]
+            let users = [phoneNumber: newUser]
+            usersRef.setValue(users)
         }
     }
 }

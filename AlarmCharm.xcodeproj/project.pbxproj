@@ -24,12 +24,15 @@
 		30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4D1CE6789800910E9F /* Assets.xcassets */; };
 		30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */; };
 		30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */; };
+		30FE0D0E1CF76F65004213A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */; };
 		B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38CBFE31CEE71DF0099899D /* Constants.swift */; };
 		B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */; };
 		B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */; };
+		C295E5CC57F7DC6778BEEE42 /* Pods_AlarmCharm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 172E78C97E7A5DF39FCF1F34 /* Pods_AlarmCharm.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		172E78C97E7A5DF39FCF1F34 /* Pods_AlarmCharm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmCharm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewController.swift; sourceTree = "<group>"; };
 		304094F81CF236930054D4EF /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAlarmsTableViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,9 @@
 		30DF3F501CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30DF3F521CE6789800910E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAlarmController.swift; sourceTree = "<group>"; };
+		30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6EFEE08CBEAC32D1476FFEBD /* Pods-AlarmCharm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.release.xcconfig"; sourceTree = "<group>"; };
+		7102B7B16C6A0DBDF18D17E8 /* Pods-AlarmCharm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.debug.xcconfig"; sourceTree = "<group>"; };
 		B38CBFE31CEE71DF0099899D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultSoundTableViewController.swift; sourceTree = "<group>"; };
 		B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSoundTableViewCell.swift; sourceTree = "<group>"; };
@@ -59,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C295E5CC57F7DC6778BEEE42 /* Pods_AlarmCharm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +113,8 @@
 			children = (
 				30DF3F421CE6789800910E9F /* AlarmCharm */,
 				30DF3F411CE6789800910E9F /* Products */,
+				9378359B80A8AB21CC45182E /* Pods */,
+				70E5DA3775DE172BC54648C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +143,7 @@
 				304095181CF26F650054D4EF /* Media Files */,
 				B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */,
 				B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */,
+				30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */,
 			);
 			path = AlarmCharm;
 			sourceTree = "<group>";
@@ -149,6 +159,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		70E5DA3775DE172BC54648C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				172E78C97E7A5DF39FCF1F34 /* Pods_AlarmCharm.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9378359B80A8AB21CC45182E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7102B7B16C6A0DBDF18D17E8 /* Pods-AlarmCharm.debug.xcconfig */,
+				6EFEE08CBEAC32D1476FFEBD /* Pods-AlarmCharm.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,9 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30DF3F551CE6789800910E9F /* Build configuration list for PBXNativeTarget "AlarmCharm" */;
 			buildPhases = (
+				D24891C47D413E26C176FB52 /* 📦 Check Pods Manifest.lock */,
 				30DF3F3C1CE6789800910E9F /* Sources */,
 				30DF3F3D1CE6789800910E9F /* Frameworks */,
 				30DF3F3E1CE6789800910E9F /* Resources */,
+				BFCFFE14282053A5AD8742FD /* 📦 Embed Pods Frameworks */,
+				657A4CF7746A10FDDF97C244 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,10 +244,59 @@
 				304095151CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav in Resources */,
 				304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */,
 				30DF3F491CE6789800910E9F /* Main.storyboard in Resources */,
+				30FE0D0E1CF76F65004213A0 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		657A4CF7746A10FDDF97C244 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFCFFE14282053A5AD8742FD /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D24891C47D413E26C176FB52 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		30DF3F3C1CE6789800910E9F /* Sources */ = {
@@ -350,6 +429,7 @@
 		};
 		30DF3F561CE6789800910E9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7102B7B16C6A0DBDF18D17E8 /* Pods-AlarmCharm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -364,6 +444,7 @@
 		};
 		30DF3F571CE6789800910E9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EFEE08CBEAC32D1476FFEBD /* Pods-AlarmCharm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

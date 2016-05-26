@@ -30,7 +30,7 @@ class FriendsListTableViewController: UITableViewController {
     
     func retrieveContactsWithStore(store: CNContactStore) {
         do {
-            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactEmailAddressesKey, CNContactImageDataKey]
+            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactPhoneNumbersKey, CNContactImageDataKey]
             let containerId = CNContactStore().defaultContainerIdentifier()
             let predicate: NSPredicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
             let contacts = try CNContactStore().unifiedContactsMatchingPredicate(predicate, keysToFetch: keysToFetch)

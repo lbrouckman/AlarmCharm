@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -62,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //If user pushed wake me up, go to scene of friend
         //Note we will need to get asked to wake up before notification
         
+        FIRApp.configure()        
         return true
     }
     //THIS SHOULD ONLY BE CALLED IF APP IS CURRENTLY RUNNING OR IN BACKGROUND BUT WE STILL NEED TO HANDLE IT THE SAME WAY

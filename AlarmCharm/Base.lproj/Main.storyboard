@@ -25,7 +25,7 @@
                                 </constraints>
                                 <state key="normal" title="Enter!"/>
                                 <connections>
-                                    <segue destination="Y1J-Ej-ooR" kind="presentation" id="4aa-Ec-ZJi"/>
+                                    <segue destination="Y1J-Ej-ooR" kind="presentation" identifier="StorePhoneNumber" id="4aa-Ec-ZJi"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phone Number..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jcj-5g-vE7">
@@ -54,7 +54,8 @@
                         </variation>
                     </view>
                     <connections>
-                        <segue destination="Y1J-Ej-ooR" kind="show" identifier="ShowMain" id="96a-fA-aVo"/>
+                        <outlet property="textBox" destination="jcj-5g-vE7" id="oiq-FK-C2d"/>
+                        <segue destination="Y1J-Ej-ooR" kind="presentation" identifier="ShowMain" id="Kb6-gr-fbZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04B-vU-tdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -323,7 +324,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8c-kg-t2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444" y="784"/>
+            <point key="canvasLocation" x="1132" y="1012"/>
         </scene>
         <!--Set Alarm Controller-->
         <scene sceneID="cff-wm-jZb">
@@ -475,7 +476,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pl-3F-TaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="784"/>
+            <point key="canvasLocation" x="414" y="794"/>
         </scene>
         <!--Friends-->
         <scene sceneID="vzC-DO-xcw">
@@ -496,35 +497,8 @@
             </objects>
             <point key="canvasLocation" x="536" y="-67"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="lLd-to-ZB7">
-            <objects>
-                <tableViewController id="nlc-xg-tSE" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qYq-9Y-iYG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EWp-Ie-rTn">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EWp-Ie-rTn" id="aR8-iw-mic">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="nlc-xg-tSE" id="vG8-EP-MqF"/>
-                            <outlet property="delegate" destination="nlc-xg-tSE" id="fAR-0R-3i5"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2vk-wb-oyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="96a-fA-aVo"/>
+        <segue reference="4aa-Ec-ZJi"/>
     </inferredMetricsTieBreakers>
 </document>

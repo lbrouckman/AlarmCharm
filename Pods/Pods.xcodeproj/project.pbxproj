@@ -1,0 +1,514 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1005CD86C535D7AEAE5872652E7EAB3C /* Pods-AlarmCharm-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 379D4E79B96D0FE3F01468453ECBAF29 /* Pods-AlarmCharm-dummy.m */; };
+		677251D1346801BCF201668A8A3D3F83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		90AA147374C1C49D3178DB39CE2B1ADB /* Pods-AlarmCharm-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 52613051750CE069DA44E8C6A893BE1D /* Pods-AlarmCharm-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		02E2290061806CFD098EC3DC1D41E578 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Headers/Firebase.h; sourceTree = "<group>"; };
+		0912278B593DFA6F7222373F176F4A25 /* Pods_AlarmCharm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmCharm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31AD9C3EF229FCD26E8B67598BC36ECF /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		379D4E79B96D0FE3F01468453ECBAF29 /* Pods-AlarmCharm-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AlarmCharm-dummy.m"; sourceTree = "<group>"; };
+		3AA2C777DA5AB9FBCFE43B06398682EA /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		40ED930C2DDD09AC0C5DAE5E3B2947CF /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = Frameworks/FirebaseDatabase.framework; sourceTree = "<group>"; };
+		51A595C3E6DC6AA84BD897F29011631B /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		52613051750CE069DA44E8C6A893BE1D /* Pods-AlarmCharm-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlarmCharm-umbrella.h"; sourceTree = "<group>"; };
+		5406B91964A0FAC1CCD4DDA652B9A4C5 /* Pods-AlarmCharm-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlarmCharm-acknowledgements.markdown"; sourceTree = "<group>"; };
+		56CD8A240F79509A429A1B50582624E9 /* Pods-AlarmCharm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlarmCharm.debug.xcconfig"; sourceTree = "<group>"; };
+		6AB22E9156A24411A18C606B52146BD1 /* Pods-AlarmCharm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlarmCharm.release.xcconfig"; sourceTree = "<group>"; };
+		8BF0D6F9FC2F7BC6DC480F2122341553 /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseStorage.framework; path = Frameworks/FirebaseStorage.framework; sourceTree = "<group>"; };
+		91B4EA0BCAC0A1F5AAC26F337848289E /* Pods-AlarmCharm-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AlarmCharm-frameworks.sh"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D682BCFE26218E35E774F6EC58BEB10 /* Pods-AlarmCharm-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AlarmCharm-resources.sh"; sourceTree = "<group>"; };
+		AD4EAA7832672021B5BDC9D4AEC9BC37 /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Headers/Public/FIRInstanceID.h; sourceTree = "<group>"; };
+		B49D85BFE501E30F5306516721523D77 /* Pods-AlarmCharm.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-AlarmCharm.modulemap"; sourceTree = "<group>"; };
+		BE723E5A28D59B14CDCC980F9FAB41AF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1619A628B8FB12715373CCCC4A8F612 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		E7ED01B3EF3B94EF249D7F734618B4B6 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = Frameworks/GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
+		EBAEC0D48646DF401F821C42E1799CE8 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
+		FFEA46B02BB08F44E06469223B19FBE4 /* Pods-AlarmCharm-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlarmCharm-acknowledgements.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		479A10F9922D83BA5F7B3FC4727E5919 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				677251D1346801BCF201668A8A3D3F83 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05252762D463C7E0AFA6C591045E68D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3AA2C777DA5AB9FBCFE43B06398682EA /* GoogleSymbolUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		09FAAAB132C9F9CA23C1F60D01DE5271 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7ED01B3EF3B94EF249D7F734618B4B6 /* GoogleNetworkingUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0F6EAF079DA078C18EBD515B5C00CF63 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F8E133262DF4ED744FDCAC4A1C089735 /* Firebase */,
+				3A035188177FFCF64FD130FB31FA019A /* FirebaseAnalytics */,
+				D885F98B0D6A7CF7E7558D03B19D7333 /* FirebaseDatabase */,
+				149E18F6EF8CD1D8F75B8FDC7D567767 /* FirebaseInstanceID */,
+				B00AAF94E46CFB06237E8BA96288247E /* FirebaseStorage */,
+				AA9CFFD1BE3402C00F270ADF5CD1174B /* GoogleInterchangeUtilities */,
+				29C0FE147E3604E7EA39793F3587F668 /* GoogleNetworkingUtilities */,
+				C4D190F6CE3015CEA1B1B3AC09761013 /* GoogleSymbolUtilities */,
+				537A894370A0A740BDD75EF20AA1C022 /* GoogleUtilities */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		149E18F6EF8CD1D8F75B8FDC7D567767 /* FirebaseInstanceID */ = {
+			isa = PBXGroup;
+			children = (
+				AD4EAA7832672021B5BDC9D4AEC9BC37 /* FIRInstanceID.h */,
+				E93978BA5E8208CD7458E877371B0B0E /* Frameworks */,
+			);
+			path = FirebaseInstanceID;
+			sourceTree = "<group>";
+		};
+		1DC2A265B1E08F1EA9377641E22CA3C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C1619A628B8FB12715373CCCC4A8F612 /* FirebaseAnalytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E45DC8D086EB134DF249E36B8DDBFEE /* Pods-AlarmCharm */ = {
+			isa = PBXGroup;
+			children = (
+				BE723E5A28D59B14CDCC980F9FAB41AF /* Info.plist */,
+				B49D85BFE501E30F5306516721523D77 /* Pods-AlarmCharm.modulemap */,
+				5406B91964A0FAC1CCD4DDA652B9A4C5 /* Pods-AlarmCharm-acknowledgements.markdown */,
+				FFEA46B02BB08F44E06469223B19FBE4 /* Pods-AlarmCharm-acknowledgements.plist */,
+				379D4E79B96D0FE3F01468453ECBAF29 /* Pods-AlarmCharm-dummy.m */,
+				91B4EA0BCAC0A1F5AAC26F337848289E /* Pods-AlarmCharm-frameworks.sh */,
+				9D682BCFE26218E35E774F6EC58BEB10 /* Pods-AlarmCharm-resources.sh */,
+				52613051750CE069DA44E8C6A893BE1D /* Pods-AlarmCharm-umbrella.h */,
+				56CD8A240F79509A429A1B50582624E9 /* Pods-AlarmCharm.debug.xcconfig */,
+				6AB22E9156A24411A18C606B52146BD1 /* Pods-AlarmCharm.release.xcconfig */,
+			);
+			name = "Pods-AlarmCharm";
+			path = "Target Support Files/Pods-AlarmCharm";
+			sourceTree = "<group>";
+		};
+		29C0FE147E3604E7EA39793F3587F668 /* GoogleNetworkingUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				09FAAAB132C9F9CA23C1F60D01DE5271 /* Frameworks */,
+			);
+			path = GoogleNetworkingUtilities;
+			sourceTree = "<group>";
+		};
+		3760D3F9EB493DE9D0FC9EFA49266E16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8BF0D6F9FC2F7BC6DC480F2122341553 /* FirebaseStorage.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A035188177FFCF64FD130FB31FA019A /* FirebaseAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				1DC2A265B1E08F1EA9377641E22CA3C1 /* Frameworks */,
+			);
+			path = FirebaseAnalytics;
+			sourceTree = "<group>";
+		};
+		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		537A894370A0A740BDD75EF20AA1C022 /* GoogleUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				F679ABD5E311BD30510DB808D04CE375 /* Frameworks */,
+			);
+			path = GoogleUtilities;
+			sourceTree = "<group>";
+		};
+		6AB5E21A5EF800D567C10FDA7229089B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1E45DC8D086EB134DF249E36B8DDBFEE /* Pods-AlarmCharm */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		783CCF9F433CFE6BDCFF65E642EC7776 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				02E2290061806CFD098EC3DC1D41E578 /* Firebase.h */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				0F6EAF079DA078C18EBD515B5C00CF63 /* Pods */,
+				FE5625CB4D111BA2E722F030CCB8BBB9 /* Products */,
+				6AB5E21A5EF800D567C10FDA7229089B /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8CFC3292B3E053F5D81983AA67AB79AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				51A595C3E6DC6AA84BD897F29011631B /* GoogleInterchangeUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA9CFFD1BE3402C00F270ADF5CD1174B /* GoogleInterchangeUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				8CFC3292B3E053F5D81983AA67AB79AD /* Frameworks */,
+			);
+			path = GoogleInterchangeUtilities;
+			sourceTree = "<group>";
+		};
+		B00AAF94E46CFB06237E8BA96288247E /* FirebaseStorage */ = {
+			isa = PBXGroup;
+			children = (
+				3760D3F9EB493DE9D0FC9EFA49266E16 /* Frameworks */,
+			);
+			path = FirebaseStorage;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4D190F6CE3015CEA1B1B3AC09761013 /* GoogleSymbolUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				05252762D463C7E0AFA6C591045E68D8 /* Frameworks */,
+			);
+			path = GoogleSymbolUtilities;
+			sourceTree = "<group>";
+		};
+		D885F98B0D6A7CF7E7558D03B19D7333 /* FirebaseDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				F98BF37C130C674C6FFE2F0A0CF574C6 /* Frameworks */,
+			);
+			path = FirebaseDatabase;
+			sourceTree = "<group>";
+		};
+		E93978BA5E8208CD7458E877371B0B0E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				31AD9C3EF229FCD26E8B67598BC36ECF /* FirebaseInstanceID.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F679ABD5E311BD30510DB808D04CE375 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EBAEC0D48646DF401F821C42E1799CE8 /* GoogleUtilities.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8E133262DF4ED744FDCAC4A1C089735 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				783CCF9F433CFE6BDCFF65E642EC7776 /* Analytics */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		F98BF37C130C674C6FFE2F0A0CF574C6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				40ED930C2DDD09AC0C5DAE5E3B2947CF /* FirebaseDatabase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FE5625CB4D111BA2E722F030CCB8BBB9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0912278B593DFA6F7222373F176F4A25 /* Pods_AlarmCharm.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F0F3BB21AC8927B0E867EA637137A435 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90AA147374C1C49D3178DB39CE2B1ADB /* Pods-AlarmCharm-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		AD1D87A371D5BE57CAA6BD6B14BC0D93 /* Pods-AlarmCharm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE123595799C404E921E10A431AFE5CE /* Build configuration list for PBXNativeTarget "Pods-AlarmCharm" */;
+			buildPhases = (
+				03E562037D0C749F9DD88773C39E0271 /* Sources */,
+				479A10F9922D83BA5F7B3FC4727E5919 /* Frameworks */,
+				F0F3BB21AC8927B0E867EA637137A435 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-AlarmCharm";
+			productName = "Pods-AlarmCharm";
+			productReference = 0912278B593DFA6F7222373F176F4A25 /* Pods_AlarmCharm.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = FE5625CB4D111BA2E722F030CCB8BBB9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AD1D87A371D5BE57CAA6BD6B14BC0D93 /* Pods-AlarmCharm */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03E562037D0C749F9DD88773C39E0271 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1005CD86C535D7AEAE5872652E7EAB3C /* Pods-AlarmCharm-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		8308C48448649E1CA8098499DD2CEE4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AB22E9156A24411A18C606B52146BD1 /* Pods-AlarmCharm.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-AlarmCharm/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_AlarmCharm;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		88FCE675DF218892C3E6717BB8B1ACF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56CD8A240F79509A429A1B50582624E9 /* Pods-AlarmCharm.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-AlarmCharm/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_AlarmCharm;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */,
+				3FA451D268613890FA8A5A03801E11D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE123595799C404E921E10A431AFE5CE /* Build configuration list for PBXNativeTarget "Pods-AlarmCharm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88FCE675DF218892C3E6717BB8B1ACF1 /* Debug */,
+				8308C48448649E1CA8098499DD2CEE4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
