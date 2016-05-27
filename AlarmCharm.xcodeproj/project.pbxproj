@@ -129,18 +129,18 @@
 		30DF3F421CE6789800910E9F /* AlarmCharm */ = {
 			isa = PBXGroup;
 			children = (
+				304095181CF26F650054D4EF /* Media Files */,
+				30DF3F581CE6870500910E9F /* Supporting Files */,
+				304095031CF247860054D4EF /* CoreData */,
 				305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */,
 				305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */,
-				304095031CF247860054D4EF /* CoreData */,
 				304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */,
 				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
-				30DF3F581CE6870500910E9F /* Supporting Files */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
 				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
 				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
 				304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */,
 				B38CBFE31CEE71DF0099899D /* Constants.swift */,
-				304095181CF26F650054D4EF /* Media Files */,
 				B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */,
 				B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */,
 				30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */,

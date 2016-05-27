@@ -25,19 +25,17 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         super.viewDidLoad()
         do {
             try alarmAudioPlayer = AVAudioPlayer(contentsOfURL: softPianoAudioUrl, fileTypeHint: nil)
+            tableView.allowsSelection = false
         } catch{
         }
         
     }
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         alarmAudioPlayer?.stop()
     }
-    
     func cellWasPressed(cell : DefaultSoundTableViewCell, button: UIButton){
         let songName = cell.SongNameLabel!.text!
-        print(songName)
         let songUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(songName, ofType: "wav")!)
         do{
             try alarmAudioPlayer = AVAudioPlayer(contentsOfURL: songUrl, fileTypeHint: nil)
@@ -57,17 +55,15 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         catch{
         }
     }
-    
     private func setHighlightedDefault(cell: DefaultSoundTableViewCell){
         cell.backgroundColor = UIColor.cyanColor()
     }
-    
     private func setHighlightedNonDefault(cell: DefaultSoundTableViewCell){
         cell.backgroundColor = UIColor.whiteColor()
     }
-    
     var defaultCell: DefaultSoundTableViewCell?
     //Returns the name of the song that is in NSUser defaults as the current default alarm
+    
     private func getUserPreference() ->String? {
         let defaultSongDict = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_DEFAULT) ?? Dictionary()
         return defaultSongDict[Constants.USER_KEY_TO_GET_SONG_DEFAULT] as? String
@@ -79,9 +75,15 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         defaultSongDict [Constants.USER_KEY_TO_GET_SONG_DEFAULT] = songName
         
         NSUserDefaults.standardUserDefaults().setObject(defaultSongDict, forKey: Constants.USER_ALARM_DEFAULT)
-        print(NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_DEFAULT)![Constants.USER_KEY_TO_GET_SONG_DEFAULT])
         
-        
+        //If their alarm is already set, this will change the sound to be the new default
+        let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
+        if let oldNotification = notifications?[0]
+        {
+            oldNotification.soundName = songName + ".wav"
+            UIApplication.sharedApplication().cancelAllLocalNotifications()
+            UIApplication.sharedApplication().scheduleLocalNotification(oldNotification)
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -108,14 +110,17 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         if let cell = tableView.dequeueReusableCellWithIdentifier("SoundCell", forIndexPath: indexPath) as? DefaultSoundTableViewCell {
             let currentSongName = soundFiles[indexPath.row]
             var defaultSong = getUserPreference()
+            //This would only ever happen the very first time the user opened the app and didnt have a default song chosen
             if defaultSong == nil{
                 setUserPreference(currentSongName)
                 defaultSong = currentSongName
             }
+            // If the cell is the current default we highlight it
             if defaultSong == currentSongName {
                 defaultCell = cell
                 setHighlightedDefault(cell)
             }
+                //Otherwise we keep its background vlank
             else{
                 setHighlightedNonDefault(cell)
             }
@@ -126,54 +131,5 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         }
         return tableView.dequeueReusableCellWithIdentifier("SoundCell", forIndexPath: indexPath)
     }
-    
-    // IF clicked we need to go to user defaults and change default
-    // THen we need to change the current notification, if there is one
-    // Also when we first make default we need to see if there is already a default set
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-     if editingStyle == .Delete {
-     // Delete the row from the data source
-     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-     } else if editingStyle == .Insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

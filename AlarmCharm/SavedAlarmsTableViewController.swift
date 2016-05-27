@@ -86,13 +86,6 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
 //send the next VC the managedObjectContext
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            if identifier == "CreateNewAlarm"{
-                if let createvc = segue.destinationViewController as? CreateNewAlarmViewController {
-                    createvc.managedObjectContext = managedObjectContext
-                }
-            }
-        }
         
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

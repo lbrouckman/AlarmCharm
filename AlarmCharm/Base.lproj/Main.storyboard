@@ -212,8 +212,28 @@
                     <view key="view" contentMode="scaleToFill" id="gvc-Xn-NXL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KwA-82-elm">
+                                <rect key="frame" x="89" y="193" width="131" height="30"/>
+                                <state key="normal" title="Record Alarm"/>
+                                <connections>
+                                    <action selector="recordPushed:" destination="8cV-HQ-ofw" eventType="touchUpInside" id="Wsw-nU-W6w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyu-Ju-mmV">
+                                <rect key="frame" x="127" y="231" width="54" height="35"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="playUserRecording:" destination="8cV-HQ-ofw" eventType="touchUpInside" id="ufc-lu-6hF"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="playButton" destination="Hyu-Ju-mmV" id="P0I-dv-uIx"/>
+                        <outlet property="recordButton" destination="KwA-82-elm" id="jiK-oG-6fG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbA-5U-Cn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

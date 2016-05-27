@@ -30,7 +30,7 @@ class SetAlarmController: UIViewController {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        let date = datePicker.date
+        let date = ensureDateIsTomorrow(datePicker.date)
         
         var alarmDictionary = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_NOTIFICATION_USER_DEFAULTS_KEY) ?? Dictionary()
         
@@ -48,7 +48,6 @@ class SetAlarmController: UIViewController {
             currUserRef.updateChildValues(newTime)
         }
         
-
         
         createAndAddNotification(date)
         
@@ -57,8 +56,14 @@ class SetAlarmController: UIViewController {
         
     }
     
-    
-    
+    private func ensureDateIsTomorrow(date: NSDate) -> NSDate{
+        let currentDay = NSDate()
+        if currentDay.earlierDate(date) == date {
+            date.dateByAddingTimeInterval(60*60*24)
+        }
+        return date
+        //if the set date is earlier than current date, return less date + a day.
+    }
     
     private func createAndAddNotification(date: NSDate){
         
