@@ -1,19 +1,32 @@
+////
+////  FriendsListTableViewController.swift
+////  AlarmCharm
+////
+////  Created by Elizabeth Brouckman on 5/22/16.
+////  Copyright © 2016 Laura Brouckman. All rights reserved.
+////
 //
-//  FriendsListTableViewController.swift
-//  AlarmCharm
-//
-//  Created by Elizabeth Brouckman on 5/22/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
-//
-
 import UIKit
 import Contacts
+import Firebase
 
 class FriendsListTableViewController: UITableViewController {
+
+    private var objects = [CNContact]()
     
-    var objects = [CNContact]()
+    private var friendList = [Friend]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-    func getContacts() {
+    private struct Friend {
+        var contact: CNContact
+        var alarmTime: Double?
+        var phoneNumber: String
+    }
+
+    private func getContacts() {
         let store = CNContactStore()
         
         if CNContactStore.authorizationStatusForEntityType(.Contacts) == .NotDetermined {
@@ -28,8 +41,8 @@ class FriendsListTableViewController: UITableViewController {
             editContactsList()
         }
     }
-    
-    func extractNumber(phoneNumber: String) -> String {
+
+    private func extractNumber(phoneNumber: String) -> String {
         var num = ""
         for character in phoneNumber.characters {
             let value = Int(String(character))
@@ -44,17 +57,30 @@ class FriendsListTableViewController: UITableViewController {
     }
     
     //Functional as long as person is from the US
-    func editContactsList() {
+    private func editContactsList() {
         for contact in objects {
             if(contact.phoneNumbers.count > 0) {
                 let a = contact.phoneNumbers[0].value as! CNPhoneNumber
                 let num = extractNumber(a.stringValue)
-                print(num)
+                checkIfUserExists(num, contact: contact)
             }
+            
+        }
+    }
+
+    private func checkIfUserExists(userID: String, contact: CNContact) {
+        let ref = FIRDatabase.database().reference()
+        ref.child("users").child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if let x = snapshot.value!["alarm_time"] as? Double {
+                let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID)
+                self.friendList.append(newFriend)
+            }
+        }) { (error) in
+            print(error)
         }
     }
     
-    func retrieveContactsWithStore(store: CNContactStore) {
+    private func retrieveContactsWithStore(store: CNContactStore) {
         do {
             let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactPhoneNumbersKey, CNContactImageDataKey]
             let containerId = CNContactStore().defaultContainerIdentifier()
@@ -65,24 +91,15 @@ class FriendsListTableViewController: UITableViewController {
             print(error)
         }
     }
-    
-    
+//
+//    
     override func viewDidLoad() {
         super.viewDidLoad()
         getContacts()
     }
-    
-    
-    func insertNewObject(sender: NSNotification) {
-        if let contact = sender.userInfo?["contactToAdd"] as? CNContact {
-            objects.insert(contact, atIndex: 0)
-            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-            self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        }
-    }
-    
-    // MARK: - Table view data source
-    
+//
+//    // MARK: - Table view data source
+//    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -90,28 +107,30 @@ class FriendsListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return objects.count
+        return friendList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
         
-        let contact = objects[indexPath.row]
+        let friend = friendList[indexPath.row]
         if let friendCell = cell as? FriendTableViewCell {
-            friendCell.contact = contact
+            friendCell.contact = friend.contact
+            friendCell.alarmTime = friend.alarmTime
+            friendCell.phoneNumber = friend.phoneNumber
         }
         
         return cell
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+//
+//    /*
+//     // MARK: - Navigation
+//     
+//     // In a storyboard-based application, you will often want to do a little preparation before navigation
+//     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//     // Get the new view controller using segue.destinationViewController.
+//     // Pass the selected object to the new view controller.
+//     }
+//     */
+//    
 }

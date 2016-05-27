@@ -15,12 +15,25 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var contactAlarmTime: UILabel!
     @IBOutlet weak var contactPicture: UIImageView!
     
+    private struct Friend {
+        var name: String?
+        var phoneNumber: String?
+        var imageData: NSData?
+    }
+    
     var contact: CNContact? {
         didSet {
             updateUI()
         }
     }
     
+    var alarmTime: Double? {
+        didSet {
+            updateUI()
+        }
+    }
+    
+    var phoneNumber: String?
     
     private func updateUI() {
         contactName?.text = nil
@@ -33,7 +46,15 @@ class FriendTableViewCell: UITableViewCell {
         if(contact!.isKeyAvailable("imageData")) {
             setImage()
         }
-        contactAlarmTime?.text = "Not Set"
+        if alarmTime != nil {
+            let date = NSDate(timeIntervalSince1970: alarmTime!)
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = .ShortStyle
+            let timeString = formatter.stringFromDate(date)
+            contactAlarmTime?.text = timeString
+        } else {
+            contactAlarmTime?.text = "Not Set"
+        }
     }
     
     private func setImage() {
