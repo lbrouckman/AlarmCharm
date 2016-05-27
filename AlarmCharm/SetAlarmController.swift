@@ -44,7 +44,7 @@ class SetAlarmController: UIViewController {
             let ref = FIRDatabase.database().reference()
             let usersRef = ref.child("users")
             let currUserRef = usersRef.child(userId)
-            let newTime = ["AlarmTime": timestamp]
+            let newTime = ["alarm_time": timestamp]
             currUserRef.updateChildValues(newTime)
         }
         
