@@ -68,12 +68,16 @@ class FriendsListTableViewController: UITableViewController {
         }
     }
 
+    //EDIT SO THAT YOU DON'T ADD YOURSELF TO THE LIST
     private func checkIfUserExists(userID: String, contact: CNContact) {
+        if userID == NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
+            return
+        }
         let ref = FIRDatabase.database().reference()
         ref.child("users").child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let x = snapshot.value!["alarm_time"] as? Double {
-                let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID)
-                self.friendList.append(newFriend)
+                    let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID)
+                    self.friendList.append(newFriend)
             }
         }) { (error) in
             print(error)

@@ -34,8 +34,8 @@ class WelcomeScreenViewController: UIViewController {
             ref = FIRDatabase.database().reference()
             let usersRef = ref.child("users");
             let newUser = ["alarm_time": 0, "image_file": "", "audio_file": ""]
-            let users = [phoneNumber: newUser]
-            usersRef.setValue(users)
+            let newUserRef = usersRef.child(phoneNumber)
+            newUserRef.setValue(newUser)
         }
     }
 }

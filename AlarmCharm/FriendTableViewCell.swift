@@ -42,16 +42,20 @@ class FriendTableViewCell: UITableViewCell {
         
         contactName?.text = contact!.givenName + " " + contact!.familyName
         
-        //maybe have a default image to set this to
+        //ADD IN DEFAULT IMAGE TO SET THIS TO IF THERE IS NO IMAGE DATA
         if(contact!.isKeyAvailable("imageData")) {
             setImage()
         }
         if alarmTime != nil {
-            let date = NSDate(timeIntervalSince1970: alarmTime!)
-            let formatter = NSDateFormatter()
-            formatter.timeStyle = .ShortStyle
-            let timeString = formatter.stringFromDate(date)
-            contactAlarmTime?.text = timeString
+            if alarmTime != 0 {
+                let date = NSDate(timeIntervalSince1970: alarmTime!)
+                let formatter = NSDateFormatter()
+                formatter.timeStyle = .ShortStyle
+                let timeString = formatter.stringFromDate(date)
+                contactAlarmTime?.text = timeString
+            } else {
+                contactAlarmTime?.text = "Not Set"
+            }
         } else {
             contactAlarmTime?.text = "Not Set"
         }

@@ -80,6 +80,7 @@ class SetAlarmController: UIViewController {
         }else{
             notification.soundName = UILocalNotificationDefaultSoundName
         }
+        
         notification.userInfo = ["AlarmId": Constants.User_Alarm_ID ] // assign a unique identifier to the notification so that we can retrieve it later
         //CANCEL ALL PREVIOUS NOTIFICATIONS BECAUSE USER HAS CHANGED THEIR ALARM TIME
         UIApplication.sharedApplication().cancelAllLocalNotifications()

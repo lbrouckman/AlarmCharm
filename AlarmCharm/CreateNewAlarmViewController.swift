@@ -8,22 +8,27 @@
 
 import UIKit
 import CoreData
+import Firebase
+import FirebaseStorage
+import AVFoundation
 
 class CreateNewAlarmViewController: UIViewController {
     
     var managedObjectContext: NSManagedObjectContext?
     
+    
+    var player : AVPlayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateDatabase( "TEST1", videoURL: nil, imageData: nil)
+        //If the user's alarm sound has been set in the database, use this sound instead of the local one
         
-        // Do any additional setup after loading the view.
     }
     
     
     //Should also take in the audio recording
     private func updateDatabase(alarmName: String, videoURL: String?, imageData: NSData?) {
-        print("Updating alarm")
         managedObjectContext?.performBlock { [weak weakSelf = self] in
             let _ = Alarm.addAlarmToDB(
                 alarmName,

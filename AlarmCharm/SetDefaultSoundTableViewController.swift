@@ -29,10 +29,12 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         }
         
     }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         alarmAudioPlayer?.stop()
     }
+    
     func cellWasPressed(cell : DefaultSoundTableViewCell, button: UIButton){
         let songName = cell.SongNameLabel!.text!
         print(songName)
@@ -55,12 +57,15 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         catch{
         }
     }
+    
     private func setHighlightedDefault(cell: DefaultSoundTableViewCell){
         cell.backgroundColor = UIColor.cyanColor()
     }
+    
     private func setHighlightedNonDefault(cell: DefaultSoundTableViewCell){
         cell.backgroundColor = UIColor.whiteColor()
     }
+    
     var defaultCell: DefaultSoundTableViewCell?
     //Returns the name of the song that is in NSUser defaults as the current default alarm
     private func getUserPreference() ->String? {
