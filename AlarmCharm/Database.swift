@@ -21,7 +21,6 @@ class Database {
         let gsReference = storage.referenceForURL("gs://project-5208532535641760898.appspot.com")
         let fileRef = gsReference.child(filename)
         
-        // Upload the file to the path "images/rivers.jpg"
         let _ = fileRef.putFile(fileURL, metadata: nil) { metadata, error in
             if (error != nil) {
                 print(error)

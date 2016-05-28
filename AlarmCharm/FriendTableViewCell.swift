@@ -74,8 +74,18 @@ class FriendTableViewCell: UITableViewCell {
                 }
             }
         } else {
-            print("image is nil")
+            
+            let imageURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("defaultImage", ofType: "jpg")!)
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak weakSelf = self] in
+                let contentsOfURL = NSData(contentsOfURL: imageURL)
+                dispatch_async(dispatch_get_main_queue()) {
+                    if imageURL == NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("defaultImage", ofType: "jpg")!) {
+                        if let imageData = contentsOfURL {
+                            weakSelf?.contactPicture?.image = UIImage(data: imageData)
+                        }
+                    }
+                }
+            }
         }
     }
-    
 }
