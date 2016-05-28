@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import AVFoundation
 
 class Database {
     
@@ -76,8 +77,18 @@ class Database {
         print(soundPathUrl)
         songData?.writeToURL(soundPathUrl,  atomically: true)
     }
+    var player : AVPlayer?
+    /**/
+    private func playMusicFromFileSystem(fileName:String){
+        let playerItem = AVPlayerItem(URL : getURlFromFileSystem(fileName))
+        player = AVPlayer(playerItem: playerItem)
+        player!.play()
+    }
     
-    //GOOD FOR TESTING READING FROM FILE SYSTEM ONCE WE HAVE WRITTEN TO IT
+    
+    /*
+     Will be useful once app opens as well to actually play the sound with an av player
+     */
     private func getURlFromFileSystem(fileName: String) -> NSURL{
         let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
         let soundsPath = libraryPath + "/Sounds"
