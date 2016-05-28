@@ -95,12 +95,13 @@ class FriendsListTableViewController: UITableViewController {
             print(error)
         }
     }
-//
-//    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getContacts()
     }
+    
 //
 //    // MARK: - Table view data source
 //    

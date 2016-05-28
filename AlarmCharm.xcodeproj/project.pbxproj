@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		302174C81CFA13A700AD3134 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302174C71CFA13A700AD3134 /* Database.swift */; };
 		304094F71CF230C70054D4EF /* FriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */; };
 		304094F91CF236930054D4EF /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094F81CF236930054D4EF /* FriendTableViewCell.swift */; };
 		304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		172E78C97E7A5DF39FCF1F34 /* Pods_AlarmCharm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmCharm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		302174C71CFA13A700AD3134 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewController.swift; sourceTree = "<group>"; };
 		304094F81CF236930054D4EF /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAlarmsTableViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */,
 				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
+				302174C71CFA13A700AD3134 /* Database.swift */,
 				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
 				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
 				304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */,
@@ -306,6 +309,7 @@
 				B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */,
 				30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */,
 				305DC3131CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift in Sources */,
+				302174C81CFA13A700AD3134 /* Database.swift in Sources */,
 				B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */,
 				304094F71CF230C70054D4EF /* FriendsListTableViewController.swift in Sources */,
 				305DC3151CF4D8B000CE10A7 /* WelcomeScreenViewController.swift in Sources */,
