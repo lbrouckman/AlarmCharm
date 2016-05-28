@@ -73,6 +73,8 @@ class FriendTableViewCell: UITableViewCell {
                     }
                 }
             }
+        } else {
+            print("image is nil")
         }
     }
     
