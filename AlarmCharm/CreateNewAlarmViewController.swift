@@ -13,12 +13,18 @@ import AVFoundation
 //Set sound will set audio part
 
 class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate{
-    var audioSession: AVAudioSession!
-    var recorder: AVAudioRecorder?
-    var soundPlayer : AVAudioPlayer?
-    var recordFileName = "test.caf"
-
+    private var audioSession: AVAudioSession!
+    private var recorder: AVAudioRecorder?
+    private var soundPlayer: AVAudioPlayer?
+    private var recordFileName: String?
+    var userID: String?
+    private let remoteDB = Database()
+    //also a managed object context
+    
     @IBOutlet weak var playButton: UIButton!
+    
+    @IBOutlet weak var recordButton: UIButton!
+    
     
     private var state: RecordButtonStates!
     private enum RecordButtonStates : String{
@@ -27,11 +33,13 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         case Stopped = "Re-record"
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         playButton.enabled = false
         audioSession = AVAudioSession.sharedInstance()
-        
+        recordFileName = randomStringWithLength(20) as String
+        recordFileName = recordFileName! + ".caf"
         
         do{try  audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord) }catch{print("didnt set category")}
         do{
@@ -55,9 +63,16 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         } catch { }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //Randomly generate a string that can be used as filenames, so that they're different every time
+    private func randomStringWithLength (len : Int) -> NSString {
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let randomString : NSMutableString = NSMutableString(capacity: len)
+        for _ in 0 ..< len {
+            let length = UInt32 (letters.length)
+            let rand = arc4random_uniform(length)
+            randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+        }
+        return randomString
     }
     
     
@@ -69,9 +84,9 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             state = RecordButtonStates.Stopped
             finishRecording(success: true)
         }
-
+        
     }
-
+    
     @IBAction func playUserRecording(sender: UIButton) {
         //Load in recorded sound into the audioplayer
         if state != RecordButtonStates.Initial {
@@ -82,22 +97,22 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         }
     }
     
-    @IBOutlet weak var recordButton: UIButton!
-
     // In case a phone call comes in.
-    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
+    private func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
             finishRecording(success: false)
         }
     }
     
-    func audioPlayerBeginInterruption(player: AVAudioPlayer) {
+    private func audioPlayerBeginInterruption(player: AVAudioPlayer) {
         soundPlayer?.stop()
     }
-    func audioPlayerEndInterruption(player: AVAudioPlayer) {
+    
+    private func audioPlayerEndInterruption(player: AVAudioPlayer) {
         soundPlayer?.play()
     }
-    func startRecording() {
+    
+    private func startRecording() {
         let settings = [ AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000.0,
                          AVNumberOfChannelsKey: 1 as NSNumber, AVEncoderAudioQualityKey: AVAudioQuality.High.rawValue
         ]
@@ -112,7 +127,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     }
     
     //This function stops the audio recorder, sets it equal to nil, and then sets the button text appropiately
-    func finishRecording(success success: Bool) {
+    private func finishRecording(success success: Bool) {
         recorder?.stop()
         //This will reset the recorder if they want to record again.
         if success {
@@ -132,28 +147,28 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             recordButton.setTitle(RecordButtonStates.Initial.rawValue, forState: .Normal)
         }
     }
+    
     //Returns the correct audio url
     private func getAudioUrl() -> NSURL{
         let docDict = getDocumentsDirectory() as NSString
-        let soundPath = docDict.stringByAppendingPathComponent(recordFileName)
+        let soundPath = docDict.stringByAppendingPathComponent(recordFileName!)
         return NSURL(fileURLWithPath: soundPath)
     }
     
     //Helper function for getting the current directory
-    func getDocumentsDirectory() -> String {
+    private func getDocumentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    //When the user goes back, whatever the recorded will be uploaded to the DB and set to the user's audio
+    //If nothing was recorded, nothing happens (error printed to console saying that the audio file doesn't exist which is good)
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            remoteDB.uploadFileToDatabase(getAudioUrl(), forUser: userID!)
+        }
+    }
     
 }

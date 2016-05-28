@@ -9,9 +9,9 @@
 
 /*
  TO DO:
-    should have a model that contains the saved alarms and the contact that was clicked to ge to here (prepare for segue of friendsTableViewController
-    check marks = only one or zero allowed, the one that is checked is the alarm that has been chosen for that friend (maybe have a None option?)
-    display the names (decided by the user) of the saved alarms that they've created in the past
+ should have a model that contains the saved alarms and the contact that was clicked to ge to here (prepare for segue of friendsTableViewController
+ check marks = only one or zero allowed, the one that is checked is the alarm that has been chosen for that friend (maybe have a None option?)
+ display the names (decided by the user) of the saved alarms that they've created in the past
  */
 
 import UIKit
@@ -20,7 +20,7 @@ import CoreData
 
 class SavedAlarmsTableViewController: CoreDataTableViewController {
     //set by previous VC
-    var contact: CNContact?
+    var friendSelected: String?
     
     var managedObjectContext: NSManagedObjectContext? =
         (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
@@ -44,27 +44,27 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
         super.viewDidLoad()
         loadAlarms()
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCellWithIdentifier("SavedAlarmCell", forIndexPath: indexPath)
-            
-            if let savedAlarm = fetchedResultsController?.objectAtIndexPath(indexPath) as? Alarm {
-                var name: String?
-                savedAlarm.managedObjectContext?.performBlockAndWait {
-                    name = savedAlarm.name
-                }
-                cell.textLabel?.text = name
-                if indexPath.row == checkedIndex {
-                    cell.accessoryType = .Checkmark
-                } else {
-                    cell.accessoryType = .None
-                }
+        let cell = tableView.dequeueReusableCellWithIdentifier("SavedAlarmCell", forIndexPath: indexPath)
+        
+        if let savedAlarm = fetchedResultsController?.objectAtIndexPath(indexPath) as? Alarm {
+            var name: String?
+            savedAlarm.managedObjectContext?.performBlockAndWait {
+                name = savedAlarm.name
             }
-            return cell
+            cell.textLabel?.text = name
+            if indexPath.row == checkedIndex {
+                cell.accessoryType = .Checkmark
+            } else {
+                cell.accessoryType = .None
+            }
+        }
+        return cell
     }
     
     private var checkedIndex: Int?
-
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             if cell.accessoryType == .None {
@@ -80,15 +80,18 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
                 cell.accessoryType = .Checkmark
                 checkedIndex = indexPath.row
             }
-        }    
+        }
     }
- 
-//send the next VC the managedObjectContext
-
+    
+    //send the next VC the managedObjectContext
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            if identifier == "CreateNewAlarm"{
+                if let createvc = segue.destinationViewController as? CreateNewAlarmViewController {
+                    createvc.userID = friendSelected
+                }
+            }
+        }
     }
-
 }

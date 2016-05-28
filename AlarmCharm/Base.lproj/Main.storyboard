@@ -139,7 +139,7 @@
                                     <outlet property="contactAlarmTime" destination="lJk-GJ-Udh" id="2lR-Hz-P3O"/>
                                     <outlet property="contactName" destination="gaJ-qm-IQa" id="97H-Cp-LDj"/>
                                     <outlet property="contactPicture" destination="hj8-VG-wqh" id="Pse-LB-N4r"/>
-                                    <segue destination="wwr-5K-78N" kind="show" id="5P9-4A-hVB"/>
+                                    <segue destination="wwr-5K-78N" kind="show" identifier="ShowSavedAlarms" id="5P9-4A-hVB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
