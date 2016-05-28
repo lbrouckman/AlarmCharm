@@ -27,7 +27,7 @@ class WelcomeScreenViewController: UIViewController {
     @IBOutlet weak var textBox: UITextField!
     private var ref = FIRDatabaseReference.init()
 
-    //If the user doesn't enter a phone number this will crash
+    //If the user doesn't enter a phone number this will crash LOL
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "StorePhoneNumber" {
             let phoneNumber = textBox.text!
