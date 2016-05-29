@@ -27,8 +27,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     
     @IBOutlet weak var recordButton: UIButton!
     
-    @IBOutlet weak var alarmNameTextEdit: UITextField!
-    
+    @IBOutlet weak var alarmMessageLabel: UITextField!
     @IBOutlet weak var alarmNameTextEdit: UITextField!
     
     private var state: RecordButtonStates!
@@ -183,6 +182,10 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
             if alarmNameTextEdit.text != nil {
                 updateDatabase(alarmNameTextEdit.text!, alarmMessage: nil, audioFilename: audioUrl.absoluteString, imageFilename: nil)
+                let message = alarmMessageLabel.text
+                if message != nil{
+                    remoteDB.uploadWakeUpMessageToDatabase(message!, forUser: userID!)
+                }
             } else {
                 print("ALERT USER THAT THEY MUST ENTER A NAME FOR THEIR ALARM")
             }

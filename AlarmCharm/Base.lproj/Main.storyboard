@@ -144,13 +144,13 @@
                                             <rect key="frame" x="8" y="8" width="592" height="90"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hj8-VG-wqh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="314" height="90"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="315" height="90"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="QCN-Mh-pWC"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gxg-UZ-Jbp">
-                                                    <rect key="frame" x="315" y="0.0" width="177" height="62"/>
+                                                    <rect key="frame" x="316" y="0.0" width="176" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Laura Brouckman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-qm-IQa">
                                                             <rect key="frame" x="0.0" y="0.0" width="165" height="26"/>
@@ -159,7 +159,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Charm me awake please :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpP-yI-1kP">
-                                                            <rect key="frame" x="0.0" y="36" width="177" height="26"/>
+                                                            <rect key="frame" x="0.0" y="36" width="176" height="26"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -287,13 +287,13 @@
                                     <action selector="playUserRecording:" destination="8cV-HQ-ofw" eventType="touchUpInside" id="ufc-lu-6hF"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EKe-ch-dTf">
-                                <rect key="frame" x="81" y="285" width="154" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgA-Pj-faK">
+                                <rect key="frame" x="93" y="155" width="109" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Alarm Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgA-Pj-faK">
-                                <rect key="frame" x="135" y="109" width="101" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jg-eF-n61">
+                                <rect key="frame" x="93" y="261" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -301,8 +301,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="alarmNameTextEdit" destination="EKe-ch-dTf" id="3oe-ZK-8EN"/>
-                        <outlet property="playButton" destination="Hyu-Ju-mmV" id="P0I-dv-uIx"/>
+                        <outlet property="alarmMessageLabel" destination="9jg-eF-n61" id="Ibo-82-bLO"/>
+                        <outlet property="alarmNameTextEdit" destination="OgA-Pj-faK" id="ta5-jB-VCk"/>
+                        <outlet property="playButton" destination="Hyu-Ju-mmV" id="bzR-0y-zpu"/>
                         <outlet property="recordButton" destination="KwA-82-elm" id="jiK-oG-6fG"/>
                     </connections>
                 </viewController>
