@@ -81,11 +81,8 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
                 }
                 let selectedAlarm = fetchedResultsController?.fetchedObjects?[indexPath.row] as? Alarm
                 if let selected = selectedAlarm {
-                    print(selected)
-                    if let filename = selected.audioFilename {
-                        print("b")
+                     if let filename = selected.audioFilename {
                         if let url = NSURL(string: filename) {
-                            print("c")
                             remoteDB.uploadFileToDatabase(url, forUser: friendSelected!)
                         }
                     }

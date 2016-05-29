@@ -160,5 +160,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    
+    //Have alarm wake up periodically and pull down information from the database
+    
+    
 }
 
