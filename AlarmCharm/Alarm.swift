@@ -13,17 +13,21 @@ import CoreData
 class Alarm: NSManagedObject {
 
     //add audio recording functionality
-    class func addAlarmToDB(name: String, videoURL: String?, imageData: NSData?,inManagedObjectContext context: NSManagedObjectContext) -> Alarm? {
+    class func addAlarmToDB(name: String, alarmMessage: String?, audioFilename: String?, imageFilename: String?,inManagedObjectContext context: NSManagedObjectContext) -> Alarm? {
         print("Adding alarm with name \(name) to DB")
         let request = NSFetchRequest(entityName: "Alarm")
-        request.predicate = NSPredicate(format: "name = %@", name)
+        request.predicate = NSPredicate(format: "alarmName = %@", name)
         
         if let result = (try? context.executeFetchRequest(request))?.first as? Alarm {
+            result.imageFilename = imageFilename
+            result.audioFilename = audioFilename
+            result.alarmMessage = alarmMessage
             return result
         } else if let result = NSEntityDescription.insertNewObjectForEntityForName("Alarm", inManagedObjectContext: context) as? Alarm {
-            result.name = name
-            result.videoURL = videoURL
-            result.image = imageData
+            result.alarmName = name
+            result.audioFilename = audioFilename
+            result.imageFilename = imageFilename
+            result.alarmMessage = alarmMessage
             return result
         }
         return nil

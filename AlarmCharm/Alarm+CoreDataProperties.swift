@@ -2,7 +2,7 @@
 //  Alarm+CoreDataProperties.swift
 //  AlarmCharm
 //
-//  Created by Elizabeth Brouckman on 5/22/16.
+//  Created by Elizabeth Brouckman on 5/29/16.
 //  Copyright © 2016 Laura Brouckman. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,8 +14,9 @@ import CoreData
 
 extension Alarm {
 
-    @NSManaged var name: String?
-    @NSManaged var image: NSData?
-    @NSManaged var videoURL: String?
-    @NSManaged var audioRecording: NSData?
+    @NSManaged var imageFilename: String?
+    @NSManaged var audioFilename: String?
+    @NSManaged var alarmName: String?
+    @NSManaged var alarmMessage: String?
+
 }

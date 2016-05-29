@@ -21,6 +21,8 @@ import CoreData
 class SavedAlarmsTableViewController: CoreDataTableViewController {
     //set by previous VC
     var friendSelected: String?
+    var remoteDB = Database()
+    
     
     var managedObjectContext: NSManagedObjectContext? =
         (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
@@ -28,7 +30,7 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
     private func loadAlarms() {
         if let context = managedObjectContext {
             let request = NSFetchRequest(entityName: "Alarm")
-            request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))]
+            request.sortDescriptors = [NSSortDescriptor(key: "alarmName", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))]
             fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: request,
                 managedObjectContext: context,
@@ -51,7 +53,7 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
         if let savedAlarm = fetchedResultsController?.objectAtIndexPath(indexPath) as? Alarm {
             var name: String?
             savedAlarm.managedObjectContext?.performBlockAndWait {
-                name = savedAlarm.name
+                name = savedAlarm.alarmName
             }
             cell.textLabel?.text = name
             if indexPath.row == checkedIndex {
@@ -77,6 +79,17 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
                         }
                     }
                 }
+                let selectedAlarm = fetchedResultsController?.fetchedObjects?[indexPath.row] as? Alarm
+                if let selected = selectedAlarm {
+                    print(selected)
+                    if let filename = selected.audioFilename {
+                        print("b")
+                        if let url = NSURL(string: filename) {
+                            print("c")
+                            remoteDB.uploadFileToDatabase(url, forUser: friendSelected!)
+                        }
+                    }
+                }
                 cell.accessoryType = .Checkmark
                 checkedIndex = indexPath.row
             }
@@ -90,6 +103,7 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
             if identifier == "CreateNewAlarm"{
                 if let createvc = segue.destinationViewController as? CreateNewAlarmViewController {
                     createvc.userID = friendSelected
+                    createvc.managedObjectContext = managedObjectContext
                 }
             }
         }

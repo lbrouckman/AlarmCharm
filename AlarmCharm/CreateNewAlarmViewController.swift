@@ -9,6 +9,7 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 //Maybe have a delegate that is the alarm itself, this comes from inital view controller
 //Set sound will set audio part
 
@@ -19,12 +20,14 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     private var recordFileName: String?
     var userID: String?
     private let remoteDB = Database()
+    var managedObjectContext: NSManagedObjectContext?
     //also a managed object context
     
     @IBOutlet weak var playButton: UIButton!
     
     @IBOutlet weak var recordButton: UIButton!
     
+    @IBOutlet weak var alarmNameTextEdit: UITextField!
     
     private var state: RecordButtonStates!
     private enum RecordButtonStates : String{
@@ -164,11 +167,34 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     
     //When the user goes back, whatever the recorded will be uploaded to the DB and set to the user's audio
     //If nothing was recorded, nothing happens (error printed to console saying that the audio file doesn't exist which is good)
+    //Possible: if they don't name their alarm, have an alert that tells them that name is required
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            remoteDB.uploadFileToDatabase(getAudioUrl(), forUser: userID!)
+            let audioUrl = getAudioUrl()
+            remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
+            if alarmNameTextEdit.text != nil {
+                updateDatabase(alarmNameTextEdit.text!, alarmMessage: nil, audioFilename: audioUrl.absoluteString, imageFilename: nil)
+            } else {
+                print("ALERT USER THAT THEY MUST ENTER A NAME FOR THEIR ALARM")
+            }
         }
     }
     
+    private func updateDatabase(alarmName: String, alarmMessage: String?, audioFilename: String?, imageFilename: String?) {
+        print("Updating alarm")
+        managedObjectContext?.performBlockAndWait { [weak weakSelf = self] in
+            let _ = Alarm.addAlarmToDB(
+                alarmName,
+                alarmMessage: alarmMessage,
+                audioFilename: audioFilename,
+                imageFilename: imageFilename,
+                inManagedObjectContext: (weakSelf?.managedObjectContext)!)
+            do {
+                try (weakSelf?.managedObjectContext)!.save()
+            } catch let error {
+                print(error)
+            }
+        }
+    }
 }
