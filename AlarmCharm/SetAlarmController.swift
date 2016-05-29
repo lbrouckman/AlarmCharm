@@ -10,9 +10,7 @@ import UIKit
 import Firebase
 
 class SetAlarmController: UIViewController {
-    
-    //private var ref = FIRDatabaseReference.init()
-    
+        
     @IBOutlet weak var datePicker: UIDatePicker!
     //We rely on previous view controller to set if we have a previous date.
     var previousDate : NSDate?
@@ -36,15 +34,7 @@ class SetAlarmController: UIViewController {
         //This function should be in DataBase
         //Set this alarm time (as a unix timestamp) to be the user's alarm time on the server
         Database.addAlarmTimeToDatabase(date)
-        //        if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
-        //            let timestamp = date.timeIntervalSince1970
-        //            let ref = FIRDatabase.database().reference()
-        //            let usersRef = ref.child("users")
-        //            let currUserRef = usersRef.child(userId)
-        //            let newTime = ["alarm_time": timestamp]
-        //            currUserRef.updateChildValues(newTime)
-        //        }
-        //
+   
         Notifications.AddAlarmNotification(date)
         //We will need to create and store the user's alarm in NsUser Defaults as a local notification
         // When someone else set's their alarm, we will just go and change either the noise or their action?
