@@ -292,11 +292,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Alarm Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgA-Pj-faK">
+                                <rect key="frame" x="135" y="109" width="101" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="alarmMessageLabel" destination="OVu-I5-QmL" id="FOh-SV-dbf"/>
+                        <outlet property="alarmNameTextEdit" destination="OgA-Pj-faK" id="ta5-jB-VCk"/>
                         <outlet property="playButton" destination="Hyu-Ju-mmV" id="P0I-dv-uIx"/>
                         <outlet property="recordButton" destination="KwA-82-elm" id="jiK-oG-6fG"/>
                     </connections>

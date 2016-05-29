@@ -13,9 +13,6 @@ import Firebase
 class AlarmGoingOffViewController: UIViewController {
     var playing = false
     
-    
-    
-    
     @IBOutlet weak var wakeupMessageLabel: UILabel!
     
     var wakeupMessage : String?{

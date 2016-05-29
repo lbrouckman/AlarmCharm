@@ -30,6 +30,8 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     @IBOutlet weak var recordButton: UIButton!
     
     
+    @IBOutlet weak var alarmNameTextEdit: UITextField!
+    
     private var state: RecordButtonStates!
     private enum RecordButtonStates : String{
         case Initial = "Record"
