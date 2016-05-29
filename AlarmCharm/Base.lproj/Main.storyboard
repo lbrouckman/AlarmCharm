@@ -139,25 +139,37 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="106"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mGz-qo-ZV2">
-                                            <rect key="frame" x="8" y="8" width="551" height="90"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="oxF-hh-CaJ">
+                                            <rect key="frame" x="8" y="8" width="592" height="90"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hj8-VG-wqh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="90"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hj8-VG-wqh">
+                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="90"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="QCN-Mh-pWC"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Laura Brouckman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-qm-IQa">
-                                                    <rect key="frame" x="70" y="0.0" width="397" height="90"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="9:00am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="lJk-GJ-Udh">
-                                                    <rect key="frame" x="477" y="0.0" width="74" height="90"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gxg-UZ-Jbp">
+                                                    <rect key="frame" x="288" y="0.0" width="203" height="62"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Laura Brouckman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-qm-IQa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="165" height="26"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Charm me awake please :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpP-yI-1kP">
+                                                            <rect key="frame" x="0.0" y="36" width="201" height="26"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="lJk-GJ-Udh">
+                                                    <rect key="frame" x="492" y="0.0" width="100" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="86" id="50l-m5-ZYq"/>
+                                                        <constraint firstAttribute="width" constant="100" id="rJY-0N-tzq"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -169,19 +181,23 @@
                                                     </variation>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="lJk-GJ-Udh" secondAttribute="bottom" constant="64" id="M7D-YX-XoP"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="mGz-qo-ZV2" secondAttribute="trailing" id="Ug5-hZ-fR8"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="mGz-qo-ZV2" secondAttribute="leading" id="cTq-WQ-uTV"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="mGz-qo-ZV2" secondAttribute="bottom" id="h6O-fp-7O8"/>
-                                        <constraint firstAttribute="topMargin" secondItem="mGz-qo-ZV2" secondAttribute="top" id="mF5-cl-3Rb"/>
-                                    </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="oxF-hh-CaJ" secondAttribute="trailing" id="5Pt-aG-11v"/>
+                                    <constraint firstAttribute="bottom" secondItem="gxg-UZ-Jbp" secondAttribute="bottom" constant="37" id="8KK-cn-BJ9"/>
+                                    <constraint firstItem="oxF-hh-CaJ" firstAttribute="leading" secondItem="6eo-Mx-WAA" secondAttribute="leading" constant="8" id="IH2-01-UXJ"/>
+                                    <constraint firstItem="oxF-hh-CaJ" firstAttribute="top" secondItem="6eo-Mx-WAA" secondAttribute="top" constant="8" id="Mm3-UR-LQq"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="contactAlarmTime" destination="lJk-GJ-Udh" id="2lR-Hz-P3O"/>
                                     <outlet property="contactName" destination="gaJ-qm-IQa" id="97H-Cp-LDj"/>
                                     <outlet property="contactPicture" destination="hj8-VG-wqh" id="Pse-LB-N4r"/>
+                                    <outlet property="messageLabel" destination="RpP-yI-1kP" id="TYT-k6-KeL"/>
                                     <segue destination="wwr-5K-78N" kind="show" identifier="ShowSavedAlarms" id="5P9-4A-hVB"/>
                                 </connections>
                             </tableViewCell>
@@ -374,6 +390,9 @@
                                                 <constraint firstItem="kcQ-7U-RLU" firstAttribute="centerY" secondItem="vRB-6e-9iE" secondAttribute="centerY" id="v7X-WD-HMi"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="cjg-vc-lob" kind="show" id="jxV-zD-nIN"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -388,6 +407,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j8c-kg-t2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1132" y="1012"/>
+        </scene>
+        <!--Default Message View Controller-->
+        <scene sceneID="ya8-wp-kFi">
+            <objects>
+                <viewController id="cjg-vc-lob" customClass="DefaultMessageViewController" customModule="AlarmCharm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r0O-L3-Lf7"/>
+                        <viewControllerLayoutGuide type="bottom" id="NaN-Hi-1Ey"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2uc-Yp-Ysm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Please set my alarm to something charming, not alarming :)" borderStyle="roundedRect" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9N3-4N-4e5">
+                                <rect key="frame" x="38" y="103" width="404" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="messageTextField" destination="9N3-4N-4e5" id="Fid-Sj-1zd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FY2-iw-dkS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1335" y="1924"/>
         </scene>
         <!--Set Alarm Controller-->
         <scene sceneID="cff-wm-jZb">
@@ -520,7 +567,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Qd-jm-BjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1936" y="1660"/>
+            <point key="canvasLocation" x="2388" y="1514"/>
         </scene>
         <!--User Settings-->
         <scene sceneID="VVr-of-GcW">

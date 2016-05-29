@@ -14,11 +14,13 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var contactName: UILabel!
     @IBOutlet weak var contactAlarmTime: UILabel!
     @IBOutlet weak var contactPicture: UIImageView!
+    @IBOutlet weak var messageLabel: UILabel!
     
     private struct Friend {
         var name: String?
         var phoneNumber: String?
         var imageData: NSData?
+        var message: String?
     }
     
     var contact: CNContact? {
@@ -32,6 +34,11 @@ class FriendTableViewCell: UITableViewCell {
             updateUI()
         }
     }
+    var message: String?{
+        didSet{
+            updateUI()
+        }
+    }
     
     var phoneNumber: String?
     
@@ -41,6 +48,9 @@ class FriendTableViewCell: UITableViewCell {
         contactPicture?.image = nil
         
         contactName?.text = contact!.givenName + " " + contact!.familyName
+        if message != nil{
+            messageLabel?.text = message
+        }
         
         //ADD IN DEFAULT IMAGE TO SET THIS TO IF THERE IS NO IMAGE DATA
         if(contact!.isKeyAvailable("imageData")) {

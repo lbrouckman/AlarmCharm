@@ -32,6 +32,19 @@ class Database {
         }
         
     }
+    
+    // After user sets their message, this function puts their message in the database
+    static func uploadUserMessageToDatabase(message: String, forUser userID: String){
+        let uRef = FIRDatabase.database().reference().child("users")
+        let currentUserRef = uRef.child(userID)
+        let newMessage = ["user_message" : message]
+        currentUserRef.updateChildValues(newMessage)
+    
+    }
+    
+    
+    
+    
     static func addAlarmTimeToDatabase(date: NSDate){
         if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             let timestamp = date.timeIntervalSince1970

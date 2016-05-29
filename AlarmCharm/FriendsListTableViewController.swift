@@ -24,6 +24,7 @@ class FriendsListTableViewController: UITableViewController {
         var contact: CNContact
         var alarmTime: Double?
         var phoneNumber: String
+        var message: String?
     }
 
     private func getContacts() {
@@ -76,7 +77,8 @@ class FriendsListTableViewController: UITableViewController {
         let ref = FIRDatabase.database().reference()
         ref.child("users").child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let x = snapshot.value!["alarm_time"] as? Double {
-                    let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID)
+                let message = snapshot.value!["user_message"] as? String
+                let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID, message: message)
                     self.friendList.append(newFriend)
             }
         }) { (error) in
@@ -123,6 +125,7 @@ class FriendsListTableViewController: UITableViewController {
             friendCell.contact = friend.contact
             friendCell.alarmTime = friend.alarmTime
             friendCell.phoneNumber = friend.phoneNumber
+            friendCell.message = friend.message
         }
         
         return cell

@@ -28,6 +28,7 @@
 		30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */; };
 		30FE0D0E1CF76F65004213A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */; };
 		B307AD411CFADA88004852CD /* AlarmGoingOffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */; };
+		B307AD431CFB729B004852CD /* DefaultMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */; };
 		B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38CBFE31CEE71DF0099899D /* Constants.swift */; };
 		B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */; };
 		B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */; };
@@ -60,6 +61,7 @@
 		6EFEE08CBEAC32D1476FFEBD /* Pods-AlarmCharm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.release.xcconfig"; sourceTree = "<group>"; };
 		7102B7B16C6A0DBDF18D17E8 /* Pods-AlarmCharm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.debug.xcconfig"; sourceTree = "<group>"; };
 		B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmGoingOffViewController.swift; sourceTree = "<group>"; };
+		B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMessageViewController.swift; sourceTree = "<group>"; };
 		B38CBFE31CEE71DF0099899D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultSoundTableViewController.swift; sourceTree = "<group>"; };
 		B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSoundTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */,
 				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
+				B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */,
 				302174C71CFA13A700AD3134 /* Database.swift */,
 				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
 				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
@@ -322,6 +325,7 @@
 				304094FE1CF246F10054D4EF /* Model.xcdatamodeld in Sources */,
 				B3F03F321CFABE0F00B52980 /* Notifications.swift in Sources */,
 				304094F91CF236930054D4EF /* FriendTableViewCell.swift in Sources */,
+				B307AD431CFB729B004852CD /* DefaultMessageViewController.swift in Sources */,
 				304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */,
 				30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */,
 				304095021CF247650054D4EF /* Alarm.swift in Sources */,
