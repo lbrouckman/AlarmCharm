@@ -29,9 +29,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
-        
-        FIRApp.configure()        
+        //Wake up about every 5 minutes to fetch alarms from DB
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(300)
+        FIRApp.configure()
         return true
+    }
+    
+  //  Function that is called every 5ish minutes to fetch alarms from DB
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        if let welcomevc = window?.rootViewController as? WelcomeScreenViewController {
+            welcomevc.fetch {
+                print("Completed fetch")
+                completionHandler(.NewData)
+            }
+        }
     }
     
     //THIS SHOULD ONLY BE CALLED IF APP IS CURRENTLY RUNNING OR IN BACKGROUND BUT WE STILL NEED TO HANDLE IT THE SAME WAY
@@ -159,10 +170,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
-    
-    //Have alarm wake up periodically and pull down information from the database
-    
     
 }
 

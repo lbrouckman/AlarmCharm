@@ -33,6 +33,7 @@ class SetAlarmController: UIViewController {
         
         //This function should be in DataBase
         //Set this alarm time (as a unix timestamp) to be the user's alarm time on the server
+        print("set time")
         Database.addAlarmTimeToDatabase(date)
    
         Notifications.AddAlarmNotification(date)
@@ -43,7 +44,7 @@ class SetAlarmController: UIViewController {
         var db = Database()
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
         let x = userId! //It was crashing without this, maybe later we can change but im confuesd
-       db.downloadFileToLocal(forUser: x)
+        db.downloadFileToLocal(forUser: x)
     }
     
     private func ensureDateIsTomorrow(date: NSDate) -> NSDate{

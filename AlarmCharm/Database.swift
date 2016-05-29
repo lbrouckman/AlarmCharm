@@ -56,7 +56,9 @@ class Database {
     
     
     static func addAlarmTimeToDatabase(date: NSDate){
+        print("a")
         if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
+            print("Here")
             let timestamp = date.timeIntervalSince1970
             let ref = FIRDatabase.database().reference()
             let usersRef = ref.child("users")
