@@ -98,13 +98,13 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     }
     
     // In case a phone call comes in.
-    private func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
+    @objc func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if !flag {
             finishRecording(success: false)
         }
     }
     
-    private func audioPlayerBeginInterruption(player: AVAudioPlayer) {
+    @objc func audioPlayerBeginInterruption(player: AVAudioPlayer) {
         soundPlayer?.stop()
     }
     
