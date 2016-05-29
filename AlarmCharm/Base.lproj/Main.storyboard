@@ -144,13 +144,13 @@
                                             <rect key="frame" x="8" y="8" width="592" height="90"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hj8-VG-wqh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="309" height="90"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="312" height="90"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="QCN-Mh-pWC"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gxg-UZ-Jbp">
-                                                    <rect key="frame" x="310" y="0.0" width="182" height="62"/>
+                                                    <rect key="frame" x="313" y="0.0" width="178" height="62"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Laura Brouckman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-qm-IQa">
                                                             <rect key="frame" x="0.0" y="0.0" width="165" height="26"/>
@@ -159,7 +159,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Charm me awake please :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpP-yI-1kP">
-                                                            <rect key="frame" x="0.0" y="36" width="182" height="26"/>
+                                                            <rect key="frame" x="0.0" y="36" width="178" height="26"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
