@@ -46,7 +46,6 @@ class Database {
     
     
     func downloadFileToLocal(forUser userID: String) {
-        //Carlisle your function will go here!
         usersRef.child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let audioFile = snapshot.value!["audio_file"] as? String where audioFile != ""{
                 let storage = FIRStorage.storage()
@@ -56,7 +55,8 @@ class Database {
                     if (error != nil) {
                         print(error)
                     } else {
-                        self.saveToFileSystem(URL!, fileName: "test.caf")
+                        self.saveToFileSystem(URL!, fileName: Constants.ALARM_SOUND_STORED_FILENAME)
+                        print("saved?")
                     }
                 }
             }
@@ -84,32 +84,6 @@ class Database {
         let soundPathUrl = NSURL(fileURLWithPath: filePath)
         print(soundPathUrl)
         songData?.writeToURL(soundPathUrl,  atomically: true)
-    }
-    var player : AVPlayer?
-    /**/
-    private func playMusicFromFileSystem(fileName:String){
-        let playerItem = AVPlayerItem(URL : getURlFromFileSystem(fileName))
-        player = AVPlayer(playerItem: playerItem)
-        player!.play()
-    }
-    
-    
-    /*
-     Will be useful once app opens as well to actually play the sound with an av player
-     */
-    private func getURlFromFileSystem(fileName: String) -> NSURL{
-        let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
-        let soundsPath = libraryPath + "/Sounds"
-        let filePath = soundsPath + "/" + fileName
-        let fileManager = NSFileManager.defaultManager()
-        
-        do {
-            try fileManager.createDirectoryAtPath(soundsPath, withIntermediateDirectories: false, attributes: nil)
-        } catch let error1 as NSError {
-            print("error" + error1.description)
-        }
-        let myURL = NSURL(fileURLWithPath: filePath)
-        return myURL
     }
     
     /*

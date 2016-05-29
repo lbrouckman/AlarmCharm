@@ -14,7 +14,7 @@ class Constants  {
     static let USER_ALARM_WENT_OFF = "slide for options"
     static let WAKE_UP_CATEGORY = "alarm is going off"
     
-    
+    static let ALARM_SOUND_STORED_FILENAME = "test.caf"
     
     //For Default Song choice
     static let USER_ALARM_DEFAULT = "user default song"
