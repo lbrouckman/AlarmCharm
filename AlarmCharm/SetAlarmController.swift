@@ -39,9 +39,11 @@ class SetAlarmController: UIViewController {
         //We will need to create and store the user's alarm in NsUser Defaults as a local notification
         // When someone else set's their alarm, we will just go and change either the noise or their action?
         //This is just code to ensure user's db alarm gets saved locally, wouldnt go here
+        
         var db = Database()
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
-        db.downloadFileToLocal(forUser: userId!)
+        let x = userId! //It was crashing without this, maybe later we can change but im confuesd
+       db.downloadFileToLocal(forUser: x)
     }
     
     private func ensureDateIsTomorrow(date: NSDate) -> NSDate{

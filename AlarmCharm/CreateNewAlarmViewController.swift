@@ -12,13 +12,17 @@ import AVFoundation
 //Maybe have a delegate that is the alarm itself, this comes from inital view controller
 //Set sound will set audio part
 
-class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate{
+class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, UITextFieldDelegate{
     private var audioSession: AVAudioSession!
     private var recorder: AVAudioRecorder?
     private var soundPlayer: AVAudioPlayer?
     private var recordFileName: String?
     var userID: String?
     private let remoteDB = Database()
+    
+    
+    @IBOutlet weak var alarmMessageLabel: UITextField!
+    
     //also a managed object context
     
     @IBOutlet weak var playButton: UIButton!
@@ -36,11 +40,11 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        alarmMessageLabel.delegate = self
         playButton.enabled = false
         audioSession = AVAudioSession.sharedInstance()
         recordFileName = randomStringWithLength(20) as String
         recordFileName = recordFileName! + ".caf"
-        
         do{try  audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord) }catch{print("didnt set category")}
         do{
             try  audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
@@ -135,7 +139,6 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             playButton.enabled = true
             recordButton.setTitle(state.rawValue, forState: .Normal)
             do{
-                print("preparing audio player")
                 try soundPlayer = AVAudioPlayer(contentsOfURL: getAudioUrl(), fileTypeHint: nil)
                 soundPlayer?.prepareToPlay()
                 soundPlayer?.volume = 1.0
@@ -162,11 +165,22 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         return documentsDirectory
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        //Maybe set wake up message or in function below
+        return true
+    }
+    
+    
     //When the user goes back, whatever the recorded will be uploaded to the DB and set to the user's audio
     //If nothing was recorded, nothing happens (error printed to console saying that the audio file doesn't exist which is good)
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
+           let message = alarmMessageLabel.text
+            if message != nil{
+                remoteDB.uploadWakeUpMessageToDatabase(message!, forUser: userID!)
+            }
             remoteDB.uploadFileToDatabase(getAudioUrl(), forUser: userID!)
         }
     }

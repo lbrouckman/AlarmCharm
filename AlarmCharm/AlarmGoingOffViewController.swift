@@ -8,15 +8,28 @@
 
 import UIKit
 import AVFoundation
-
+import Firebase
+ 
 class AlarmGoingOffViewController: UIViewController {
     var playing = false
+    
+    
+    
+    
+    @IBOutlet weak var wakeupMessageLabel: UILabel!
+    
+    var wakeupMessage : String?{
+        didSet{
+        wakeupMessageLabel?.text = wakeupMessage
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         //Show message
         //Show Image
         //Have option to replay alarm.
         prepareToPlayMusicFromFileSystem(Constants.ALARM_SOUND_STORED_FILENAME)
+        getWakeUPMessage()
     }
     var player : AVPlayer?
     /*
@@ -27,6 +40,15 @@ class AlarmGoingOffViewController: UIViewController {
         player = AVPlayer(playerItem: playerItem)
     }
     
+    private func getWakeUPMessage(){
+        let userID = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
+        let uRef = FIRDatabase.database().reference().child("users")
+        uRef.child(userID!).observeSingleEventOfType(.Value, withBlock: { (snapshot)  in
+            self.wakeupMessage = snapshot.value!["wakeup_message"] as? String
+        }) { (error) in
+            print(error)
+        }
+    }
     
     @IBOutlet weak var playAlarmButton: UIButton!
     
@@ -43,6 +65,10 @@ class AlarmGoingOffViewController: UIViewController {
         }
     }
     
+    
+    
+    
+    
     /*
      Will be useful once app opens as well to actually play the sound with an av player
      */
@@ -58,7 +84,6 @@ class AlarmGoingOffViewController: UIViewController {
             print("error" + error1.description)
         }
         let myURL = NSURL(fileURLWithPath: filePath)
-        print(myURL)
         return myURL
     }
     
