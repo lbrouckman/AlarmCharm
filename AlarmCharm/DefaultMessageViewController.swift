@@ -25,7 +25,7 @@ class DefaultMessageViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {   //delegate method
+    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         if let message = textField.text! as? String{
             if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String{

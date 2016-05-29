@@ -39,8 +39,18 @@ class Database {
         let currentUserRef = uRef.child(userID)
         let newMessage = ["user_message" : message]
         currentUserRef.updateChildValues(newMessage)
-    
     }
+    
+    func uploadWakeUpMessageToDatabase(message:String, forUser userID: String){
+        let uRef = FIRDatabase.database().reference().child("users")
+        let currentUserRef = uRef.child(userID)
+        let newMessage = ["wakeup_message" : message]
+        currentUserRef.updateChildValues(newMessage)
+    }
+    
+//    func getWakeUpMessageFromDatabase(forUser userID: String) -> String?{
+//        
+//    }
     
     
     
