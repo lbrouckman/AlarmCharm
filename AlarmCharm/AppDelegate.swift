@@ -24,48 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         static let ALARM_GOES_OFF_IDENTIFER = "alarm is going off"
         static let FRIENDS_SETS_ALARM_CATEGORY = "friend has set alarm"
     }
-    let alarmGoesOffCategory = UIMutableUserNotificationCategory()
-    let friendSetsAlarmCategory = UIMutableUserNotificationCategory()
+ 
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // App just launched, we need to ask user if we can use notifications
-        //look into doing custom actions on alerts in UIUserNotificationSettings
-        
-        let snoozeAction = UIMutableUserNotificationAction()
-        snoozeAction.identifier = ActionConstants.SNOOZE_IDENTIFIER
-        snoozeAction.destructive = false
-        snoozeAction.title = ActionConstants.SNOOZE_TITLE
-        //Maybe change this to back ground
-        snoozeAction.activationMode = .Background
-        snoozeAction.authenticationRequired = false
-        
-        let wakeAction = UIMutableUserNotificationAction()
-        wakeAction.identifier = ActionConstants.WAKE_IDENTIFIER
-        wakeAction.destructive = false
-        wakeAction.title = ActionConstants.WAKE_TILE
-        wakeAction.activationMode = .Foreground
-        wakeAction.authenticationRequired = false
-        
-        alarmGoesOffCategory.identifier = ActionConstants.ALARM_GOES_OFF_IDENTIFER
-        alarmGoesOffCategory.setActions([snoozeAction, wakeAction], forContext: .Default)
-        let alarmGoesOffSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: Set(arrayLiteral: alarmGoesOffCategory))
-        
-        friendSetsAlarmCategory.identifier = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
-        //Implement this later for this tupe of notification
-        application.registerUserNotificationSettings(alarmGoesOffSettings)
-        
-        
-        
-        
-        let opt = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey]
-        print(opt)
-        //Look up to see how user got there, if user pushes snooze, change current notification time by 5 minutes
-        //If user pushed wake me up, go to scene of friend
-        //Note we will need to get asked to wake up before notification
+       
+        application.registerUserNotificationSettings(Notifications.getNotificationSettings())
         
         FIRApp.configure()        
         return true
     }
+    
     //THIS SHOULD ONLY BE CALLED IF APP IS CURRENTLY RUNNING OR IN BACKGROUND BUT WE STILL NEED TO HANDLE IT THE SAME WAY
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         print(notification)
@@ -77,13 +45,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if identifier != nil{
             switch identifier!{
             case ActionConstants.SNOOZE_IDENTIFIER:
+                
                 //We want to get current notification and push back 1 minute
                 let date = notification.fireDate?.dateByAddingTimeInterval(60.0)
                 notification.fireDate = date
                 notification.alertBody = "Has been Snoozed"
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                print("snoozed and reset alarm")
             case ActionConstants.WAKE_IDENTIFIER:
+                let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AlarmGoingOff") as! AlarmGoingOffViewController
+                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                self.window?.rootViewController = goingOff
+                
+                self.window?.makeKeyAndVisible()
                 print("wake me up")
                 //AND LAUNCH? BUT THIS MIGHT BE IN BACKGROUND
             default:

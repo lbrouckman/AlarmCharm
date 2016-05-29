@@ -96,7 +96,6 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         if soundFiles.count > 0 {
             return 1
         }

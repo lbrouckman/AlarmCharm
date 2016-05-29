@@ -27,6 +27,7 @@
 		30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */; };
 		30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */; };
 		30FE0D0E1CF76F65004213A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */; };
+		B307AD411CFADA88004852CD /* AlarmGoingOffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */; };
 		B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38CBFE31CEE71DF0099899D /* Constants.swift */; };
 		B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */; };
 		B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */; };
@@ -58,6 +59,7 @@
 		30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6EFEE08CBEAC32D1476FFEBD /* Pods-AlarmCharm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.release.xcconfig"; sourceTree = "<group>"; };
 		7102B7B16C6A0DBDF18D17E8 /* Pods-AlarmCharm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.debug.xcconfig"; sourceTree = "<group>"; };
+		B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmGoingOffViewController.swift; sourceTree = "<group>"; };
 		B38CBFE31CEE71DF0099899D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultSoundTableViewController.swift; sourceTree = "<group>"; };
 		B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSoundTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */,
 				B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */,
 				30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */,
+				B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */,
 			);
 			path = AlarmCharm;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */,
 				304095021CF247650054D4EF /* Alarm.swift in Sources */,
 				304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */,
+				B307AD411CFADA88004852CD /* AlarmGoingOffViewController.swift in Sources */,
 				B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */,
 				304095051CF247EC0054D4EF /* CoreDataTableViewController.swift in Sources */,
 			);
