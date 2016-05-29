@@ -46,8 +46,8 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
                 alarmAudioPlayer?.pause()
             case "Set":
                 setUserPreference(songName)
-                setHighlightedDefault(cell)
                 setHighlightedNonDefault(defaultCell!)
+                setHighlightedDefault(cell)
                 defaultCell = cell
             default: break
             }
@@ -78,13 +78,16 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         
         //If their alarm is already set, this will change the sound to be the new default
         let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
-        if let oldNotification = notifications?[0]
-        {
-            oldNotification.soundName = songName + ".wav"
-            UIApplication.sharedApplication().cancelAllLocalNotifications()
-            UIApplication.sharedApplication().scheduleLocalNotification(oldNotification)
+        if notifications?.count > 0 {
+            if let oldNotification = notifications?[0]
+            {
+                oldNotification.soundName = songName + ".wav"
+                UIApplication.sharedApplication().cancelAllLocalNotifications()
+                UIApplication.sharedApplication().scheduleLocalNotification(oldNotification)
+            }
         }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
