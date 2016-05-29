@@ -16,6 +16,15 @@ class Notifications{
         static let ALARM_GOES_OFF_IDENTIFER = "alarm is going off"
         static let FRIENDS_SETS_ALARM_CATEGORY = "friend has set alarm"
     }
+    
+    static func addFriendSetAlarmNotification(friendName: String){
+        let notification = UILocalNotification()
+        notification.alertBody = friendName + " has set your alarm!"
+        notification.category = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
+        notification.fireDate = NSDate()
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
     static func AddAlarmNotification(date: NSDate){
         let notification = UILocalNotification()
         notification.alertBody = "Friend wakes you up" // message user sees
@@ -24,7 +33,6 @@ class Notifications{
         notification.fireDate =  date
         
         //Setting the sound to be the user's default sound preference
-        
         var alarmDefaultDict = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_DEFAULT)
         if let songName = alarmDefaultDict?[Constants.USER_KEY_TO_GET_SONG_DEFAULT] as? String{
             print("user has a default set song")
@@ -67,6 +75,8 @@ class Notifications{
         snoozeAction.authenticationRequired = false
         return snoozeAction
     }
+    
+    
     static func UpdateNotification(fileNameOfSound: String, fileNameOfImage: String){
         
         
