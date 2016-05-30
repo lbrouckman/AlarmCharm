@@ -47,7 +47,7 @@ class Database {
         currentUserRef.updateChildValues(newMessage)
     }
     
-    func uploadWakeUpMessageToDatabase(message:String, forUser userID: String){
+    func uploadWakeUpMessageToDatabase(message: String, forUser userID: String){
         let uRef = FIRDatabase.database().reference().child("users")
         let currentUserRef = uRef.child(userID)
         let newMessage = ["wakeup_message" : message]
@@ -57,7 +57,12 @@ class Database {
 //    func getWakeUpMessageFromDatabase(forUser userID: String) -> String?{
 //        
 //    }
-    
+    static func userNeedsAlarmToBeSet(forUser userID: String , toBeSet: Bool){
+        let uRef = FIRDatabase.database().reference().child("users")
+        let currentUserRef = uRef.child(userID)
+        let needsSetting = ["need_friend_to_set" : toBeSet]
+        currentUserRef.updateChildValues(needsSetting)
+    }
     
     
     

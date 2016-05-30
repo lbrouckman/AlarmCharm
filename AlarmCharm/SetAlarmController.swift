@@ -17,7 +17,12 @@ class SetAlarmController: UIViewController {
     
     @IBAction func removeAlarm() {
         //Remove from icloud as well as userDefaults
-        
+        //Make alarm needs to be set false in database
+        var db = Database()
+        let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
+        let x = userId! //It was crashing without this, maybe later we can change but im confuesd
+        Database.userNeedsAlarmToBeSet(forUser: x, toBeSet: false)
+        Database.userInProcessOfBeingSet(forUser: x, inProcess: false)
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         NSUserDefaults.standardUserDefaults().removeObjectForKey(Constants.USER_ALARM_NOTIFICATION_USER_DEFAULTS_KEY)
     }
