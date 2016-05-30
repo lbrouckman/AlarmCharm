@@ -178,9 +178,11 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            let audioUrl = getAudioUrl()
-            remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
             if alarmNameTextEdit.text != nil {
+                Database.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
+                let audioUrl = getAudioUrl()
+                remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
+                
                 updateDatabase(alarmNameTextEdit.text!, alarmMessage: nil, audioFilename: audioUrl.absoluteString, imageFilename: nil)
                 let message = alarmMessageLabel.text
                 if message != nil{

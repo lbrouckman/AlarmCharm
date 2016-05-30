@@ -11,7 +11,7 @@ import Contacts
 import Firebase
 
 class FriendsListTableViewController: UITableViewController {
-
+    
     private var objects = [CNContact]()
     
     private var friendList = [Friend]() {
@@ -26,7 +26,7 @@ class FriendsListTableViewController: UITableViewController {
         var phoneNumber: String
         var message: String?
     }
-
+    
     private func getContacts() {
         let store = CNContactStore()
         
@@ -42,7 +42,7 @@ class FriendsListTableViewController: UITableViewController {
             editContactsList()
         }
     }
-
+    
     private func extractNumber(phoneNumber: String) -> String {
         var num = ""
         for character in phoneNumber.characters {
@@ -68,7 +68,7 @@ class FriendsListTableViewController: UITableViewController {
             
         }
     }
-
+    
     //EDIT SO THAT YOU DON'T ADD YOURSELF TO THE LIST
     private func checkIfUserExists(userID: String, contact: CNContact) {
         if userID == NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
@@ -77,9 +77,17 @@ class FriendsListTableViewController: UITableViewController {
         let ref = FIRDatabase.database().reference()
         ref.child("users").child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let x = snapshot.value!["alarm_time"] as? Double {
-                let message = snapshot.value!["user_message"] as? String
-                let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID, message: message)
-                    self.friendList.append(newFriend)
+                if let should_be_set = snapshot.value!["need_friend_to_set"] as? Bool {
+                    if should_be_set{
+                        if let getting_set = snapshot.value!["in_process_of_being_set"] as? Bool {
+                            if !getting_set{
+                                let message = snapshot.value!["user_message"] as? String
+                                let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID, message: message)
+                                self.friendList.append(newFriend)
+                            }
+                        }
+                    }
+                }
             }
         }) { (error) in
             print(error)
@@ -97,16 +105,16 @@ class FriendsListTableViewController: UITableViewController {
             print(error)
         }
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getContacts()
     }
     
-//
-//    // MARK: - Table view data source
-//    
+    //
+    //    // MARK: - Table view data source
+    //
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -130,18 +138,21 @@ class FriendsListTableViewController: UITableViewController {
         
         return cell
     }
-
-
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "ShowSavedAlarms"{
                 if let cell = sender as? FriendTableViewCell, let indexPath = tableView.indexPathForCell(cell),
                     let savedvc = segue.destinationViewController as? SavedAlarmsTableViewController {
+                    //We should set the user's needToBeSet to false here, as they are about to set it, and we don't want someone to record an alarm
+                    // and then not be able to post it.
                     let friend = friendList[indexPath.row]
                     savedvc.friendSelected = friend.phoneNumber
+                    Database.userInProcessOfBeingSet(forUser: friend.phoneNumber, inProcess: true)
                 }
             }
         }
-     }
-
+    }
+    
 }

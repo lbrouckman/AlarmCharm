@@ -46,6 +46,7 @@ class SetAlarmController: UIViewController {
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
         let x = userId! //It was crashing without this, maybe later we can change but im confuesd
         db.downloadFileToLocal(forUser: x)
+        
     }
     
     private func ensureDateIsTomorrow(date: NSDate) -> NSDate{

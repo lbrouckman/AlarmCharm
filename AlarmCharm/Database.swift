@@ -27,6 +27,12 @@ class Database {
             } else {
                 let currUserRef = self.usersRef.child(userID)
                 let newSound = ["audio_file": filename]
+                
+                let userNoLongerNeedsToBeSet = ["need_friend_to_set" : false]
+                let notInProcess = ["in_process_of_being_set" : false]
+                
+                currUserRef.updateChildValues(notInProcess)
+                currUserRef.updateChildValues(userNoLongerNeedsToBeSet)
                 currUserRef.updateChildValues(newSound)
             }
         }
@@ -64,12 +70,20 @@ class Database {
             let usersRef = ref.child("users")
             let currUserRef = usersRef.child(userId)
             let newTime = ["alarm_time": timestamp]
+            let needsToBeSet = ["need_friend_to_set" : true]
+            
+            currUserRef.updateChildValues(needsToBeSet)
             currUserRef.updateChildValues(newTime)
         }
     }
+    static func userInProcessOfBeingSet(forUser userID: String, inProcess : Bool){
+        let uRef = FIRDatabase.database().reference().child("users")
+        let currentUserRef = uRef.child(userID)
+        let process = ["in_process_of_being_set" : inProcess]
+        currentUserRef.updateChildValues(process)
+    }
     
-    
-    
+
     func downloadFileToLocal(forUser userID: String) {
         usersRef.child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let audioFile = snapshot.value!["audio_file"] as? String where audioFile != ""{
