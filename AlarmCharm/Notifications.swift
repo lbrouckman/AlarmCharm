@@ -21,7 +21,7 @@ class Notifications{
         let notification = UILocalNotification()
         notification.alertBody = friendName + " has set your alarm!"
         notification.category = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
-        notification.fireDate = NSDate()
+        notification.fireDate = NSDate().dateByAddingTimeInterval(60)
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
@@ -46,12 +46,14 @@ class Notifications{
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     static func getNotificationSettings()-> UIUserNotificationSettings{
-        let alarmGoesOffCategory = UIMutableUserNotificationCategory()
         let friendSetsAlarmCategory = UIMutableUserNotificationCategory()
+        friendSetsAlarmCategory.identifier = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
+
+        let alarmGoesOffCategory = UIMutableUserNotificationCategory()
         alarmGoesOffCategory.identifier = ActionConstants.ALARM_GOES_OFF_IDENTIFER
         alarmGoesOffCategory.setActions([Notifications.getSnoozeAction(), Notifications.getWakeAction()], forContext: .Default)
-        let alarmGoesOffSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: Set(arrayLiteral: alarmGoesOffCategory))
-        friendSetsAlarmCategory.identifier = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
+        
+        let alarmGoesOffSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: Set(arrayLiteral: alarmGoesOffCategory, friendSetsAlarmCategory))
         return alarmGoesOffSettings
     }
     
