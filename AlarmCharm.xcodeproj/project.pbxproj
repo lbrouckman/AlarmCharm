@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		302174C81CFA13A700AD3134 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302174C71CFA13A700AD3134 /* Database.swift */; };
 		302174CA1CFA2FF700AD3134 /* defaultImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 302174C91CFA2FF700AD3134 /* defaultImage.jpg */; };
+		303B8F4C1CFB9E8300995E77 /* FetchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B8F4B1CFB9E8300995E77 /* FetchViewController.swift */; };
 		304094F71CF230C70054D4EF /* FriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */; };
 		304094F91CF236930054D4EF /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094F81CF236930054D4EF /* FriendTableViewCell.swift */; };
 		304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		302174C71CFA13A700AD3134 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		302174C91CFA2FF700AD3134 /* defaultImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultImage.jpg; sourceTree = "<group>"; };
+		303B8F4B1CFB9E8300995E77 /* FetchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchViewController.swift; sourceTree = "<group>"; };
 		304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewController.swift; sourceTree = "<group>"; };
 		304094F81CF236930054D4EF /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAlarmsTableViewController.swift; sourceTree = "<group>"; };
@@ -137,11 +139,12 @@
 		30DF3F421CE6789800910E9F /* AlarmCharm */ = {
 			isa = PBXGroup;
 			children = (
-				B3F03F311CFABE0F00B52980 /* Notifications.swift */,
+				303B8F4B1CFB9E8300995E77 /* FetchViewController.swift */,
 				304095181CF26F650054D4EF /* Media Files */,
 				30DF3F581CE6870500910E9F /* Supporting Files */,
 				304095031CF247860054D4EF /* CoreData */,
 				305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */,
+				B3F03F311CFABE0F00B52980 /* Notifications.swift */,
 				305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */,
 				304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */,
 				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
@@ -154,8 +157,8 @@
 				B38CBFE31CEE71DF0099899D /* Constants.swift */,
 				B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */,
 				B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */,
-				30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */,
 				B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */,
+				30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */,
 			);
 			path = AlarmCharm;
 			sourceTree = "<group>";
@@ -223,6 +226,11 @@
 					30DF3F3F1CE6789800910E9F = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 755GJW67BJ;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -329,6 +337,7 @@
 				304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */,
 				30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */,
 				304095021CF247650054D4EF /* Alarm.swift in Sources */,
+				303B8F4C1CFB9E8300995E77 /* FetchViewController.swift in Sources */,
 				304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */,
 				B307AD411CFADA88004852CD /* AlarmGoingOffViewController.swift in Sources */,
 				B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */,

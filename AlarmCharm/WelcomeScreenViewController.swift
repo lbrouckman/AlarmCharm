@@ -24,6 +24,18 @@ class WelcomeScreenViewController: UIViewController {
     }
     
 
+    
+    func fetch(completion: () -> Void) {
+        let remoteDB = Database()
+        if let user = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
+            remoteDB.downloadFileToLocal(forUser: user)
+            //download image as well
+            //Set the wake up message in user defaults
+            //NSUserDefaults.standardUserDefaults().setValue(Database.getWakeUpMessage(), forKey: "WakeupMessage")
+        }
+        completion()
+    }
+
     @IBOutlet weak var textBox: UITextField!
     private var ref = FIRDatabaseReference.init()
 
