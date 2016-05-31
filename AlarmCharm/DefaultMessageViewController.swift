@@ -27,9 +27,10 @@ class DefaultMessageViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
-        if let message = textField.text! as? String{
+        if let message = textField.text {
             if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String{
                 Database.uploadUserMessageToDatabase(message, forUser: userId)
+                NSUserDefaults.standardUserDefaults().setValue(message, forKey: "User Default Message")
             }
             
         }

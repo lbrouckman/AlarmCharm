@@ -18,7 +18,6 @@ class SetAlarmController: UIViewController {
     @IBAction func removeAlarm() {
         //Remove from icloud as well as userDefaults
         //Make alarm needs to be set false in database
-        var db = Database()
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
         let x = userId! //It was crashing without this, maybe later we can change but im confuesd
         Database.userNeedsAlarmToBeSet(forUser: x, toBeSet: false)
@@ -38,7 +37,6 @@ class SetAlarmController: UIViewController {
         
         //This function should be in DataBase
         //Set this alarm time (as a unix timestamp) to be the user's alarm time on the server
-        print("set time")
         Database.addAlarmTimeToDatabase(date)
    
         Notifications.AddAlarmNotification(date)
@@ -47,7 +45,7 @@ class SetAlarmController: UIViewController {
         //This is just code to ensure user's db alarm gets saved locally, wouldnt go here
         
         Notifications.addFriendSetAlarmNotification("lebron james")
-        var db = Database()
+        let db = Database()
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
         let x = userId! //It was crashing without this, maybe later we can change but im confuesd
         db.downloadFileToLocal(forUser: x)

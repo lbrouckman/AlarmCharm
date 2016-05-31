@@ -52,7 +52,6 @@ class FriendTableViewCell: UITableViewCell {
             messageLabel?.text = message
         }
         
-        //ADD IN DEFAULT IMAGE TO SET THIS TO IF THERE IS NO IMAGE DATA
         if(contact!.isKeyAvailable("imageData")) {
             setImage()
         }
