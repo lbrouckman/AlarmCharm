@@ -181,7 +181,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            Database.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
+            remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
         }
     }
     
@@ -192,7 +192,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             style: .Default)
         {  [weak weakSelf = self] (action: UIAlertAction) ->  Void in
             weakSelf?.saveAlarm()
-            Database.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
+            weakSelf?.remoteDB.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
             weakSelf?.navigationController?.popViewControllerAnimated(true)
             }
         )
@@ -200,7 +200,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             title: "Don't Save",
             style: .Default)
         {  [weak weakSelf = self] (action: UIAlertAction) ->  Void in
-            Database.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
+            weakSelf?.remoteDB.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
             weakSelf?.navigationController?.popViewControllerAnimated(true)
             }
         )
