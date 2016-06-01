@@ -299,6 +299,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <connections>
                         <outlet property="alarmMessageLabel" destination="9jg-eF-n61" id="Ibo-82-bLO"/>
                         <outlet property="alarmNameTextEdit" destination="OgA-Pj-faK" id="ta5-jB-VCk"/>

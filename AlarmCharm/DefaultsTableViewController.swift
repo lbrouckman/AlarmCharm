@@ -55,7 +55,4 @@ class DefaultsTableViewController: UITableViewController {
         }
         soundCell.textLabel?.text = soundString
     }
-
-    // MARK: - Table view data source
-
 }

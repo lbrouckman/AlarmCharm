@@ -23,8 +23,6 @@ class WelcomeScreenViewController: UIViewController {
         }
     }
     
-
-    
     func fetch(completion: () -> Void) {
         let remoteDB = Database()
         if let user = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
