@@ -43,17 +43,13 @@ class WelcomeScreenViewController: UIViewController {
             }
         }
     
+    //Going to move this function
     static func fetch(completion: () -> Void) {
         if let user = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             print("about to call hasUserAlarmBeenSet")
             let db = Database()
             db.hasUserAlarmBeenSet(forUser: user, completionHandler: WelcomeScreenViewController.storeAlarmInfo)
-
-//            remoteDB.hasUserAlarmBeenSet(forUser: user, completionHandler: self.storeAlarmInfo)
             }
-            //if it has been set, then we want to download the file to local, and set the notification to have that sound
-            //Need to set notification sound to be local as well
-            //Set the wake up message in user defaults
     }
     
     @IBOutlet weak var textBox: UITextField!

@@ -15,10 +15,7 @@ class DefaultMessageViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTextField.delegate = self
-        print(NSUserDefaults.standardUserDefaults().valueForKey("test") as? String)
-        WelcomeScreenViewController.fetch{
-        print("fetch returned")
-        }
+        
         
         // Do any additional setup after loading the view.
     }

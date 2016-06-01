@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Wake up about every 5 minutes to fetch alarms from DB
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(60)
         WelcomeScreenViewController.fetch{
-        print("dummy")
+
         }
         
         return true
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(notification)
     }
     
-    //This gets called if user hits wake up or snooze
+    //Maybe move to notification side
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?,
                        forLocalNotification notification: UILocalNotification, withResponseInfo responseInfo: [NSObject : AnyObject],completionHandler: () -> Void){
         if identifier != nil{
@@ -67,13 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
             case ActionConstants.WAKE_IDENTIFIER:
                 let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                
                 let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AlarmGoingOff") as! AlarmGoingOffViewController
                 self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
                 self.window?.rootViewController = goingOff
                 
                 self.window?.makeKeyAndVisible()
-                print("wake me up")
                 //AND LAUNCH? BUT THIS MIGHT BE IN BACKGROUND
             default:
                 break
