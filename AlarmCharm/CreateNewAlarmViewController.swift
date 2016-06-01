@@ -21,7 +21,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     var userID: String?
     private let remoteDB = Database()
     var managedObjectContext: NSManagedObjectContext?
-    //also a managed object context
+    private var saved = false
     
     @IBOutlet weak var playButton: UIButton!
     
@@ -40,6 +40,8 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated:true);
+        
         alarmMessageLabel.delegate = self
         playButton.enabled = false
         audioSession = AVAudioSession.sharedInstance()
@@ -133,6 +135,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     //This function stops the audio recorder, sets it equal to nil, and then sets the button text appropiately
     private func finishRecording(success success: Bool) {
         recorder?.stop()
+        saved = false
         //This will reset the recorder if they want to record again.
         if success {
             //The state will be in stopped mode already, and so we won't need to change it.
@@ -178,24 +181,81 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
-            if alarmNameTextEdit.text != nil {
-                Database.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
-                let audioUrl = getAudioUrl()
-                remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
-                
-                updateDatabase(alarmNameTextEdit.text!, alarmMessage: nil, audioFilename: audioUrl.absoluteString, imageFilename: nil)
-                let message = alarmMessageLabel.text
-                if message != nil{
-                    remoteDB.uploadWakeUpMessageToDatabase(message!, forUser: userID!)
-                }
-            } else {
-                print("ALERT USER THAT THEY MUST ENTER A NAME FOR THEIR ALARM")
-            }
+            Database.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
         }
     }
     
-    private func updateDatabase(alarmName: String, alarmMessage: String?, audioFilename: String?, imageFilename: String?) {
-        print("Updating alarm")
+    private func alertNotSaved() {
+        let alert = UIAlertController(title: "You haven't saved your alarm yet!", message: "Would you like to save this alarm before leaving? ", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(
+            title: "Save",
+            style: .Default)
+        {  [weak weakSelf = self] (action: UIAlertAction) ->  Void in
+            weakSelf?.saveAlarm()
+            Database.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
+            weakSelf?.navigationController?.popViewControllerAnimated(true)
+            }
+        )
+        alert.addAction(UIAlertAction(
+            title: "Don't Save",
+            style: .Default)
+        {  [weak weakSelf = self] (action: UIAlertAction) ->  Void in
+            Database.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
+            weakSelf?.navigationController?.popViewControllerAnimated(true)
+            }
+        )
+        alert.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .Default)
+        {  (action: UIAlertAction) ->  Void in
+            }
+        )
+        presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func goBack() {
+        if !saved {
+            alertNotSaved()
+        } else {
+            navigationController?.popViewControllerAnimated(true)
+
+        }
+    }
+    
+    
+    private func alertNoAlarmName() {
+        let alert = UIAlertController(title: "No Alarm Title", message: "You must enter a title for your alarm before saving", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style: .Default)
+        {  (action: UIAlertAction) -> Void in
+            return
+            }
+        )
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func saveAlarm() {
+        if let x = alarmNameTextEdit.text {
+            if x.characters.count > 0 {
+                let audioUrl = getAudioUrl()
+                remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
+                updateCoreData(alarmNameTextEdit.text!, alarmMessage: nil, audioFilename: audioUrl.absoluteString, imageFilename: nil)
+                let message = alarmMessageLabel.text
+                if message?.characters.count > 0 {
+                    remoteDB.uploadWakeUpMessageToDatabase(message!, forUser: userID!)
+                }
+                saved = true
+            } else {
+                alertNoAlarmName()
+            }
+        } else {
+            alertNoAlarmName()
+        }
+    }
+    
+    private func updateCoreData(alarmName: String, alarmMessage: String?, audioFilename: String?, imageFilename: String?) {
         managedObjectContext?.performBlockAndWait { [weak weakSelf = self] in
             let _ = Alarm.addAlarmToDB(
                 alarmName,
