@@ -34,9 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
         //Wake up about every 5 minutes to fetch alarms from DB
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(60)
-        WelcomeScreenViewController.fetch{
-
-        }
+        WelcomeScreenViewController.fetch {}
         
         return true
     }

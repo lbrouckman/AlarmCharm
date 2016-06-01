@@ -26,20 +26,20 @@ class WelcomeScreenViewController: UIViewController {
     }
     
     static func storeAlarmInfo(user: String,  hasBeenSet: Bool, justSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String){
-        print("call back called")
         if hasBeenSet{
+            UserDefaults.userAlarmBeenSet(true)
             if justSet{
                 let db = Database()
-
                 db.downloadFileToLocal(forUser: user) { wasDownloadedToLocal in
-                    if wasDownloadedToLocal{ Notifications.setNotificationFromFileSystem()}  //This means the file has been downloaded and we can now set the notification sound
-                    UserDefaults.addWakeUpMessage(wakeUpMessage)
-                    UserDefaults.storeFriendWhoSetAlarm(friendWhoSetAlarm)
-                    print("about to set Notification")
-                    Notifications.addFriendSetAlarmNotification(friendWhoSetAlarm)
+                    if wasDownloadedToLocal{
+                        Notifications.setNotificationFromFileSystem()
+                        UserDefaults.addWakeUpMessage(wakeUpMessage)
+                        UserDefaults.storeFriendWhoSetAlarm(friendWhoSetAlarm)
+                        Notifications.addFriendSetAlarmNotification(friendWhoSetAlarm)
+                    }  //This means the file has been downloaded and we can now set the notification sound
+                    
                 }
             }
-
             }
         }
     
@@ -48,8 +48,10 @@ class WelcomeScreenViewController: UIViewController {
         if let user = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             print("about to call hasUserAlarmBeenSet")
             let db = Database()
-            db.hasUserAlarmBeenSet(forUser: user, completionHandler: WelcomeScreenViewController.storeAlarmInfo)
+            if UserDefaults.hasAlarmBeenSet(){
+                db.hasUserAlarmBeenSet(forUser: user, completionHandler: WelcomeScreenViewController.storeAlarmInfo)
             }
+        }
     }
     
     @IBOutlet weak var textBox: UITextField!

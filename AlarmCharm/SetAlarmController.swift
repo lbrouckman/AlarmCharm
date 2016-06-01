@@ -23,6 +23,7 @@ class SetAlarmController: UIViewController {
         remoteDB.userNeedsAlarmToBeSet(forUser: x, toBeSet: false)
         remoteDB.userInProcessOfBeingSet(forUser: x, inProcess: false)
         
+        
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         UserDefaults.clearAlarmDate()
     }
@@ -33,7 +34,6 @@ class SetAlarmController: UIViewController {
         UserDefaults.setAlarmDate(date)
         remoteDB.addAlarmTimeToDatabase(date)
         Notifications.AddAlarmNotification(date)
-        
         }
     
     private func ensureDateIsTomorrow(date: NSDate) -> NSDate{

@@ -10,10 +10,11 @@ import Foundation
 
 class UserDefaults{
     
-    static var messageKey = "messageKey"
-    static var friendKey = "friendKey"
-    static var defaultSongKey = "defaultKey"
-    static var dateKey = "dateKey"
+    static var messageKey =         "messageKey"
+    static var friendKey =          "friendKey"
+    static var defaultSongKey =     "defaultKey"
+    static var dateKey =            "dateKey"
+    static var setKey =             "setKey"
     static func addWakeUpMessage(wakeUpMessage: String){
         NSUserDefaults.standardUserDefaults().setValue(wakeUpMessage, forKey: messageKey)
     }
@@ -23,6 +24,17 @@ class UserDefaults{
     static func getFriendWhoSetAlarm() -> String?{
         return NSUserDefaults.standardUserDefaults().valueForKey(friendKey) as? String
     }
+    
+    static func userAlarmBeenSet(hasBeenSet: Bool){
+        NSUserDefaults.standardUserDefaults().setValue(hasBeenSet, forKey: setKey)
+    }
+    static func hasAlarmBeenSet() -> Bool{
+       let hasBeenSet =  NSUserDefaults.standardUserDefaults().valueForKey(setKey) as? Bool
+        print(hasBeenSet)
+        if hasBeenSet != nil { return hasBeenSet!}
+        else { return false }
+    }
+    
     static func getWakeUpMessage() -> String?{
         return NSUserDefaults.standardUserDefaults().valueForKey(messageKey) as? String
     }
@@ -43,7 +55,7 @@ class UserDefaults{
     }
     static func clearAlarmDate(){
         NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
-
+        NSUserDefaults.standardUserDefaults().setValue(false, forKey: setKey)
     }
 
     

@@ -68,15 +68,11 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
     
     private func setUserPreference(songName: String){
         UserDefaults.setDefaultSongName(songName)
-        //If their alarm is already set, this will change the sound to be the new default
-        let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
-        if notifications?.count > 0 {
-            if let oldNotification = notifications?[0]
-            {
-                oldNotification.soundName = songName + ".wav"
-                UIApplication.sharedApplication().cancelAllLocalNotifications()
-                UIApplication.sharedApplication().scheduleLocalNotification(oldNotification)
-            }
+        print(UserDefaults.hasAlarmBeenSet())
+        if UserDefaults.hasAlarmBeenSet() == false {
+            print("about to change notification noise")
+            //If no friend has set the user's alarm, we want to set the default song to be the notification noise
+                Notifications.changeDefaultSong(songName + ".wav")
         }
     }
     

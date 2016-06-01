@@ -25,9 +25,14 @@ class AlarmGoingOffViewController: UIViewController {
         //Show message
         //Show Image
         //Have option to replay alarm.
+        if UserDefaults.hasAlarmBeenSet(){
+            prepareToPlayMusicFromFileSystem(Constants.ALARM_SOUND_STORED_FILENAME)
+        }else{
+            prepareToPlayMusicFromDefault(UserDefaults.getDefaultSongName())
+        }
         UserDefaults.clearAlarmDate()
-        prepareToPlayMusicFromFileSystem(Constants.ALARM_SOUND_STORED_FILENAME)
         getWakeUPMessage()
+        
     }
     var player : AVPlayer?
     /*
@@ -36,6 +41,12 @@ class AlarmGoingOffViewController: UIViewController {
     private func prepareToPlayMusicFromFileSystem(fileName:String){
         let playerItem = AVPlayerItem(URL : getURlFromFileSystem(fileName))
         player = AVPlayer(playerItem: playerItem)
+    }
+    private func prepareToPlayMusicFromDefault(defaultSongName :String) {
+        let url = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(defaultSongName, ofType: "wav")!)
+        let playerItem = AVPlayerItem(URL : url)
+        player = AVPlayer(playerItem: playerItem)
+        
     }
     
     private func getWakeUPMessage(){
