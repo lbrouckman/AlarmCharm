@@ -21,7 +21,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     var userID: String?
     private let remoteDB = Database()
     var managedObjectContext: NSManagedObjectContext?
-    //also a managed object context
+    private var saved = false
     
     @IBOutlet weak var playButton: UIButton!
     
@@ -40,6 +40,8 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated:true);
+        
         alarmMessageLabel.delegate = self
         playButton.enabled = false
         audioSession = AVAudioSession.sharedInstance()
@@ -133,6 +135,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     //This function stops the audio recorder, sets it equal to nil, and then sets the button text appropiately
     private func finishRecording(success success: Bool) {
         recorder?.stop()
+        saved = false
         //This will reset the recorder if they want to record again.
         if success {
             //The state will be in stopped mode already, and so we won't need to change it.
@@ -182,20 +185,21 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
                 remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
                 let audioUrl = getAudioUrl()
                 remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
-                
-                updateDatabase(alarmNameTextEdit.text!, alarmMessage: nil, audioFilename: audioUrl.absoluteString, imageFilename: nil)
+                updateCoreData(alarmNameTextEdit.text!, alarmMessage: nil, audioFilename: audioUrl.absoluteString, imageFilename: nil)
                 let message = alarmMessageLabel.text
-                if message != nil{
+                if message?.characters.count > 0 {
                     remoteDB.uploadWakeUpMessageToDatabase(message!, forUser: userID!)
                 }
+                saved = true
             } else {
-                print("ALERT USER THAT THEY MUST ENTER A NAME FOR THEIR ALARM")
+                alertNoAlarmName()
             }
+        } else {
+            alertNoAlarmName()
         }
     }
     
-    private func updateDatabase(alarmName: String, alarmMessage: String?, audioFilename: String?, imageFilename: String?) {
-        print("Updating alarm")
+    private func updateCoreData(alarmName: String, alarmMessage: String?, audioFilename: String?, imageFilename: String?) {
         managedObjectContext?.performBlockAndWait { [weak weakSelf = self] in
             let _ = Alarm.addAlarmToDB(
                 alarmName,
