@@ -40,7 +40,7 @@ class Database {
     }
     
     // After user sets their message, this function puts their message in the database
-    static func uploadUserMessageToDatabase(message: String, forUser userID: String){
+   func uploadUserMessageToDatabase(message: String, forUser userID: String){
         let uRef = FIRDatabase.database().reference().child("users")
         let currentUserRef = uRef.child(userID)
         let newMessage = ["user_message" : message]
@@ -57,16 +57,40 @@ class Database {
 //    func getWakeUpMessageFromDatabase(forUser userID: String) -> String?{
 //        
 //    }
-    static func userNeedsAlarmToBeSet(forUser userID: String , toBeSet: Bool){
+    func userNeedsAlarmToBeSet(forUser userID: String , toBeSet: Bool){
         let uRef = FIRDatabase.database().reference().child("users")
         let currentUserRef = uRef.child(userID)
         let needsSetting = ["need_friend_to_set" : toBeSet]
         currentUserRef.updateChildValues(needsSetting)
     }
     
-    
-    
-    static func addAlarmTimeToDatabase(date: NSDate){
+    // then this means that we have already notified the current user.
+    // Let's put message, FriendName both in NSUSER Defaults
+    //
+    func hasUserAlarmBeenSet(forUser userID: String, completionHandler: (user: String, hasBeenSet: Bool, userBeenNotified: Bool, wakeUpMessage: String, friendWhoSetAlarm: String) -> ()){
+        usersRef.child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if let needFriendToSet = snapshot.value!["need_friend_to_set"] as? Bool where needFriendToSet == false{
+                let hasBeenSet = !needFriendToSet
+                print("has been set has value", hasBeenSet)
+                
+                if let justSet = snapshot.value!["just_set"] as? Bool where justSet == true{
+                    print("just set has value", justSet)
+                    if let wakeUpMessage = snapshot.value!["wakeup_message"] as? String{
+                        print("wake up Message: ", wakeUpMessage)
+                        if let friendWhoSetAlarm = snapshot.value!["friend_who_set_alarm"] as? String{
+                            print("friend who set alarm was : ", friendWhoSetAlarm)
+                            completionHandler(user: userID, hasBeenSet: hasBeenSet, userBeenNotified: justSet, wakeUpMessage: wakeUpMessage, friendWhoSetAlarm: friendWhoSetAlarm)
+                        }
+                    }
+                }
+            }
+            })
+        { (error) in
+            print(error)
+        }
+    }
+
+   func addAlarmTimeToDatabase(date: NSDate){
         print("a")
         if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             print("Here")
@@ -81,7 +105,7 @@ class Database {
             currUserRef.updateChildValues(newTime)
         }
     }
-    static func userInProcessOfBeingSet(forUser userID: String, inProcess : Bool){
+     func userInProcessOfBeingSet(forUser userID: String, inProcess : Bool){
         let uRef = FIRDatabase.database().reference().child("users")
         let currentUserRef = uRef.child(userID)
         let process = ["in_process_of_being_set" : inProcess]
@@ -89,7 +113,7 @@ class Database {
     }
     
 
-    func downloadFileToLocal(forUser userID: String) {
+    func downloadFileToLocal(forUser userID: String, completionHandler: (Bool) -> ()) {
         usersRef.child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let audioFile = snapshot.value!["audio_file"] as? String where audioFile != ""{
                 let storage = FIRStorage.storage()
@@ -98,9 +122,11 @@ class Database {
                 soundRef.downloadURLWithCompletion { (URL, error) -> Void in
                     if (error != nil) {
                         print(error)
+                        completionHandler(false)
                     } else {
                         self.saveToFileSystem(URL!, fileName: Constants.ALARM_SOUND_STORED_FILENAME)
-                        print("saved?")
+                        print("audio saved to file system")
+                        completionHandler(true)
                     }
                 }
             }
@@ -130,22 +156,7 @@ class Database {
         songData?.writeToURL(soundPathUrl,  atomically: true)
     }
     
-    /*
-     This function will be moved to Notification Class soon
-     Grabs the notificationm and changes the soundName to be the sound name of the user
-     */
-    func setNotificationFromFileSystem(){
-        let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
-        if notifications?.count > 0 {
-            if let oldNotification = notifications?[0]
-            {
-                oldNotification.soundName = "test.caf"
-                UIApplication.sharedApplication().cancelAllLocalNotifications()
-                UIApplication.sharedApplication().scheduleLocalNotification(oldNotification)
-            }
-        }
-    }
-    
+  
     
     
 }

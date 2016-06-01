@@ -24,25 +24,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         static let ALARM_GOES_OFF_IDENTIFER = "alarm is going off"
         static let FRIENDS_SETS_ALARM_CATEGORY = "friend has set alarm"
     }
- 
+    override init(){
+    super.init()
+        FIRApp.configure()
+    }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
        
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
         //Wake up about every 5 minutes to fetch alarms from DB
-        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(300)
-        FIRApp.configure()
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(60)
+        WelcomeScreenViewController.fetch{
+        print("dummy")
+        }
+        
         return true
     }
     
   //  Function that is called every 5ish minutes to fetch alarms from DB
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        if let welcomevc = window?.rootViewController as? WelcomeScreenViewController {
-            welcomevc.fetch {
-                print("Completed fetch")
+            WelcomeScreenViewController.fetch {
                 completionHandler(.NewData)
             }
-        }
     }
     
     //THIS SHOULD ONLY BE CALLED IF APP IS CURRENTLY RUNNING OR IN BACKGROUND BUT WE STILL NEED TO HANDLE IT THE SAME WAY

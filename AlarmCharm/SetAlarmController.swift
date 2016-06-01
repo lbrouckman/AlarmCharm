@@ -14,43 +14,27 @@ class SetAlarmController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     //We rely on previous view controller to set if we have a previous date.
     var previousDate : NSDate?
+    private var remoteDB = Database()
     
     @IBAction func removeAlarm() {
-        //Remove from icloud as well as userDefaults
         //Make alarm needs to be set false in database
         let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
         let x = userId! //It was crashing without this, maybe later we can change but im confuesd
-        Database.userNeedsAlarmToBeSet(forUser: x, toBeSet: false)
-        Database.userInProcessOfBeingSet(forUser: x, inProcess: false)
+        remoteDB.userNeedsAlarmToBeSet(forUser: x, toBeSet: false)
+        remoteDB.userInProcessOfBeingSet(forUser: x, inProcess: false)
+        
         UIApplication.sharedApplication().cancelAllLocalNotifications()
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(Constants.USER_ALARM_NOTIFICATION_USER_DEFAULTS_KEY)
+        UserDefaults.clearAlarmDate()
     }
     
     
     @IBAction func setAlarm() {
         let date = ensureDateIsTomorrow(datePicker.date)
-        var alarmDictionary = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_NOTIFICATION_USER_DEFAULTS_KEY) ?? Dictionary()
-        
-        alarmDictionary[Constants.USER_KEY_TO_GET_ALARM_TIME] = datePicker.date
-        
-        NSUserDefaults.standardUserDefaults().setObject(alarmDictionary, forKey: Constants.USER_ALARM_NOTIFICATION_USER_DEFAULTS_KEY)
-        
-        //This function should be in DataBase
-        //Set this alarm time (as a unix timestamp) to be the user's alarm time on the server
-        Database.addAlarmTimeToDatabase(date)
-   
+        UserDefaults.setAlarmDate(date)
+        remoteDB.addAlarmTimeToDatabase(date)
         Notifications.AddAlarmNotification(date)
-        //We will need to create and store the user's alarm in NsUser Defaults as a local notification
-        // When someone else set's their alarm, we will just go and change either the noise or their action?
-        //This is just code to ensure user's db alarm gets saved locally, wouldnt go here
         
-        Notifications.addFriendSetAlarmNotification("lebron james")
-        let db = Database()
-        let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
-        let x = userId! //It was crashing without this, maybe later we can change but im confuesd
-        db.downloadFileToLocal(forUser: x)
-        
-    }
+        }
     
     private func ensureDateIsTomorrow(date: NSDate) -> NSDate{
         let currentDay = NSDate()
@@ -60,8 +44,6 @@ class SetAlarmController: UIViewController {
         return date
         //if the set date is earlier than current date, return less date + a day.
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

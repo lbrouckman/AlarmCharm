@@ -24,17 +24,16 @@ class DefaultsTableViewController: UITableViewController {
     
     private func setLabels() {
         var alarmTime: String? = nil
-        let alarmDictionary = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_NOTIFICATION_USER_DEFAULTS_KEY)
-        if let dict = alarmDictionary as? [String: NSDate] {
-            if let date = dict[Constants.USER_KEY_TO_GET_ALARM_TIME] {
-                let formatter = NSDateFormatter()
-                formatter.timeStyle = .ShortStyle
-                alarmTime = formatter.stringFromDate(date)
-            }
+        let date = UserDefaults.getAlarmDate()
+        if date != nil{
+            let formatter = NSDateFormatter()
+            formatter.timeStyle = .ShortStyle
+            alarmTime = formatter.stringFromDate(date!)
         }
-        if alarmTime == nil {
+        else {
             alarmTime = "Not Set"
         }
+        
         timeCell.textLabel?.text = alarmTime!
         
         if let defaultMessage = NSUserDefaults.standardUserDefaults().valueForKey("User Default Message") as? String {
@@ -42,17 +41,7 @@ class DefaultsTableViewController: UITableViewController {
         } else {
             messageCell.textLabel?.text = "Set your message for friends..."
         }
-
-        var soundString: String? = nil
-        let defaultSongDict = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_DEFAULT)
-        if let dict = defaultSongDict as? [String: String] {
-            if let sound = dict[Constants.USER_KEY_TO_GET_SONG_DEFAULT] {
-                soundString = sound
-            }
-        }
-        if soundString == nil {
-            soundString = "Choose default sound"
-        }
-        soundCell.textLabel?.text = soundString
+        
+        soundCell.textLabel?.text = UserDefaults.getDefaultSongName()
     }
 }

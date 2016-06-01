@@ -22,6 +22,7 @@ class Notifications{
         notification.alertBody = friendName + " has set your alarm!"
         notification.category = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
         notification.fireDate = NSDate().dateByAddingTimeInterval(60)
+        print("firing notification for ", notification.fireDate)
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
@@ -33,14 +34,9 @@ class Notifications{
         notification.fireDate =  date
         
         //Setting the sound to be the user's default sound preference
-        var alarmDefaultDict = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_DEFAULT)
-        if let songName = alarmDefaultDict?[Constants.USER_KEY_TO_GET_SONG_DEFAULT] as? String{
-            print("user has a default set song")
-            notification.soundName = songName + ".wav"
-        }else{
-            notification.soundName = UILocalNotificationDefaultSoundName
-        }
-        
+       
+            notification.soundName =  UserDefaults.getDefaultSongName() + ".wav"
+
         //CANCEL ALL PREVIOUS NOTIFICATIONS BECAUSE USER HAS CHANGED THEIR ALARM TIME
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
@@ -77,6 +73,24 @@ class Notifications{
         snoozeAction.authenticationRequired = false
         return snoozeAction
     }
+    
+    
+    /*
+     This function will be moved to Notification Class soon
+     Grabs the notificationm and changes the soundName to be the sound name of the user
+     */
+    static func setNotificationFromFileSystem(){
+        let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
+        if notifications?.count > 0 {
+            if let oldNotification = notifications?[0]
+            {
+                oldNotification.soundName = "test.caf"
+                UIApplication.sharedApplication().cancelAllLocalNotifications()
+                UIApplication.sharedApplication().scheduleLocalNotification(oldNotification)
+            }
+        }
+    }
+    
     
     
     static func UpdateNotification(fileNameOfSound: String, fileNameOfImage: String){

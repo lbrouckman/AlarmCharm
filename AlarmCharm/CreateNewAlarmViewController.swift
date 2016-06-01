@@ -179,7 +179,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         super.willMoveToParentViewController(parent)
         if parent == nil {
             if alarmNameTextEdit.text != nil {
-                Database.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
+                remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
                 let audioUrl = getAudioUrl()
                 remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
                 

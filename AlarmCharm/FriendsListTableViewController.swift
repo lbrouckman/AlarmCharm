@@ -13,6 +13,7 @@ import Firebase
 class FriendsListTableViewController: UITableViewController {
     
     private var objects = [CNContact]()
+    private var remoteDB = Database()
     
     private var friendList = [Friend]() {
         didSet {
@@ -154,7 +155,7 @@ class FriendsListTableViewController: UITableViewController {
                     // and then not be able to post it.
                     let friend = friendList[indexPath.row]
                     savedvc.friendSelected = friend.phoneNumber
-                    Database.userInProcessOfBeingSet(forUser: friend.phoneNumber, inProcess: true)
+                    remoteDB.userInProcessOfBeingSet(forUser: friend.phoneNumber, inProcess: true)
                 }
             }
         }

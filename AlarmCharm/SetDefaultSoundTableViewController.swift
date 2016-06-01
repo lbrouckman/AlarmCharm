@@ -64,18 +64,10 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
     var defaultCell: DefaultSoundTableViewCell?
     //Returns the name of the song that is in NSUser defaults as the current default alarm
     
-    private func getUserPreference() ->String? {
-        let defaultSongDict = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_DEFAULT) ?? Dictionary()
-        return defaultSongDict[Constants.USER_KEY_TO_GET_SONG_DEFAULT] as? String
-    }
-    
+   
     
     private func setUserPreference(songName: String){
-        var defaultSongDict = NSUserDefaults.standardUserDefaults().dictionaryForKey(Constants.USER_ALARM_DEFAULT) ?? Dictionary()
-        defaultSongDict [Constants.USER_KEY_TO_GET_SONG_DEFAULT] = songName
-        
-        NSUserDefaults.standardUserDefaults().setObject(defaultSongDict, forKey: Constants.USER_ALARM_DEFAULT)
-        
+        UserDefaults.setDefaultSongName(songName)
         //If their alarm is already set, this will change the sound to be the new default
         let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
         if notifications?.count > 0 {
@@ -111,12 +103,9 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("SoundCell", forIndexPath: indexPath) as? DefaultSoundTableViewCell {
             let currentSongName = soundFiles[indexPath.row]
-            var defaultSong = getUserPreference()
+            var defaultSong = UserDefaults.getDefaultSongName()
             //This would only ever happen the very first time the user opened the app and didnt have a default song chosen
-            if defaultSong == nil{
-                setUserPreference(currentSongName)
-                defaultSong = currentSongName
-            }
+           
             // If the cell is the current default we highlight it
             if defaultSong == currentSongName {
                 defaultCell = cell

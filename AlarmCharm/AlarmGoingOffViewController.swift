@@ -25,6 +25,7 @@ class AlarmGoingOffViewController: UIViewController {
         //Show message
         //Show Image
         //Have option to replay alarm.
+        UserDefaults.clearAlarmDate()
         prepareToPlayMusicFromFileSystem(Constants.ALARM_SOUND_STORED_FILENAME)
         getWakeUPMessage()
     }
@@ -38,13 +39,7 @@ class AlarmGoingOffViewController: UIViewController {
     }
     
     private func getWakeUPMessage(){
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
-        let uRef = FIRDatabase.database().reference().child("users")
-        uRef.child(userID!).observeSingleEventOfType(.Value, withBlock: { (snapshot)  in
-            self.wakeupMessage = snapshot.value!["wakeup_message"] as? String
-        }) { (error) in
-            print(error)
-        }
+        self.wakeupMessage = UserDefaults.getWakeUpMessage()
     }
     
     @IBOutlet weak var playAlarmButton: UIButton!
