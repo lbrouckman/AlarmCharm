@@ -31,6 +31,11 @@ class Database {
                 let userNoLongerNeedsToBeSet = ["need_friend_to_set" : false]
                 let notInProcess = ["in_process_of_being_set" : false]
                 
+                let justSet = ["just_set" : true]
+                let friendWhoSetAlarm = ["friend_who_set_alarm" : "PAUL HEGARTY FOR NOW"]
+                
+                currUserRef.updateChildValues(friendWhoSetAlarm)
+                currUserRef.updateChildValues(justSet)
                 currUserRef.updateChildValues(notInProcess)
                 currUserRef.updateChildValues(userNoLongerNeedsToBeSet)
                 currUserRef.updateChildValues(newSound)
@@ -54,9 +59,6 @@ class Database {
         currentUserRef.updateChildValues(newMessage)
     }
     
-//    func getWakeUpMessageFromDatabase(forUser userID: String) -> String?{
-//        
-//    }
     func userNeedsAlarmToBeSet(forUser userID: String , toBeSet: Bool){
         let uRef = FIRDatabase.database().reference().child("users")
         let currentUserRef = uRef.child(userID)
@@ -89,7 +91,13 @@ class Database {
             print(error)
         }
     }
-
+    func changeJustSetToFalse(forUser userID: String){
+        let uRef = FIRDatabase.database().reference().child("users")
+        let currentUserRef = uRef.child(userID)
+        let justSet = ["just_set" : false]
+        currentUserRef.updateChildValues(justSet)
+    
+    }
    func addAlarmTimeToDatabase(date: NSDate){
         print("a")
         if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {

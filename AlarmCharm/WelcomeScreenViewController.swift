@@ -36,6 +36,8 @@ class WelcomeScreenViewController: UIViewController {
                         UserDefaults.addWakeUpMessage(wakeUpMessage)
                         UserDefaults.storeFriendWhoSetAlarm(friendWhoSetAlarm)
                         Notifications.addFriendSetAlarmNotification(friendWhoSetAlarm)
+                        db.changeJustSetToFalse(forUser: user)
+                        //Change it to be not just set anymore
                     }  //This means the file has been downloaded and we can now set the notification sound
                     
                 }
