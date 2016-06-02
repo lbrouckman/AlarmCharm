@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-       
+        UserDefaults.ensureAlarmTime()
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
         //Wake up about every 5 minutes to fetch alarms from DB
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(60)
@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   //  Function that is called every 5ish minutes to fetch alarms from DB
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+            UserDefaults.ensureAlarmTime()
+        
             WelcomeScreenViewController.fetch {
                 completionHandler(.NewData)
             }
@@ -63,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 notification.fireDate = date
                 notification.alertBody = "Has been Snoozed"
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                
             case ActionConstants.WAKE_IDENTIFIER:
                 let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AlarmGoingOff") as! AlarmGoingOffViewController

@@ -30,7 +30,7 @@ class Notifications{
         let notification = UILocalNotification()
         notification.alertBody = "Friend wakes you up" // message user sees
         notification.alertAction = "slide"
-        notification.category = Constants.WAKE_UP_CATEGORY
+        notification.category = ActionConstants.ALARM_GOES_OFF_IDENTIFER
         notification.fireDate =  date
         
         //Setting the sound to be the user's default sound preference
@@ -87,9 +87,12 @@ class Notifications{
         let notifications = UIApplication.sharedApplication().scheduledLocalNotifications
         if notifications?.count > 0 {
             for notif in notifications!{
+                print("checking")
                 if notif.category! == ActionConstants.ALARM_GOES_OFF_IDENTIFER{
+                    //Try cancel all notifications...
+                    UIApplication.sharedApplication().cancelAllLocalNotifications()
                     notif.soundName = songName
-                    UIApplication.sharedApplication().cancelLocalNotification(notif)
+                    print("just updated the songName to be from library ", songName)
                     UIApplication.sharedApplication().scheduleLocalNotification(notif)
                 }
             }

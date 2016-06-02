@@ -31,11 +31,9 @@ class Database {
                 let userNoLongerNeedsToBeSet = ["need_friend_to_set" : false]
                 let notInProcess = ["in_process_of_being_set" : false]
                 
-                let justSet = ["just_set" : true]
                 let friendWhoSetAlarm = ["friend_who_set_alarm" : "PAUL HEGARTY FOR NOW"]
                 
                 currUserRef.updateChildValues(friendWhoSetAlarm)
-                currUserRef.updateChildValues(justSet)
                 currUserRef.updateChildValues(notInProcess)
                 currUserRef.updateChildValues(userNoLongerNeedsToBeSet)
                 currUserRef.updateChildValues(newSound)
@@ -45,7 +43,7 @@ class Database {
     }
     
     // After user sets their message, this function puts their message in the database
-   func uploadUserMessageToDatabase(message: String, forUser userID: String){
+    func uploadUserMessageToDatabase(message: String, forUser userID: String){
         let uRef = FIRDatabase.database().reference().child("users")
         let currentUserRef = uRef.child(userID)
         let newMessage = ["user_message" : message]
@@ -69,36 +67,27 @@ class Database {
     // then this means that we have already notified the current user.
     // Let's put message, FriendName both in NSUSER Defaults
     //
-    func hasUserAlarmBeenSet(forUser userID: String, completionHandler: (user: String, hasBeenSet: Bool, userBeenNotified: Bool, wakeUpMessage: String, friendWhoSetAlarm: String) -> ()){
+    func hasUserAlarmBeenSet(forUser userID: String, completionHandler: (user: String, hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String) -> ()){
         usersRef.child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let needFriendToSet = snapshot.value!["need_friend_to_set"] as? Bool where needFriendToSet == false{
                 let hasBeenSet = !needFriendToSet
                 print("has been set has value", hasBeenSet)
-                
-                if let justSet = snapshot.value!["just_set"] as? Bool where justSet == true{
-                    print("just set has value", justSet)
-                    if let wakeUpMessage = snapshot.value!["wakeup_message"] as? String{
-                        print("wake up Message: ", wakeUpMessage)
-                        if let friendWhoSetAlarm = snapshot.value!["friend_who_set_alarm"] as? String{
-                            print("friend who set alarm was : ", friendWhoSetAlarm)
-                            completionHandler(user: userID, hasBeenSet: hasBeenSet, userBeenNotified: justSet, wakeUpMessage: wakeUpMessage, friendWhoSetAlarm: friendWhoSetAlarm)
-                        }
+                if let wakeUpMessage = snapshot.value!["wakeup_message"] as? String{
+                    print("wake up Message: ", wakeUpMessage)
+                    if let friendWhoSetAlarm = snapshot.value!["friend_who_set_alarm"] as? String{
+                        print("friend who set alarm was : ", friendWhoSetAlarm)
+                        completionHandler(user: userID, hasBeenSet: hasBeenSet, wakeUpMessage: wakeUpMessage, friendWhoSetAlarm: friendWhoSetAlarm)
                     }
                 }
+                
             }
             })
         { (error) in
             print(error)
         }
     }
-    func changeJustSetToFalse(forUser userID: String){
-        let uRef = FIRDatabase.database().reference().child("users")
-        let currentUserRef = uRef.child(userID)
-        let justSet = ["just_set" : false]
-        currentUserRef.updateChildValues(justSet)
-    
-    }
-   func addAlarmTimeToDatabase(date: NSDate){
+
+    func addAlarmTimeToDatabase(date: NSDate){
         print("a")
         if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             print("Here")
@@ -113,14 +102,14 @@ class Database {
             currUserRef.updateChildValues(newTime)
         }
     }
-     func userInProcessOfBeingSet(forUser userID: String, inProcess : Bool){
+    func userInProcessOfBeingSet(forUser userID: String, inProcess : Bool){
         let uRef = FIRDatabase.database().reference().child("users")
         let currentUserRef = uRef.child(userID)
         let process = ["in_process_of_being_set" : inProcess]
         currentUserRef.updateChildValues(process)
     }
     
-
+    
     func downloadFileToLocal(forUser userID: String, completionHandler: (Bool) -> ()) {
         usersRef.child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let audioFile = snapshot.value!["audio_file"] as? String where audioFile != ""{
@@ -164,7 +153,7 @@ class Database {
         songData?.writeToURL(soundPathUrl,  atomically: true)
     }
     
-  
+    
     
     
 }

@@ -53,6 +53,21 @@ class UserDefaults{
     static func getAlarmDate() -> NSDate?{
        return NSUserDefaults.standardUserDefaults().valueForKey(dateKey) as? NSDate
     }
+    //THis function ensures that if a user cancels out a notification, we set their has been set to false
+    static func ensureAlarmTime(){
+        let currentDay = NSDate()
+        let userDate = UserDefaults.getAlarmDate()
+        if userDate != nil{
+            let bufferedDate = userDate!.dateByAddingTimeInterval(120)
+            if currentDay.earlierDate(bufferedDate) == bufferedDate {
+                NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
+                UserDefaults.userAlarmBeenSet(false)
+            }
+        }
+        else{
+            UserDefaults.userAlarmBeenSet(false)
+        }
+    }
     static func clearAlarmDate(){
         NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: setKey)
