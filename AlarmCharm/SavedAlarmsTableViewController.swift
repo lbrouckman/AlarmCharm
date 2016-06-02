@@ -92,7 +92,17 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
             }
         }
     }
-    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        super.willMoveToParentViewController(parent)
+        if parent == nil {
+            remoteDB.userInProcessOfBeingSet(forUser: friendSelected!, inProcess: false)
+        }
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        remoteDB.userInProcessOfBeingSet(forUser: friendSelected!, inProcess: false)
+    }
+
     //send the next VC the managedObjectContext
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

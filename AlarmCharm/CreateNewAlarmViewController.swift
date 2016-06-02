@@ -184,7 +184,11 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
         }
     }
-    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
+    }
+
     private func alertNotSaved() {
         let alert = UIAlertController(title: "You haven't saved your alarm yet!", message: "Would you like to save this alarm before leaving? ", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(
