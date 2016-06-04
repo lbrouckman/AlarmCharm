@@ -47,6 +47,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         audioSession = AVAudioSession.sharedInstance()
         recordFileName = randomStringWithLength(20) as String
         recordFileName = recordFileName! + ".caf"
+        
         do{try  audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord) }catch{print("didnt set category")}
         do{
             try  audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
@@ -83,6 +84,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     
     
     @IBAction func recordPushed(sender: UIButton) {
+        
         if  state == RecordButtonStates.Initial || state == RecordButtonStates.Stopped {
             state = RecordButtonStates.Recording
             startRecording()
@@ -94,6 +96,12 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     }
     
     @IBAction func playUserRecording(sender: UIButton) {
+//        recorder?.updateMeters()
+//        print(recorder?.averagePowerForChannel(0))
+//        print(recorder?.averagePowerForChannel(1))
+//        print(recorder?.averagePowerForChannel(2))
+//        print(recorder?.averagePowerForChannel(3))
+//        print(" is the average decibel level")
         //Load in recorded sound into the audioplayer
         if state != RecordButtonStates.Initial {
             soundPlayer?.play()
@@ -124,6 +132,8 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         ]
         do {
             recorder = try AVAudioRecorder(URL: getAudioUrl(), settings: settings)
+            recorder?.recordForDuration(NSTimeInterval(29)) //Making sure maximum is under 30 seconds
+//            recorder?.meteringEnabled
             recorder?.delegate = self
             recorder?.record()
             recordButton.setTitle(state.rawValue, forState: .Normal)
