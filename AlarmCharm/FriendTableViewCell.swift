@@ -16,6 +16,7 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var contactPicture: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     
+    public var color: UIColor?
     private struct Friend {
         var name: String?
         var phoneNumber: String?
@@ -46,7 +47,7 @@ class FriendTableViewCell: UITableViewCell {
         contactName?.text = nil
         contactAlarmTime?.text = nil
         contactPicture?.image = nil
-        
+        self.backgroundColor = color
         contactName?.text = contact!.givenName + " " + contact!.familyName
         if message != nil{
             messageLabel?.text = message
