@@ -90,13 +90,15 @@ class FriendsListTableViewController: UITableViewController {
                 self.friendList.append([Friend]())
             }
             if let x = snapshot.value!["alarm_time"] as? Double {
-                var friendStatus = FriendStatus.AlreadySet
-                if let getting_set = snapshot.value!["in_process_of_being_set"] as? Bool where getting_set == true {
+                var friendStatus = FriendStatus.NeedsToBeSet
+                let should_be_set = snapshot.value!["need_friend_to_set"] as? Bool
+                let getting_set = snapshot.value!["in_process_of_being_set"] as? Bool
+                if should_be_set! && getting_set!{
                     friendStatus = FriendStatus.InProgress
+                } else if !should_be_set! {
+                    friendStatus = FriendStatus.AlreadySet
                 }
-                else if let should_be_set = snapshot.value!["need_friend_to_set"] as? Bool where should_be_set == true{
-                    friendStatus = FriendStatus.NeedsToBeSet
-                }
+               
                 let message = snapshot.value!["user_message"] as? String
                 let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID, message: message, status: friendStatus)
                 let sectionNumber = friendStatus.rawValue

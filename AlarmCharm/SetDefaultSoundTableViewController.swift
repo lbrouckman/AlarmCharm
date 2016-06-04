@@ -19,7 +19,7 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
     
     var softPianoAudioUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Alarm_Soothing_Piano", ofType: "wav")!)
     
-    var soundFiles = ["Alarm_Soothing_Piano", "Alarm_Obnoxious_Synth", "Alarm_Soothing_Guitar"]
+    var soundFiles = ["Alarm_Soothing_Piano", "Alarm_Obnoxious_Synth", "Alarm_Soothing_Guitar", "AND_HIS_NAME_IS_JOHN_CENA"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

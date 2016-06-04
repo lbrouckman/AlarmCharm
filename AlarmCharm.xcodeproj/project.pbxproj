@@ -31,6 +31,7 @@
 		B307AD411CFADA88004852CD /* AlarmGoingOffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */; };
 		B307AD431CFB729B004852CD /* DefaultMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */; };
 		B307AD451CFEBD4B004852CD /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD441CFEBD4B004852CD /* UserDefaults.swift */; };
+		B307AD491D02AB4A004852CD /* AND_HIS_NAME_IS_JOHN_CENA.wav in Resources */ = {isa = PBXBuildFile; fileRef = B307AD481D02AB4A004852CD /* AND_HIS_NAME_IS_JOHN_CENA.wav */; };
 		B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38CBFE31CEE71DF0099899D /* Constants.swift */; };
 		B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */; };
 		B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 		B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmGoingOffViewController.swift; sourceTree = "<group>"; };
 		B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMessageViewController.swift; sourceTree = "<group>"; };
 		B307AD441CFEBD4B004852CD /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		B307AD481D02AB4A004852CD /* AND_HIS_NAME_IS_JOHN_CENA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = AND_HIS_NAME_IS_JOHN_CENA.wav; sourceTree = "<group>"; };
 		B38CBFE31CEE71DF0099899D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultSoundTableViewController.swift; sourceTree = "<group>"; };
 		B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSoundTableViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		3040951A1CF26F810054D4EF /* Ringtones */ = {
 			isa = PBXGroup;
 			children = (
+				B307AD481D02AB4A004852CD /* AND_HIS_NAME_IS_JOHN_CENA.wav */,
 				3040950D1CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav */,
 				3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */,
 				3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */,
@@ -266,6 +269,7 @@
 				304095151CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav in Resources */,
 				304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */,
 				30DF3F491CE6789800910E9F /* Main.storyboard in Resources */,
+				B307AD491D02AB4A004852CD /* AND_HIS_NAME_IS_JOHN_CENA.wav in Resources */,
 				30FE0D0E1CF76F65004213A0 /* GoogleService-Info.plist in Resources */,
 				302174CA1CFA2FF700AD3134 /* defaultImage.jpg in Resources */,
 			);
