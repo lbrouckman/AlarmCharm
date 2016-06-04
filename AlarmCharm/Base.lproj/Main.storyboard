@@ -111,6 +111,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxt-S8-e9g">
+                                <rect key="frame" x="224" y="138" width="194" height="93"/>
+                                <state key="normal" title="Pause"/>
+                                <connections>
+                                    <action selector="PausePushed:" destination="QT2-WJ-e8X" eventType="touchUpInside" id="7oW-Sh-M1T"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -616,6 +623,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Kb6-gr-fbZ"/>
+        <segue reference="G00-ca-XK1"/>
     </inferredMetricsTieBreakers>
 </document>

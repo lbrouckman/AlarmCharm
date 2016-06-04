@@ -33,6 +33,14 @@ class AlarmGoingOffViewController: UIViewController {
         UserDefaults.clearAlarmDate()
         getWakeUPMessage()
         
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "songEnded:",
+                                                         name: AVPlayerItemDidPlayToEndTimeNotification,
+                                                         object: self.player!.currentItem)
+    }
+    
+    func songEnded(notification: NSNotification){
+    player?.seekToTime(kCMTimeZero)
     }
     var player : AVPlayer?
     /*
@@ -55,20 +63,18 @@ class AlarmGoingOffViewController: UIViewController {
     
     @IBOutlet weak var playAlarmButton: UIButton!
     
+    
+    //One Function will play, other will stop
+    
+    
     @IBAction func playPushed(sender: UIButton) {
-        if playing{
-            player?.pause()
-            playing = false
-            playAlarmButton.titleLabel?.text = "replay alarm"
-        }
-        else{
             player?.play()
-            playing = true
-            playAlarmButton.titleLabel?.text = "stop"
-        }
     }
     
     
+    @IBAction func PausePushed(sender: UIButton) {
+        player?.pause()
+    }
     
     
     
