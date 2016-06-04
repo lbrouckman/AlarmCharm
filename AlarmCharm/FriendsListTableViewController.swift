@@ -15,13 +15,9 @@ class FriendsListTableViewController: UITableViewController {
     private var objects = [CNContact]()
     private var remoteDB = Database()
     
-    private var friendList = [[Friend]]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
- 
-    private enum FriendStatus : Int{
+    private var friendList = [[Friend]]()
+    
+    private enum FriendStatus : Int {
         case NeedsToBeSet = 0
         case InProgress   = 1
         case AlreadySet   = 2
@@ -34,10 +30,11 @@ class FriendsListTableViewController: UITableViewController {
         var message: String?
         var status: FriendStatus
     }
+    
     private var sectionTitles = [0: "Needs to be set", 1 : "In progress of being set", 2: "Already been charmed" ]
+    
     private func getContacts() {
         let store = CNContactStore()
-        
         if CNContactStore.authorizationStatusForEntityType(.Contacts) == .NotDetermined {
             store.requestAccessForEntityType(.Contacts) { (authorized: Bool, error: NSError?) -> Void in
                 if authorized {
@@ -67,42 +64,54 @@ class FriendsListTableViewController: UITableViewController {
     
     //Functional as long as person is from the US
     private func editContactsList() {
-        for contact in objects {
+        for i in 0..<objects.count {
+            let contact = objects[i]
             if(contact.phoneNumbers.count > 0) {
                 let a = contact.phoneNumbers[0].value as! CNPhoneNumber
                 let num = extractNumber(a.stringValue)
-                checkIfUserExists(num, contact: contact)
+                if i == objects.count - 1 {
+                    addContactToTable(num, contact: contact, shouldReloadData: true)
+                } else {
+                    addContactToTable(num, contact: contact, shouldReloadData: false)
+                }
             }
-            
         }
     }
     
-    //EDIT SO THAT YOU DON'T ADD YOURSELF TO THE LIST
-    private func checkIfUserExists(userID: String, contact: CNContact) {
+    private func addContactToTable(userID: String, contact: CNContact, shouldReloadData: Bool) {
+        //Don't add yourself to the list
         if userID == NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             return
         }
+        
         let ref = FIRDatabase.database().reference()
         ref.child("users").child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            if self.friendList.count == 0{
-                self.friendList.append([Friend]())
-                self.friendList.append([Friend]())
-                self.friendList.append([Friend]())
-            }
             if let x = snapshot.value!["alarm_time"] as? Double {
-                var friendStatus = FriendStatus.NeedsToBeSet
+                print("Able to connect to database")
+                if self.friendList.count == 0 {
+                    self.friendList.append([Friend]())
+                    self.friendList.append([Friend]())
+                    self.friendList.append([Friend]())
+                }
+                
+                var friendStatus: FriendStatus
                 let should_be_set = snapshot.value!["need_friend_to_set"] as? Bool
                 let getting_set = snapshot.value!["in_process_of_being_set"] as? Bool
+                
                 if should_be_set! && getting_set!{
                     friendStatus = FriendStatus.InProgress
                 } else if !should_be_set! {
                     friendStatus = FriendStatus.AlreadySet
+                } else {
+                    friendStatus = FriendStatus.NeedsToBeSet
                 }
-               
+                
                 let message = snapshot.value!["user_message"] as? String
                 let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID, message: message, status: friendStatus)
                 let sectionNumber = friendStatus.rawValue
                 self.friendList[sectionNumber].append(newFriend)
+                
+                self.tableView?.reloadData()
             }
         }) { (error) in
             print(error)
@@ -124,7 +133,6 @@ class FriendsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         //fill this row
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -144,31 +152,43 @@ class FriendsListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-      return friendList[section].count
+        return friendList[section].count
     }
     
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath)
-        
+    private func fillCell(cell: UITableViewCell, forIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let friend = friendList[indexPath.section][indexPath.row]
         if let friendCell = cell as? FriendTableViewCell {
             friendCell.contact = friend.contact
             friendCell.alarmTime = friend.alarmTime
             friendCell.phoneNumber = friend.phoneNumber
             friendCell.message = friend.message
-            switch friend.status {
-            case .AlreadySet:
-                friendCell.color = UIColor.redColor()
-            case .InProgress:
-                friendCell.color = UIColor.orangeColor()
-            case .NeedsToBeSet:
-                friendCell.color = UIColor.greenColor()
-            }
+            return friendCell
         }
-        
         return cell
     }
+    
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        switch indexPath.section {
+        case 0:
+            cell = tableView.dequeueReusableCellWithIdentifier("AvailableFriendCell", forIndexPath: indexPath)
+            cell = fillCell(cell, forIndexPath: indexPath)
+            cell.backgroundColor = UIColor.greenColor()
+        case 1:
+            cell = tableView.dequeueReusableCellWithIdentifier("InProgressFriendCell", forIndexPath: indexPath)
+            cell = fillCell(cell, forIndexPath: indexPath)
+            cell.backgroundColor = UIColor.yellowColor()
+        case 2:
+            cell = tableView.dequeueReusableCellWithIdentifier("AlreadySetFriendCell", forIndexPath: indexPath)
+            cell = fillCell(cell, forIndexPath: indexPath)
+            cell.backgroundColor = UIColor.redColor()
+        default:
+            break
+        }
+        return cell
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
     }
@@ -179,10 +199,11 @@ class FriendsListTableViewController: UITableViewController {
                 if let cell = sender as? FriendTableViewCell, let indexPath = tableView.indexPathForCell(cell),
                     let savedvc = segue.destinationViewController as? SavedAlarmsTableViewController {
                     //We should set the user's needToBeSet to false here, as they are about to set it, and we don't want someone to record an alarm
-                    // and then not be able to post it.
+                    //  and then not be able to post it.
                     let friend = friendList[indexPath.section][indexPath.row]
                     savedvc.friendSelected = friend.phoneNumber
                     remoteDB.userInProcessOfBeingSet(forUser: friend.phoneNumber, inProcess: true)
+                    
                 }
             }
         }

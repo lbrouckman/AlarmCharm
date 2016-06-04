@@ -99,7 +99,7 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("SoundCell", forIndexPath: indexPath) as? DefaultSoundTableViewCell {
             let currentSongName = soundFiles[indexPath.row]
-            var defaultSong = UserDefaults.getDefaultSongName()
+            let defaultSong = UserDefaults.getDefaultSongName()
             //This would only ever happen the very first time the user opened the app and didnt have a default song chosen
            
             // If the cell is the current default we highlight it

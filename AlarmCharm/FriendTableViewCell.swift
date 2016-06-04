@@ -16,7 +16,6 @@ class FriendTableViewCell: UITableViewCell {
     @IBOutlet weak var contactPicture: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     
-    public var color: UIColor?
     private struct Friend {
         var name: String?
         var phoneNumber: String?
@@ -47,7 +46,8 @@ class FriendTableViewCell: UITableViewCell {
         contactName?.text = nil
         contactAlarmTime?.text = nil
         contactPicture?.image = nil
-        self.backgroundColor = color
+        self.backgroundColor = nil
+        
         contactName?.text = contact!.givenName + " " + contact!.familyName
         if message != nil{
             messageLabel?.text = message
@@ -56,6 +56,7 @@ class FriendTableViewCell: UITableViewCell {
         if(contact!.isKeyAvailable("imageData")) {
             setImage()
         }
+        
         if alarmTime != nil {
             if alarmTime != 0 {
                 let date = NSDate(timeIntervalSince1970: alarmTime!)
@@ -79,6 +80,7 @@ class FriendTableViewCell: UITableViewCell {
                     if imageData == weakSelf?.contact!.imageData! {
                         if let data = imageData {
                             weakSelf?.contactPicture?.image = UIImage(data: data)
+                            weakSelf?.setNeedsDisplay()
                         }
                     }
                 }
@@ -92,6 +94,7 @@ class FriendTableViewCell: UITableViewCell {
                     if imageURL == NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("defaultImage", ofType: "jpg")!) {
                         if let imageData = contentsOfURL {
                             weakSelf?.contactPicture?.image = UIImage(data: imageData)
+                            weakSelf?.setNeedsDisplay()
                         }
                     }
                 }
