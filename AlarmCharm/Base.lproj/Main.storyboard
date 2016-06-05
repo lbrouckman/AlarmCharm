@@ -109,36 +109,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mw2-fc-F9L">
-                                <rect key="frame" x="-3" y="0.0" width="280" height="130"/>
+                                <rect key="frame" x="0.0" y="6" width="132" height="68"/>
                                 <state key="normal" title="Go Home"/>
                                 <connections>
                                     <segue destination="Y1J-Ej-ooR" kind="showDetail" id="G00-ca-XK1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3HJ-G6-pir">
-                                <rect key="frame" x="52" y="138" width="171" height="93"/>
+                                <rect key="frame" x="7" y="82" width="134" height="65"/>
                                 <state key="normal" title="replay Alarm"/>
                                 <connections>
                                     <action selector="playPushed:" destination="QT2-WJ-e8X" eventType="touchUpInside" id="KJQ-av-BEG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Message from person who set alarm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOk-12-EvM">
-                                <rect key="frame" x="27" y="217" width="313" height="165"/>
+                                <rect key="frame" x="20" y="131" width="365" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxt-S8-e9g">
-                                <rect key="frame" x="224" y="138" width="194" height="93"/>
+                                <rect key="frame" x="174" y="6" width="113" height="59"/>
                                 <state key="normal" title="Pause"/>
                                 <connections>
                                     <action selector="PausePushed:" destination="QT2-WJ-e8X" eventType="touchUpInside" id="7oW-Sh-M1T"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gS5-Q0-jIl">
+                                <rect key="frame" x="20" y="167" width="317" height="215"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="gS5-Q0-jIl" id="lKY-ti-gsh"/>
                         <outlet property="playAlarmButton" destination="3HJ-G6-pir" id="Zfn-Y1-6gb"/>
                         <outlet property="wakeupMessageLabel" destination="UOk-12-EvM" id="aTz-ww-Qc4"/>
                     </connections>
@@ -878,6 +882,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XkO-gV-IC3"/>
+        <segue reference="G00-ca-XK1"/>
     </inferredMetricsTieBreakers>
 </document>

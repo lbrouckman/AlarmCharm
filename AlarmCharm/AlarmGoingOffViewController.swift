@@ -15,6 +15,7 @@ class AlarmGoingOffViewController: UIViewController {
     
     @IBOutlet weak var wakeupMessageLabel: UILabel!
     
+    @IBOutlet weak var imageView: UIImageView!
     var wakeupMessage : String?{
         didSet{
         wakeupMessageLabel?.text = wakeupMessage
@@ -27,6 +28,10 @@ class AlarmGoingOffViewController: UIViewController {
         }else{
             prepareToPlayMusicFromDefault(UserDefaults.getDefaultSongName())
         }
+        if UserDefaults.hasImage() {
+            addImageToView("test.png")
+        }
+        
         UserDefaults.clearAlarmDate()
         getWakeUPMessage()
         
@@ -38,13 +43,27 @@ class AlarmGoingOffViewController: UIViewController {
         )
     }
     
+    private func addImageToView(fileName: String) {
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
+        let imagePath = libraryPath + "/Images"
+        let filePath = imagePath + "/" + fileName
+        let fileManager = NSFileManager.defaultManager()
+        do {
+            try fileManager.createDirectoryAtPath(imagePath, withIntermediateDirectories: false, attributes: nil)
+        } catch let error1 as NSError {
+            print("error" + error1.description)
+        }
+        let myURL = NSURL(fileURLWithPath: filePath)
+        if let imageData = NSData(contentsOfURL: myURL) {
+            imageView?.image = UIImage(data: imageData)
+        }
+    }
+    
     func songEnded(notification: NSNotification){
     player?.seekToTime(kCMTimeZero)
     }
     var player : AVPlayer?
-    /*
-     
-     */
+
     private func prepareToPlayMusicFromFileSystem(fileName:String){
         let playerItem = AVPlayerItem(URL : getURlFromFileSystem(fileName))
         player = AVPlayer(playerItem: playerItem)

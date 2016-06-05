@@ -15,6 +15,8 @@ class UserDefaults{
     static var defaultSongKey =     "defaultKey"
     static var dateKey =            "dateKey"
     static var setKey =             "setKey"
+    static var hasImageKey =        "imageKey"
+    
     static func addWakeUpMessage(wakeUpMessage: String){
         NSUserDefaults.standardUserDefaults().setValue(wakeUpMessage, forKey: messageKey)
     }
@@ -73,5 +75,16 @@ class UserDefaults{
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: setKey)
     }
 
+    static func hasImage(imageAdded: Bool) {
+        NSUserDefaults.standardUserDefaults().setValue(imageAdded, forKey: hasImageKey)
+    }
+    
+    static func hasImage() -> Bool {
+        if let x = NSUserDefaults.standardUserDefaults().valueForKey(hasImageKey) as? Bool {
+            return x
+        } else {
+            return false
+        }
+    }
     
 }

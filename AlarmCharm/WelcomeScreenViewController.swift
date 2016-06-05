@@ -34,7 +34,13 @@ class WelcomeScreenViewController: UIViewController {
                     UserDefaults.addWakeUpMessage(wakeUpMessage)
                     UserDefaults.storeFriendWhoSetAlarm(friendWhoSetAlarm)
                     Notifications.addFriendSetAlarmNotification(friendWhoSetAlarm)
-                    db.downloadImageFileToLocal(forUser: user)
+                    db.downloadImageFileToLocal(forUser: user) { wasSuccessful in
+                        if wasSuccessful {
+                            UserDefaults.hasImage(true)
+                        } else {
+                            UserDefaults.hasImage(false)
+                        }
+                    }
                     //Change it to be not just set anymore
                 }  //This means the file has been downloaded and we can now set the notification sound
                 

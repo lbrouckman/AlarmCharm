@@ -142,7 +142,7 @@ class Database {
         currentUserRef.updateChildValues(process)
     }
     
-    func downloadImageFileToLocal(forUser userID: String) {
+    func downloadImageFileToLocal(forUser userID: String, completionHandler: (Bool) -> ()) {
         let hashedID = sha256(userID)!
         usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let imageFile = snapshot.value!["image_file"] as? String where imageFile != ""{
@@ -152,8 +152,10 @@ class Database {
                 imageRef.downloadURLWithCompletion { (URL, error) -> Void in
                     if (error != nil) {
                         print(error)
+                        completionHandler(false)
                     } else {
                         self.saveImageToFileSystem(URL!, fileName: "test.png")
+                        completionHandler(true)
                     }
                 }
             }
