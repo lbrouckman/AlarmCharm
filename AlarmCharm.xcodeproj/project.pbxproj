@@ -20,7 +20,6 @@
 		304095151CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950D1CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav */; };
 		304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */; };
 		304095171CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */; };
-		3042B8A51D03E70A0044152F /* Hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042B8A41D03E70A0044152F /* Hash.swift */; };
 		305DC3131CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */; };
 		305DC3151CF4D8B000CE10A7 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */; };
 		30B2CF8F1D03AED800A3D124 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8E1D03AED800A3D124 /* Colors.swift */; };
@@ -55,7 +54,6 @@
 		3040950D1CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Soothing_Piano.wav; sourceTree = "<group>"; };
 		3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Obnoxious_Synth.wav; sourceTree = "<group>"; };
 		3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Soothing_Guitar.wav; sourceTree = "<group>"; };
-		3042B8A41D03E70A0044152F /* Hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hash.swift; sourceTree = "<group>"; };
 		3042B8A61D03E73B0044152F /* AlarmCharm-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlarmCharm-Bridging-Header.h"; sourceTree = "<group>"; };
 		305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewAlarmViewController.swift; sourceTree = "<group>"; };
 		305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 		30DF3F421CE6789800910E9F /* AlarmCharm */ = {
 			isa = PBXGroup;
 			children = (
-				3042B8A41D03E70A0044152F /* Hash.swift */,
 				3042B8A61D03E73B0044152F /* AlarmCharm-Bridging-Header.h */,
 				303B8F4F1CFD279B00995E77 /* DefaultsTableViewController.swift */,
 				30B2CF8E1D03AED800A3D124 /* Colors.swift */,
@@ -353,7 +350,6 @@
 				304094FE1CF246F10054D4EF /* Model.xcdatamodeld in Sources */,
 				B3F03F321CFABE0F00B52980 /* Notifications.swift in Sources */,
 				304094F91CF236930054D4EF /* FriendTableViewCell.swift in Sources */,
-				3042B8A51D03E70A0044152F /* Hash.swift in Sources */,
 				B307AD431CFB729B004852CD /* DefaultMessageViewController.swift in Sources */,
 				304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */,
 				30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */,
