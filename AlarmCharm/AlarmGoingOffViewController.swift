@@ -22,9 +22,6 @@ class AlarmGoingOffViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Show message
-        //Show Image
-        //Have option to replay alarm.
         if UserDefaults.hasAlarmBeenSet(){
             prepareToPlayMusicFromFileSystem(Constants.ALARM_SOUND_STORED_FILENAME)
         }else{
@@ -33,10 +30,12 @@ class AlarmGoingOffViewController: UIViewController {
         UserDefaults.clearAlarmDate()
         getWakeUPMessage()
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "songEnded:",
-                                                         name: AVPlayerItemDidPlayToEndTimeNotification,
-                                                         object: self.player!.currentItem)
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "songEnded:",
+            name: AVPlayerItemDidPlayToEndTimeNotification,
+            object: self.player!.currentItem
+        )
     }
     
     func songEnded(notification: NSNotification){

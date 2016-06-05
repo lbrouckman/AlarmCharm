@@ -10,10 +10,9 @@
 import UIKit
 import AVFoundation
 import CoreData
-//Maybe have a delegate that is the alarm itself, this comes from inital view controller
-//Set sound will set audio part
+import MobileCoreServices
 
-class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, UITextFieldDelegate{
+class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private var audioSession: AVAudioSession!
     private var recorder: AVAudioRecorder?
     private var soundPlayer: AVAudioPlayer?
@@ -96,12 +95,12 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     }
     
     @IBAction func playUserRecording(sender: UIButton) {
-//        recorder?.updateMeters()
-//        print(recorder?.averagePowerForChannel(0))
-//        print(recorder?.averagePowerForChannel(1))
-//        print(recorder?.averagePowerForChannel(2))
-//        print(recorder?.averagePowerForChannel(3))
-//        print(" is the average decibel level")
+        //        recorder?.updateMeters()
+        //        print(recorder?.averagePowerForChannel(0))
+        //        print(recorder?.averagePowerForChannel(1))
+        //        print(recorder?.averagePowerForChannel(2))
+        //        print(recorder?.averagePowerForChannel(3))
+        //        print(" is the average decibel level")
         //Load in recorded sound into the audioplayer
         if state != RecordButtonStates.Initial {
             soundPlayer?.play()
@@ -133,7 +132,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         do {
             recorder = try AVAudioRecorder(URL: getAudioUrl(), settings: settings)
             recorder?.recordForDuration(NSTimeInterval(29)) //Making sure maximum is under 30 seconds
-//            recorder?.meteringEnabled
+            //            recorder?.meteringEnabled
             recorder?.delegate = self
             recorder?.record()
             recordButton.setTitle(state.rawValue, forState: .Normal)
@@ -198,7 +197,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         super.viewWillDisappear(animated)
         remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
     }
-
+    
     private func alertNotSaved() {
         let alert = UIAlertController(title: "You haven't saved your alarm yet!", message: "Would you like to save this alarm before leaving? ", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(
@@ -233,7 +232,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             alertNotSaved()
         } else {
             navigationController?.popViewControllerAnimated(true)
-
+            
         }
     }
     
@@ -287,4 +286,59 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             }
         }
     }
+    
+    
+    // MATK -- IMAGE
+    
+    @IBOutlet weak var imageViewContainer: UIView! {
+        didSet {
+            imageViewContainer.addSubview(imageView)
+        }
+    }
+    
+    var imageView = UIImageView()
+    
+    @IBAction func takePhoto() {
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            let picker = UIImagePickerController()
+            picker.sourceType = .Camera
+            picker.mediaTypes = [kUTTypeImage as String]
+            picker.delegate = self
+            picker.allowsEditing = true
+            presentViewController(picker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        var image = info[UIImagePickerControllerEditedImage] as? UIImage
+        if image == nil {
+            image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        }
+        imageView.image = image
+        makeRoomForImage()
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    private func makeRoomForImage() {
+        if imageView.image != nil {
+            let aspectRatio = imageView.image!.size.width / imageView.image!.size.height
+            var extraHeight: CGFloat = 0
+            if aspectRatio > 0 {
+                if let width = imageView.superview?.frame.size.width {
+                    let height = width / aspectRatio
+                    extraHeight = height - imageView.frame.height
+                    imageView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+                }
+            } else {
+                extraHeight = -imageView.frame.height
+                imageView.frame = CGRectZero
+            }
+            preferredContentSize = CGSize(width: preferredContentSize.width, height: preferredContentSize.height + extraHeight)
+        }
+    }
+    
 }

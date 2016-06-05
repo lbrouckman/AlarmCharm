@@ -462,50 +462,67 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KwA-82-elm">
-                                <rect key="frame" x="74" y="193" width="146" height="30"/>
+                                <rect key="frame" x="139" y="85" width="123" height="30"/>
                                 <state key="normal" title="Record Alarm"/>
                                 <connections>
                                     <action selector="recordPushed:" destination="8cV-HQ-ofw" eventType="touchUpInside" id="Wsw-nU-W6w"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyu-Ju-mmV">
-                                <rect key="frame" x="34" y="223" width="227" height="35"/>
+                                <rect key="frame" x="170" y="112" width="98" height="35"/>
                                 <state key="normal" title="Play"/>
                                 <connections>
                                     <action selector="playUserRecording:" destination="8cV-HQ-ofw" eventType="touchUpInside" id="ufc-lu-6hF"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgA-Pj-faK">
-                                <rect key="frame" x="93" y="155" width="109" height="30"/>
+                                <rect key="frame" x="15" y="86" width="109" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jg-eF-n61">
-                                <rect key="frame" x="93" y="261" width="97" height="30"/>
+                                <rect key="frame" x="21" y="131" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ET2-pZ-UJe">
-                                <rect key="frame" x="80" y="317" width="34" height="30"/>
+                                <rect key="frame" x="203" y="149" width="34" height="30"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
                                     <action selector="goBack" destination="8cV-HQ-ofw" eventType="touchUpInside" id="2C9-Gi-2Yf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQF-kk-BhG">
-                                <rect key="frame" x="150" y="325" width="34" height="30"/>
+                                <rect key="frame" x="139" y="155" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveAlarm" destination="8cV-HQ-ofw" eventType="touchUpInside" id="zLm-ig-373"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kds-Tu-wuy">
+                                <rect key="frame" x="0.0" y="193" width="600" height="363"/>
+                                <color key="backgroundColor" red="0.72549019609999998" green="0.070588235289999995" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBH-ia-kOi">
+                                <rect key="frame" x="132" y="123" width="30" height="30"/>
+                                <state key="normal" title="📷"/>
+                                <connections>
+                                    <action selector="takePhoto" destination="8cV-HQ-ofw" eventType="touchUpInside" id="GpK-7N-GGe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hns-DU-SxW" firstAttribute="top" secondItem="kds-Tu-wuy" secondAttribute="bottom" id="Qe3-8Q-r9C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kds-Tu-wuy" secondAttribute="trailing" id="jXl-ll-wv2"/>
+                            <constraint firstItem="kds-Tu-wuy" firstAttribute="leading" secondItem="gvc-Xn-NXL" secondAttribute="leadingMargin" id="laK-rT-hj3"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <connections>
                         <outlet property="alarmMessageLabel" destination="9jg-eF-n61" id="Ibo-82-bLO"/>
                         <outlet property="alarmNameTextEdit" destination="OgA-Pj-faK" id="ta5-jB-VCk"/>
+                        <outlet property="imageViewContainer" destination="kds-Tu-wuy" id="1TF-qB-yTe"/>
                         <outlet property="playButton" destination="Hyu-Ju-mmV" id="bzR-0y-zpu"/>
                         <outlet property="recordButton" destination="KwA-82-elm" id="jiK-oG-6fG"/>
                     </connections>
