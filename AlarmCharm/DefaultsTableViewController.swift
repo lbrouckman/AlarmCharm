@@ -16,11 +16,16 @@ class DefaultsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = Colors.offyellow
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Colors.plum]
+        self.navigationController?.navigationBar.tintColor = Colors.plum
+        tableView.backgroundColor = Colors.offwhite
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setLabels()    }
+        setLabels()
+    }
     
     private func setLabels() {
         var alarmTime: String? = nil

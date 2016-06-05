@@ -16,6 +16,10 @@ class DefaultSoundTableViewCell: UITableViewCell {
     }
     var delegate : DefaultSoundTableViewCellDelegate?
 
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var setButton: UIButton!
+    
     //Make buttons bigger, make sure when song is set the cell is highlighted and NS user preferences get set
     @IBAction func Play(sender: UIButton) {
         delegate?.cellWasPressed(self, button: sender)

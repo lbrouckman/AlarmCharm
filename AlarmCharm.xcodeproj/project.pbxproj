@@ -25,6 +25,7 @@
 		30B2CF891D03953400A3D124 /* AvailableFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF881D03953400A3D124 /* AvailableFriendTableViewCell.swift */; };
 		30B2CF8B1D03957C00A3D124 /* InProgressFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8A1D03957C00A3D124 /* InProgressFriendTableViewCell.swift */; };
 		30B2CF8D1D03958D00A3D124 /* AlreadySetFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8C1D03958D00A3D124 /* AlreadySetFriendTableViewCell.swift */; };
+		30B2CF8F1D03AED800A3D124 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8E1D03AED800A3D124 /* Colors.swift */; };
 		30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F431CE6789800910E9F /* AppDelegate.swift */; };
 		30DF3F491CE6789800910E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F471CE6789800910E9F /* Main.storyboard */; };
 		30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4D1CE6789800910E9F /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		30B2CF881D03953400A3D124 /* AvailableFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableFriendTableViewCell.swift; sourceTree = "<group>"; };
 		30B2CF8A1D03957C00A3D124 /* InProgressFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InProgressFriendTableViewCell.swift; sourceTree = "<group>"; };
 		30B2CF8C1D03958D00A3D124 /* AlreadySetFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlreadySetFriendTableViewCell.swift; sourceTree = "<group>"; };
+		30B2CF8E1D03AED800A3D124 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		30DF3F401CE6789800910E9F /* AlarmCharm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmCharm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DF3F431CE6789800910E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30DF3F481CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				303B8F4F1CFD279B00995E77 /* DefaultsTableViewController.swift */,
+				30B2CF8E1D03AED800A3D124 /* Colors.swift */,
 				304095181CF26F650054D4EF /* Media Files */,
 				30DF3F581CE6870500910E9F /* Supporting Files */,
 				304095031CF247860054D4EF /* CoreData */,
@@ -340,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */,
+				30B2CF8F1D03AED800A3D124 /* Colors.swift in Sources */,
 				30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */,
 				305DC3131CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift in Sources */,
 				302174C81CFA13A700AD3134 /* Database.swift in Sources */,

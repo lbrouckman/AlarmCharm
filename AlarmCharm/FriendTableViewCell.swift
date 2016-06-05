@@ -80,13 +80,12 @@ class FriendTableViewCell: UITableViewCell {
                     if imageData == weakSelf?.contact!.imageData! {
                         if let data = imageData {
                             weakSelf?.contactPicture?.image = UIImage(data: data)
-                            weakSelf?.setNeedsDisplay()
+                            weakSelf?.setNeedsLayout()
                         }
                     }
                 }
             }
         } else {
-            
             let imageURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("defaultImage", ofType: "jpg")!)
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak weakSelf = self] in
                 let contentsOfURL = NSData(contentsOfURL: imageURL)

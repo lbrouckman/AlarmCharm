@@ -31,7 +31,7 @@ class FriendsListTableViewController: UITableViewController {
         var status: FriendStatus
     }
     
-    private var sectionTitles = [0: "Needs to be set", 1 : "In progress of being set", 2: "Already been charmed" ]
+    private var sectionTitles = [0: "Needs to be charmed", 1 : "Being charmed now", 2: "Already been charmed" ]
     
     private func getContacts() {
         let store = CNContactStore()
@@ -87,7 +87,6 @@ class FriendsListTableViewController: UITableViewController {
         let ref = FIRDatabase.database().reference()
         ref.child("users").child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let x = snapshot.value!["alarm_time"] as? Double {
-                print("Able to connect to database")
                 if self.friendList.count == 0 {
                     self.friendList.append([Friend]())
                     self.friendList.append([Friend]())
@@ -133,6 +132,10 @@ class FriendsListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.barTintColor = Colors.offyellow
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Colors.plum]
+        self.navigationController?.navigationBar.tintColor = Colors.plum
+        tableView.backgroundColor = Colors.offwhite
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -141,10 +144,6 @@ class FriendsListTableViewController: UITableViewController {
         getContacts()
     }
     
-    
-    //
-    //    // MARK: - Table view data source
-    //
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Should be 3
         return friendList.count
@@ -167,22 +166,18 @@ class FriendsListTableViewController: UITableViewController {
         return cell
     }
     
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         switch indexPath.section {
         case 0:
             cell = tableView.dequeueReusableCellWithIdentifier("AvailableFriendCell", forIndexPath: indexPath)
             cell = fillCell(cell, forIndexPath: indexPath)
-            cell.backgroundColor = UIColor.greenColor()
         case 1:
             cell = tableView.dequeueReusableCellWithIdentifier("InProgressFriendCell", forIndexPath: indexPath)
             cell = fillCell(cell, forIndexPath: indexPath)
-            cell.backgroundColor = UIColor.yellowColor()
         case 2:
             cell = tableView.dequeueReusableCellWithIdentifier("AlreadySetFriendCell", forIndexPath: indexPath)
             cell = fillCell(cell, forIndexPath: indexPath)
-            cell.backgroundColor = UIColor.redColor()
         default:
             break
         }
@@ -191,6 +186,13 @@ class FriendsListTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = Colors.plum
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.textColor = Colors.offwhite
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

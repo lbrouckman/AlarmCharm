@@ -28,12 +28,14 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
             tableView.allowsSelection = false
         } catch{
         }
-        
+        tableView.backgroundColor = Colors.offwhite
     }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         alarmAudioPlayer?.stop()
     }
+    
     func cellWasPressed(cell : DefaultSoundTableViewCell, button: UIButton){
         let songName = cell.SongNameLabel!.text!
         let songUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(songName, ofType: "wav")!)
@@ -55,12 +57,17 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         catch{
         }
     }
+    
     private func setHighlightedDefault(cell: DefaultSoundTableViewCell){
-        cell.backgroundColor = UIColor.cyanColor()
+        cell.backgroundColor = Colors.cherry
+        cell.SongNameLabel.textColor = Colors.offwhite
     }
+    
     private func setHighlightedNonDefault(cell: DefaultSoundTableViewCell){
-        cell.backgroundColor = UIColor.whiteColor()
+        cell.backgroundColor = Colors.offwhite
+        cell.SongNameLabel.textColor = Colors.plum
     }
+    
     var defaultCell: DefaultSoundTableViewCell?
     //Returns the name of the song that is in NSUser defaults as the current default alarm
     
@@ -76,10 +83,6 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: - Table view data source
     
