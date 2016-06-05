@@ -21,6 +21,8 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     var userID: String?
     private let remoteDB = Database()
     var managedObjectContext: NSManagedObjectContext?
+    private var audioRecorded = false
+    
     private var saved = false {
         didSet {
             if saved {
@@ -109,13 +111,6 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     }
     
     @IBAction func playUserRecording(sender: UIButton) {
-        //        recorder?.updateMeters()
-        //        print(recorder?.averagePowerForChannel(0))
-        //        print(recorder?.averagePowerForChannel(1))
-        //        print(recorder?.averagePowerForChannel(2))
-        //        print(recorder?.averagePowerForChannel(3))
-        //        print(" is the average decibel level")
-        //Load in recorded sound into the audioplayer
         if state != RecordButtonStates.Initial {
             soundPlayer?.play()
         }
@@ -158,9 +153,10 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     //This function stops the audio recorder, sets it equal to nil, and then sets the button text appropiately
     private func finishRecording(success success: Bool) {
         recorder?.stop()
-        saved = false
         //This will reset the recorder if they want to record again.
         if success {
+            saved = false
+            audioRecorded = false
             //The state will be in stopped mode already, and so we won't need to change it.
             playButton.enabled = true
             recordButton.setTitle(state.rawValue, forState: .Normal)
@@ -268,9 +264,25 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    private func alertNoAudio() {
+        let alert = UIAlertController(title: "No Audio Recorded", message: "You must enter record a sound for your alarm", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style: .Default)
+        {  (action: UIAlertAction) -> Void in
+            return
+            }
+        )
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func saveAlarm() {
         if let x = alarmNameTextEdit.text {
             if x.characters.count > 0 {
+                if !audioRecorded {
+                    alertNoAudio()
+                    return
+                }
                 let audioUrl = getAudioUrl()
                 remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!, fileType: "Audio")
                 
