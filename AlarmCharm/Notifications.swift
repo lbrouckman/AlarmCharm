@@ -28,7 +28,11 @@ class Notifications{
     
     static func AddAlarmNotification(date: NSDate){
         let notification = UILocalNotification()
-        notification.alertBody = "Friend wakes you up" // message user sees
+        if let friendName = UserDefaults.getFriendWhoSetAlarm() {
+            notification.alertBody = friendName + " wakes you up!" // message user sees
+        } else {
+            notification.alertBody = "Wake up!" // message user sees
+        }
         notification.alertAction = "slide"
         notification.category = ActionConstants.ALARM_GOES_OFF_IDENTIFER
         notification.fireDate =  date

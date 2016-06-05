@@ -647,7 +647,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="How I wish my alarm would be set..." textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9N3-4N-4e5">
-                                <rect key="frame" x="98" y="285" width="404" height="30"/>
+                                <rect key="frame" x="45" y="285" width="510" height="30"/>
                                 <color key="textColor" red="0.29803921570000003" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -655,9 +655,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.98823529409999999" green="0.98039215690000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="9N3-4N-4e5" firstAttribute="centerX" secondItem="2uc-Yp-Ysm" secondAttribute="centerX" id="TeH-dE-yar"/>
-                            <constraint firstItem="9N3-4N-4e5" firstAttribute="centerY" secondItem="2uc-Yp-Ysm" secondAttribute="centerY" id="abe-NS-65b"/>
-                            <constraint firstItem="9N3-4N-4e5" firstAttribute="leading" secondItem="2uc-Yp-Ysm" secondAttribute="leadingMargin" constant="78" id="wKC-lU-r4R"/>
+                            <constraint firstItem="9N3-4N-4e5" firstAttribute="centerY" secondItem="2uc-Yp-Ysm" secondAttribute="centerY" id="1z6-C4-zsD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9N3-4N-4e5" secondAttribute="trailing" constant="25" id="7fx-oz-VjC"/>
+                            <constraint firstItem="9N3-4N-4e5" firstAttribute="centerX" secondItem="2uc-Yp-Ysm" secondAttribute="centerX" id="Tm8-vc-5Um"/>
+                            <constraint firstItem="9N3-4N-4e5" firstAttribute="leading" secondItem="2uc-Yp-Ysm" secondAttribute="leadingMargin" constant="25" id="qoj-KO-XhP"/>
                         </constraints>
                     </view>
                     <connections>
