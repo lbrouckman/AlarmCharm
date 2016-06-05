@@ -28,13 +28,13 @@ class WelcomeScreenViewController: UIViewController {
         if hasBeenSet{ //By a friend
             UserDefaults.userAlarmBeenSet(true)
             let db = Database()
-            db.downloadFileToLocal(forUser: user) { wasDownloadedToLocal in
+            db.downloadFileToLocal(forUser: user, fileType: "audio_file") { wasDownloadedToLocal in
                 if wasDownloadedToLocal{
                     Notifications.setNotificationFromFileSystem()
                     UserDefaults.addWakeUpMessage(wakeUpMessage)
                     UserDefaults.storeFriendWhoSetAlarm(friendWhoSetAlarm)
                     Notifications.addFriendSetAlarmNotification(friendWhoSetAlarm)
-                    db.downloadImageFileToLocal(forUser: user) { wasSuccessful in
+                    db.downloadFileToLocal(forUser: user, fileType: "image_file") { wasSuccessful in
                         if wasSuccessful {
                             UserDefaults.hasImage(true)
                         } else {
