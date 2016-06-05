@@ -255,6 +255,9 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             if x.characters.count > 0 {
                 let audioUrl = getAudioUrl()
                 remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
+                if let username = NSUserDefaults.standardUserDefaults().valueForKey("Username") as? String{
+                    remoteDB.changeWhoSetAlarm(username, forUser: userID!)
+                }
                 updateCoreData(alarmNameTextEdit.text!, alarmMessage: nil, audioFilename: audioUrl.absoluteString, imageFilename: nil)
                 let message = alarmMessageLabel.text
                 if message?.characters.count > 0 {

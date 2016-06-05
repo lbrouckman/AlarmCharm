@@ -20,6 +20,8 @@ class DefaultsTableViewController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Colors.plum]
         self.navigationController?.navigationBar.tintColor = Colors.plum
         tableView.backgroundColor = Colors.offwhite
+        self.tabBarController?.tabBar.tintColor = Colors.plum
+        self.tabBarController?.tabBar.barTintColor = Colors.offyellow
     }
     
     override func viewWillAppear(animated: Bool) {

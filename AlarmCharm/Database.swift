@@ -14,6 +14,14 @@ class Database {
     
     private var usersRef = FIRDatabase.database().reference().child("users")
     
+    func changeWhoSetAlarm(alarmSetBy: String, forUser userID: String) {
+        let uRef = FIRDatabase.database().reference().child("users")
+        let currentUserRef = uRef.child(userID)
+        let newSetter = ["friend_who_set_alarm" : alarmSetBy]
+        currentUserRef.updateChildValues(newSetter)
+    }
+    
+    
     func uploadFileToDatabase(fileURL: NSURL, forUser userID: String) {
         
         let filename = fileURL.lastPathComponent!
@@ -30,10 +38,6 @@ class Database {
                 
                 let userNoLongerNeedsToBeSet = ["need_friend_to_set" : false]
                 let notInProcess = ["in_process_of_being_set" : false]
-                
-                let friendWhoSetAlarm = ["friend_who_set_alarm" : "PAUL HEGARTY FOR NOW"]
-                
-                currUserRef.updateChildValues(friendWhoSetAlarm)
                 currUserRef.updateChildValues(notInProcess)
                 currUserRef.updateChildValues(userNoLongerNeedsToBeSet)
                 currUserRef.updateChildValues(newSound)

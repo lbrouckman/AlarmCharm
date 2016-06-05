@@ -45,6 +45,7 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAlarms()
+        tableView.backgroundColor = Colors.offwhite
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -57,9 +58,9 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
             }
             cell.textLabel?.text = name
             if indexPath.row == checkedIndex {
-                cell.accessoryType = .Checkmark
+                cell.detailTextLabel?.text = "✓"
             } else {
-                cell.accessoryType = .None
+                cell.detailTextLabel?.text = ""
             }
         }
         return cell
@@ -69,25 +70,31 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            if cell.accessoryType == .None {
-                cell.accessoryType = .Checkmark
+            if cell.detailTextLabel?.text == "" {
                 //Set all of the other ones to unchecked
                 if checkedIndex != nil {
                     for i in 0...tableView.numberOfRowsInSection(0) {
                         if let c = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) {
-                            c.accessoryType = .None
+                            c.detailTextLabel?.text = ""
                         }
                     }
                 }
                 let selectedAlarm = fetchedResultsController?.fetchedObjects?[indexPath.row] as? Alarm
                 if let selected = selectedAlarm {
+                    remoteDB.userNeedsAlarmToBeSet(forUser: friendSelected!, toBeSet: false)
+                    if let username = NSUserDefaults.standardUserDefaults().valueForKey("Username") as? String{
+                        remoteDB.changeWhoSetAlarm(username, forUser: friendSelected!)
+                    }
                      if let filename = selected.audioFilename {
                         if let url = NSURL(string: filename) {
                             remoteDB.uploadFileToDatabase(url, forUser: friendSelected!)
                         }
                     }
+                    if let message = selected.alarmMessage {
+                        remoteDB.uploadWakeUpMessageToDatabase(message, forUser: friendSelected!)
+                    }
                 }
-                cell.accessoryType = .Checkmark
+                cell.detailTextLabel?.text = "✓"
                 checkedIndex = indexPath.row
             }
         }
