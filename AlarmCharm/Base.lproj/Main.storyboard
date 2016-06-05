@@ -511,61 +511,137 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KwA-82-elm">
-                                <rect key="frame" x="139" y="85" width="123" height="30"/>
-                                <state key="normal" title="Record Alarm"/>
-                                <connections>
-                                    <action selector="recordPushed:" destination="8cV-HQ-ofw" eventType="touchUpInside" id="Wsw-nU-W6w"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyu-Ju-mmV">
-                                <rect key="frame" x="170" y="112" width="98" height="35"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="playUserRecording:" destination="8cV-HQ-ofw" eventType="touchUpInside" id="ufc-lu-6hF"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgA-Pj-faK">
-                                <rect key="frame" x="15" y="86" width="109" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jg-eF-n61">
-                                <rect key="frame" x="21" y="131" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ET2-pZ-UJe">
-                                <rect key="frame" x="203" y="149" width="34" height="30"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="goBack" destination="8cV-HQ-ofw" eventType="touchUpInside" id="2C9-Gi-2Yf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQF-kk-BhG">
-                                <rect key="frame" x="139" y="155" width="34" height="30"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveAlarm" destination="8cV-HQ-ofw" eventType="touchUpInside" id="zLm-ig-373"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kds-Tu-wuy">
-                                <rect key="frame" x="0.0" y="193" width="600" height="363"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kds-Tu-wuy">
+                                <rect key="frame" x="0.0" y="260" width="600" height="296"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No Image Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EV2-pV-jvF">
+                                        <rect key="frame" x="228" y="137" width="145" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="145" id="zWD-2w-5eB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GillSans-SemiBoldItalic" family="Gill Sans" pointSize="18"/>
+                                        <color key="textColor" red="0.98823529409999999" green="0.98039215690000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.72549019609999998" green="0.070588235289999995" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="EV2-pV-jvF" firstAttribute="centerY" secondItem="kds-Tu-wuy" secondAttribute="centerY" id="ACh-Rd-YbH"/>
+                                    <constraint firstItem="EV2-pV-jvF" firstAttribute="centerX" secondItem="kds-Tu-wuy" secondAttribute="centerX" id="agV-DK-QZ5"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBH-ia-kOi">
-                                <rect key="frame" x="132" y="123" width="30" height="30"/>
-                                <state key="normal" title="📷"/>
-                                <connections>
-                                    <action selector="takePhoto" destination="8cV-HQ-ofw" eventType="touchUpInside" id="GpK-7N-GGe"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1n9-k7-otO">
+                                <rect key="frame" x="20" y="64" width="560" height="188"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ET2-pZ-UJe">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="34"/>
+                                        <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="16"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" red="0.29803921570000003" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goBack" destination="8cV-HQ-ofw" eventType="touchUpInside" id="2C9-Gi-2Yf"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Alarm Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgA-Pj-faK">
+                                        <rect key="frame" x="0.0" y="34" width="560" height="30"/>
+                                        <color key="textColor" red="0.29803921570000003" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jg-eF-n61">
+                                        <rect key="frame" x="0.0" y="64" width="560" height="30"/>
+                                        <color key="textColor" red="0.29803921570000003" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="GillSans-LightItalic" family="Gill Sans" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="u03-Bu-euH">
+                                        <rect key="frame" x="0.0" y="94" width="560" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KwA-82-elm">
+                                                <rect key="frame" x="0.0" y="0.0" width="167" height="60"/>
+                                                <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="19"/>
+                                                <state key="normal" title="Record">
+                                                    <color key="titleColor" red="0.72549019609999998" green="0.070588235289999995" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="recordPushed:" destination="8cV-HQ-ofw" eventType="touchUpInside" id="Wsw-nU-W6w"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyu-Ju-mmV">
+                                                <rect key="frame" x="197" y="0.0" width="167" height="60"/>
+                                                <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="19"/>
+                                                <state key="normal" title="Play">
+                                                    <color key="titleColor" red="0.72549019609999998" green="0.070588235289999995" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="playUserRecording:" destination="8cV-HQ-ofw" eventType="touchUpInside" id="ufc-lu-6hF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBH-ia-kOi">
+                                                <rect key="frame" x="394" y="0.0" width="167" height="60"/>
+                                                <state key="normal" image="CameraLogo_60x60"/>
+                                                <connections>
+                                                    <action selector="takePhoto" destination="8cV-HQ-ofw" eventType="touchUpInside" id="GpK-7N-GGe"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="KwA-82-elm" firstAttribute="leading" secondItem="u03-Bu-euH" secondAttribute="leading" id="5sT-YR-yuq"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fQc-3t-X5V">
+                                        <rect key="frame" x="0.0" y="154" width="560" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qY8-q1-SPf">
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQF-kk-BhG">
+                                                <rect key="frame" x="242" y="0.0" width="50" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="d1f-27-ps3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="16"/>
+                                                <state key="normal" title="Save">
+                                                    <color key="titleColor" red="0.29803921570000003" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="saveAlarm" destination="8cV-HQ-ofw" eventType="touchUpInside" id="zLm-ig-373"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="✓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1i3-JU-F1r">
+                                                <rect key="frame" x="302" y="0.0" width="16" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.29803921570000003" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxI-Pa-jkT">
+                                                <rect key="frame" x="328" y="0.0" width="232" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="1i3-JU-F1r" firstAttribute="leading" secondItem="HQF-kk-BhG" secondAttribute="trailing" constant="10" id="bTS-NH-q45"/>
+                                            <constraint firstItem="qY8-q1-SPf" firstAttribute="width" secondItem="lxI-Pa-jkT" secondAttribute="width" id="uuZ-KX-H0I"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.98039215690000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="1n9-k7-otO" secondAttribute="leading" id="2Ul-cv-6Cd"/>
                             <constraint firstItem="Hns-DU-SxW" firstAttribute="top" secondItem="kds-Tu-wuy" secondAttribute="bottom" id="Qe3-8Q-r9C"/>
+                            <constraint firstItem="1n9-k7-otO" firstAttribute="top" secondItem="IxT-Qf-kV3" secondAttribute="bottom" id="Rpd-6c-xC7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kds-Tu-wuy" secondAttribute="trailing" id="jXl-ll-wv2"/>
                             <constraint firstItem="kds-Tu-wuy" firstAttribute="leading" secondItem="gvc-Xn-NXL" secondAttribute="leadingMargin" id="laK-rT-hj3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1n9-k7-otO" secondAttribute="trailing" id="nBt-t7-95H"/>
+                            <constraint firstItem="kds-Tu-wuy" firstAttribute="top" secondItem="1n9-k7-otO" secondAttribute="bottom" constant="10" id="nnw-Lx-6qQ"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -575,6 +651,7 @@
                         <outlet property="imageViewContainer" destination="kds-Tu-wuy" id="1TF-qB-yTe"/>
                         <outlet property="playButton" destination="Hyu-Ju-mmV" id="bzR-0y-zpu"/>
                         <outlet property="recordButton" destination="KwA-82-elm" id="jiK-oG-6fG"/>
+                        <outlet property="savedLabel" destination="1i3-JU-F1r" id="oTP-34-2zQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fbA-5U-Cn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -927,6 +1004,9 @@
             <point key="canvasLocation" x="536" y="-67"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CameraLogo_60x60" width="60" height="60"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="G00-ca-XK1"/>
     </inferredMetricsTieBreakers>

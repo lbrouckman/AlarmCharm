@@ -25,7 +25,7 @@ class AlarmGoingOffViewController: UIViewController {
     
     private var alarmSetBy : String? {
         didSet {
-            alarmSetByLabel?.text = alarmSetBy
+            alarmSetByLabel?.text = "Set by: " + alarmSetBy!
         }
     }
     

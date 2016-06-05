@@ -21,7 +21,16 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     var userID: String?
     private let remoteDB = Database()
     var managedObjectContext: NSManagedObjectContext?
-    private var saved = false
+    private var saved = false {
+        didSet {
+            if saved {
+                savedLabel.text = "✓"
+            } else {
+                savedLabel.text = ""
+            }
+        }
+    }
+    @IBOutlet weak var savedLabel: UILabel!
     
     @IBOutlet weak var playButton: UIButton!
     
@@ -33,8 +42,8 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     private var state: RecordButtonStates!
     private enum RecordButtonStates : String{
         case Initial = "Record"
-        case Recording = "Press to stop"
-        case Stopped = "Re-record"
+        case Recording = "Stop"
+        case Stopped = "Re-Record"
     }
     
     
@@ -42,6 +51,8 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated:true);
         
+        saved = false
+        alarmNameTextEdit.delegate = self
         alarmMessageLabel.delegate = self
         playButton.enabled = false
         audioSession = AVAudioSession.sharedInstance()
@@ -299,6 +310,11 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
                 print(error)
             }
         }
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        print("did begin editing")
+        saved = false
     }
     
     
