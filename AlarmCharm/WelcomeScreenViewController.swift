@@ -34,6 +34,7 @@ class WelcomeScreenViewController: UIViewController {
                     UserDefaults.addWakeUpMessage(wakeUpMessage)
                     UserDefaults.storeFriendWhoSetAlarm(friendWhoSetAlarm)
                     Notifications.addFriendSetAlarmNotification(friendWhoSetAlarm)
+                    db.downloadImageFileToLocal(forUser: user)
                     //Change it to be not just set anymore
                 }  //This means the file has been downloaded and we can now set the notification sound
                 
@@ -45,7 +46,6 @@ class WelcomeScreenViewController: UIViewController {
     static func fetch(completion: () -> Void) {
         if let user = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             let db = Database()
-            print(UserDefaults.hasAlarmBeenSet())
             if UserDefaults.getAlarmDate() != nil{
                 if !UserDefaults.hasAlarmBeenSet(){ //If the user alarm hasn't been set by a friend we want to check for it
                     db.hasUserAlarmBeenSet(forUser: user, completionHandler: WelcomeScreenViewController.storeAlarmInfo)

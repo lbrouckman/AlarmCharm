@@ -142,6 +142,28 @@ class Database {
         currentUserRef.updateChildValues(process)
     }
     
+    func downloadImageFileToLocal(forUser userID: String) {
+        let hashedID = sha256(userID)!
+        usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if let imageFile = snapshot.value!["image_file"] as? String where imageFile != ""{
+                let storage = FIRStorage.storage()
+                let gsReference = storage.referenceForURL("gs://project-5208532535641760898.appspot.com")
+                let imageRef = gsReference.child(imageFile)
+                imageRef.downloadURLWithCompletion { (URL, error) -> Void in
+                    if (error != nil) {
+                        print(error)
+                    } else {
+                        self.saveImageToFileSystem(URL!, fileName: "test.png")
+                    }
+                }
+            }
+            })
+        { (error) in
+            print(error)
+        }
+
+    }
+    
     
     func downloadFileToLocal(forUser userID: String, completionHandler: (Bool) -> ()) {
         let hashedID = sha256(userID)!
@@ -165,6 +187,23 @@ class Database {
         { (error) in
             print(error)
         }
+    }
+    
+    private func saveImageToFileSystem(URL: NSURL, fileName: String) {
+        let imageData =  NSData(contentsOfURL: URL)
+        let fileManager = NSFileManager.defaultManager()
+        
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
+        let imagePath = libraryPath + "/Images"
+        let filePath = imagePath + "/" + fileName
+        do {
+            try fileManager.createDirectoryAtPath(imagePath, withIntermediateDirectories: false, attributes: nil)
+        } catch let error1 as NSError {
+            print("error" + error1.description)
+        }
+        let soundPathUrl = NSURL(fileURLWithPath: filePath)
+        print(soundPathUrl)
+        imageData?.writeToURL(soundPathUrl,  atomically: true)
     }
     
     /*

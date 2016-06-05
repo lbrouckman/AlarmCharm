@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AlarmCharm/CreateNewAlarmViewController.swift"
-            timestampString = "486807429.689494"
+            timestampString = "486810695.94007"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "updateCoreData(_:alarmMessage:audioFilename:imageFilename:)"
             landmarkType = "5">
          </BreakpointContent>

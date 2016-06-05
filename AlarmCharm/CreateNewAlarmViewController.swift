@@ -48,7 +48,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         recordFileName = randomStringWithLength(20) as String
         recordFileName = recordFileName! + ".caf"
         imageFileName = randomStringWithLength(20) as String
-        imageFileName = recordFileName! + ".png"
+        imageFileName = imageFileName! + ".png"
         
         do{try  audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord) }catch{print("didnt set category")}
         do{
