@@ -29,7 +29,7 @@ class AlarmGoingOffViewController: UIViewController {
             prepareToPlayMusicFromDefault(UserDefaults.getDefaultSongName())
         }
         if UserDefaults.hasImage() {
-            addImageToView("test.png")
+            addImageToView("alarmImage.png")
         }
         
         UserDefaults.clearAlarmDate()

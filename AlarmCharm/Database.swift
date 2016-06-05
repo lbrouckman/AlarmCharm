@@ -142,45 +142,23 @@ class Database {
         currentUserRef.updateChildValues(process)
     }
     
-    func downloadImageFileToLocal(forUser userID: String, completionHandler: (Bool) -> ()) {
+    func downloadFileToLocal(forUser userID: String, fileType: String, completionHandler: (Bool) -> ()) {
         let hashedID = sha256(userID)!
         usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            if let imageFile = snapshot.value!["image_file"] as? String where imageFile != ""{
+            if let file = snapshot.value![fileType] as? String where file != ""{
                 let storage = FIRStorage.storage()
                 let gsReference = storage.referenceForURL("gs://project-5208532535641760898.appspot.com")
-                let imageRef = gsReference.child(imageFile)
-                imageRef.downloadURLWithCompletion { (URL, error) -> Void in
+                let mediaRef = gsReference.child(file)
+                mediaRef.downloadURLWithCompletion { (URL, error) -> Void in
                     if (error != nil) {
                         print(error)
                         completionHandler(false)
                     } else {
-                        self.saveImageToFileSystem(URL!, fileName: "test.png")
-                        completionHandler(true)
-                    }
-                }
-            }
-            })
-        { (error) in
-            print(error)
-        }
-
-    }
-    
-    
-    func downloadFileToLocal(forUser userID: String, completionHandler: (Bool) -> ()) {
-        let hashedID = sha256(userID)!
-        usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            if let audioFile = snapshot.value!["audio_file"] as? String where audioFile != ""{
-                let storage = FIRStorage.storage()
-                let gsReference = storage.referenceForURL("gs://project-5208532535641760898.appspot.com")
-                let soundRef = gsReference.child(audioFile)
-                soundRef.downloadURLWithCompletion { (URL, error) -> Void in
-                    if (error != nil) {
-                        print(error)
-                        completionHandler(false)
-                    } else {
-                        self.saveToFileSystem(URL!, fileName: Constants.ALARM_SOUND_STORED_FILENAME)
-                        print("audio saved to file system")
+                        if fileType == "image_file" {
+                            self.saveToFileSystem(URL!, filetype: "/Images", fileName: "alarmImage.png")
+                        } else if fileType == "audio_file" {
+                            self.saveToFileSystem(URL!, filetype: "/Sounds", fileName: "alarmSound.caf")
+                        }
                         completionHandler(true)
                     }
                 }
@@ -191,21 +169,20 @@ class Database {
         }
     }
     
-    private func saveImageToFileSystem(URL: NSURL, fileName: String) {
-        let imageData =  NSData(contentsOfURL: URL)
+    private func saveToFileSystem(URL: NSURL, filetype: String, fileName: String) {
+        let data =  NSData(contentsOfURL: URL)
         let fileManager = NSFileManager.defaultManager()
         
         let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
-        let imagePath = libraryPath + "/Images"
-        let filePath = imagePath + "/" + fileName
+        let path = libraryPath + filetype
+        let filePath = path + "/" + fileName
         do {
-            try fileManager.createDirectoryAtPath(imagePath, withIntermediateDirectories: false, attributes: nil)
+            try fileManager.createDirectoryAtPath(path, withIntermediateDirectories: false, attributes: nil)
         } catch let error1 as NSError {
             print("error" + error1.description)
         }
-        let soundPathUrl = NSURL(fileURLWithPath: filePath)
-        print(soundPathUrl)
-        imageData?.writeToURL(soundPathUrl,  atomically: true)
+        let pathURL = NSURL(fileURLWithPath: filePath)
+        data?.writeToURL(pathURL,  atomically: true)
     }
     
     /*

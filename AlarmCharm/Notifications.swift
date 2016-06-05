@@ -84,7 +84,7 @@ class Notifications{
      Grabs the notificationm and changes the soundName to be the sound name of the user
      */
     static func setNotificationFromFileSystem(){
-        Notifications.changeDefaultSong("test.caf")
+        Notifications.changeDefaultSong("alarmSound.caf")
     }
     
     static func changeDefaultSong(songName : String){
