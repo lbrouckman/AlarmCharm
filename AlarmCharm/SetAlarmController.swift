@@ -47,6 +47,9 @@ class SetAlarmController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        datePicker.backgroundColor = Colors.offwhite
+        datePicker.setValue(Colors.cherry, forKeyPath: "textColor")
+        //datePicker.setValue(1.0, forKeyPath: "alpha")
         
         if previousDate != nil{
             datePicker.date = previousDate!

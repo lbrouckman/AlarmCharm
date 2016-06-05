@@ -654,37 +654,43 @@
                                     <!--2016-05-13 22:11:09 +0000-->
                                 </date>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Af-V5-dmJ">
-                                <rect key="frame" x="36" y="402" width="114" height="41"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <state key="normal" title="Set Alarm"/>
-                                <connections>
-                                    <action selector="setAlarm" destination="XBa-fK-bK8" eventType="touchUpInside" id="IB5-EN-rFN"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPt-R6-Fnm">
-                                <rect key="frame" x="176" y="402" width="149" height="41"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                <state key="normal" title="Remove Alarm"/>
-                                <connections>
-                                    <action selector="removeAlarm" destination="XBa-fK-bK8" eventType="touchUpInside" id="bIz-ft-u0s"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="shf-nF-EC8">
+                                <rect key="frame" x="177" y="402" width="247" height="38"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Af-V5-dmJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="91" height="38"/>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="0.98039215690000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <state key="normal" title="Set Alarm">
+                                            <color key="titleColor" red="0.72549019609999998" green="0.070588235289999995" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="setAlarm" destination="XBa-fK-bK8" eventType="touchUpInside" id="IB5-EN-rFN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPt-R6-Fnm">
+                                        <rect key="frame" x="111" y="0.0" width="136" height="38"/>
+                                        <color key="backgroundColor" red="0.98823529409999999" green="0.98039215690000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <state key="normal" title="Remove Alarm">
+                                            <color key="titleColor" red="0.72549019609999998" green="0.070588235289999995" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="removeAlarm" destination="XBa-fK-bK8" eventType="touchUpInside" id="bIz-ft-u0s"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.98039215690000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.98823529409999999" green="0.98039215690000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="l0U-WT-21c" secondAttribute="trailing" id="5y6-Me-13C"/>
                             <constraint firstItem="l0U-WT-21c" firstAttribute="leading" secondItem="Oxf-3g-2Nz" secondAttribute="leading" id="NG3-fS-wme"/>
                             <constraint firstItem="l0U-WT-21c" firstAttribute="top" secondItem="EMu-3W-NqJ" secondAttribute="bottom" id="QLl-rB-HFV"/>
-                            <constraint firstItem="l0U-WT-21c" firstAttribute="bottom" secondItem="rDi-LN-8dp" secondAttribute="top" id="mzv-HG-ChK"/>
+                            <constraint firstItem="shf-nF-EC8" firstAttribute="top" secondItem="l0U-WT-21c" secondAttribute="bottom" constant="25" id="Shh-c6-pHr"/>
+                            <constraint firstItem="shf-nF-EC8" firstAttribute="centerX" secondItem="Oxf-3g-2Nz" secondAttribute="centerX" id="t29-fh-Kw0"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="mzv-HG-ChK"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="l0U-WT-21c" id="kI3-dr-sdB"/>
@@ -778,7 +784,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Qd-jm-BjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2134" y="1440"/>
+            <point key="canvasLocation" x="2134" y="1514"/>
         </scene>
         <!--User Settings-->
         <scene sceneID="VVr-of-GcW">
@@ -820,6 +826,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="G00-ca-XK1"/>
+        <segue reference="Kb6-gr-fbZ"/>
     </inferredMetricsTieBreakers>
 </document>
