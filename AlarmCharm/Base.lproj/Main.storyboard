@@ -187,6 +187,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="alarmSetByLabel" destination="BLT-IQ-3db" id="MQM-QW-mGJ"/>
                         <outlet property="imageView" destination="gS5-Q0-jIl" id="lKY-ti-gsh"/>
                         <outlet property="playAlarmButton" destination="3HJ-G6-pir" id="Zfn-Y1-6gb"/>
                         <outlet property="wakeupMessageLabel" destination="UOk-12-EvM" id="aTz-ww-Qc4"/>

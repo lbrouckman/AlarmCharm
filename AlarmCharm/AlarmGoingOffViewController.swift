@@ -14,26 +14,35 @@ class AlarmGoingOffViewController: UIViewController {
     var playing = false
     
     @IBOutlet weak var wakeupMessageLabel: UILabel!
-    
+    @IBOutlet weak var alarmSetByLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    
     var wakeupMessage : String?{
         didSet{
-        wakeupMessageLabel?.text = wakeupMessage
+            wakeupMessageLabel?.text = wakeupMessage
         }
     }
+    
+    private var alarmSetBy : String? {
+        didSet {
+            alarmSetByLabel?.text = alarmSetBy
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if UserDefaults.hasAlarmBeenSet(){
             prepareToPlayMusicFromFileSystem(Constants.ALARM_SOUND_STORED_FILENAME)
+            setWakeupMessage()
+            setAlarmSetBy()
+            if UserDefaults.hasImage() {
+                addImageToView("alarmImage.png")
+            }
         }else{
             prepareToPlayMusicFromDefault(UserDefaults.getDefaultSongName())
         }
-        if UserDefaults.hasImage() {
-            addImageToView("alarmImage.png")
-        }
         
         UserDefaults.clearAlarmDate()
-        getWakeUPMessage()
         
         NSNotificationCenter.defaultCenter().addObserver(
             self,
@@ -95,8 +104,12 @@ class AlarmGoingOffViewController: UIViewController {
         
     }
     
-    private func getWakeUPMessage(){
+    private func setWakeupMessage(){
         self.wakeupMessage = UserDefaults.getWakeUpMessage()
+    }
+    
+    private func setAlarmSetBy() {
+        self.alarmSetBy = UserDefaults.getFriendWhoSetAlarm()
     }
     
     @IBOutlet weak var playAlarmButton: UIButton!
