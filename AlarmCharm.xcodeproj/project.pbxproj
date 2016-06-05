@@ -20,6 +20,7 @@
 		304095151CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950D1CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav */; };
 		304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */; };
 		304095171CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */; };
+		3042B8A81D04E7BB0044152F /* default_wakeup_photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3042B8A71D04E7BB0044152F /* default_wakeup_photo.jpg */; };
 		305DC3131CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */; };
 		305DC3151CF4D8B000CE10A7 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */; };
 		30B2CF8F1D03AED800A3D124 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8E1D03AED800A3D124 /* Colors.swift */; };
@@ -55,6 +56,7 @@
 		3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Obnoxious_Synth.wav; sourceTree = "<group>"; };
 		3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Soothing_Guitar.wav; sourceTree = "<group>"; };
 		3042B8A61D03E73B0044152F /* AlarmCharm-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlarmCharm-Bridging-Header.h"; sourceTree = "<group>"; };
+		3042B8A71D04E7BB0044152F /* default_wakeup_photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_wakeup_photo.jpg; sourceTree = "<group>"; };
 		305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewAlarmViewController.swift; sourceTree = "<group>"; };
 		305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		30B2CF8E1D03AED800A3D124 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				30B2CF901D03D19600A3D124 /* logo180.png */,
+				3042B8A71D04E7BB0044152F /* default_wakeup_photo.jpg */,
 				302174C91CFA2FF700AD3134 /* defaultImage.jpg */,
 			);
 			name = Icons;
@@ -276,6 +279,7 @@
 				30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */,
 				304095151CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav in Resources */,
 				304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */,
+				3042B8A81D04E7BB0044152F /* default_wakeup_photo.jpg in Resources */,
 				30DF3F491CE6789800910E9F /* Main.storyboard in Resources */,
 				30B2CF911D03D19600A3D124 /* logo180.png in Resources */,
 				B307AD491D02AB4A004852CD /* AND_HIS_NAME_IS_JOHN_CENA.wav in Resources */,

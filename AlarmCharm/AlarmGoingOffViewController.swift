@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 import Firebase
- 
+
 class AlarmGoingOffViewController: UIViewController {
     var playing = false
     
@@ -40,6 +40,7 @@ class AlarmGoingOffViewController: UIViewController {
             }
         }else{
             prepareToPlayMusicFromDefault(UserDefaults.getDefaultSongName())
+            setPhotoToDefault()
         }
         
         UserDefaults.clearAlarmDate()
@@ -50,6 +51,21 @@ class AlarmGoingOffViewController: UIViewController {
             name: AVPlayerItemDidPlayToEndTimeNotification,
             object: self.player!.currentItem
         )
+    }
+    
+    private func setPhotoToDefault() {
+        let imageURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("default_wakeup_photo", ofType: "jpg")!)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak weakSelf = self] in
+            let contentsOfURL = NSData(contentsOfURL: imageURL)
+            dispatch_async(dispatch_get_main_queue()) {
+                if imageURL == NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("default_wakeup_photo", ofType: "jpg")!) {
+                    if let imageData = contentsOfURL {
+                        weakSelf?.imageView?.image = UIImage(data: imageData)
+                        weakSelf?.makeRoomForImage()
+                    }
+                }
+            }
+        }
     }
     
     private func addImageToView(fileName: String) {
@@ -86,13 +102,13 @@ class AlarmGoingOffViewController: UIViewController {
             preferredContentSize = CGSize(width: preferredContentSize.width, height: preferredContentSize.height + extraHeight)
         }
     }
-
+    
     
     func songEnded(notification: NSNotification){
-    player?.seekToTime(kCMTimeZero)
+        player?.seekToTime(kCMTimeZero)
     }
     var player : AVPlayer?
-
+    
     private func prepareToPlayMusicFromFileSystem(fileName:String){
         let playerItem = AVPlayerItem(URL : getURlFromFileSystem(fileName))
         player = AVPlayer(playerItem: playerItem)
@@ -119,7 +135,7 @@ class AlarmGoingOffViewController: UIViewController {
     
     
     @IBAction func playPushed(sender: UIButton) {
-            player?.play()
+        player?.play()
     }
     
     
