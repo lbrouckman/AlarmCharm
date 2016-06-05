@@ -39,8 +39,7 @@ class Database {
     }
     
     
-    func uploadFileToDatabase(fileURL: NSURL, forUser userID: String) {
-        
+    func uploadFileToDatabase(fileURL: NSURL, forUser userID: String, fileType: String) {
         let filename = fileURL.lastPathComponent!
         let storage = FIRStorage.storage()
         let gsReference = storage.referenceForURL("gs://project-5208532535641760898.appspot.com")
@@ -52,13 +51,19 @@ class Database {
             } else {
                 let hashedID = self.sha256(userID)!
                 let currUserRef = self.usersRef.child(hashedID)
-                let newSound = ["audio_file": filename]
+                
+                if fileType == "Audio" {
+                    let newSound = ["audio_file": filename]
+                    currUserRef.updateChildValues(newSound)
+                } else if fileType == "Image" {
+                    let newImage = ["image_file": filename]
+                    currUserRef.updateChildValues(newImage)
+                }
                 
                 let userNoLongerNeedsToBeSet = ["need_friend_to_set" : false]
                 let notInProcess = ["in_process_of_being_set" : false]
                 currUserRef.updateChildValues(notInProcess)
                 currUserRef.updateChildValues(userNoLongerNeedsToBeSet)
-                currUserRef.updateChildValues(newSound)
             }
         }
         

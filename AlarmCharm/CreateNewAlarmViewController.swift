@@ -17,6 +17,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     private var recorder: AVAudioRecorder?
     private var soundPlayer: AVAudioPlayer?
     private var recordFileName: String?
+    private var imageFileName: String?
     var userID: String?
     private let remoteDB = Database()
     var managedObjectContext: NSManagedObjectContext?
@@ -46,6 +47,8 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         audioSession = AVAudioSession.sharedInstance()
         recordFileName = randomStringWithLength(20) as String
         recordFileName = recordFileName! + ".caf"
+        imageFileName = randomStringWithLength(20) as String
+        imageFileName = recordFileName! + ".png"
         
         do{try  audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord) }catch{print("didnt set category")}
         do{
@@ -177,6 +180,12 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         return documentsDirectory
     }
     
+    private func getImageUrl() -> NSURL {
+        let docDict = getDocumentsDirectory() as NSString
+        let imagePath = docDict.stringByAppendingPathComponent(imageFileName!)
+        return NSURL(fileURLWithPath: imagePath)
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         //Maybe set wake up message or in function below
@@ -236,7 +245,6 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         }
     }
     
-    
     private func alertNoAlarmName() {
         let alert = UIAlertController(title: "No Alarm Title", message: "You must enter a title for your alarm before saving", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(
@@ -253,15 +261,21 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         if let x = alarmNameTextEdit.text {
             if x.characters.count > 0 {
                 let audioUrl = getAudioUrl()
-                remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!)
+                remoteDB.uploadFileToDatabase(audioUrl, forUser: userID!, fileType: "Audio")
+                
                 if let username = NSUserDefaults.standardUserDefaults().valueForKey("Username") as? String{
                     remoteDB.changeWhoSetAlarm(username, forUser: userID!)
                 }
-                updateCoreData(alarmNameTextEdit.text!, alarmMessage: nil, audioFilename: audioUrl.absoluteString, imageFilename: nil)
+                
                 let message = alarmMessageLabel.text
                 if message?.characters.count > 0 {
                     remoteDB.uploadWakeUpMessageToDatabase(message!, forUser: userID!)
                 }
+                
+                let imageUrl = getImageUrl()
+                remoteDB.uploadFileToDatabase(imageUrl, forUser:userID!, fileType: "Image")
+                
+                updateCoreData(alarmNameTextEdit.text!, alarmMessage: message, audioFilename: audioUrl.absoluteString, imageFilename: imageUrl.absoluteString)
                 saved = true
             } else {
                 alertNoAlarmName()
@@ -313,14 +327,25 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //When the take a picture, save it to the local file system under the name getImageUrl()
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        saved = false
         var image = info[UIImagePickerControllerEditedImage] as? UIImage
         if image == nil {
             image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
         imageView.image = image
+        saveImageToFileSystem()
         makeRoomForImage()
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func saveImageToFileSystem() {
+        if let image = imageView.image {
+            if let imageData = UIImagePNGRepresentation(image) {
+                imageData.writeToURL(getImageUrl(), atomically: true)
+            }
+        }
     }
     
     private func makeRoomForImage() {

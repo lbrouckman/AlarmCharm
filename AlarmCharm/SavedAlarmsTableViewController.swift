@@ -85,9 +85,14 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
                     if let username = NSUserDefaults.standardUserDefaults().valueForKey("Username") as? String{
                         remoteDB.changeWhoSetAlarm(username, forUser: friendSelected!)
                     }
-                     if let filename = selected.audioFilename {
-                        if let url = NSURL(string: filename) {
-                            remoteDB.uploadFileToDatabase(url, forUser: friendSelected!)
+                     if let audioFilename = selected.audioFilename {
+                        if let audioURL = NSURL(string: audioFilename) {
+                            remoteDB.uploadFileToDatabase(audioURL, forUser: friendSelected!, fileType: "Audio")
+                        }
+                    }
+                    if let imageFilename = selected.imageFilename {
+                        if let imageURL = NSURL(string: imageFilename) {
+                            remoteDB.uploadFileToDatabase(imageURL, forUser: friendSelected!, fileType: "Image")
                         }
                     }
                     if let message = selected.alarmMessage {
