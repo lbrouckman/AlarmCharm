@@ -26,6 +26,7 @@
 		30B2CF8B1D03957C00A3D124 /* InProgressFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8A1D03957C00A3D124 /* InProgressFriendTableViewCell.swift */; };
 		30B2CF8D1D03958D00A3D124 /* AlreadySetFriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8C1D03958D00A3D124 /* AlreadySetFriendTableViewCell.swift */; };
 		30B2CF8F1D03AED800A3D124 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8E1D03AED800A3D124 /* Colors.swift */; };
+		30B2CF911D03D19600A3D124 /* logo180.png in Resources */ = {isa = PBXBuildFile; fileRef = 30B2CF901D03D19600A3D124 /* logo180.png */; };
 		30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F431CE6789800910E9F /* AppDelegate.swift */; };
 		30DF3F491CE6789800910E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F471CE6789800910E9F /* Main.storyboard */; };
 		30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4D1CE6789800910E9F /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 		30B2CF8A1D03957C00A3D124 /* InProgressFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InProgressFriendTableViewCell.swift; sourceTree = "<group>"; };
 		30B2CF8C1D03958D00A3D124 /* AlreadySetFriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlreadySetFriendTableViewCell.swift; sourceTree = "<group>"; };
 		30B2CF8E1D03AED800A3D124 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		30B2CF901D03D19600A3D124 /* logo180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo180.png; sourceTree = "<group>"; };
 		30DF3F401CE6789800910E9F /* AlarmCharm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmCharm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DF3F431CE6789800910E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30DF3F481CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		304095191CF26F780054D4EF /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				30B2CF901D03D19600A3D124 /* logo180.png */,
 				302174C91CFA2FF700AD3134 /* defaultImage.jpg */,
 			);
 			name = Icons;
@@ -281,6 +284,7 @@
 				304095151CF26F5E0054D4EF /* Alarm_Soothing_Piano.wav in Resources */,
 				304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */,
 				30DF3F491CE6789800910E9F /* Main.storyboard in Resources */,
+				30B2CF911D03D19600A3D124 /* logo180.png in Resources */,
 				B307AD491D02AB4A004852CD /* AND_HIS_NAME_IS_JOHN_CENA.wav in Resources */,
 				30FE0D0E1CF76F65004213A0 /* GoogleService-Info.plist in Resources */,
 				302174CA1CFA2FF700AD3134 /* defaultImage.jpg in Resources */,
