@@ -39,7 +39,7 @@
                                             <color key="titleColor" red="0.72549019609999998" green="0.070588235289999995" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Y1J-Ej-ooR" kind="presentation" identifier="StorePhoneNumber" id="4aa-Ec-ZJi"/>
+                                            <action selector="enterButtonPressed" destination="PBh-At-VcQ" eventType="touchUpInside" id="RAk-VW-MxA"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFF-6f-EmL">
@@ -71,6 +71,7 @@
                         <outlet property="textBox" destination="jcj-5g-vE7" id="oiq-FK-C2d"/>
                         <outlet property="usernameTextBox" destination="vjj-L2-rff" id="t3a-HF-AbH"/>
                         <segue destination="Y1J-Ej-ooR" kind="presentation" identifier="ShowMain" id="Kb6-gr-fbZ"/>
+                        <segue destination="Y1J-Ej-ooR" kind="presentation" identifier="StorePhoneNumber" id="XkO-gV-IC3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04B-vU-tdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -859,6 +860,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Kb6-gr-fbZ"/>
+        <segue reference="XkO-gV-IC3"/>
     </inferredMetricsTieBreakers>
 </document>

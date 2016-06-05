@@ -16,9 +16,26 @@ class Database {
     
     func changeWhoSetAlarm(alarmSetBy: String, forUser userID: String) {
         let uRef = FIRDatabase.database().reference().child("users")
-        let currentUserRef = uRef.child(userID)
+        let hashedID = sha256(userID)!
+        let currentUserRef = uRef.child(hashedID)
         let newSetter = ["friend_who_set_alarm" : alarmSetBy]
         currentUserRef.updateChildValues(newSetter)
+    }
+    
+    
+    private func sha256(data: NSData) -> NSData? {
+        guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
+        CC_SHA256(data.bytes, CC_LONG(data.length), UnsafeMutablePointer(res.mutableBytes))
+        return res
+    }
+    
+    func sha256(string: String) -> String? {
+        guard
+            let data = string.dataUsingEncoding(NSUTF8StringEncoding),
+            let shaData = sha256(data)
+            else { return nil }
+        let rc = shaData.base64EncodedStringWithOptions([])
+        return rc
     }
     
     
@@ -33,7 +50,8 @@ class Database {
             if (error != nil) {
                 print(error)
             } else {
-                let currUserRef = self.usersRef.child(userID)
+                let hashedID = self.sha256(userID)!
+                let currUserRef = self.usersRef.child(hashedID)
                 let newSound = ["audio_file": filename]
                 
                 let userNoLongerNeedsToBeSet = ["need_friend_to_set" : false]
@@ -49,21 +67,24 @@ class Database {
     // After user sets their message, this function puts their message in the database
     func uploadUserMessageToDatabase(message: String, forUser userID: String){
         let uRef = FIRDatabase.database().reference().child("users")
-        let currentUserRef = uRef.child(userID)
+        let hashedID = sha256(userID)!
+        let currentUserRef = uRef.child(hashedID)
         let newMessage = ["user_message" : message]
         currentUserRef.updateChildValues(newMessage)
     }
     
     func uploadWakeUpMessageToDatabase(message: String, forUser userID: String){
         let uRef = FIRDatabase.database().reference().child("users")
-        let currentUserRef = uRef.child(userID)
+        let hashedID = sha256(userID)!
+        let currentUserRef = uRef.child(hashedID)
         let newMessage = ["wakeup_message" : message]
         currentUserRef.updateChildValues(newMessage)
     }
     
     func userNeedsAlarmToBeSet(forUser userID: String , toBeSet: Bool){
         let uRef = FIRDatabase.database().reference().child("users")
-        let currentUserRef = uRef.child(userID)
+        let hashedID = sha256(userID)!
+        let currentUserRef = uRef.child(hashedID)
         let needsSetting = ["need_friend_to_set" : toBeSet]
         currentUserRef.updateChildValues(needsSetting)
     }
@@ -72,7 +93,8 @@ class Database {
     // Let's put message, FriendName both in NSUSER Defaults
     //
     func hasUserAlarmBeenSet(forUser userID: String, completionHandler: (user: String, hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String) -> ()){
-        usersRef.child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        let hashedID = sha256(userID)!
+        usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let needFriendToSet = snapshot.value!["need_friend_to_set"] as? Bool where needFriendToSet == false{
                 let hasBeenSet = !needFriendToSet
                 print("has been set has value", hasBeenSet)
@@ -94,11 +116,11 @@ class Database {
     func addAlarmTimeToDatabase(date: NSDate){
         print("a")
         if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
-            print("Here")
+            let hashedID = sha256(userId)!
             let timestamp = date.timeIntervalSince1970
             let ref = FIRDatabase.database().reference()
             let usersRef = ref.child("users")
-            let currUserRef = usersRef.child(userId)
+            let currUserRef = usersRef.child(hashedID)
             let newTime = ["alarm_time": timestamp]
             let needsToBeSet = ["need_friend_to_set" : true]
             
@@ -106,16 +128,19 @@ class Database {
             currUserRef.updateChildValues(newTime)
         }
     }
+    
     func userInProcessOfBeingSet(forUser userID: String, inProcess : Bool){
         let uRef = FIRDatabase.database().reference().child("users")
-        let currentUserRef = uRef.child(userID)
+        let hashedID = sha256(userID)!
+        let currentUserRef = uRef.child(hashedID)
         let process = ["in_process_of_being_set" : inProcess]
         currentUserRef.updateChildValues(process)
     }
     
     
     func downloadFileToLocal(forUser userID: String, completionHandler: (Bool) -> ()) {
-        usersRef.child(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        let hashedID = sha256(userID)!
+        usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let audioFile = snapshot.value!["audio_file"] as? String where audioFile != ""{
                 let storage = FIRStorage.storage()
                 let gsReference = storage.referenceForURL("gs://project-5208532535641760898.appspot.com")
@@ -157,7 +182,22 @@ class Database {
         songData?.writeToURL(soundPathUrl,  atomically: true)
     }
     
+    func addNewUserToDB(phoneNumber: String) {
+        let phoneNumberHash = sha256(phoneNumber)
+        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : ""]
+        let newUserRef = usersRef.child(phoneNumberHash!)
+        newUserRef.setValue(newUser)
+    }
     
-    
-    
+    func userInDatabase(phoneNumber: String, completionHandler: (Bool) -> ()) {
+        let phoneNumberHash = sha256(phoneNumber)
+        
+        usersRef.child(phoneNumberHash!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if snapshot.value is NSNull {
+                completionHandler(false)
+            } else {
+                completionHandler(true)
+            }
+        })
+    }
 }
