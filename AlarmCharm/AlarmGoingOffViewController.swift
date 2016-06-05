@@ -56,8 +56,28 @@ class AlarmGoingOffViewController: UIViewController {
         let myURL = NSURL(fileURLWithPath: filePath)
         if let imageData = NSData(contentsOfURL: myURL) {
             imageView?.image = UIImage(data: imageData)
+            makeRoomForImage()
         }
     }
+    
+    private func makeRoomForImage() {
+        if imageView.image != nil {
+            let aspectRatio = imageView.image!.size.width / imageView.image!.size.height
+            var extraHeight: CGFloat = 0
+            if aspectRatio > 0 {
+                if let width = imageView.superview?.frame.size.width {
+                    let height = width / aspectRatio
+                    extraHeight = height - imageView.frame.height
+                    imageView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+                }
+            } else {
+                extraHeight = -imageView.frame.height
+                imageView.frame = CGRectZero
+            }
+            preferredContentSize = CGSize(width: preferredContentSize.width, height: preferredContentSize.height + extraHeight)
+        }
+    }
+
     
     func songEnded(notification: NSNotification){
     player?.seekToTime(kCMTimeZero)
@@ -114,10 +134,6 @@ class AlarmGoingOffViewController: UIViewController {
         return myURL
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
     /*
