@@ -104,7 +104,7 @@ class FriendsListTableViewController: UITableViewController {
         let ref = FIRDatabase.database().reference()
         let hashedID = remoteDB.sha256(userID)!
         ref.child("users").child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            if let x = snapshot.value!["alarm_time"] as? Double {
+            if let x = snapshot.value!["alarm_time"] as? Double where x != 0 {
                 if self.friendList.count == 0 {
                     self.friendList.append([Friend]())
                     self.friendList.append([Friend]())
