@@ -47,7 +47,7 @@ class AlarmGoingOffViewController: UIViewController {
         }
         
         UserDefaults.clearAlarmDate()
-        
+        UserDefaults.hasImage(false)
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: #selector(AlarmGoingOffViewController.songEnded(_:)),

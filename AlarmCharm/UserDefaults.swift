@@ -76,6 +76,7 @@ class UserDefaults{
         }
     }
     static func clearAlarmDate(){
+        
         NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: setKey)
     }

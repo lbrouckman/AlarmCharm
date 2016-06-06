@@ -33,7 +33,7 @@ class SetAlarmController: UIViewController {
     
     
     @IBAction func setAlarm() {
-        let date = ensureDateIsTomorrow(datePicker.date)
+        var date = ensureDateIsTomorrow(datePicker.date)
         UserDefaults.setAlarmDate(date)
         remoteDB.addAlarmTimeToDatabase(date)
         Notifications.AddAlarmNotification(date)
@@ -42,10 +42,11 @@ class SetAlarmController: UIViewController {
     //If they set an alarm for earlier than the current time, then set that alarm to go off the following day
     private func ensureDateIsTomorrow(date: NSDate) -> NSDate{
         let currentDay = NSDate()
+        var newDate = date
         if currentDay.earlierDate(date) == date {
-            date.dateByAddingTimeInterval(60*60*24)
+            newDate = date.dateByAddingTimeInterval(60*60*24)
         }
-        return date
+        return newDate
         //if the set date is earlier than current date, return less date + a day.
     }
     

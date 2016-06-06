@@ -39,6 +39,12 @@ class DefaultsTableViewController: UITableViewController {
             let formatter = NSDateFormatter()
             formatter.timeStyle = .ShortStyle
             alarmTime = formatter.stringFromDate(date!)
+            if UserDefaults.hasAlarmBeenSet(){
+                if let friendName = UserDefaults.getFriendWhoSetAlarm(){
+                    let suffix = " set by " + friendName
+                    alarmTime = alarmTime! + suffix
+                }
+            }
         }
         else {
             alarmTime = "Not Set"
