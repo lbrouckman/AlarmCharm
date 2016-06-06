@@ -33,7 +33,7 @@ class SetAlarmController: UIViewController {
     
     
     @IBAction func setAlarm() {
-        var date = ensureDateIsTomorrow(datePicker.date)
+        let date = ensureDateIsTomorrow(datePicker.date)
         UserDefaults.setAlarmDate(date)
         remoteDB.addAlarmTimeToDatabase(date)
         Notifications.AddAlarmNotification(date)
