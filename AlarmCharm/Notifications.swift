@@ -26,7 +26,6 @@ class Notifications{
         notification.alertBody = friendName + " has set your alarm!"
         notification.category = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
         notification.fireDate = nil
-        print("firing notification for ", notification.fireDate)
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
@@ -103,7 +102,6 @@ class Notifications{
                     //Try cancel all notifications...
                     UIApplication.sharedApplication().cancelAllLocalNotifications()
                     notif.soundName = songName
-                    print("just updated the songName to be from library ", songName)
                     UIApplication.sharedApplication().scheduleLocalNotification(notif)
                 }
             }

@@ -37,7 +37,6 @@ class UserDefaults{
     }
     static func hasAlarmBeenSet() -> Bool{
        let hasBeenSet =  NSUserDefaults.standardUserDefaults().valueForKey(setKey) as? Bool
-        print(hasBeenSet)
         if hasBeenSet != nil { return hasBeenSet!}
         else { return false }
     }

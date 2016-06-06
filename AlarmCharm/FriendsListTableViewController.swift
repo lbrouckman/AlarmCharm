@@ -168,7 +168,6 @@ class FriendsListTableViewController: UITableViewController {
             friendCell.contact = friend.contact
             friendCell.alarmTime = friend.alarmTime
             if indexPath.section == 2 {
-                print("HERE")
                 friendCell.message = "Set by: " + friend.setBy!
             } else {
                 friendCell.message = friend.message

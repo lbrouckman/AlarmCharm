@@ -202,7 +202,6 @@ class Database {
             print("error" + error1.description)
         }
         let soundPathUrl = NSURL(fileURLWithPath: filePath)
-        print(soundPathUrl)
         songData?.writeToURL(soundPathUrl,  atomically: true)
     }
     

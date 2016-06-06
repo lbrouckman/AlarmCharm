@@ -69,7 +69,6 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         do{
             try  audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
         }catch let error as NSError{
-            print("in here")
             print(error)}
         do {
             state = RecordButtonStates.Initial
