@@ -2,11 +2,14 @@
 //  Notifications.swift
 //  AlarmCharm
 //
-//  Created by Alexander Carlisle on 5/28/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/28/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import UIKit
+/* The Notifications class has all of the functionality related to notifications.
+ */
+
 class Notifications{
     private struct ActionConstants{
         static let SNOOZE_IDENTIFIER = "snooze"
@@ -17,6 +20,7 @@ class Notifications{
         static let FRIENDS_SETS_ALARM_CATEGORY = "friend has set alarm"
     }
     
+    //Notification that tells user someone set their alarm
     static func addFriendSetAlarmNotification(friendName: String){
         let notification = UILocalNotification()
         notification.alertBody = friendName + " has set your alarm!"
@@ -26,6 +30,7 @@ class Notifications{
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
+    //Wake up notification
     static func AddAlarmNotification(date: NSDate){
         let notification = UILocalNotification()
         
@@ -48,6 +53,7 @@ class Notifications{
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
+    
     static func getNotificationSettings()-> UIUserNotificationSettings{
         let friendSetsAlarmCategory = UIMutableUserNotificationCategory()
         friendSetsAlarmCategory.identifier = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
@@ -60,7 +66,6 @@ class Notifications{
         return alarmGoesOffSettings
     }
     
-    ///Move all logic into notifications
     static func getWakeAction() ->UIMutableUserNotificationAction{
         let wakeAction = UIMutableUserNotificationAction()
         wakeAction.identifier = ActionConstants.WAKE_IDENTIFIER
@@ -70,12 +75,12 @@ class Notifications{
         wakeAction.authenticationRequired = false
         return wakeAction
     }
+    
     static func getSnoozeAction() -> UIMutableUserNotificationAction{
         let snoozeAction = UIMutableUserNotificationAction()
         snoozeAction.identifier = ActionConstants.SNOOZE_IDENTIFIER
         snoozeAction.destructive = false
         snoozeAction.title = ActionConstants.SNOOZE_TITLE
-        //Maybe change this to back ground
         snoozeAction.activationMode = .Background
         snoozeAction.authenticationRequired = false
         return snoozeAction
@@ -83,7 +88,6 @@ class Notifications{
     
     
     /*
-     This function will be moved to Notification Class soon
      Grabs the notificationm and changes the soundName to be the sound name of the user
      */
     static func setNotificationFromFileSystem(){
@@ -105,16 +109,4 @@ class Notifications{
             }
         }
     }
-    
-    
-    static func UpdateNotification(fileNameOfSound: String, fileNameOfImage: String){
-        
-        
-    }
-    static func CancelNotification(){
-        
-    }
-    
-    
-    
 }

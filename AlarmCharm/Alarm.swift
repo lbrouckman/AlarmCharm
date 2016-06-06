@@ -12,9 +12,8 @@ import CoreData
 
 class Alarm: NSManagedObject {
 
-    //add audio recording functionality
+    //Add an alarm to CoreData so that a user can reuse previously saved alarms
     class func addAlarmToDB(name: String, alarmMessage: String?, audioFilename: String?, imageFilename: String?,inManagedObjectContext context: NSManagedObjectContext) -> Alarm? {
-        print("Adding alarm with name \(name) to DB")
         let request = NSFetchRequest(entityName: "Alarm")
         request.predicate = NSPredicate(format: "alarmName = %@", name)
         

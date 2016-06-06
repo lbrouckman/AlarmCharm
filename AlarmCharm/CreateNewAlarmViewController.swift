@@ -2,8 +2,8 @@
 //  CreateAlarmViewController.swift
 //  AlarmCharm
 //
-//  Created by Alexander Carlisle on 5/24/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/24/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //  Used below for tutorial for interacting with audioRecorder
 ////https://www.hackingwithswift.com/example-code/media/how-to-record-audio- using-avaudiorecorder
 
@@ -12,6 +12,8 @@ import AVFoundation
 import CoreData
 import MobileCoreServices
 
+/* This class holds the functionality for creating an alarm.
+ */
 class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private var audioSession: AVAudioSession!
     private var recorder: AVAudioRecorder?
@@ -97,7 +99,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         return randomString
     }
     
-    
+    //Start recording audio
     @IBAction func recordPushed(sender: UIButton) {
         
         if  state == RecordButtonStates.Initial || state == RecordButtonStates.Stopped {
@@ -110,6 +112,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         
     }
     
+    //Play back audio
     @IBAction func playUserRecording(sender: UIButton) {
         if state != RecordButtonStates.Initial {
             soundPlayer?.play()
@@ -156,7 +159,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         //This will reset the recorder if they want to record again.
         if success {
             saved = false
-            audioRecorded = false
+            audioRecorded = true
             //The state will be in stopped mode already, and so we won't need to change it.
             playButton.enabled = true
             recordButton.setTitle(state.rawValue, forState: .Normal)
@@ -173,7 +176,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         }
     }
     
-    //Returns the correct audio url
+    //Returns the URL for the audio file
     private func getAudioUrl() -> NSURL{
         let docDict = getDocumentsDirectory() as NSString
         let soundPath = docDict.stringByAppendingPathComponent(recordFileName!)
@@ -187,6 +190,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         return documentsDirectory
     }
     
+    //Returns URL for the image file
     private func getImageUrl() -> NSURL {
         let docDict = getDocumentsDirectory() as NSString
         let imagePath = docDict.stringByAppendingPathComponent(imageFileName!)
@@ -199,21 +203,20 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         return true
     }
     
-    
-    //When the user goes back, whatever the recorded will be uploaded to the DB and set to the user's audio
-    //If nothing was recorded, nothing happens (error printed to console saying that the audio file doesn't exist which is good)
-    //Possible: if they don't name their alarm, have an alert that tells them that name is required
+    //Before the user goes back to the parent controller, mark that the user is no longer in the process of being set
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
             remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
         }
     }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
     }
     
+    //Alert the user before they go back that their alarm has not been saved; give them the option to save (and go back) not save (and go back) or cancel
     private func alertNotSaved() {
         let alert = UIAlertController(title: "You haven't saved your alarm yet!", message: "Would you like to save this alarm before leaving? ", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(
@@ -243,6 +246,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         
     }
     
+    //Manual segue to parentViewController
     @IBAction func goBack() {
         if !saved {
             alertNotSaved()
@@ -252,6 +256,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         }
     }
     
+    //Alert the user that their alarm has not been named if they try to save it (alarms must have a name in order to be saved)
     private func alertNoAlarmName() {
         let alert = UIAlertController(title: "No Alarm Title", message: "You must enter a title for your alarm before saving", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(
@@ -264,6 +269,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    //Alert the user that they haven't recorded any sound (and alarm needs sound!)
     private func alertNoAudio() {
         let alert = UIAlertController(title: "No Audio Recorded", message: "You must enter record a sound for your alarm", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(
@@ -276,6 +282,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    //Save the alarm (making sure it has a title/audio, save it to both the local database and set it to the friend's alarm in the remote database
     @IBAction func saveAlarm() {
         if let x = alarmNameTextEdit.text {
             if x.characters.count > 0 {
@@ -308,6 +315,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
         }
     }
     
+    //Adds an alarm to coreData
     private func updateCoreData(alarmName: String, alarmMessage: String?, audioFilename: String?, imageFilename: String?) {
         managedObjectContext?.performBlockAndWait { [weak weakSelf = self] in
             let _ = Alarm.addAlarmToDB(
@@ -325,13 +333,12 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        print("did begin editing")
         saved = false
     }
     
     
-    // MATK -- IMAGE
-    
+    // MARK -- IMAGE
+    // all of the imageViewContainer Functionality (from Paul Hegerty's iTunes lecture)
     @IBOutlet weak var imageViewContainer: UIView! {
         didSet {
             imageViewContainer.addSubview(imageView)

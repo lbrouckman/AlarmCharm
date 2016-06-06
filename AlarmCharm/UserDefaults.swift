@@ -2,20 +2,25 @@
 //  UserDefaults.swift
 //  AlarmCharm
 //
-//  Created by Alexander Carlisle on 5/31/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/31/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import Foundation
 
+/* This class has all the user defaults functionality for interacting with NSUserDefaults. 
+ User defaults stores the current alarm time, whether or not a friend has set the alarm, the wake up message, who set the alarm, 
+ whether or not an image has been set, the default sound.
+ */
+
 class UserDefaults{
     
-    static var messageKey =         "messageKey"
-    static var friendKey =          "friendKey"
-    static var defaultSongKey =     "defaultKey"
-    static var dateKey =            "dateKey"
-    static var setKey =             "setKey"
-    static var hasImageKey =        "imageKey"
+    static var messageKey       =   "messageKey"
+    static var friendKey        =   "friendKey"
+    static var defaultSongKey   =   "defaultKey"
+    static var dateKey          =   "dateKey"
+    static var setKey           =   "setKey"
+    static var hasImageKey      =   "imageKey"
     
     static func addWakeUpMessage(wakeUpMessage: String){
         NSUserDefaults.standardUserDefaults().setValue(wakeUpMessage, forKey: messageKey)

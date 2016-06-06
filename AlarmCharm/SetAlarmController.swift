@@ -2,13 +2,15 @@
 //  SetAlarmController.swift
 //  AlarmCharm
 //
-//  Created by Elizabeth Brouckman on 5/13/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/13/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
+/* This controller has a date picker that lets the user choose what time they want their alarm to be set to. They can then set/remove their 
+ alarm and it will be changed in the remote database and in NSUserdefaults */
 class SetAlarmController: UIViewController {
         
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -36,6 +38,7 @@ class SetAlarmController: UIViewController {
         Notifications.AddAlarmNotification(date)
         }
     
+    //If they set an alarm for earlier than the current time, then set that alarm to go off the following day
     private func ensureDateIsTomorrow(date: NSDate) -> NSDate{
         let currentDay = NSDate()
         if currentDay.earlierDate(date) == date {
@@ -49,14 +52,11 @@ class SetAlarmController: UIViewController {
         super.viewDidLoad()
         datePicker.backgroundColor = Colors.offwhite
         datePicker.setValue(Colors.cherry, forKeyPath: "textColor")
-        //datePicker.setValue(1.0, forKeyPath: "alpha")
         
         if previousDate != nil{
             datePicker.date = previousDate!
         }
         
-        datePicker.datePickerMode = UIDatePickerMode.Time
-        //set to previous time selected pass this in during the segue
-        
+        datePicker.datePickerMode = UIDatePickerMode.Time        
     }
 }

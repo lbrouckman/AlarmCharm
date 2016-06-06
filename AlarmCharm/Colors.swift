@@ -2,9 +2,10 @@
 //  Colors.swift
 //  AlarmCharm
 //
-//  Created by Elizabeth Brouckman on 6/4/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 6/4/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
+// A color scheme (Cherry Cheesecake) from https://color.adobe.com/Cherry-Cheesecake-color-theme-2354/
 
 import UIKit
 

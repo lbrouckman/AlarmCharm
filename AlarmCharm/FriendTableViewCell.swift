@@ -2,27 +2,21 @@
 //  FriendTableViewCell.swift
 //  AlarmCharm
 //
-//  Created by Elizabeth Brouckman on 5/22/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/22/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import UIKit
 import Contacts
 
+/* Custom cell for showing a user their friends */
 class FriendTableViewCell: UITableViewCell {
     
     @IBOutlet weak var contactName: UILabel!
     @IBOutlet weak var contactAlarmTime: UILabel!
     @IBOutlet weak var contactPicture: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
-    
-    private struct Friend {
-        var name: String?
-        var phoneNumber: String?
-        var imageData: NSData?
-        var message: String?
-    }
-    
+
     var contact: CNContact? {
         didSet {
             updateUI()
@@ -40,13 +34,10 @@ class FriendTableViewCell: UITableViewCell {
         }
     }
     
-    var phoneNumber: String?
-    
     private func updateUI() {
         contactName?.text = nil
         contactAlarmTime?.text = nil
         contactPicture?.image = nil
-        self.backgroundColor = nil
         
         contactName?.text = contact!.givenName + " " + contact!.familyName
         if message != nil{
@@ -72,6 +63,7 @@ class FriendTableViewCell: UITableViewCell {
         }
     }
     
+    //Set image to the be the contact image or a default "blank" image if there is no contact image
     private func setImage() {
         if contact!.imageData != nil {
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak weakSelf = self] in

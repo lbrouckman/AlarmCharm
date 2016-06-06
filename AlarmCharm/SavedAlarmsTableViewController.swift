@@ -2,16 +2,14 @@
 //  SavedAlarmsTableViewController.swift
 //  AlarmCharm
 //
-//  Created by Elizabeth Brouckman on 5/22/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/22/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 
 /*
- TO DO:
- should have a model that contains the saved alarms and the contact that was clicked to ge to here (prepare for segue of friendsTableViewController
- check marks = only one or zero allowed, the one that is checked is the alarm that has been chosen for that friend (maybe have a None option?)
- display the names (decided by the user) of the saved alarms that they've created in the past
+ This view controller is a CoreDataTableViewController that displays the alarms that a user has previously made. They can click on the alarms
+ to choose one to be their friends alarm, or continue on to create a new alarm.
  */
 
 import UIKit
@@ -21,12 +19,12 @@ import CoreData
 class SavedAlarmsTableViewController: CoreDataTableViewController {
     //set by previous VC
     var friendSelected: String?
-    var remoteDB = Database()
-    
+    private var remoteDB = Database()
     
     var managedObjectContext: NSManagedObjectContext? =
         (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
     
+    //Load the alarms from CoreData into the fetchedResultsController
     private func loadAlarms() {
         if let context = managedObjectContext {
             let request = NSFetchRequest(entityName: "Alarm")
@@ -48,6 +46,7 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
         tableView.backgroundColor = Colors.offwhite
     }
     
+    //Checkmark functionality lets the user see/select which alarm they have set for their friend
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SavedAlarmCell", forIndexPath: indexPath)
         
@@ -68,6 +67,8 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
     
     private var checkedIndex: Int?
     
+    //When a cell is selected, if it wasn't checked yet, then make it checked (and make all other cells unchecked) and then
+    //set the selected alarm to be the friends alarm in the remote database
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             if cell.detailTextLabel?.text == "" {
@@ -104,19 +105,22 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
             }
         }
     }
+    
+    //The user is no longer in the process of being set at this point
     override func willMoveToParentViewController(parent: UIViewController?) {
         super.willMoveToParentViewController(parent)
         if parent == nil {
             remoteDB.userInProcessOfBeingSet(forUser: friendSelected!, inProcess: false)
         }
     }
+    
+    //If the view disappears for some other reason (other than back button) also toggle the inProcess for the friend
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         remoteDB.userInProcessOfBeingSet(forUser: friendSelected!, inProcess: false)
     }
 
-    //send the next VC the managedObjectContext
-    
+    //send the next VC the managedObjectContext and what friend they're setting the alarm of
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             if identifier == "CreateNewAlarm"{

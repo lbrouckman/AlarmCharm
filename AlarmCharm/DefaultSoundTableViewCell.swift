@@ -2,8 +2,8 @@
 //  DefaultSoundTableViewCell.swift
 //  AlarmCharm
 //
-//  Created by Alexander Carlisle on 5/22/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/22/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import UIKit

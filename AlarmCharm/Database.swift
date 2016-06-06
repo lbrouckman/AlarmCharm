@@ -2,13 +2,18 @@
 //  Database.swift
 //  AlarmCharm
 //
-//  Created by Elizabeth Brouckman on 5/28/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/28/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import Foundation
 import Firebase
 import AVFoundation
+
+/* Databse class has all the remote database functionality needed. We used Firebase and got help from the following sources:
+ https://www.firebase.com/docs/ios/quickstart.html
+ https://www.raywenderlich.com/109706/firebase-tutorial-getting-started
+ */
 
 class Database {
     
@@ -22,7 +27,8 @@ class Database {
         currentUserRef.updateChildValues(newSetter)
     }
     
-    
+    /* We got the 2 functions below from http://stackoverflow.com/questions/25388747/sha256-in-swift and they use the objective C code
+  bridged in */
     private func sha256(data: NSData) -> NSData? {
         guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
         CC_SHA256(data.bytes, CC_LONG(data.length), UnsafeMutablePointer(res.mutableBytes))
@@ -37,7 +43,6 @@ class Database {
         let rc = shaData.base64EncodedStringWithOptions([])
         return rc
     }
-    
     
     func uploadFileToDatabase(fileURL: NSURL, forUser userID: String, fileType: String) {
         let filename = fileURL.lastPathComponent!
@@ -94,19 +99,14 @@ class Database {
         currentUserRef.updateChildValues(needsSetting)
     }
     
-    // then this means that we have already notified the current user.
-    // Let's put message, FriendName both in NSUSER Defaults
-    //
+    //Checks to see if a friend has set the alarm and if so, it gets the alarm and calls the completion handler that is in charge of storing it
     func hasUserAlarmBeenSet(forUser userID: String, completionHandler: (user: String, hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String) -> ()){
         let hashedID = sha256(userID)!
         usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             if let needFriendToSet = snapshot.value!["need_friend_to_set"] as? Bool where needFriendToSet == false{
                 let hasBeenSet = !needFriendToSet
-                print("has been set has value", hasBeenSet)
                 if let wakeUpMessage = snapshot.value!["wakeup_message"] as? String{
-                    print("wake up Message: ", wakeUpMessage)
                     if let friendWhoSetAlarm = snapshot.value!["friend_who_set_alarm"] as? String{
-                        print("friend who set alarm was : ", friendWhoSetAlarm)
                         completionHandler(user: userID, hasBeenSet: hasBeenSet, wakeUpMessage: wakeUpMessage, friendWhoSetAlarm: friendWhoSetAlarm)
                     }
                 }
@@ -119,7 +119,6 @@ class Database {
     }
 
     func addAlarmTimeToDatabase(date: NSDate){
-        print("a")
         if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             let hashedID = sha256(userId)!
             let timestamp = date.timeIntervalSince1970
@@ -142,6 +141,7 @@ class Database {
         currentUserRef.updateChildValues(process)
     }
     
+    //Downloads an image or audio file to the local file system, completion handler since this will be handled ansynchronously
     func downloadFileToLocal(forUser userID: String, fileType: String, completionHandler: (Bool) -> ()) {
         let hashedID = sha256(userID)!
         usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
@@ -169,6 +169,7 @@ class Database {
         }
     }
     
+    //Saves an NSURL to the file system (under a predictable name) so that the alarm image/audio can easily be retrieved from the local files
     private func saveToFileSystem(URL: NSURL, filetype: String, fileName: String) {
         let data =  NSData(contentsOfURL: URL)
         let fileManager = NSFileManager.defaultManager()

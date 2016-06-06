@@ -2,14 +2,18 @@
 //  WelcomeScreenViewController.swift
 //  AlarmCharm
 //
-//  Created by Elizabeth Brouckman on 5/24/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/24/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
-//HELLO CARLISELEGERGERLGMERLKVMERLM
 
 import UIKit
 import Firebase
 import FirebaseDatabase
+
+/* Home screen when the user first enters the app. It asks for their phone number (to be able to connect them with their friends from contacts) and a username
+ Ensures that the user's phone number is not already in the database. Adds the user to the database under a hash of their phonenumber
+ Only appears the first time a user opens the the app.
+ */
 class WelcomeScreenViewController: UIViewController {
     
     private var remoteDB = Database()
@@ -23,43 +27,7 @@ class WelcomeScreenViewController: UIViewController {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "launchedBefore")
         }
     }
-    
-    static func storeAlarmInfo(user: String,  hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String){
-        if hasBeenSet{ //By a friend
-            UserDefaults.userAlarmBeenSet(true)
-            let db = Database()
-            db.downloadFileToLocal(forUser: user, fileType: "audio_file") { wasDownloadedToLocal in
-                if wasDownloadedToLocal{
-                    Notifications.setNotificationFromFileSystem()
-                    UserDefaults.addWakeUpMessage(wakeUpMessage)
-                    UserDefaults.storeFriendWhoSetAlarm(friendWhoSetAlarm)
-                    Notifications.addFriendSetAlarmNotification(friendWhoSetAlarm)
-                    db.downloadFileToLocal(forUser: user, fileType: "image_file") { wasSuccessful in
-                        if wasSuccessful {
-                            UserDefaults.hasImage(true)
-                        } else {
-                            UserDefaults.hasImage(false)
-                        }
-                    }
-                    //Change it to be not just set anymore
-                }  //This means the file has been downloaded and we can now set the notification sound
-                
-            }
-            
-        }
-    }
-    
-    static func fetch(completion: () -> Void) {
-        if let user = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
-            let db = Database()
-            if UserDefaults.getAlarmDate() != nil{
-                if !UserDefaults.hasAlarmBeenSet(){ //If the user alarm hasn't been set by a friend we want to check for it
-                    db.hasUserAlarmBeenSet(forUser: user, completionHandler: WelcomeScreenViewController.storeAlarmInfo)
-                }
-            }
-        }
-    }
-    
+     
     @IBOutlet weak var usernameTextBox: UITextField!
     @IBOutlet weak var textBox: UITextField!
     private var ref = FIRDatabaseReference.init()
@@ -88,7 +56,6 @@ class WelcomeScreenViewController: UIViewController {
         }
     }
     
-    //If the user doesn't enter a phone number this will crash LOL
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "StorePhoneNumber" {
             print("SEGUE!!!!")

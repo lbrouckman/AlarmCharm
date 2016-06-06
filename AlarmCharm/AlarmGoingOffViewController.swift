@@ -2,14 +2,16 @@
 //  AlarmGoingOffViewController.swift
 //  AlarmCharm
 //
-//  Created by Alexander Carlisle on 5/29/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/29/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import UIKit
 import AVFoundation
 import Firebase
 
+/* This view controller is loaded when the user opens their alarm - it shows the image/message (if there was one) and who set their alarm. It also lets them replay the sound
+ and go back to the home screen of the app */
 class AlarmGoingOffViewController: UIViewController {
     var playing = false
     
@@ -47,7 +49,7 @@ class AlarmGoingOffViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(
             self,
-            selector: "songEnded:",
+            selector: #selector(AlarmGoingOffViewController.songEnded(_:)),
             name: AVPlayerItemDidPlayToEndTimeNotification,
             object: self.player!.currentItem
         )

@@ -29,7 +29,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "299"
             endingLineNumber = "299"
-            landmarkName = "updateCoreData(_:alarmMessage:audioFilename:imageFilename:)"
+            landmarkName = "saveAlarm()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -94,6 +94,22 @@
             startingLineNumber = "88"
             endingLineNumber = "88"
             landmarkName = "hasImage()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AlarmCharm/AlarmGoingOffViewController.swift"
+            timestampString = "486866740.130569"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

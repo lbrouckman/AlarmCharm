@@ -2,17 +2,20 @@
 ////  FriendsListTableViewController.swift
 ////  AlarmCharm
 ////
-////  Created by Elizabeth Brouckman on 5/22/16.
-////  Copyright © 2016 Laura Brouckman. All rights reserved.
-//// Right now it is kind of spazzy i think because friendlist gets changed a lot each time it gets appended and it keeps reloading the tableView
+//  Created by Laura Brouckman and Alexander Carlisle on 5/22/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 import UIKit
 import Contacts
 import Firebase
 
+/* This table holds all of the friends of the current user. The friends are the intersection of the persons contacts and the people in the remote database
+ The friends are divided into 3 sections - if they need their alarm to be set, if someone else is already setting it, or if their alarm is done being set.
+ */
+
 class FriendsListTableViewController: UITableViewController {
     
-    private var objects = [CNContact]()
+    private var contactListFriends = [CNContact]()
     private var remoteDB = Database()
     
     private var friendList = [[Friend]]()
@@ -33,6 +36,8 @@ class FriendsListTableViewController: UITableViewController {
     
     private var sectionTitles = [0: "Needs to be charmed", 1 : "Being charmed now", 2: "Already been charmed" ]
     
+    //http://www.appcoda.com/ios-contacts-framework/ and http://code.tutsplus.com/tutorials/ios-9-an-introduction-to-the-contacts-framework--cms-25599
+    //were used as guidance on how to use ContactsKit
     private func getContacts() {
         let store = CNContactStore()
         if CNContactStore.authorizationStatusForEntityType(.Contacts) == .NotDetermined {
@@ -48,6 +53,20 @@ class FriendsListTableViewController: UITableViewController {
         }
     }
     
+    private func retrieveContactsWithStore(store: CNContactStore) {
+        do {
+            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactPhoneNumbersKey, CNContactImageDataKey]
+            let containerId = CNContactStore().defaultContainerIdentifier()
+            let predicate: NSPredicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
+            let contacts = try CNContactStore().unifiedContactsMatchingPredicate(predicate, keysToFetch: keysToFetch)
+            self.contactListFriends = contacts
+        } catch {
+            print(error)
+        }
+    }
+    
+    //Phone numbers come out of CNContacts in many different formats. Here, we extract the 10 digit phone number from whatever format the number
+    //came in. Note: right now, this app will only function perfectly for American phone numbers.
     private func extractNumber(phoneNumber: String) -> String {
         var num = ""
         for character in phoneNumber.characters {
@@ -62,23 +81,20 @@ class FriendsListTableViewController: UITableViewController {
         return num
     }
     
-    //Functional as long as person is from the US
+    //Edit contacts list puts the phone number into the correct format, call addContactToTable which adds the contact if they are in the database
     private func editContactsList() {
-        for i in 0..<objects.count {
-            let contact = objects[i]
+        for contact in contactListFriends {
             if(contact.phoneNumbers.count > 0) {
                 let a = contact.phoneNumbers[0].value as! CNPhoneNumber
                 let num = extractNumber(a.stringValue)
-                if i == objects.count - 1 {
-                    addContactToTable(num, contact: contact, shouldReloadData: true)
-                } else {
-                    addContactToTable(num, contact: contact, shouldReloadData: false)
-                }
+                addContactToTable(num, contact: contact)
             }
         }
     }
     
-    private func addContactToTable(userID: String, contact: CNContact, shouldReloadData: Bool) {
+    //Adds contact to database if they are in the database, puts into a section based on information from database
+    //Adds it to the correct row in the 2d Friends array, and calls reloadData to keep the tableView up to date
+    private func addContactToTable(userID: String, contact: CNContact) {
         //Don't add yourself to the list
         if userID == NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             return
@@ -118,19 +134,7 @@ class FriendsListTableViewController: UITableViewController {
         }
     }
     
-    private func retrieveContactsWithStore(store: CNContactStore) {
-        do {
-            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactPhoneNumbersKey, CNContactImageDataKey]
-            let containerId = CNContactStore().defaultContainerIdentifier()
-            let predicate: NSPredicate = CNContact.predicateForContactsInContainerWithIdentifier(containerId)
-            let contacts = try CNContactStore().unifiedContactsMatchingPredicate(predicate, keysToFetch: keysToFetch)
-            self.objects = contacts
-        } catch {
-            print(error)
-        }
-    }
-    
-    
+    //Navigation Controller styling (since this is a root controller)
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = Colors.offyellow
@@ -139,6 +143,7 @@ class FriendsListTableViewController: UITableViewController {
         tableView.backgroundColor = Colors.offwhite
     }
     
+    //Clear out the friendsList to avoid duplicates, load in all the data
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         friendList.removeAll()
@@ -151,22 +156,22 @@ class FriendsListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return friendList[section].count
     }
     
+    //Populates a FriendCell with the correct information
     private func fillCell(cell: UITableViewCell, forIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let friend = friendList[indexPath.section][indexPath.row]
         if let friendCell = cell as? FriendTableViewCell {
             friendCell.contact = friend.contact
             friendCell.alarmTime = friend.alarmTime
-            friendCell.phoneNumber = friend.phoneNumber
             friendCell.message = friend.message
             return friendCell
         }
         return cell
     }
     
+    //Switch on the section the cell is in to dequeue the correct type of cell
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         switch indexPath.section {
@@ -201,12 +206,9 @@ class FriendsListTableViewController: UITableViewController {
             if identifier == "ShowSavedAlarms"{
                 if let cell = sender as? FriendTableViewCell, let indexPath = tableView.indexPathForCell(cell),
                     let savedvc = segue.destinationViewController as? SavedAlarmsTableViewController {
-                    //We should set the user's needToBeSet to false here, as they are about to set it, and we don't want someone to record an alarm
-                    //  and then not be able to post it.
-                    let friend = friendList[indexPath.section][indexPath.row]
+                   let friend = friendList[indexPath.section][indexPath.row]
                     savedvc.friendSelected = friend.phoneNumber
                     remoteDB.userInProcessOfBeingSet(forUser: friend.phoneNumber, inProcess: true)
-                    
                 }
             }
         }

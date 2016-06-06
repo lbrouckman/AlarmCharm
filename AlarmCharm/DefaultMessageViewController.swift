@@ -2,12 +2,14 @@
 //  DefaultMessageViewController.swift
 //  AlarmCharm
 //
-//  Created by Alexander Carlisle on 5/29/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/29/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import UIKit
 
+/* Basic view controller that lets the user set what message they wnat other users to see as their message.
+ */
 class DefaultMessageViewController: UIViewController, UITextFieldDelegate {
     
     private var remoteDB = Database()
@@ -40,14 +42,4 @@ class DefaultMessageViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

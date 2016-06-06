@@ -21,6 +21,7 @@
 		304095161CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950E1CF26F5E0054D4EF /* Alarm_Obnoxious_Synth.wav */; };
 		304095171CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */; };
 		3042B8A81D04E7BB0044152F /* default_wakeup_photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3042B8A71D04E7BB0044152F /* default_wakeup_photo.jpg */; };
+		3050E2AD1D04F2890078FDAF /* FetchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3050E2AC1D04F2890078FDAF /* FetchViewController.swift */; };
 		305DC3131CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */; };
 		305DC3151CF4D8B000CE10A7 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */; };
 		30B2CF8F1D03AED800A3D124 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8E1D03AED800A3D124 /* Colors.swift */; };
@@ -57,6 +58,7 @@
 		3040950F1CF26F5E0054D4EF /* Alarm_Soothing_Guitar.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Alarm_Soothing_Guitar.wav; sourceTree = "<group>"; };
 		3042B8A61D03E73B0044152F /* AlarmCharm-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlarmCharm-Bridging-Header.h"; sourceTree = "<group>"; };
 		3042B8A71D04E7BB0044152F /* default_wakeup_photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_wakeup_photo.jpg; sourceTree = "<group>"; };
+		3050E2AC1D04F2890078FDAF /* FetchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchViewController.swift; sourceTree = "<group>"; };
 		305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewAlarmViewController.swift; sourceTree = "<group>"; };
 		305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		30B2CF8E1D03AED800A3D124 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -160,15 +162,16 @@
 				30DF3F581CE6870500910E9F /* Supporting Files */,
 				304095031CF247860054D4EF /* CoreData */,
 				305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */,
+				3050E2AC1D04F2890078FDAF /* FetchViewController.swift */,
 				B307AD441CFEBD4B004852CD /* UserDefaults.swift */,
 				B3F03F311CFABE0F00B52980 /* Notifications.swift */,
 				305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */,
 				304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */,
 				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
+				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
 				B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */,
 				302174C71CFA13A700AD3134 /* Database.swift */,
-				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
 				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
 				304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */,
 				B38CBFE31CEE71DF0099899D /* Constants.swift */,
@@ -344,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */,
+				3050E2AD1D04F2890078FDAF /* FetchViewController.swift in Sources */,
 				30B2CF8F1D03AED800A3D124 /* Colors.swift in Sources */,
 				30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */,
 				305DC3131CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift in Sources */,

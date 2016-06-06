@@ -2,8 +2,8 @@
 //  DefaultsTableViewController.swift
 //  AlarmCharm
 //
-//  Created by Elizabeth Brouckman on 5/30/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/30/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import UIKit
@@ -14,6 +14,7 @@ class DefaultsTableViewController: UITableViewController {
     @IBOutlet weak var messageCell: UITableViewCell!
     @IBOutlet weak var soundCell: UITableViewCell!
     
+    //Set the tab bar and navigation controller styles to match the color scheme (since this is one of the 2 root navigation controllers)
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = Colors.offyellow
@@ -29,6 +30,7 @@ class DefaultsTableViewController: UITableViewController {
         setLabels()
     }
     
+    //Set the labels to be set to the user's default values for time/sound/message
     private func setLabels() {
         var alarmTime: String? = nil
         let date = UserDefaults.getAlarmDate()

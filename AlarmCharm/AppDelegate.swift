@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  AlarmCharm
 //
-//  Created by Elizabeth Brouckman on 5/13/16.
-//  Copyright © 2016 Laura Brouckman. All rights reserved.
+//  Created by Laura Brouckman and Alexander Carlisle on 5/13/16.
+//  Copyright © 2016 Brarlisle. All rights reserved.
 //
 
 import UIKit
@@ -15,45 +15,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
+    //Ways for the AppDelegate to know the users response to a notification
     private struct ActionConstants{
         static let SNOOZE_IDENTIFIER = "snooze"
-        static let SNOOZE_TITLE = "SNOOZE"
         static let WAKE_IDENTIFIER = "WAKE UP"
-        static let WAKE_TILE = "Wake up silly gooose"
-        static let ALARM_GOES_OFF_IDENTIFER = "alarm is going off"
-        static let FRIENDS_SETS_ALARM_CATEGORY = "friend has set alarm"
+        static let SNOOZE_TIME = 300.0
     }
+    
     override init(){
-    super.init()
+        super.init()
         FIRApp.configure()
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        //Make sure that current alarm is set for later than the current time
         UserDefaults.ensureAlarmTime()
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
         //Wake up about every 5 minutes to fetch alarms from DB
-        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(60)
-        WelcomeScreenViewController.fetch {}
-        
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(300)
+        FetchViewController.fetch {}
         return true
     }
     
   //  Function that is called every 5ish minutes to fetch alarms from DB
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
             UserDefaults.ensureAlarmTime()
-        
-            WelcomeScreenViewController.fetch {
+            FetchViewController.fetch {
                 completionHandler(.NewData)
             }
     }
     
-    //THIS SHOULD ONLY BE CALLED IF APP IS CURRENTLY RUNNING OR IN BACKGROUND BUT WE STILL NEED TO HANDLE IT THE SAME WAY
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        print(notification)
-    }
-    
-    //Maybe move to notification side
+    //Handling a notification response
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?,
                        forLocalNotification notification: UILocalNotification, withResponseInfo responseInfo: [NSObject : AnyObject],completionHandler: () -> Void){
         if identifier != nil{
@@ -61,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             case ActionConstants.SNOOZE_IDENTIFIER:
                 
                 //We want to get current notification and push back 1 minute
-                let date = notification.fireDate?.dateByAddingTimeInterval(60.0)
+                let date = notification.fireDate?.dateByAddingTimeInterval(ActionConstants.SNOOZE_TIME)
                 notification.fireDate = date
                 notification.alertBody = "Has been Snoozed"
                 UIApplication.sharedApplication().scheduleLocalNotification(notification)
@@ -73,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController = goingOff
                 
                 self.window?.makeKeyAndVisible()
-                //AND LAUNCH? BUT THIS MIGHT BE IN BACKGROUND
             default:
                 break
             }
