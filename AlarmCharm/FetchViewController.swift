@@ -5,6 +5,7 @@
 //  Created by Elizabeth Brouckman on 6/5/16.
 //  Copyright © 2016 Laura Brouckman. All rights reserved.
 //
+// Laura Brouckman
 
 import UIKit
 
@@ -18,7 +19,6 @@ class FetchViewController: UIViewController {
     
     static func storeAlarmInfo(user: String,  hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String){
         if hasBeenSet{ //By a friend
-            UserDefaults.userAlarmBeenSet(true)
             let db = Database()
             db.downloadFileToLocal(forUser: user, fileType: "audio_file") { wasDownloadedToLocal in
                 if wasDownloadedToLocal{
@@ -27,6 +27,7 @@ class FetchViewController: UIViewController {
                     UserDefaults.storeFriendWhoSetAlarm(friendWhoSetAlarm)
                     Notifications.addFriendSetAlarmNotification(friendWhoSetAlarm)
                     db.downloadFileToLocal(forUser: user, fileType: "image_file") { wasSuccessful in
+                        UserDefaults.userAlarmBeenSet(true)
                         if wasSuccessful {
                             UserDefaults.hasImage(true)
                         } else {

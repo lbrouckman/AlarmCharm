@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brarlisle. All rights reserved.
 //  Used below for tutorial for interacting with audioRecorder
 ////https://www.hackingwithswift.com/example-code/media/how-to-record-audio- using-avaudiorecorder
+// Both
 
 import UIKit
 import AVFoundation

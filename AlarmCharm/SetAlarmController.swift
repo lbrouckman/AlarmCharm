@@ -4,7 +4,8 @@
 //
 //  Created by Laura Brouckman and Alexander Carlisle on 5/13/16.
 //  Copyright © 2016 Brarlisle. All rights reserved.
-//
+// 
+// Alexander Carlisle
 
 import UIKit
 import Firebase

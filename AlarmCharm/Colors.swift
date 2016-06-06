@@ -6,6 +6,7 @@
 //  Copyright © 2016 Brarlisle. All rights reserved.
 //
 // A color scheme (Cherry Cheesecake) from https://color.adobe.com/Cherry-Cheesecake-color-theme-2354/
+// Both
 
 import UIKit
 

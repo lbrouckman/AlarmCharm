@@ -5,6 +5,7 @@
 //  Created by Elizabeth Brouckman on 5/22/16.
 //  Copyright © 2016 Laura Brouckman. All rights reserved.
 //
+// Laura Brouckman
 
 import Foundation
 import CoreData

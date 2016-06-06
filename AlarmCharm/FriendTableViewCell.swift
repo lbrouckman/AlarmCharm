@@ -5,6 +5,7 @@
 //  Created by Laura Brouckman and Alexander Carlisle on 5/22/16.
 //  Copyright © 2016 Brarlisle. All rights reserved.
 //
+// Laura Brouckman
 
 import UIKit
 import Contacts

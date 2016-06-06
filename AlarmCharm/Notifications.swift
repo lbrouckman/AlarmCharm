@@ -5,6 +5,7 @@
 //  Created by Laura Brouckman and Alexander Carlisle on 5/28/16.
 //  Copyright © 2016 Brarlisle. All rights reserved.
 //
+// Alexander Carlisle
 
 import UIKit
 /* The Notifications class has all of the functionality related to notifications.
