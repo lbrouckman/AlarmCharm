@@ -58,13 +58,12 @@ class WelcomeScreenViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "StorePhoneNumber" {
-            print("SEGUE!!!!")
             let phoneNumber = textBox.text!
             let username = usernameTextBox.text!
             
             NSUserDefaults.standardUserDefaults().setValue(phoneNumber, forKey: "PhoneNumber")
             NSUserDefaults.standardUserDefaults().setValue(username, forKey: "Username")
-            remoteDB.addNewUserToDB(phoneNumber)
+            remoteDB.addNewUserToDB(phoneNumber, username: username)
             
         }
     }

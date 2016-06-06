@@ -32,6 +32,7 @@ class FriendsListTableViewController: UITableViewController {
         var phoneNumber: String
         var message: String?
         var status: FriendStatus
+        var setBy: String?
     }
     
     private var sectionTitles = [0: "Needs to be charmed", 1 : "Being charmed now", 2: "Already been charmed" ]
@@ -113,17 +114,18 @@ class FriendsListTableViewController: UITableViewController {
                 var friendStatus: FriendStatus
                 let should_be_set = snapshot.value!["need_friend_to_set"] as? Bool
                 let getting_set = snapshot.value!["in_process_of_being_set"] as? Bool
-                
+                var setBy: String? = nil
                 if should_be_set! && getting_set!{
                     friendStatus = FriendStatus.InProgress
                 } else if !should_be_set! {
                     friendStatus = FriendStatus.AlreadySet
+                    setBy = snapshot.value!["friend_who_set_alarm"] as? String
                 } else {
                     friendStatus = FriendStatus.NeedsToBeSet
                 }
                 
                 let message = snapshot.value!["user_message"] as? String
-                let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID, message: message, status: friendStatus)
+                let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID, message: message, status: friendStatus, setBy: setBy)
                 let sectionNumber = friendStatus.rawValue
                 self.friendList[sectionNumber].append(newFriend)
                 
@@ -165,7 +167,11 @@ class FriendsListTableViewController: UITableViewController {
         if let friendCell = cell as? FriendTableViewCell {
             friendCell.contact = friend.contact
             friendCell.alarmTime = friend.alarmTime
-            friendCell.message = friend.message
+            if indexPath.section == 2 {
+                friendCell.message = "Set by: " + friend.setBy!
+            } else {
+                friendCell.message = friend.message
+            }
             return friendCell
         }
         return cell

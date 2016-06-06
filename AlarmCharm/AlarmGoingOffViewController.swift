@@ -55,6 +55,7 @@ class AlarmGoingOffViewController: UIViewController {
         )
     }
     
+    //If the default alarm went off, give them a default picture
     private func setPhotoToDefault() {
         let imageURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("default_wakeup_photo", ofType: "jpg")!)
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak weakSelf = self] in
@@ -70,6 +71,7 @@ class AlarmGoingOffViewController: UIViewController {
         }
     }
     
+    //Add image to view by getting it from the local file system
     private func addImageToView(fileName: String) {
         let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
         let imagePath = libraryPath + "/Images"
@@ -87,6 +89,7 @@ class AlarmGoingOffViewController: UIViewController {
         }
     }
     
+    //This code is to size the image correctly, it comes from Paul Hegerty's iTunes lecture on imagePicker
     private func makeRoomForImage() {
         if imageView.image != nil {
             let aspectRatio = imageView.image!.size.width / imageView.image!.size.height
@@ -132,10 +135,6 @@ class AlarmGoingOffViewController: UIViewController {
     
     @IBOutlet weak var playAlarmButton: UIButton!
     
-    
-    //One Function will play, other will stop
-    
-    
     @IBAction func playPushed(sender: UIButton) {
         player?.play()
     }
@@ -148,7 +147,7 @@ class AlarmGoingOffViewController: UIViewController {
     
     
     /*
-     Will be useful once app opens as well to actually play the sound with an av player
+     Get the sound from the local file system so that the user can play it again if they want to.
      */
     private func getURlFromFileSystem(fileName: String) -> NSURL{
         let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
@@ -165,16 +164,5 @@ class AlarmGoingOffViewController: UIViewController {
         return myURL
     }
     
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

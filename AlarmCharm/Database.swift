@@ -206,9 +206,9 @@ class Database {
         songData?.writeToURL(soundPathUrl,  atomically: true)
     }
     
-    func addNewUserToDB(phoneNumber: String) {
+    func addNewUserToDB(phoneNumber: String, username: String) {
         let phoneNumberHash = sha256(phoneNumber)
-        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : ""]
+        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : "", "username": username]
         let newUserRef = usersRef.child(phoneNumberHash!)
         newUserRef.setValue(newUser)
     }
