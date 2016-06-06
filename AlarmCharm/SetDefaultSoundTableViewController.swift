@@ -21,9 +21,9 @@ protocol DefaultSoundTableViewCellDelegate {
 class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTableViewCellDelegate {
     var alarmAudioPlayer : AVAudioPlayer?
     
-    var softPianoAudioUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Alarm_Soothing_Piano", ofType: "wav")!)
+    var softPianoAudioUrl = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Soft Piano", ofType: "wav")!)
     
-    var soundFiles = ["Alarm_Soothing_Piano", "Alarm_Obnoxious_Synth", "Alarm_Soothing_Guitar", "AND_HIS_NAME_IS_JOHN_CENA"]
+    var soundFiles = ["Epic Wakeup", "Jazz", "John Cena", "Obnoxious Synth", "Peaceful Wakeup", "Shogun", "Soft Guitar", "Soft Piano", "Soft Rock"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -52,7 +52,7 @@ class UserDefaults{
         if let defaultSong =  NSUserDefaults.standardUserDefaults().valueForKey(defaultSongKey) as? String{
             return defaultSong
         }
-        return "Alarm_Soothing_Piano"
+        return "Soft Piano"
     }
     static func setAlarmDate(date: NSDate){
         NSUserDefaults.standardUserDefaults().setValue(date, forKey: dateKey)

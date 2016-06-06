@@ -899,16 +899,19 @@
                                             <rect key="frame" x="8" y="8" width="584" height="28"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6V3-xa-Red">
-                                                    <rect key="frame" x="0.0" y="0.0" width="257" height="28"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="28"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="g9W-2Q-Mmw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="0.29803921570000003" green="0.1058823529" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fn1-Ni-Rvt">
-                                                    <rect key="frame" x="257" y="0.0" width="327" height="28"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fn1-Ni-Rvt">
+                                                    <rect key="frame" x="150" y="0.0" width="434" height="28"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2G8-ql-seh">
-                                                            <rect key="frame" x="0.0" y="0.0" width="99" height="28"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="135" height="28"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                             <state key="normal" title="Play">
                                                                 <color key="titleColor" red="0.74117647060000003" green="0.55294117649999996" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -917,8 +920,8 @@
                                                                 <action selector="Play:" destination="qhu-gs-kPB" eventType="touchUpInside" id="vAw-aZ-ukT"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ah-ak-MlW">
-                                                            <rect key="frame" x="114" y="0.0" width="99" height="28"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ah-ak-MlW">
+                                                            <rect key="frame" x="150" y="0.0" width="135" height="28"/>
                                                             <state key="normal" title="Stop">
                                                                 <color key="titleColor" red="0.74117647060000003" green="0.55294117649999996" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
@@ -927,7 +930,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yn-Yh-Iyn">
-                                                            <rect key="frame" x="228" y="0.0" width="99" height="28"/>
+                                                            <rect key="frame" x="300" y="0.0" width="135" height="28"/>
                                                             <state key="normal" title="Set">
                                                                 <color key="titleColor" red="0.74117647060000003" green="0.55294117649999996" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
