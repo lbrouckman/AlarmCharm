@@ -115,7 +115,7 @@ class FriendsListTableViewController: UITableViewController {
                 let should_be_set = snapshot.value!["need_friend_to_set"] as? Bool
                 let getting_set = snapshot.value!["in_process_of_being_set"] as? Bool
                 var setBy: String? = nil
-                if should_be_set! && getting_set!{
+                if getting_set!{
                     friendStatus = FriendStatus.InProgress
                 } else if !should_be_set! {
                     friendStatus = FriendStatus.AlreadySet
