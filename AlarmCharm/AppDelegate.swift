@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if identifier != nil{
             switch identifier!{
             case ActionConstants.SNOOZE_IDENTIFIER:
-                
                 //We want to get current notification and push back 1 minute
                 let date = notification.fireDate?.dateByAddingTimeInterval(ActionConstants.SNOOZE_TIME)
                 notification.fireDate = date
@@ -74,7 +73,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        if notification.category == ActionConstants.WAKE_IDENTIFIER{
+            let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AlarmGoingOff") as! AlarmGoingOffViewController
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            self.window?.rootViewController = goingOff
+            self.window?.makeKeyAndVisible()
+        }
+    }
     
     
     func applicationWillResignActive(application: UIApplication) {

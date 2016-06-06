@@ -17,7 +17,7 @@ class Notifications{
         static let SNOOZE_TITLE = "SNOOZE"
         static let WAKE_IDENTIFIER = "WAKE UP"
         static let WAKE_TILE = "Wake up silly gooose"
-        static let ALARM_GOES_OFF_IDENTIFER = "alarm is going off"
+        static let ALARM_GOES_OFF_IDENTIFER = "WAKE UP"
         static let FRIENDS_SETS_ALARM_CATEGORY = "friend has set alarm"
     }
     
@@ -26,7 +26,7 @@ class Notifications{
         let notification = UILocalNotification()
         notification.alertBody = friendName + " has set your alarm!"
         notification.category = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
-        notification.fireDate = nil
+        notification.fireDate = NSDate(timeIntervalSinceNow: 60)
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
@@ -60,6 +60,7 @@ class Notifications{
         
         let alarmGoesOffCategory = UIMutableUserNotificationCategory()
         alarmGoesOffCategory.identifier = ActionConstants.ALARM_GOES_OFF_IDENTIFER
+        
         alarmGoesOffCategory.setActions([Notifications.getSnoozeAction(), Notifications.getWakeAction()], forContext: .Default)
         
         let alarmGoesOffSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: Set(arrayLiteral: alarmGoesOffCategory, friendSetsAlarmCategory))
