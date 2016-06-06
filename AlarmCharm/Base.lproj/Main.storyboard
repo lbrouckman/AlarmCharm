@@ -968,11 +968,11 @@
             </objects>
             <point key="canvasLocation" x="2134" y="1514"/>
         </scene>
-        <!--User Settings-->
+        <!--My Preferences-->
         <scene sceneID="VVr-of-GcW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aLQ-WJ-U89" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="User Settings" id="GYn-bM-WDk"/>
+                    <tabBarItem key="tabBarItem" title="My Preferences" image="Settings_logo" selectedImage="Settings_logo" id="GYn-bM-WDk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hvN-9A-yQA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -991,7 +991,7 @@
         <scene sceneID="vzC-DO-xcw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AWH-CX-Rim" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Friends" id="3hJ-L1-G5g"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="Friends_Logo_60_60" selectedImage="Friends_Logo_60_60" id="3hJ-L1-G5g"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WBh-IY-VgX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1009,6 +1009,8 @@
     </scenes>
     <resources>
         <image name="CameraLogo_60x60" width="60" height="60"/>
+        <image name="Friends_Logo_60_60" width="30" height="30"/>
+        <image name="Settings_logo" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="G00-ca-XK1"/>
