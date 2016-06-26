@@ -29,6 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("60e000e2856448d286fbe2c11df11e20")
+        // Do some additional configuration if needed here
+        BITHockeyManager.sharedHockeyManager().startManager()
+        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+
+
         //Make sure that current alarm is set for later than the current time
         UserDefaults.ensureAlarmTime()
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())

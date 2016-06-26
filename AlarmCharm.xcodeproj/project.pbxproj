@@ -45,9 +45,11 @@
 		B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */; };
 		B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */; };
 		B3F03F321CFABE0F00B52980 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F03F311CFABE0F00B52980 /* Notifications.swift */; };
+		C656C9E28A06B14B365A2AB3 /* Pods_AlarmCharm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03881F3888D5F222886B7368 /* Pods_AlarmCharm.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03881F3888D5F222886B7368 /* Pods_AlarmCharm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmCharm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		302174C71CFA13A700AD3134 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		302174C91CFA2FF700AD3134 /* defaultImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultImage.jpg; sourceTree = "<group>"; };
 		303B8F4F1CFD279B00995E77 /* DefaultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsTableViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C656C9E28A06B14B365A2AB3 /* Pods_AlarmCharm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +215,7 @@
 		70E5DA3775DE172BC54648C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03881F3888D5F222886B7368 /* Pods_AlarmCharm.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +242,7 @@
 				30DF3F3E1CE6789800910E9F /* Resources */,
 				BFCFFE14282053A5AD8742FD /* 📦 Embed Pods Frameworks */,
 				657A4CF7746A10FDDF97C244 /* 📦 Copy Pods Resources */,
+				B31436F61D209DFF00E6DA88 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -328,6 +333,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B31436F61D209DFF00E6DA88 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi\n";
 		};
 		BFCFFE14282053A5AD8742FD /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
