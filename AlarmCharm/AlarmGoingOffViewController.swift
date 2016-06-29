@@ -52,7 +52,7 @@ class AlarmGoingOffViewController: UIViewController {
             self,
             selector: #selector(AlarmGoingOffViewController.songEnded(_:)),
             name: AVPlayerItemDidPlayToEndTimeNotification,
-            object: self.player!.currentItem
+            object: self.player?.currentItem
         )
     }
     

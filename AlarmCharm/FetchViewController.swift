@@ -17,6 +17,7 @@ import UIKit
  */
 class FetchViewController: UIViewController {
     
+    //Maybe add a finish fetched parameter on user defaults because it could get interrupted halfway through these fetches
     static func storeAlarmInfo(user: String,  hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String){
         if hasBeenSet{ //By a friend
             let db = Database()

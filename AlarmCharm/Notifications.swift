@@ -46,7 +46,6 @@ class Notifications{
         notification.fireDate =  date
         
         //Setting the sound to be the user's default sound preference
-        
         notification.soundName =  UserDefaults.getDefaultSongName() + ".wav"
         
         //CANCEL ALL PREVIOUS NOTIFICATIONS BECAUSE USER HAS CHANGED THEIR ALARM TIME

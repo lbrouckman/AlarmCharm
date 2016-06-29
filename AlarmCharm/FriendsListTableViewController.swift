@@ -20,7 +20,7 @@ class FriendsListTableViewController: UITableViewController {
     private var remoteDB = Database()
     
     private var friendList = [[Friend]]()
-    
+
     private enum FriendStatus : Int {
         case NeedsToBeSet = 0
         case InProgress   = 1
@@ -85,33 +85,47 @@ class FriendsListTableViewController: UITableViewController {
     
     //Edit contacts list puts the phone number into the correct format, call addContactToTable which adds the contact if they are in the database
     private func editContactsList() {
+        var count = 0
+        let numRealContacts = getNumActualContacts()
         for contact in contactListFriends {
             if(contact.phoneNumbers.count > 0) {
+                count += 1
                 let a = contact.phoneNumbers[0].value as! CNPhoneNumber
                 let num = extractNumber(a.stringValue)
-                addContactToTable(num, contact: contact)
+                addContactToTable(num, contact: contact, numLeft: numRealContacts - count)
             }
         }
+        self.tableView?.reloadData()
+    }
+    
+    private func getNumActualContacts() -> Int {
+        var total = 0
+        for contact in contactListFriends {
+            if(contact.phoneNumbers.count > 0) {
+                total += 1
+            }
+        }
+        return total
     }
     
     //Adds contact to database if they are in the database, puts into a section based on information from database
     //Adds it to the correct row in the 2d Friends array, and calls reloadData to keep the tableView up to date
-    private func addContactToTable(userID: String, contact: CNContact) {
+    private func addContactToTable(userID: String, contact: CNContact, numLeft: Int) {
         //Don't add yourself to the list
         if userID == NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
+            if numLeft == 0 { self.tableView?.reloadData() }
             return
         }
-        
         let ref = FIRDatabase.database().reference()
         let hashedID = remoteDB.sha256(userID)!
         ref.child("users").child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            print("back from database")
             if let x = snapshot.value!["alarm_time"] as? Double where x != 0 {
                 if self.friendList.count == 0 {
                     self.friendList.append([Friend]())
                     self.friendList.append([Friend]())
                     self.friendList.append([Friend]())
                 }
-                
                 var friendStatus: FriendStatus
                 let should_be_set = snapshot.value!["need_friend_to_set"] as? Bool
                 let getting_set = snapshot.value!["in_process_of_being_set"] as? Bool
@@ -129,9 +143,8 @@ class FriendsListTableViewController: UITableViewController {
                 let newFriend = Friend(contact: contact, alarmTime: x, phoneNumber: userID, message: message, status: friendStatus, setBy: setBy)
                 let sectionNumber = friendStatus.rawValue
                 self.friendList[sectionNumber].append(newFriend)
-                
-                self.tableView?.reloadData()
             }
+            if numLeft == 0 { self.tableView?.reloadData() }
         }) { (error) in
             print(error)
         }
@@ -149,7 +162,7 @@ class FriendsListTableViewController: UITableViewController {
     //Clear out the friendsList to avoid duplicates, load in all the data
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        friendList.removeAll()
+        friendList.removeAll() // Maybe throwing a bug here?
         getContacts()
     }
     
