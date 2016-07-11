@@ -104,6 +104,8 @@ class Database {
     func hasUserAlarmBeenSet(forUser userID: String, completionHandler: (user: String, hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String) -> ()){
         let hashedID = sha256(userID)!
         usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            // maybe don't ! on the snapshot, could it ever return null. https://www.firebase.com/docs/ios/guide/retrieving-data.html
+            // should probably check to see if it is not null! not sure this is why it crashes but it is a possibility. 
             if let needFriendToSet = snapshot.value!["need_friend_to_set"] as? Bool where needFriendToSet == false{
                 let hasBeenSet = !needFriendToSet
                 if let wakeUpMessage = snapshot.value!["wakeup_message"] as? String{

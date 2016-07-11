@@ -30,7 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //Make sure that current alarm is set for later than the current time
-        UserDefaults.ensureAlarmTime()
+        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("c6b006a6d2264f2bb24cc59a072d973a")
+        // Do some additional configuration if needed here
+        BITHockeyManager.sharedHockeyManager().startManager()
+        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
+
+        
+        // UserDefaults.ensureAlarmTime()
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
         //Wake up about every 5 minutes to fetch alarms from DB
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(300)
