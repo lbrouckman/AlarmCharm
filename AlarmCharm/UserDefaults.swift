@@ -22,7 +22,8 @@ class UserDefaults{
     static var dateKey          =   "dateKey"
     static var setKey           =   "setKey"
     static var hasImageKey      =   "imageKey"
-    
+    static var hasRegisteredKey    =   "registeredKey"
+
     static func addWakeUpMessage(wakeUpMessage: String){
         NSUserDefaults.standardUserDefaults().setValue(wakeUpMessage, forKey: messageKey)
     }
@@ -60,22 +61,32 @@ class UserDefaults{
     static func getAlarmDate() -> NSDate?{
        return NSUserDefaults.standardUserDefaults().valueForKey(dateKey) as? NSDate
     }
-   
-    //THis function ensures that if a user cancels out a notification, we set their has been set to false
-    static func ensureAlarmTime(){
-        let currentDay = NSDate()
-        let userDate = UserDefaults.getAlarmDate()
-        if userDate != nil{
-            let bufferedDate = userDate!.dateByAddingTimeInterval(120)
-            if currentDay.earlierDate(bufferedDate) == bufferedDate {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
-                UserDefaults.userAlarmBeenSet(false)
-            }
+    static func hasRegistered() -> Bool{
+        if  NSUserDefaults.standardUserDefaults().valueForKey(hasRegisteredKey) != nil{
+            return true
         }
-        else{
-            UserDefaults.userAlarmBeenSet(false)
-        }
+        return false
     }
+    static func userJustRegistered(){
+        NSUserDefaults.standardUserDefaults().setValue(true, forKey: hasRegisteredKey)
+    }
+    
+    //THis function ensures that if a user cancels out a notification, we set their has been set to false
+//    static func ensureAlarmTime(){
+//        let currentDay = NSDate()
+//        let userDate = UserDefaults.getAlarmDate()
+//        if userDate != nil{
+//            let bufferedDate = userDate!.dateByAddingTimeInterval(120)
+//            if currentDay.earlierDate(bufferedDate) == bufferedDate {
+//                NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
+//                UserDefaults.userAlarmBeenSet(false)
+//            }
+//        }
+//        else{
+//            UserDefaults.userAlarmBeenSet(false)
+//        }
+//    }
+    
     static func clearAlarmDate(){
         
         NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)

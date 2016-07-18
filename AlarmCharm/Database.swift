@@ -29,7 +29,7 @@ class Database {
     }
     
     /* We got the 2 functions below from http://stackoverflow.com/questions/25388747/sha256-in-swift and they use the objective C code
-  bridged in */
+     bridged in */
     private func sha256(data: NSData) -> NSData? {
         guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
         CC_SHA256(data.bytes, CC_LONG(data.length), UnsafeMutablePointer(res.mutableBytes))
@@ -105,22 +105,22 @@ class Database {
         let hashedID = sha256(userID)!
         usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
             // maybe don't ! on the snapshot, could it ever return null. https://www.firebase.com/docs/ios/guide/retrieving-data.html
-            // should probably check to see if it is not null! not sure this is why it crashes but it is a possibility. 
-            if let needFriendToSet = snapshot.value!["need_friend_to_set"] as? Bool where needFriendToSet == false{
+            // should probably check to see if it is not null! not sure this is why it crashes but it is a possibility.
+            if let needFriendToSet = snapshot.value?["need_friend_to_set"] as? Bool where needFriendToSet == false{
                 let hasBeenSet = !needFriendToSet
-                if let wakeUpMessage = snapshot.value!["wakeup_message"] as? String{
-                    if let friendWhoSetAlarm = snapshot.value!["friend_who_set_alarm"] as? String{
+                if let wakeUpMessage = snapshot.value?["wakeup_message"] as? String{
+                    if let friendWhoSetAlarm = snapshot.value?["friend_who_set_alarm"] as? String{
                         completionHandler(user: userID, hasBeenSet: hasBeenSet, wakeUpMessage: wakeUpMessage, friendWhoSetAlarm: friendWhoSetAlarm)
                     }
                 }
-                
             }
+            
             })
         { (error) in
             print(error)
         }
     }
-
+    
     func addAlarmTimeToDatabase(date: NSDate){
         if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
             let hashedID = sha256(userId)!

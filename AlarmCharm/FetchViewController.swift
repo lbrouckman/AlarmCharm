@@ -18,7 +18,7 @@ import UIKit
 class FetchViewController: UIViewController {
     
     static func storeAlarmInfo(user: String,  hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String){
-        if hasBeenSet{ //By a friend
+        if hasBeenSet{ 
             let db = Database()
             db.downloadFileToLocal(forUser: user, fileType: "audio_file") { wasDownloadedToLocal in
                 if wasDownloadedToLocal{

@@ -29,12 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //Make sure that current alarm is set for later than the current time
-        BITHockeyManager.sharedHockeyManager().configureWithIdentifier("c6b006a6d2264f2bb24cc59a072d973a")
-        // Do some additional configuration if needed here
-        BITHockeyManager.sharedHockeyManager().startManager()
-        BITHockeyManager.sharedHockeyManager().authenticator.authenticateInstallation()
-
+        //Note for actualy builds the below line should be deleted,
+        // The only time it isn't commented out is so that if laura or I has the app downloaded and number is inputted, we don't have to go back to 
+        // welcome screen controller. 
+        UserDefaults.userJustRegistered()
+        if !UserDefaults.hasRegistered(){
+            let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let welcomeScreen : WelcomeScreenViewController = mainStoryboard.instantiateViewControllerWithIdentifier("NumberUserNameController") as! WelcomeScreenViewController
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            self.window?.rootViewController = welcomeScreen
+            self.window?.makeKeyAndVisible()
+        }
         
         // UserDefaults.ensureAlarmTime()
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
@@ -46,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   //  Function that is called every 5ish minutes to fetch alarms from DB
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-            UserDefaults.ensureAlarmTime()
+//            UserDefaults.ensureAlarmTime()
             FetchViewController.fetch {
                 completionHandler(.NewData)
             }

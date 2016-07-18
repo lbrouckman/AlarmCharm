@@ -65,7 +65,7 @@ class WelcomeScreenViewController: UIViewController {
             NSUserDefaults.standardUserDefaults().setValue(phoneNumber, forKey: "PhoneNumber")
             NSUserDefaults.standardUserDefaults().setValue(username, forKey: "Username")
             remoteDB.addNewUserToDB(phoneNumber, username: username)
-            
+            UserDefaults.userJustRegistered()
         }
     }
 }
