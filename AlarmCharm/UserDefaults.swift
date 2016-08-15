@@ -9,8 +9,8 @@
 
 import Foundation
 
-/* This class has all the user defaults functionality for interacting with NSUserDefaults. 
- User defaults stores the current alarm time, whether or not a friend has set the alarm, the wake up message, who set the alarm, 
+/* This class has all the user defaults functionality for interacting with NSUserDefaults.
+ User defaults stores the current alarm time, whether or not a friend has set the alarm, the wake up message, who set the alarm,
  whether or not an image has been set, the default sound.
  */
 
@@ -23,7 +23,7 @@ class UserDefaults{
     static var setKey           =   "setKey"
     static var hasImageKey      =   "imageKey"
     static var hasRegisteredKey    =   "registeredKey"
-
+    
     static func addWakeUpMessage(wakeUpMessage: String){
         NSUserDefaults.standardUserDefaults().setValue(wakeUpMessage, forKey: messageKey)
     }
@@ -38,7 +38,7 @@ class UserDefaults{
         NSUserDefaults.standardUserDefaults().setValue(hasBeenSet, forKey: setKey)
     }
     static func hasAlarmBeenSet() -> Bool{
-       let hasBeenSet =  NSUserDefaults.standardUserDefaults().valueForKey(setKey) as? Bool
+        let hasBeenSet =  NSUserDefaults.standardUserDefaults().valueForKey(setKey) as? Bool
         if hasBeenSet != nil { return hasBeenSet!}
         else { return false }
     }
@@ -59,7 +59,7 @@ class UserDefaults{
         NSUserDefaults.standardUserDefaults().setValue(date, forKey: dateKey)
     }
     static func getAlarmDate() -> NSDate?{
-       return NSUserDefaults.standardUserDefaults().valueForKey(dateKey) as? NSDate
+        return NSUserDefaults.standardUserDefaults().valueForKey(dateKey) as? NSDate
     }
     static func hasRegistered() -> Bool{
         if  NSUserDefaults.standardUserDefaults().valueForKey(hasRegisteredKey) != nil{
@@ -72,27 +72,30 @@ class UserDefaults{
     }
     
     //THis function ensures that if a user cancels out a notification, we set their has been set to false
-//    static func ensureAlarmTime(){
-//        let currentDay = NSDate()
-//        let userDate = UserDefaults.getAlarmDate()
-//        if userDate != nil{
-//            let bufferedDate = userDate!.dateByAddingTimeInterval(120)
-//            if currentDay.earlierDate(bufferedDate) == bufferedDate {
-//                NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
-//                UserDefaults.userAlarmBeenSet(false)
-//            }
-//        }
-//        else{
-//            UserDefaults.userAlarmBeenSet(false)
-//        }
-//    }
+    static func ensureAlarmTime(){
+        if let userDate = UserDefaults.getAlarmDate(){
+            print("userdat not nil")
+            let bufferedDate = userDate.dateByAddingTimeInterval(120)
+            let currentDay = NSDate()
+            print("current date is", currentDay)
+            print("buffered date is ", bufferedDate)
+            if currentDay.timeIntervalSinceReferenceDate > bufferedDate.timeIntervalSinceReferenceDate{
+                print("Alarm should have already gone off by now")
+                NSUserDefaults.standardUserDefaults().setValue(nil, forKey: dateKey)
+                UserDefaults.userAlarmBeenSet(false)
+            }
+        }
+        else{
+            UserDefaults.userAlarmBeenSet(false)
+        }
+    }
     
     static func clearAlarmDate(){
         
         NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
         NSUserDefaults.standardUserDefaults().setValue(false, forKey: setKey)
     }
-
+    
     static func hasImage(imageAdded: Bool) {
         NSUserDefaults.standardUserDefaults().setValue(imageAdded, forKey: hasImageKey)
     }

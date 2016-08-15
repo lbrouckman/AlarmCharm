@@ -12,6 +12,7 @@ class AppTutorialViewController: UIPageViewController {
     
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
+        
         return [self.newViewControllerGivenName("DefaultsTableViewController"),
                 self.newViewControllerGivenName("SetAlarmController"),
                 self.newViewControllerGivenName("DefaultsTableViewController"),

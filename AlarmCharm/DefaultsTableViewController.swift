@@ -34,12 +34,13 @@ class DefaultsTableViewController: UITableViewController {
     //Set the labels to be set to the user's default values for time/sound/message
     private func setLabels() {
         var alarmTime: String? = nil
-        let date = UserDefaults.getAlarmDate()
-        if date != nil{
+        
+        if let date = UserDefaults.getAlarmDate(){
             let formatter = NSDateFormatter()
             formatter.timeStyle = .ShortStyle
-            alarmTime = formatter.stringFromDate(date!)
+            alarmTime = formatter.stringFromDate(date)
             if UserDefaults.hasAlarmBeenSet(){
+                print("user alarm has been set apparently")
                 if let friendName = UserDefaults.getFriendWhoSetAlarm(){
                     let suffix = " set by " + friendName
                     alarmTime = alarmTime! + suffix

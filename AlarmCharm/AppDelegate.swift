@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // The only time it isn't commented out is so that if laura or I has the app downloaded and number is inputted, we don't have to go back to 
         // welcome screen controller. 
         UserDefaults.userJustRegistered()
+        UserDefaults.ensureAlarmTime()
+
         if !UserDefaults.hasRegistered(){
             let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let welcomeScreen : WelcomeScreenViewController = mainStoryboard.instantiateViewControllerWithIdentifier("NumberUserNameController") as! WelcomeScreenViewController
@@ -41,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         
-        // UserDefaults.ensureAlarmTime()
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
         //Wake up about every 5 minutes to fetch alarms from DB
         UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(300)

@@ -37,6 +37,9 @@ class SetAlarmController: UIViewController {
         UserDefaults.setAlarmDate(date)
         remoteDB.addAlarmTimeToDatabase(date)
         Notifications.AddAlarmNotification(date)
+        print(date)
+        print("is the date")
+        print(UserDefaults.getAlarmDate())
         }
     
     //If they set an alarm for earlier than the current time, then set that alarm to go off the following day
