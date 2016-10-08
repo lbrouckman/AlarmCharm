@@ -17,21 +17,21 @@ import FirebaseDatabase
  */
 class WelcomeScreenViewController: UIViewController {
     
-    private var remoteDB = Database()
+    fileprivate var remoteDB = Database()
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let launchedBefore = NSUserDefaults.standardUserDefaults().boolForKey("launchedBefore")
+        let launchedBefore = Foundation.UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
-            self.performSegueWithIdentifier("ShowMain", sender: self)
+            self.performSegue(withIdentifier: "ShowMain", sender: self)
         } else {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "launchedBefore")
+            Foundation.UserDefaults.standard.set(true, forKey: "launchedBefore")
         }
     }
      
     @IBOutlet weak var usernameTextBox: UITextField!
     @IBOutlet weak var textBox: UITextField!
-    private var ref = FIRDatabaseReference.init()
+    fileprivate var ref = FIRDatabaseReference.init()
     @IBOutlet weak var errorLabel: UILabel!
     
     
@@ -51,19 +51,19 @@ class WelcomeScreenViewController: UIViewController {
                 if alreadyInDB {
                     self.errorLabel.text = "Error: Phone number has already been used"
                 } else {
-                    self.performSegueWithIdentifier("StorePhoneNumber", sender: nil)
+                    self.performSegue(withIdentifier: "StorePhoneNumber", sender: nil)
                 }
             }
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "StorePhoneNumber" {
             let phoneNumber = textBox.text!
             let username = usernameTextBox.text!
             
-            NSUserDefaults.standardUserDefaults().setValue(phoneNumber, forKey: "PhoneNumber")
-            NSUserDefaults.standardUserDefaults().setValue(username, forKey: "Username")
+            Foundation.UserDefaults.standard.setValue(phoneNumber, forKey: "PhoneNumber")
+            Foundation.UserDefaults.standard.setValue(username, forKey: "Username")
             remoteDB.addNewUserToDB(phoneNumber, username: username)
             
         }

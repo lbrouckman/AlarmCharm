@@ -26,19 +26,19 @@ class DefaultsTableViewController: UITableViewController {
         self.tabBarController?.tabBar.barTintColor = Colors.offyellow
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setLabels()
     }
     
     //Set the labels to be set to the user's default values for time/sound/message
-    private func setLabels() {
+    fileprivate func setLabels() {
         var alarmTime: String? = nil
         let date = UserDefaults.getAlarmDate()
         if date != nil{
-            let formatter = NSDateFormatter()
-            formatter.timeStyle = .ShortStyle
-            alarmTime = formatter.stringFromDate(date!)
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            alarmTime = formatter.string(from: date! as Date)
             if UserDefaults.hasAlarmBeenSet(){
                 if let friendName = UserDefaults.getFriendWhoSetAlarm(){
                     let suffix = " set by " + friendName
@@ -52,7 +52,7 @@ class DefaultsTableViewController: UITableViewController {
         
         timeCell.textLabel?.text = alarmTime!
         
-        if let defaultMessage = NSUserDefaults.standardUserDefaults().valueForKey("User Default Message") as? String {
+        if let defaultMessage = Foundation.UserDefaults.standard.value(forKey: "User Default Message") as? String {
             messageCell.textLabel?.text = "'" + defaultMessage + "'"
         } else {
             messageCell.textLabel?.text = "Set your message for friends..."

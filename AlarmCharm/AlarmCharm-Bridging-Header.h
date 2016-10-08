@@ -10,5 +10,4 @@
 #ifndef AlarmCharm_Bridging_Header_h
 #define AlarmCharm_Bridging_Header_h
 #import "CommonCrypto/CommonCrypto.h"
-#import <HockeySDK/HockeySDK.h>
 #endif /* AlarmCharm_Bridging_Header_h */

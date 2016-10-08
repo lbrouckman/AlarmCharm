@@ -22,18 +22,18 @@ class DefaultSoundTableViewCell: UITableViewCell {
     @IBOutlet weak var setButton: UIButton!
     
     //Make buttons bigger, make sure when song is set the cell is highlighted and NS user preferences get set
-    @IBAction func Play(sender: UIButton) {
+    @IBAction func Play(_ sender: UIButton) {
         delegate?.cellWasPressed(self, button: sender)
     }
-    @IBAction func Stop(sender: UIButton) {
+    @IBAction func Stop(_ sender: UIButton) {
         delegate?.cellWasPressed(self, button: sender)
     }
-    @IBAction func Set(sender: UIButton) {
+    @IBAction func Set(_ sender: UIButton) {
         delegate?.cellWasPressed(self, button: sender)
     }
     @IBOutlet weak var SongNameLabel: UILabel!
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

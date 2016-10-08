@@ -23,51 +23,51 @@ class UserDefaults{
     static var setKey           =   "setKey"
     static var hasImageKey      =   "imageKey"
     
-    static func addWakeUpMessage(wakeUpMessage: String){
-        NSUserDefaults.standardUserDefaults().setValue(wakeUpMessage, forKey: messageKey)
+    static func addWakeUpMessage(_ wakeUpMessage: String){
+        Foundation.UserDefaults.standard.setValue(wakeUpMessage, forKey: messageKey)
     }
-    static func storeFriendWhoSetAlarm(friend: String){
-        NSUserDefaults.standardUserDefaults().setValue(friend, forKey: friendKey)
+    static func storeFriendWhoSetAlarm(_ friend: String){
+        Foundation.UserDefaults.standard.setValue(friend, forKey: friendKey)
     }
     static func getFriendWhoSetAlarm() -> String?{
-        return NSUserDefaults.standardUserDefaults().valueForKey(friendKey) as? String
+        return Foundation.UserDefaults.standard.value(forKey: friendKey) as? String
     }
     
-    static func userAlarmBeenSet(hasBeenSet: Bool){
-        NSUserDefaults.standardUserDefaults().setValue(hasBeenSet, forKey: setKey)
+    static func userAlarmBeenSet(_ hasBeenSet: Bool){
+        Foundation.UserDefaults.standard.setValue(hasBeenSet, forKey: setKey)
     }
     static func hasAlarmBeenSet() -> Bool{
-       let hasBeenSet =  NSUserDefaults.standardUserDefaults().valueForKey(setKey) as? Bool
+       let hasBeenSet =  Foundation.UserDefaults.standard.value(forKey: setKey) as? Bool
         if hasBeenSet != nil { return hasBeenSet!}
         else { return false }
     }
     
     static func getWakeUpMessage() -> String?{
-        return NSUserDefaults.standardUserDefaults().valueForKey(messageKey) as? String
+        return Foundation.UserDefaults.standard.value(forKey: messageKey) as? String
     }
-    static func setDefaultSongName(songName: String){
-        NSUserDefaults.standardUserDefaults().setValue(songName, forKey: defaultSongKey)
+    static func setDefaultSongName(_ songName: String){
+        Foundation.UserDefaults.standard.setValue(songName, forKey: defaultSongKey)
     }
     static func getDefaultSongName() -> String{
-        if let defaultSong =  NSUserDefaults.standardUserDefaults().valueForKey(defaultSongKey) as? String{
+        if let defaultSong =  Foundation.UserDefaults.standard.value(forKey: defaultSongKey) as? String{
             return defaultSong
         }
         return "Soft Piano"
     }
-    static func setAlarmDate(date: NSDate){
-        NSUserDefaults.standardUserDefaults().setValue(date, forKey: dateKey)
+    static func setAlarmDate(_ date: Date){
+        Foundation.UserDefaults.standard.setValue(date, forKey: dateKey)
     }
-    static func getAlarmDate() -> NSDate?{
-       return NSUserDefaults.standardUserDefaults().valueForKey(dateKey) as? NSDate
+    static func getAlarmDate() -> Date?{
+       return Foundation.UserDefaults.standard.value(forKey: dateKey) as? Date
     }
     //THis function ensures that if a user cancels out a notification, we set their has been set to false
     static func ensureAlarmTime(){
-        let currentDay = NSDate()
+        let currentDay = Date()
         let userDate = UserDefaults.getAlarmDate()
         if userDate != nil{
-            let bufferedDate = userDate!.dateByAddingTimeInterval(120)
-            if currentDay.earlierDate(bufferedDate) == bufferedDate {
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
+            let bufferedDate = userDate!.addingTimeInterval(120)
+            if (currentDay as NSDate).earlierDate(bufferedDate) == bufferedDate {
+                Foundation.UserDefaults.standard.removeObject(forKey: dateKey)
                 UserDefaults.userAlarmBeenSet(false)
             }
         }
@@ -77,16 +77,16 @@ class UserDefaults{
     }
     static func clearAlarmDate(){
         
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(dateKey)
-        NSUserDefaults.standardUserDefaults().setValue(false, forKey: setKey)
+        Foundation.UserDefaults.standard.removeObject(forKey: dateKey)
+        Foundation.UserDefaults.standard.setValue(false, forKey: setKey)
     }
 
-    static func hasImage(imageAdded: Bool) {
-        NSUserDefaults.standardUserDefaults().setValue(imageAdded, forKey: hasImageKey)
+    static func hasImage(_ imageAdded: Bool) {
+        Foundation.UserDefaults.standard.setValue(imageAdded, forKey: hasImageKey)
     }
     
     static func hasImage() -> Bool {
-        if let x = NSUserDefaults.standardUserDefaults().valueForKey(hasImageKey) as? Bool {
+        if let x = Foundation.UserDefaults.standard.value(forKey: hasImageKey) as? Bool {
             return x
         } else {
             return false

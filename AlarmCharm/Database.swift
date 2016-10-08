@@ -18,9 +18,9 @@ import AVFoundation
 
 class Database {
     
-    private var usersRef = FIRDatabase.database().reference().child("users")
+    fileprivate var usersRef = FIRDatabase.database().reference().child("users")
     
-    func changeWhoSetAlarm(alarmSetBy: String, forUser userID: String) {
+    func changeWhoSetAlarm(_ alarmSetBy: String, forUser userID: String) {
         let uRef = FIRDatabase.database().reference().child("users")
         let hashedID = sha256(userID)!
         let currentUserRef = uRef.child(hashedID)
@@ -29,26 +29,26 @@ class Database {
     }
     
     /* We got the 2 functions below from http://stackoverflow.com/questions/25388747/sha256-in-swift and they use the objective C code
-  bridged in */
-    private func sha256(data: NSData) -> NSData? {
+     bridged in */
+    fileprivate func sha256(_ data: Data) -> Data? {
         guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
-        CC_SHA256(data.bytes, CC_LONG(data.length), UnsafeMutablePointer(res.mutableBytes))
-        return res
+        CC_SHA256((data as NSData).bytes, CC_LONG(data.count), UnsafeMutablePointer(res.mutableBytes))
+        return res as Data
     }
     
-    func sha256(string: String) -> String? {
+    func sha256(_ string: String) -> String? {
         guard
-            let data = string.dataUsingEncoding(NSUTF8StringEncoding),
+            let data = string.data(using: String.Encoding.utf8),
             let shaData = sha256(data)
             else { return nil }
-        let rc = shaData.base64EncodedStringWithOptions([])
+        let rc = shaData.base64EncodedString(options: [])
         return rc
     }
     
-    func uploadFileToDatabase(fileURL: NSURL, forUser userID: String, fileType: String) {
-        let filename = fileURL.lastPathComponent!
+    func uploadFileToDatabase(_ fileURL: URL, forUser userID: String, fileType: String) {
+        let filename = fileURL.lastPathComponent
         let storage = FIRStorage.storage()
-        let gsReference = storage.referenceForURL("gs://project-5208532535641760898.appspot.com")
+        let gsReference = storage.reference(forURL: "gs://project-5208532535641760898.appspot.com")
         let fileRef = gsReference.child(filename)
         
         let _ = fileRef.putFile(fileURL, metadata: nil) { metadata, error in
@@ -76,7 +76,7 @@ class Database {
     }
     
     // After user sets their message, this function puts their message in the database
-    func uploadUserMessageToDatabase(message: String, forUser userID: String){
+    func uploadUserMessageToDatabase(_ message: String, forUser userID: String){
         let uRef = FIRDatabase.database().reference().child("users")
         let hashedID = sha256(userID)!
         let currentUserRef = uRef.child(hashedID)
@@ -84,7 +84,7 @@ class Database {
         currentUserRef.updateChildValues(newMessage)
     }
     
-    func uploadWakeUpMessageToDatabase(message: String, forUser userID: String){
+    func uploadWakeUpMessageToDatabase(_ message: String, forUser userID: String){
         let uRef = FIRDatabase.database().reference().child("users")
         let hashedID = sha256(userID)!
         let currentUserRef = uRef.child(hashedID)
@@ -101,26 +101,28 @@ class Database {
     }
     
     //Checks to see if a friend has set the alarm and if so, it gets the alarm and calls the completion handler that is in charge of storing it
-    func hasUserAlarmBeenSet(forUser userID: String, completionHandler: (user: String, hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String) -> ()){
+    func hasUserAlarmBeenSet(forUser userID: String, completionHandler: @escaping (_ user: String, _ hasBeenSet: Bool, _ wakeUpMessage: String, _ friendWhoSetAlarm: String) -> ()){
         let hashedID = sha256(userID)!
-        usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            if let needFriendToSet = snapshot.value!["need_friend_to_set"] as? Bool where needFriendToSet == false{
-                let hasBeenSet = !needFriendToSet
-                if let wakeUpMessage = snapshot.value!["wakeup_message"] as? String{
-                    if let friendWhoSetAlarm = snapshot.value!["friend_who_set_alarm"] as? String{
-                        completionHandler(user: userID, hasBeenSet: hasBeenSet, wakeUpMessage: wakeUpMessage, friendWhoSetAlarm: friendWhoSetAlarm)
+        usersRef.child(hashedID).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let snapshotDictionary = snapshot.value as? NSDictionary{
+                if let needFriendToSet = snapshotDictionary["need_friend_to_set"] as? Bool , needFriendToSet == false{
+                    let hasBeenSet = !needFriendToSet
+                    if let wakeUpMessage = snapshotDictionary["wakeup_message"] as? String{
+                        if let friendWhoSetAlarm = snapshotDictionary["friend_who_set_alarm"] as? String{
+                            completionHandler(user: userID, hasBeenSet: hasBeenSet, wakeUpMessage: wakeUpMessage, friendWhoSetAlarm: friendWhoSetAlarm)
+                        }
                     }
+                    
                 }
-                
             }
             })
         { (error) in
             print(error)
         }
     }
-
-    func addAlarmTimeToDatabase(date: NSDate){
-        if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
+    
+    func addAlarmTimeToDatabase(_ date: Date){
+        if let userId = Foundation.UserDefaults.standard.value(forKey: "PhoneNumber") as? String {
             let hashedID = sha256(userId)!
             let timestamp = date.timeIntervalSince1970
             let ref = FIRDatabase.database().reference()
@@ -143,14 +145,14 @@ class Database {
     }
     
     //Downloads an image or audio file to the local file system, completion handler since this will be handled ansynchronously
-    func downloadFileToLocal(forUser userID: String, fileType: String, completionHandler: (Bool) -> ()) {
+    func downloadFileToLocal(forUser userID: String, fileType: String, completionHandler: @escaping (Bool) -> ()) {
         let hashedID = sha256(userID)!
-        usersRef.child(hashedID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            if let file = snapshot.value![fileType] as? String where file != ""{
+        usersRef.child(hashedID).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let file = snapshot.value![fileType] as? String , file != ""{
                 let storage = FIRStorage.storage()
-                let gsReference = storage.referenceForURL("gs://project-5208532535641760898.appspot.com")
+                let gsReference = storage.reference(forURL: "gs://project-5208532535641760898.appspot.com")
                 let mediaRef = gsReference.child(file)
-                mediaRef.downloadURLWithCompletion { (URL, error) -> Void in
+                mediaRef.downloadURL { (URL, error) -> Void in
                     if (error != nil) {
                         print(error)
                         completionHandler(false)
@@ -171,52 +173,52 @@ class Database {
     }
     
     //Saves an NSURL to the file system (under a predictable name) so that the alarm image/audio can easily be retrieved from the local files
-    private func saveToFileSystem(URL: NSURL, filetype: String, fileName: String) {
-        let data =  NSData(contentsOfURL: URL)
-        let fileManager = NSFileManager.defaultManager()
+    fileprivate func saveToFileSystem(_ URL: Foundation.URL, filetype: String, fileName: String) {
+        let data =  try? Data(contentsOf: URL)
+        let fileManager = FileManager.default
         
-        let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
         let path = libraryPath + filetype
         let filePath = path + "/" + fileName
         do {
-            try fileManager.createDirectoryAtPath(path, withIntermediateDirectories: false, attributes: nil)
+            try fileManager.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
         } catch let error1 as NSError {
             print("error" + error1.description)
         }
-        let pathURL = NSURL(fileURLWithPath: filePath)
-        data?.writeToURL(pathURL,  atomically: true)
+        let pathURL = Foundation.URL(fileURLWithPath: filePath)
+        try? data?.write(to: pathURL,  options: [.atomic])
     }
     
     /*
      Given the url, it turns url into NSDATA and then saves the file in the libray/sounds folder.
      */
-    private func saveToFileSystem(URL : NSURL, fileName: String){
-        let songData =  NSData(contentsOfURL: URL)
-        let fileManager = NSFileManager.defaultManager()
+    fileprivate func saveToFileSystem(_ URL : Foundation.URL, fileName: String){
+        let songData =  try? Data(contentsOf: URL)
+        let fileManager = FileManager.default
         
-        let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
         let soundsPath = libraryPath + "/Sounds"
         let filePath = soundsPath + "/" + fileName
         do {
-            try fileManager.createDirectoryAtPath(soundsPath, withIntermediateDirectories: false, attributes: nil)
+            try fileManager.createDirectory(atPath: soundsPath, withIntermediateDirectories: false, attributes: nil)
         } catch let error1 as NSError {
             print("error" + error1.description)
         }
-        let soundPathUrl = NSURL(fileURLWithPath: filePath)
-        songData?.writeToURL(soundPathUrl,  atomically: true)
+        let soundPathUrl = Foundation.URL(fileURLWithPath: filePath)
+        try? songData?.write(to: soundPathUrl,  options: [.atomic])
     }
     
-    func addNewUserToDB(phoneNumber: String, username: String) {
+    func addNewUserToDB(_ phoneNumber: String, username: String) {
         let phoneNumberHash = sha256(phoneNumber)
-        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : "", "username": username]
+        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : "", "username": username] as [String : Any]
         let newUserRef = usersRef.child(phoneNumberHash!)
         newUserRef.setValue(newUser)
     }
     
-    func userInDatabase(phoneNumber: String, completionHandler: (Bool) -> ()) {
+    func userInDatabase(_ phoneNumber: String, completionHandler: @escaping (Bool) -> ()) {
         let phoneNumberHash = sha256(phoneNumber)
         
-        usersRef.child(phoneNumberHash!).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        usersRef.child(phoneNumberHash!).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.value is NSNull {
                 completionHandler(false)
             } else {

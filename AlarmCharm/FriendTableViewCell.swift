@@ -35,7 +35,7 @@ class FriendTableViewCell: UITableViewCell {
         }
     }
     
-    private func updateUI() {
+    fileprivate func updateUI() {
         contactName?.text = nil
         contactAlarmTime?.text = nil
         contactPicture?.image = nil
@@ -51,10 +51,10 @@ class FriendTableViewCell: UITableViewCell {
         
         if alarmTime != nil {
             if alarmTime != 0 {
-                let date = NSDate(timeIntervalSince1970: alarmTime!)
-                let formatter = NSDateFormatter()
-                formatter.timeStyle = .ShortStyle
-                let timeString = formatter.stringFromDate(date)
+                let date = Date(timeIntervalSince1970: alarmTime!)
+                let formatter = DateFormatter()
+                formatter.timeStyle = .short
+                let timeString = formatter.string(from: date)
                 contactAlarmTime?.text = timeString
             } else {
                 contactAlarmTime?.text = "Not Set"
@@ -65,11 +65,11 @@ class FriendTableViewCell: UITableViewCell {
     }
     
     //Set image to the be the contact image or a default "blank" image if there is no contact image
-    private func setImage() {
+    fileprivate func setImage() {
         if contact!.imageData != nil {
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak weakSelf = self] in
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak weakSelf = self] in
                 let imageData = weakSelf?.contact!.imageData!
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     if imageData == weakSelf?.contact!.imageData! {
                         if let data = imageData {
                             weakSelf?.contactPicture?.image = UIImage(data: data)
@@ -79,11 +79,11 @@ class FriendTableViewCell: UITableViewCell {
                 }
             }
         } else {
-            let imageURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("defaultImage", ofType: "jpg")!)
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak weakSelf = self] in
-                let contentsOfURL = NSData(contentsOfURL: imageURL)
-                dispatch_async(dispatch_get_main_queue()) {
-                    if imageURL == NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("defaultImage", ofType: "jpg")!) {
+            let imageURL = URL(fileURLWithPath: Bundle.main.path(forResource: "defaultImage", ofType: "jpg")!)
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak weakSelf = self] in
+                let contentsOfURL = try? Data(contentsOf: imageURL)
+                DispatchQueue.main.async {
+                    if imageURL == URL(fileURLWithPath: Bundle.main.path(forResource: "defaultImage", ofType: "jpg")!) {
                         if let imageData = contentsOfURL {
                             weakSelf?.contactPicture?.image = UIImage(data: imageData)
                             weakSelf?.setNeedsDisplay()
