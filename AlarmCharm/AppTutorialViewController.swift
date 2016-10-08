@@ -11,7 +11,7 @@ import UIKit
 class AppTutorialViewController: UIPageViewController {
     
     
-    private(set) lazy var orderedViewControllers: [UIViewController] = {
+    fileprivate(set) lazy var orderedViewControllers: [UIViewController] = {
         
         return [self.newViewControllerGivenName("DefaultsTableViewController"),
                 self.newViewControllerGivenName("SetAlarmController"),
@@ -22,29 +22,29 @@ class AppTutorialViewController: UIPageViewController {
         ]
     }()
     
-    private func newViewControllerGivenName(name: String) -> UIViewController {
+    fileprivate func newViewControllerGivenName(_ name: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil) .
-            instantiateViewControllerWithIdentifier(name)
+            instantiateViewController(withIdentifier: name)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
-                               direction: .Forward,
+                               direction: .forward,
                                animated: true,
                                completion: nil)
         }
         // Do any additional setup after loading the view.
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    @objc(presentationCountForPageViewController:) func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return orderedViewControllers.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    @objc(presentationIndexForPageViewController:) func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         guard let firstViewController = viewControllers?.first,
-            firstViewControllerIndex = orderedViewControllers.indexOf(firstViewController) else {
+            let firstViewControllerIndex = orderedViewControllers.index(of: firstViewController) else {
                 return 0
         }
         
@@ -70,9 +70,9 @@ class AppTutorialViewController: UIPageViewController {
 }
 extension AppTutorialViewController: UIPageViewControllerDataSource {
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
         }
         let previousIndex = viewControllerIndex - 1
@@ -85,9 +85,9 @@ extension AppTutorialViewController: UIPageViewControllerDataSource {
         return orderedViewControllers[previousIndex]
     }
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
             return nil
         }
         

@@ -17,7 +17,7 @@ import UIKit
  */
 class FetchViewController: UIViewController {
     
-    static func storeAlarmInfo(user: String,  hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String){
+    static func storeAlarmInfo(_ user: String,  hasBeenSet: Bool, wakeUpMessage: String, friendWhoSetAlarm: String){
         if hasBeenSet{ 
             let db = Database()
             db.downloadFileToLocal(forUser: user, fileType: "audio_file") { wasDownloadedToLocal in
@@ -40,8 +40,8 @@ class FetchViewController: UIViewController {
         }
     }
     
-    static func fetch(completion: () -> Void) {
-        if let user = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String {
+    static func fetch(_ completion: () -> Void) {
+        if let user = Foundation.UserDefaults.standard.value(forKey: "PhoneNumber") as? String {
             let db = Database()
             if UserDefaults.getAlarmDate() != nil{
                 if !UserDefaults.hasAlarmBeenSet(){ //If the user alarm hasn't been set by a friend we want to check for it

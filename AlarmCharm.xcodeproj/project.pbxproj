@@ -1,626 +1,1663 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		302174C81CFA13A700AD3134 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302174C71CFA13A700AD3134 /* Database.swift */; };
-		302174CA1CFA2FF700AD3134 /* defaultImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 302174C91CFA2FF700AD3134 /* defaultImage.jpg */; };
-		303B8F501CFD279B00995E77 /* DefaultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B8F4F1CFD279B00995E77 /* DefaultsTableViewController.swift */; };
-		304094F71CF230C70054D4EF /* FriendsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */; };
-		304094F91CF236930054D4EF /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094F81CF236930054D4EF /* FriendTableViewCell.swift */; };
-		304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */; };
-		304094FE1CF246F10054D4EF /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 304094FC1CF246F10054D4EF /* Model.xcdatamodeld */; };
-		304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304094FF1CF247650054D4EF /* Alarm+CoreDataProperties.swift */; };
-		304095021CF247650054D4EF /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304095001CF247650054D4EF /* Alarm.swift */; };
-		304095051CF247EC0054D4EF /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */; };
-		304095151CF26F5E0054D4EF /* Soft Piano.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950D1CF26F5E0054D4EF /* Soft Piano.wav */; };
-		304095161CF26F5E0054D4EF /* Obnoxious Synth.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950E1CF26F5E0054D4EF /* Obnoxious Synth.wav */; };
-		304095171CF26F5E0054D4EF /* Soft Guitar.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3040950F1CF26F5E0054D4EF /* Soft Guitar.wav */; };
-		3042B8A81D04E7BB0044152F /* default_wakeup_photo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3042B8A71D04E7BB0044152F /* default_wakeup_photo.jpg */; };
-		3050E2AD1D04F2890078FDAF /* FetchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3050E2AC1D04F2890078FDAF /* FetchViewController.swift */; };
-		3050E2B31D0502F00078FDAF /* Shogun.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3050E2AE1D0502F00078FDAF /* Shogun.wav */; };
-		3050E2B41D0502F00078FDAF /* Jazz.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3050E2AF1D0502F00078FDAF /* Jazz.wav */; };
-		3050E2B51D0502F00078FDAF /* Soft Rock.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3050E2B01D0502F00078FDAF /* Soft Rock.wav */; };
-		3050E2B61D0502F00078FDAF /* Peaceful Wakeup.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3050E2B11D0502F00078FDAF /* Peaceful Wakeup.wav */; };
-		3050E2B71D0502F00078FDAF /* Epic Wakeup.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3050E2B21D0502F00078FDAF /* Epic Wakeup.wav */; };
-		305DC3131CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */; };
-		305DC3151CF4D8B000CE10A7 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */; };
-		30B2CF8F1D03AED800A3D124 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2CF8E1D03AED800A3D124 /* Colors.swift */; };
-		30B2CF911D03D19600A3D124 /* logo180.png in Resources */ = {isa = PBXBuildFile; fileRef = 30B2CF901D03D19600A3D124 /* logo180.png */; };
-		30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F431CE6789800910E9F /* AppDelegate.swift */; };
-		30DF3F491CE6789800910E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F471CE6789800910E9F /* Main.storyboard */; };
-		30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4D1CE6789800910E9F /* Assets.xcassets */; };
-		30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */; };
-		30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */; };
-		30FE0D0E1CF76F65004213A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */; };
-		B307AD411CFADA88004852CD /* AlarmGoingOffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */; };
-		B307AD431CFB729B004852CD /* DefaultMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */; };
-		B307AD451CFEBD4B004852CD /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD441CFEBD4B004852CD /* UserDefaults.swift */; };
-		B307AD491D02AB4A004852CD /* John Cena.wav in Resources */ = {isa = PBXBuildFile; fileRef = B307AD481D02AB4A004852CD /* John Cena.wav */; };
-		B32777A91D6A8B5400CCA996 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32777A81D6A8B5400CCA996 /* ContentViewController.swift */; };
-		B32777AB1D6A8BEF00CCA996 /* RestartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32777AA1D6A8BEF00CCA996 /* RestartViewController.swift */; };
-		B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38CBFE31CEE71DF0099899D /* Constants.swift */; };
-		B3B2D5231D3C8AD00081F4AA /* AppTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B2D5221D3C8AD00081F4AA /* AppTutorialViewController.swift */; };
-		B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */; };
-		B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */; };
-		B3F03F321CFABE0F00B52980 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F03F311CFABE0F00B52980 /* Notifications.swift */; };
-		CA03E8DEB2858A49448D996D /* Pods_AlarmCharm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D611BECFBA3091D2D16223D4 /* Pods_AlarmCharm.framework */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
-		302174C71CFA13A700AD3134 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
-		302174C91CFA2FF700AD3134 /* defaultImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultImage.jpg; sourceTree = "<group>"; };
-		303B8F4F1CFD279B00995E77 /* DefaultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsTableViewController.swift; sourceTree = "<group>"; };
-		304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListTableViewController.swift; sourceTree = "<group>"; };
-		304094F81CF236930054D4EF /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
-		304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedAlarmsTableViewController.swift; sourceTree = "<group>"; };
-		304094FD1CF246F10054D4EF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		304094FF1CF247650054D4EF /* Alarm+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alarm+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		304095001CF247650054D4EF /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
-		304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
-		3040950D1CF26F5E0054D4EF /* Soft Piano.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Soft Piano.wav"; sourceTree = "<group>"; };
-		3040950E1CF26F5E0054D4EF /* Obnoxious Synth.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Obnoxious Synth.wav"; sourceTree = "<group>"; };
-		3040950F1CF26F5E0054D4EF /* Soft Guitar.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Soft Guitar.wav"; sourceTree = "<group>"; };
-		3042B8A61D03E73B0044152F /* AlarmCharm-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AlarmCharm-Bridging-Header.h"; sourceTree = "<group>"; };
-		3042B8A71D04E7BB0044152F /* default_wakeup_photo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_wakeup_photo.jpg; sourceTree = "<group>"; };
-		3050E2AC1D04F2890078FDAF /* FetchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchViewController.swift; sourceTree = "<group>"; };
-		3050E2AE1D0502F00078FDAF /* Shogun.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Shogun.wav; sourceTree = "<group>"; };
-		3050E2AF1D0502F00078FDAF /* Jazz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Jazz.wav; sourceTree = "<group>"; };
-		3050E2B01D0502F00078FDAF /* Soft Rock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Soft Rock.wav"; sourceTree = "<group>"; };
-		3050E2B11D0502F00078FDAF /* Peaceful Wakeup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Peaceful Wakeup.wav"; sourceTree = "<group>"; };
-		3050E2B21D0502F00078FDAF /* Epic Wakeup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Epic Wakeup.wav"; sourceTree = "<group>"; };
-		305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewAlarmViewController.swift; sourceTree = "<group>"; };
-		305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
-		30B2CF8E1D03AED800A3D124 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		30B2CF901D03D19600A3D124 /* logo180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo180.png; sourceTree = "<group>"; };
-		30DF3F401CE6789800910E9F /* AlarmCharm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmCharm.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		30DF3F431CE6789800910E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		30DF3F481CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		30DF3F4D1CE6789800910E9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		30DF3F501CE6789800910E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		30DF3F521CE6789800910E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAlarmController.swift; sourceTree = "<group>"; };
-		30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		6EFEE08CBEAC32D1476FFEBD /* Pods-AlarmCharm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.release.xcconfig"; sourceTree = "<group>"; };
-		7102B7B16C6A0DBDF18D17E8 /* Pods-AlarmCharm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.debug.xcconfig"; sourceTree = "<group>"; };
-		B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmGoingOffViewController.swift; sourceTree = "<group>"; };
-		B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMessageViewController.swift; sourceTree = "<group>"; };
-		B307AD441CFEBD4B004852CD /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		B307AD481D02AB4A004852CD /* John Cena.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "John Cena.wav"; sourceTree = "<group>"; };
-		B32777A81D6A8B5400CCA996 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
-		B32777AA1D6A8BEF00CCA996 /* RestartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartViewController.swift; sourceTree = "<group>"; };
-		B38CBFE31CEE71DF0099899D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		B3B2D5221D3C8AD00081F4AA /* AppTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTutorialViewController.swift; sourceTree = "<group>"; };
-		B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultSoundTableViewController.swift; sourceTree = "<group>"; };
-		B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSoundTableViewCell.swift; sourceTree = "<group>"; };
-		B3F03F311CFABE0F00B52980 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
-		D611BECFBA3091D2D16223D4 /* Pods_AlarmCharm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmCharm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		30DF3F3D1CE6789800910E9F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA03E8DEB2858A49448D996D /* Pods_AlarmCharm.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		304095031CF247860054D4EF /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				304094FF1CF247650054D4EF /* Alarm+CoreDataProperties.swift */,
-				304095001CF247650054D4EF /* Alarm.swift */,
-				304094FC1CF246F10054D4EF /* Model.xcdatamodeld */,
-			);
-			name = CoreData;
-			sourceTree = "<group>";
-		};
-		304095181CF26F650054D4EF /* Media Files */ = {
-			isa = PBXGroup;
-			children = (
-				304095191CF26F780054D4EF /* Icons */,
-				3040951A1CF26F810054D4EF /* Ringtones */,
-			);
-			name = "Media Files";
-			sourceTree = "<group>";
-		};
-		304095191CF26F780054D4EF /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				30B2CF901D03D19600A3D124 /* logo180.png */,
-				3042B8A71D04E7BB0044152F /* default_wakeup_photo.jpg */,
-				302174C91CFA2FF700AD3134 /* defaultImage.jpg */,
-			);
-			name = Icons;
-			sourceTree = "<group>";
-		};
-		3040951A1CF26F810054D4EF /* Ringtones */ = {
-			isa = PBXGroup;
-			children = (
-				B307AD481D02AB4A004852CD /* John Cena.wav */,
-				3040950D1CF26F5E0054D4EF /* Soft Piano.wav */,
-				3040950E1CF26F5E0054D4EF /* Obnoxious Synth.wav */,
-				3040950F1CF26F5E0054D4EF /* Soft Guitar.wav */,
-				3050E2AE1D0502F00078FDAF /* Shogun.wav */,
-				3050E2AF1D0502F00078FDAF /* Jazz.wav */,
-				3050E2B01D0502F00078FDAF /* Soft Rock.wav */,
-				3050E2B11D0502F00078FDAF /* Peaceful Wakeup.wav */,
-				3050E2B21D0502F00078FDAF /* Epic Wakeup.wav */,
-			);
-			name = Ringtones;
-			sourceTree = "<group>";
-		};
-		30DF3F371CE6789800910E9F = {
-			isa = PBXGroup;
-			children = (
-				30DF3F421CE6789800910E9F /* AlarmCharm */,
-				30DF3F411CE6789800910E9F /* Products */,
-				9378359B80A8AB21CC45182E /* Pods */,
-				70E5DA3775DE172BC54648C7 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		30DF3F411CE6789800910E9F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				30DF3F401CE6789800910E9F /* AlarmCharm.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		30DF3F421CE6789800910E9F /* AlarmCharm */ = {
-			isa = PBXGroup;
-			children = (
-				B32777AA1D6A8BEF00CCA996 /* RestartViewController.swift */,
-				B3B2D5221D3C8AD00081F4AA /* AppTutorialViewController.swift */,
-				3042B8A61D03E73B0044152F /* AlarmCharm-Bridging-Header.h */,
-				303B8F4F1CFD279B00995E77 /* DefaultsTableViewController.swift */,
-				30B2CF8E1D03AED800A3D124 /* Colors.swift */,
-				304095181CF26F650054D4EF /* Media Files */,
-				30DF3F581CE6870500910E9F /* Supporting Files */,
-				304095031CF247860054D4EF /* CoreData */,
-				305DC3141CF4D8B000CE10A7 /* WelcomeScreenViewController.swift */,
-				3050E2AC1D04F2890078FDAF /* FetchViewController.swift */,
-				B307AD441CFEBD4B004852CD /* UserDefaults.swift */,
-				B3F03F311CFABE0F00B52980 /* Notifications.swift */,
-				305DC3121CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift */,
-				304094FA1CF244A40054D4EF /* SavedAlarmsTableViewController.swift */,
-				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
-				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
-				30DF3F471CE6789800910E9F /* Main.storyboard */,
-				B32777A81D6A8B5400CCA996 /* ContentViewController.swift */,
-				B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */,
-				302174C71CFA13A700AD3134 /* Database.swift */,
-				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
-				304095041CF247EC0054D4EF /* CoreDataTableViewController.swift */,
-				B38CBFE31CEE71DF0099899D /* Constants.swift */,
-				B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */,
-				B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */,
-				B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */,
-				30FE0D0D1CF76F65004213A0 /* GoogleService-Info.plist */,
-			);
-			path = AlarmCharm;
-			sourceTree = "<group>";
-		};
-		30DF3F581CE6870500910E9F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				30DF3F431CE6789800910E9F /* AppDelegate.swift */,
-				30DF3F4D1CE6789800910E9F /* Assets.xcassets */,
-				30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */,
-				30DF3F521CE6789800910E9F /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		70E5DA3775DE172BC54648C7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D611BECFBA3091D2D16223D4 /* Pods_AlarmCharm.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9378359B80A8AB21CC45182E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7102B7B16C6A0DBDF18D17E8 /* Pods-AlarmCharm.debug.xcconfig */,
-				6EFEE08CBEAC32D1476FFEBD /* Pods-AlarmCharm.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		30DF3F3F1CE6789800910E9F /* AlarmCharm */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 30DF3F551CE6789800910E9F /* Build configuration list for PBXNativeTarget "AlarmCharm" */;
-			buildPhases = (
-				D24891C47D413E26C176FB52 /* 📦 Check Pods Manifest.lock */,
-				30DF3F3C1CE6789800910E9F /* Sources */,
-				30DF3F3D1CE6789800910E9F /* Frameworks */,
-				30DF3F3E1CE6789800910E9F /* Resources */,
-				BFCFFE14282053A5AD8742FD /* 📦 Embed Pods Frameworks */,
-				657A4CF7746A10FDDF97C244 /* 📦 Copy Pods Resources */,
-				B3AB67111D2E270F00733D49 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AlarmCharm;
-			productName = AlarmCharm;
-			productReference = 30DF3F401CE6789800910E9F /* AlarmCharm.app */;
-			productType = "com.apple.product-type.application";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		30DF3F381CE6789800910E9F /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = "Laura Brouckman";
-				TargetAttributes = {
-					30DF3F3F1CE6789800910E9F = {
-						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = GQPD698VHL;
-						SystemCapabilities = {
-							com.apple.BackgroundModes = {
-								enabled = 1;
-							};
-						};
-					};
-				};
-			};
-			buildConfigurationList = 30DF3F3B1CE6789800910E9F /* Build configuration list for PBXProject "AlarmCharm" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 30DF3F371CE6789800910E9F;
-			productRefGroup = 30DF3F411CE6789800910E9F /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				30DF3F3F1CE6789800910E9F /* AlarmCharm */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		30DF3F3E1CE6789800910E9F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				304095171CF26F5E0054D4EF /* Soft Guitar.wav in Resources */,
-				30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */,
-				3050E2B61D0502F00078FDAF /* Peaceful Wakeup.wav in Resources */,
-				3050E2B41D0502F00078FDAF /* Jazz.wav in Resources */,
-				30DF3F4E1CE6789800910E9F /* Assets.xcassets in Resources */,
-				304095151CF26F5E0054D4EF /* Soft Piano.wav in Resources */,
-				304095161CF26F5E0054D4EF /* Obnoxious Synth.wav in Resources */,
-				3042B8A81D04E7BB0044152F /* default_wakeup_photo.jpg in Resources */,
-				3050E2B71D0502F00078FDAF /* Epic Wakeup.wav in Resources */,
-				3050E2B51D0502F00078FDAF /* Soft Rock.wav in Resources */,
-				3050E2B31D0502F00078FDAF /* Shogun.wav in Resources */,
-				30DF3F491CE6789800910E9F /* Main.storyboard in Resources */,
-				30B2CF911D03D19600A3D124 /* logo180.png in Resources */,
-				B307AD491D02AB4A004852CD /* John Cena.wav in Resources */,
-				30FE0D0E1CF76F65004213A0 /* GoogleService-Info.plist in Resources */,
-				302174CA1CFA2FF700AD3134 /* defaultImage.jpg in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		657A4CF7746A10FDDF97C244 /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B3AB67111D2E270F00733D49 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
-		};
-		BFCFFE14282053A5AD8742FD /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D24891C47D413E26C176FB52 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		30DF3F3C1CE6789800910E9F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */,
-				3050E2AD1D04F2890078FDAF /* FetchViewController.swift in Sources */,
-				30B2CF8F1D03AED800A3D124 /* Colors.swift in Sources */,
-				30DF3F441CE6789800910E9F /* AppDelegate.swift in Sources */,
-				305DC3131CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift in Sources */,
-				302174C81CFA13A700AD3134 /* Database.swift in Sources */,
-				B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */,
-				304094F71CF230C70054D4EF /* FriendsListTableViewController.swift in Sources */,
-				305DC3151CF4D8B000CE10A7 /* WelcomeScreenViewController.swift in Sources */,
-				304094FE1CF246F10054D4EF /* Model.xcdatamodeld in Sources */,
-				B3F03F321CFABE0F00B52980 /* Notifications.swift in Sources */,
-				304094F91CF236930054D4EF /* FriendTableViewCell.swift in Sources */,
-				B307AD431CFB729B004852CD /* DefaultMessageViewController.swift in Sources */,
-				304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */,
-				B3B2D5231D3C8AD00081F4AA /* AppTutorialViewController.swift in Sources */,
-				30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */,
-				B32777A91D6A8B5400CCA996 /* ContentViewController.swift in Sources */,
-				303B8F501CFD279B00995E77 /* DefaultsTableViewController.swift in Sources */,
-				304095021CF247650054D4EF /* Alarm.swift in Sources */,
-				304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */,
-				B307AD451CFEBD4B004852CD /* UserDefaults.swift in Sources */,
-				B307AD411CFADA88004852CD /* AlarmGoingOffViewController.swift in Sources */,
-				B32777AB1D6A8BEF00CCA996 /* RestartViewController.swift in Sources */,
-				B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */,
-				304095051CF247EC0054D4EF /* CoreDataTableViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		30DF3F471CE6789800910E9F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				30DF3F481CE6789800910E9F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				30DF3F501CE6789800910E9F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		30DF3F531CE6789800910E9F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		30DF3F541CE6789800910E9F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		30DF3F561CE6789800910E9F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7102B7B16C6A0DBDF18D17E8 /* Pods-AlarmCharm.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseStorage/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleUtilities/Frameworks\"",
-					"\"$(PROJECT_DIR)/Frameworks/",
-				);
-				INFOPLIST_FILE = AlarmCharm/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.alecarlisle.AlarmCharm;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "AlarmCharm/AlarmCharm-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		30DF3F571CE6789800910E9F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EFEE08CBEAC32D1476FFEBD /* Pods-AlarmCharm.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseDatabase/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseStorage/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleNetworkingUtilities/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleUtilities/Frameworks\"",
-					"\"$(PROJECT_DIR)/Frameworks/",
-				);
-				INFOPLIST_FILE = AlarmCharm/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.alecarlisle.AlarmCharm;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "AlarmCharm/AlarmCharm-Bridging-Header.h";
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		30DF3F3B1CE6789800910E9F /* Build configuration list for PBXProject "AlarmCharm" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				30DF3F531CE6789800910E9F /* Debug */,
-				30DF3F541CE6789800910E9F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		30DF3F551CE6789800910E9F /* Build configuration list for PBXNativeTarget "AlarmCharm" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				30DF3F561CE6789800910E9F /* Debug */,
-				30DF3F571CE6789800910E9F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		304094FC1CF246F10054D4EF /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				304094FD1CF246F10054D4EF /* Model.xcdatamodel */,
-			);
-			currentVersion = 304094FD1CF246F10054D4EF /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
-	};
-	rootObject = 30DF3F381CE6789800910E9F /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>1FCDED68E0DB489C90883FCF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8703F8BB2110B2E2060E73C9</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>302174C71CFA13A700AD3134</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Database.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>302174C81CFA13A700AD3134</key>
+		<dict>
+			<key>fileRef</key>
+			<string>302174C71CFA13A700AD3134</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>302174C91CFA2FF700AD3134</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>image.jpeg</string>
+			<key>path</key>
+			<string>defaultImage.jpg</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>302174CA1CFA2FF700AD3134</key>
+		<dict>
+			<key>fileRef</key>
+			<string>302174C91CFA2FF700AD3134</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>303B8F4F1CFD279B00995E77</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>DefaultsTableViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>303B8F501CFD279B00995E77</key>
+		<dict>
+			<key>fileRef</key>
+			<string>303B8F4F1CFD279B00995E77</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304094F61CF230C70054D4EF</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FriendsListTableViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304094F71CF230C70054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>304094F61CF230C70054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304094F81CF236930054D4EF</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FriendTableViewCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304094F91CF236930054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>304094F81CF236930054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304094FA1CF244A40054D4EF</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SavedAlarmsTableViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304094FB1CF244A40054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>304094FA1CF244A40054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304094FC1CF246F10054D4EF</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>304094FD1CF246F10054D4EF</string>
+			</array>
+			<key>currentVersion</key>
+			<string>304094FD1CF246F10054D4EF</string>
+			<key>isa</key>
+			<string>XCVersionGroup</string>
+			<key>path</key>
+			<string>Model.xcdatamodeld</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+			<key>versionGroupType</key>
+			<string>wrapper.xcdatamodel</string>
+		</dict>
+		<key>304094FD1CF246F10054D4EF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.xcdatamodel</string>
+			<key>path</key>
+			<string>Model.xcdatamodel</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304094FE1CF246F10054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>304094FC1CF246F10054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304094FF1CF247650054D4EF</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Alarm+CoreDataProperties.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304095001CF247650054D4EF</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Alarm.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304095011CF247650054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>304094FF1CF247650054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304095021CF247650054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>304095001CF247650054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304095031CF247860054D4EF</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>304094FF1CF247650054D4EF</string>
+				<string>304095001CF247650054D4EF</string>
+				<string>304094FC1CF246F10054D4EF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>CoreData</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304095041CF247EC0054D4EF</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>CoreDataTableViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304095051CF247EC0054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>304095041CF247EC0054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3040950D1CF26F5E0054D4EF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>audio.wav</string>
+			<key>path</key>
+			<string>Soft Piano.wav</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3040950E1CF26F5E0054D4EF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>audio.wav</string>
+			<key>path</key>
+			<string>Obnoxious Synth.wav</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3040950F1CF26F5E0054D4EF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>audio.wav</string>
+			<key>path</key>
+			<string>Soft Guitar.wav</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304095151CF26F5E0054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3040950D1CF26F5E0054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304095161CF26F5E0054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3040950E1CF26F5E0054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304095171CF26F5E0054D4EF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3040950F1CF26F5E0054D4EF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>304095181CF26F650054D4EF</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>304095191CF26F780054D4EF</string>
+				<string>3040951A1CF26F810054D4EF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Media Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304095191CF26F780054D4EF</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>30B2CF901D03D19600A3D124</string>
+				<string>3042B8A71D04E7BB0044152F</string>
+				<string>302174C91CFA2FF700AD3134</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Icons</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3040951A1CF26F810054D4EF</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B307AD481D02AB4A004852CD</string>
+				<string>3040950D1CF26F5E0054D4EF</string>
+				<string>3040950E1CF26F5E0054D4EF</string>
+				<string>3040950F1CF26F5E0054D4EF</string>
+				<string>3050E2AE1D0502F00078FDAF</string>
+				<string>3050E2AF1D0502F00078FDAF</string>
+				<string>3050E2B01D0502F00078FDAF</string>
+				<string>3050E2B11D0502F00078FDAF</string>
+				<string>3050E2B21D0502F00078FDAF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Ringtones</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3042B8A61D03E73B0044152F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AlarmCharm-Bridging-Header.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3042B8A71D04E7BB0044152F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>image.jpeg</string>
+			<key>path</key>
+			<string>default_wakeup_photo.jpg</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3042B8A81D04E7BB0044152F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3042B8A71D04E7BB0044152F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3050E2AC1D04F2890078FDAF</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FetchViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3050E2AD1D04F2890078FDAF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3050E2AC1D04F2890078FDAF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3050E2AE1D0502F00078FDAF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>audio.wav</string>
+			<key>path</key>
+			<string>Shogun.wav</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3050E2AF1D0502F00078FDAF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>audio.wav</string>
+			<key>path</key>
+			<string>Jazz.wav</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3050E2B01D0502F00078FDAF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>audio.wav</string>
+			<key>path</key>
+			<string>Soft Rock.wav</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3050E2B11D0502F00078FDAF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>audio.wav</string>
+			<key>path</key>
+			<string>Peaceful Wakeup.wav</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3050E2B21D0502F00078FDAF</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>audio.wav</string>
+			<key>path</key>
+			<string>Epic Wakeup.wav</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3050E2B31D0502F00078FDAF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3050E2AE1D0502F00078FDAF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3050E2B41D0502F00078FDAF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3050E2AF1D0502F00078FDAF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3050E2B51D0502F00078FDAF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3050E2B01D0502F00078FDAF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3050E2B61D0502F00078FDAF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3050E2B11D0502F00078FDAF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3050E2B71D0502F00078FDAF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>3050E2B21D0502F00078FDAF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>305DC3121CF4D4A500CE10A7</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>CreateNewAlarmViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>305DC3131CF4D4A500CE10A7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>305DC3121CF4D4A500CE10A7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>305DC3141CF4D8B000CE10A7</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>WelcomeScreenViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>305DC3151CF4D8B000CE10A7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>305DC3141CF4D8B000CE10A7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>30B2CF8E1D03AED800A3D124</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Colors.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30B2CF8F1D03AED800A3D124</key>
+		<dict>
+			<key>fileRef</key>
+			<string>30B2CF8E1D03AED800A3D124</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>30B2CF901D03D19600A3D124</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>image.png</string>
+			<key>path</key>
+			<string>logo180.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30B2CF911D03D19600A3D124</key>
+		<dict>
+			<key>fileRef</key>
+			<string>30B2CF901D03D19600A3D124</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>30DF3F371CE6789800910E9F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>30DF3F421CE6789800910E9F</string>
+				<string>30DF3F411CE6789800910E9F</string>
+				<string>9378359B80A8AB21CC45182E</string>
+				<string>70E5DA3775DE172BC54648C7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F381CE6789800910E9F</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0730</string>
+				<key>LastUpgradeCheck</key>
+				<string>0730</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Laura Brouckman</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>30DF3F3F1CE6789800910E9F</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>7.3</string>
+						<key>DevelopmentTeam</key>
+						<string>GQPD698VHL</string>
+						<key>LastSwiftMigration</key>
+						<string>0800</string>
+						<key>SystemCapabilities</key>
+						<dict>
+							<key>com.apple.BackgroundModes</key>
+							<dict>
+								<key>enabled</key>
+								<string>1</string>
+							</dict>
+						</dict>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>30DF3F3B1CE6789800910E9F</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>30DF3F371CE6789800910E9F</string>
+			<key>productRefGroup</key>
+			<string>30DF3F411CE6789800910E9F</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>30DF3F3F1CE6789800910E9F</string>
+			</array>
+		</dict>
+		<key>30DF3F3B1CE6789800910E9F</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>30DF3F531CE6789800910E9F</string>
+				<string>30DF3F541CE6789800910E9F</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>30DF3F3C1CE6789800910E9F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>B3E0D7DC1CF282790071798A</string>
+				<string>3050E2AD1D04F2890078FDAF</string>
+				<string>30B2CF8F1D03AED800A3D124</string>
+				<string>30DF3F441CE6789800910E9F</string>
+				<string>305DC3131CF4D4A500CE10A7</string>
+				<string>302174C81CFA13A700AD3134</string>
+				<string>B3E0D7DE1CF2829C0071798A</string>
+				<string>304094F71CF230C70054D4EF</string>
+				<string>305DC3151CF4D8B000CE10A7</string>
+				<string>304094FE1CF246F10054D4EF</string>
+				<string>B3F03F321CFABE0F00B52980</string>
+				<string>304094F91CF236930054D4EF</string>
+				<string>B307AD431CFB729B004852CD</string>
+				<string>304095011CF247650054D4EF</string>
+				<string>B3B2D5231D3C8AD00081F4AA</string>
+				<string>30DF3F5A1CE68A3D00910E9F</string>
+				<string>B32777A91D6A8B5400CCA996</string>
+				<string>303B8F501CFD279B00995E77</string>
+				<string>304095021CF247650054D4EF</string>
+				<string>304094FB1CF244A40054D4EF</string>
+				<string>B307AD451CFEBD4B004852CD</string>
+				<string>B307AD411CFADA88004852CD</string>
+				<string>B32777AB1D6A8BEF00CCA996</string>
+				<string>B38CBFE41CEE71DF0099899D</string>
+				<string>304095051CF247EC0054D4EF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>30DF3F3D1CE6789800910E9F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>1FCDED68E0DB489C90883FCF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>30DF3F3E1CE6789800910E9F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>304095171CF26F5E0054D4EF</string>
+				<string>30DF3F511CE6789800910E9F</string>
+				<string>3050E2B61D0502F00078FDAF</string>
+				<string>3050E2B41D0502F00078FDAF</string>
+				<string>30DF3F4E1CE6789800910E9F</string>
+				<string>304095151CF26F5E0054D4EF</string>
+				<string>304095161CF26F5E0054D4EF</string>
+				<string>3042B8A81D04E7BB0044152F</string>
+				<string>3050E2B71D0502F00078FDAF</string>
+				<string>3050E2B51D0502F00078FDAF</string>
+				<string>3050E2B31D0502F00078FDAF</string>
+				<string>30DF3F491CE6789800910E9F</string>
+				<string>30B2CF911D03D19600A3D124</string>
+				<string>B307AD491D02AB4A004852CD</string>
+				<string>30FE0D0E1CF76F65004213A0</string>
+				<string>302174CA1CFA2FF700AD3134</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>30DF3F3F1CE6789800910E9F</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>30DF3F551CE6789800910E9F</string>
+			<key>buildPhases</key>
+			<array>
+				<string>D24891C47D413E26C176FB52</string>
+				<string>30DF3F3C1CE6789800910E9F</string>
+				<string>30DF3F3D1CE6789800910E9F</string>
+				<string>30DF3F3E1CE6789800910E9F</string>
+				<string>BFCFFE14282053A5AD8742FD</string>
+				<string>657A4CF7746A10FDDF97C244</string>
+				<string>B3AB67111D2E270F00733D49</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>AlarmCharm</string>
+			<key>productName</key>
+			<string>AlarmCharm</string>
+			<key>productReference</key>
+			<string>30DF3F401CE6789800910E9F</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>30DF3F401CE6789800910E9F</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>AlarmCharm.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>30DF3F411CE6789800910E9F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>30DF3F401CE6789800910E9F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F421CE6789800910E9F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>B32777AA1D6A8BEF00CCA996</string>
+				<string>B3B2D5221D3C8AD00081F4AA</string>
+				<string>3042B8A61D03E73B0044152F</string>
+				<string>303B8F4F1CFD279B00995E77</string>
+				<string>30B2CF8E1D03AED800A3D124</string>
+				<string>304095181CF26F650054D4EF</string>
+				<string>30DF3F581CE6870500910E9F</string>
+				<string>304095031CF247860054D4EF</string>
+				<string>305DC3141CF4D8B000CE10A7</string>
+				<string>3050E2AC1D04F2890078FDAF</string>
+				<string>B307AD441CFEBD4B004852CD</string>
+				<string>B3F03F311CFABE0F00B52980</string>
+				<string>305DC3121CF4D4A500CE10A7</string>
+				<string>304094FA1CF244A40054D4EF</string>
+				<string>304094F81CF236930054D4EF</string>
+				<string>304094F61CF230C70054D4EF</string>
+				<string>30DF3F471CE6789800910E9F</string>
+				<string>B32777A81D6A8B5400CCA996</string>
+				<string>B307AD421CFB729B004852CD</string>
+				<string>302174C71CFA13A700AD3134</string>
+				<string>30DF3F591CE68A3D00910E9F</string>
+				<string>304095041CF247EC0054D4EF</string>
+				<string>B38CBFE31CEE71DF0099899D</string>
+				<string>B3E0D7DB1CF282790071798A</string>
+				<string>B3E0D7DD1CF2829C0071798A</string>
+				<string>B307AD401CFADA88004852CD</string>
+				<string>30FE0D0D1CF76F65004213A0</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>AlarmCharm</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F431CE6789800910E9F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppDelegate.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F441CE6789800910E9F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>30DF3F431CE6789800910E9F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>30DF3F471CE6789800910E9F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>30DF3F481CE6789800910E9F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F481CE6789800910E9F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F491CE6789800910E9F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>30DF3F471CE6789800910E9F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>30DF3F4D1CE6789800910E9F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Assets.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F4E1CE6789800910E9F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>30DF3F4D1CE6789800910E9F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>30DF3F4F1CE6789800910E9F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>30DF3F501CE6789800910E9F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F501CE6789800910E9F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F511CE6789800910E9F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>30DF3F4F1CE6789800910E9F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>30DF3F521CE6789800910E9F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F531CE6789800910E9F</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>30DF3F541CE6789800910E9F</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.3</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>30DF3F551CE6789800910E9F</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>30DF3F561CE6789800910E9F</string>
+				<string>30DF3F571CE6789800910E9F</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>30DF3F561CE6789800910E9F</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>7102B7B16C6A0DBDF18D17E8</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>"${PODS_ROOT}/FirebaseAnalytics/Frameworks"</string>
+					<string>"${PODS_ROOT}/FirebaseDatabase/Frameworks"</string>
+					<string>"${PODS_ROOT}/FirebaseInstanceID/Frameworks"</string>
+					<string>"${PODS_ROOT}/FirebaseStorage/Frameworks"</string>
+					<string>"${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks"</string>
+					<string>"${PODS_ROOT}/GoogleNetworkingUtilities/Frameworks"</string>
+					<string>"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks"</string>
+					<string>"${PODS_ROOT}/GoogleUtilities/Frameworks"</string>
+					<string>"$(PROJECT_DIR)/Frameworks/</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>AlarmCharm/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>edu.stanford.alecarlisle.AlarmCharm</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PROVISIONING_PROFILE</key>
+				<string></string>
+				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
+				<string>AlarmCharm/AlarmCharm-Bridging-Header.h</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>30DF3F571CE6789800910E9F</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>6EFEE08CBEAC32D1476FFEBD</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>"${PODS_ROOT}/FirebaseAnalytics/Frameworks"</string>
+					<string>"${PODS_ROOT}/FirebaseDatabase/Frameworks"</string>
+					<string>"${PODS_ROOT}/FirebaseInstanceID/Frameworks"</string>
+					<string>"${PODS_ROOT}/FirebaseStorage/Frameworks"</string>
+					<string>"${PODS_ROOT}/GoogleInterchangeUtilities/Frameworks"</string>
+					<string>"${PODS_ROOT}/GoogleNetworkingUtilities/Frameworks"</string>
+					<string>"${PODS_ROOT}/GoogleSymbolUtilities/Frameworks"</string>
+					<string>"${PODS_ROOT}/GoogleUtilities/Frameworks"</string>
+					<string>"$(PROJECT_DIR)/Frameworks/</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>AlarmCharm/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>edu.stanford.alecarlisle.AlarmCharm</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PROVISIONING_PROFILE</key>
+				<string></string>
+				<key>SWIFT_OBJC_BRIDGING_HEADER</key>
+				<string>AlarmCharm/AlarmCharm-Bridging-Header.h</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>30DF3F581CE6870500910E9F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>30DF3F431CE6789800910E9F</string>
+				<string>30DF3F4D1CE6789800910E9F</string>
+				<string>30DF3F4F1CE6789800910E9F</string>
+				<string>30DF3F521CE6789800910E9F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F591CE68A3D00910E9F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SetAlarmController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30DF3F5A1CE68A3D00910E9F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>30DF3F591CE68A3D00910E9F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>30FE0D0D1CF76F65004213A0</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>GoogleService-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>30FE0D0E1CF76F65004213A0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>30FE0D0D1CF76F65004213A0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>657A4CF7746A10FDDF97C244</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>6EFEE08CBEAC32D1476FFEBD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-AlarmCharm.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>70E5DA3775DE172BC54648C7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8703F8BB2110B2E2060E73C9</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7102B7B16C6A0DBDF18D17E8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-AlarmCharm.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8703F8BB2110B2E2060E73C9</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_AlarmCharm.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>9378359B80A8AB21CC45182E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>7102B7B16C6A0DBDF18D17E8</string>
+				<string>6EFEE08CBEAC32D1476FFEBD</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B307AD401CFADA88004852CD</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AlarmGoingOffViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B307AD411CFADA88004852CD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B307AD401CFADA88004852CD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B307AD421CFB729B004852CD</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>DefaultMessageViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B307AD431CFB729B004852CD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B307AD421CFB729B004852CD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B307AD441CFEBD4B004852CD</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>UserDefaults.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B307AD451CFEBD4B004852CD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B307AD441CFEBD4B004852CD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B307AD481D02AB4A004852CD</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>audio.wav</string>
+			<key>path</key>
+			<string>John Cena.wav</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B307AD491D02AB4A004852CD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B307AD481D02AB4A004852CD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B32777A81D6A8B5400CCA996</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>ContentViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B32777A91D6A8B5400CCA996</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B32777A81D6A8B5400CCA996</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B32777AA1D6A8BEF00CCA996</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>RestartViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B32777AB1D6A8BEF00CCA996</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B32777AA1D6A8BEF00CCA996</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B38CBFE31CEE71DF0099899D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Constants.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B38CBFE41CEE71DF0099899D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B38CBFE31CEE71DF0099899D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B3AB67111D2E270F00733D49</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string></string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>B3B2D5221D3C8AD00081F4AA</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppTutorialViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B3B2D5231D3C8AD00081F4AA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B3B2D5221D3C8AD00081F4AA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B3E0D7DB1CF282790071798A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>SetDefaultSoundTableViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B3E0D7DC1CF282790071798A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B3E0D7DB1CF282790071798A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B3E0D7DD1CF2829C0071798A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>DefaultSoundTableViewCell.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B3E0D7DE1CF2829C0071798A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B3E0D7DD1CF2829C0071798A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B3F03F311CFABE0F00B52980</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>Notifications.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B3F03F321CFABE0F00B52980</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B3F03F311CFABE0F00B52980</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BFCFFE14282053A5AD8742FD</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>D24891C47D413E26C176FB52</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>30DF3F381CE6789800910E9F</string>
+</dict>
+</plist>

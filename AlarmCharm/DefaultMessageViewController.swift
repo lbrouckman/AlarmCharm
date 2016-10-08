@@ -13,7 +13,7 @@ import UIKit
  */
 class DefaultMessageViewController: UIViewController, UITextFieldDelegate {
     
-    private var remoteDB = Database()
+    fileprivate var remoteDB = Database()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +32,12 @@ class DefaultMessageViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         if let message = textField.text {
-            if let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String{
+            if let userId = Foundation.UserDefaults.standard.value(forKey: "PhoneNumber") as? String{
                 remoteDB.uploadUserMessageToDatabase(message, forUser: userId)
-                NSUserDefaults.standardUserDefaults().setValue(message, forKey: "User Default Message")
+                Foundation.UserDefaults.standard.setValue(message, forKey: "User Default Message")
             }
             
         }

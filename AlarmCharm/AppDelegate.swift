@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     //Ways for the AppDelegate to know the users response to a notification
-    private struct ActionConstants{
+    fileprivate struct ActionConstants{
         static let SNOOZE_IDENTIFIER = "snooze"
         static let WAKE_IDENTIFIER = "WAKE UP"
         static let SNOOZE_TIME = 300.0
@@ -28,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        var pageController = UIPageControl.appearance()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = Colors.offwhite
         pageController.currentPageIndicatorTintColor = Colors.cherry
         pageController.backgroundColor = Colors.cheesecakeCrust
@@ -42,43 +42,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if !UserDefaults.hasRegistered(){
             let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let welcomeScreen : WelcomeScreenViewController = mainStoryboard.instantiateViewControllerWithIdentifier("NumberUserNameController") as! WelcomeScreenViewController
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            let welcomeScreen : WelcomeScreenViewController = mainStoryboard.instantiateViewController(withIdentifier: "NumberUserNameController") as! WelcomeScreenViewController
+            self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.rootViewController = welcomeScreen
             self.window?.makeKeyAndVisible()
         }
         
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
         //Wake up about every 5 minutes to fetch alarms from DB
-        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(300)
+        UIApplication.shared.setMinimumBackgroundFetchInterval(300)
         FetchViewController.fetch {}
         return true
     }
     
   //  Function that is called every 5ish minutes to fetch alarms from DB
-    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 //            UserDefaults.ensureAlarmTime()
             FetchViewController.fetch {
-                completionHandler(.NewData)
+                completionHandler(.newData)
             }
     }
     
     //Handling a notification response
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?,
-                       forLocalNotification notification: UILocalNotification, withResponseInfo responseInfo: [NSObject : AnyObject],completionHandler: () -> Void){
+    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?,
+                       for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable: Any],completionHandler: @escaping () -> Void){
         if identifier != nil{
             switch identifier!{
             case ActionConstants.SNOOZE_IDENTIFIER:
                 //We want to get current notification and push back 1 minute
-                let date = notification.fireDate?.dateByAddingTimeInterval(ActionConstants.SNOOZE_TIME)
+                let date = notification.fireDate?.addingTimeInterval(ActionConstants.SNOOZE_TIME)
                 notification.fireDate = date
                 notification.alertBody = "Has been Snoozed"
-                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                UIApplication.shared.scheduleLocalNotification(notification)
                 
             case ActionConstants.WAKE_IDENTIFIER:
                 let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AlarmGoingOff") as! AlarmGoingOffViewController
-                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewController(withIdentifier: "AlarmGoingOff") as! AlarmGoingOffViewController
+                self.window = UIWindow(frame: UIScreen.main.bounds)
                 self.window?.rootViewController = goingOff
                 
                 self.window?.makeKeyAndVisible()
@@ -90,37 +90,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         if notification.category == ActionConstants.WAKE_IDENTIFIER{
             let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AlarmGoingOff") as! AlarmGoingOffViewController
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewController(withIdentifier: "AlarmGoingOff") as! AlarmGoingOffViewController
+            self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.rootViewController = goingOff
             self.window?.makeKeyAndVisible()
         }
     }
     
     
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
     
     
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
     
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
     
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
@@ -128,31 +128,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Core Data stack
     
-    lazy var applicationDocumentsDirectory: NSURL = {
+    lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "edu.stanford.lbrouckm.AlarmCharm" in the application's documents Application Support directory.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1]
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = NSBundle.mainBundle().URLForResource("Model", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        let modelURL = Bundle.main.url(forResource: "Model", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
+        let url = self.applicationDocumentsDirectory.appendingPathComponent("SingleViewCoreData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
+            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
+            dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
             
             dict[NSUnderlyingErrorKey] = error as NSError
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
@@ -168,7 +168,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var managedObjectContext: NSManagedObjectContext = {
         // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
         let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()

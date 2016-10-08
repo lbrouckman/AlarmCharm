@@ -26,7 +26,7 @@ class AlarmGoingOffViewController: UIViewController {
         }
     }
     
-    private var alarmSetBy : String? {
+    fileprivate var alarmSetBy : String? {
         didSet {
             alarmSetByLabel?.text = "Set by: " + alarmSetBy!
         }
@@ -48,21 +48,21 @@ class AlarmGoingOffViewController: UIViewController {
         
         UserDefaults.clearAlarmDate()
         UserDefaults.hasImage(false)
-        NSNotificationCenter.defaultCenter().addObserver(
+        NotificationCenter.default.addObserver(
             self,
             selector: #selector(AlarmGoingOffViewController.songEnded(_:)),
-            name: AVPlayerItemDidPlayToEndTimeNotification,
+            name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
             object: self.player!.currentItem
         )
     }
     
     //If the default alarm went off, give them a default picture
-    private func setPhotoToDefault() {
-        let imageURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("default_wakeup_photo", ofType: "jpg")!)
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [weak weakSelf = self] in
-            let contentsOfURL = NSData(contentsOfURL: imageURL)
-            dispatch_async(dispatch_get_main_queue()) {
-                if imageURL == NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("default_wakeup_photo", ofType: "jpg")!) {
+    fileprivate func setPhotoToDefault() {
+        let imageURL = URL(fileURLWithPath: Bundle.main.path(forResource: "default_wakeup_photo", ofType: "jpg")!)
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async { [weak weakSelf = self] in
+            let contentsOfURL = try? Data(contentsOf: imageURL)
+            DispatchQueue.main.async {
+                if imageURL == URL(fileURLWithPath: Bundle.main.path(forResource: "default_wakeup_photo", ofType: "jpg")!) {
                     if let imageData = contentsOfURL {
                         weakSelf?.imageView?.image = UIImage(data: imageData)
                         weakSelf?.makeRoomForImage()
@@ -73,25 +73,25 @@ class AlarmGoingOffViewController: UIViewController {
     }
     
     //Add image to view by getting it from the local file system
-    private func addImageToView(fileName: String) {
-        let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
+    fileprivate func addImageToView(_ fileName: String) {
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
         let imagePath = libraryPath + "/Images"
         let filePath = imagePath + "/" + fileName
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default
         do {
-            try fileManager.createDirectoryAtPath(imagePath, withIntermediateDirectories: false, attributes: nil)
+            try fileManager.createDirectory(atPath: imagePath, withIntermediateDirectories: false, attributes: nil)
         } catch let error1 as NSError {
             print("error" + error1.description)
         }
-        let myURL = NSURL(fileURLWithPath: filePath)
-        if let imageData = NSData(contentsOfURL: myURL) {
+        let myURL = URL(fileURLWithPath: filePath)
+        if let imageData = try? Data(contentsOf: myURL) {
             imageView?.image = UIImage(data: imageData)
             makeRoomForImage()
         }
     }
     
     //This code is to size the image correctly, it comes from Paul Hegerty's iTunes lecture on imagePicker
-    private func makeRoomForImage() {
+    fileprivate func makeRoomForImage() {
         if imageView.image != nil {
             let aspectRatio = imageView.image!.size.width / imageView.image!.size.height
             var extraHeight: CGFloat = 0
@@ -103,45 +103,45 @@ class AlarmGoingOffViewController: UIViewController {
                 }
             } else {
                 extraHeight = -imageView.frame.height
-                imageView.frame = CGRectZero
+                imageView.frame = CGRect.zero
             }
             preferredContentSize = CGSize(width: preferredContentSize.width, height: preferredContentSize.height + extraHeight)
         }
     }
     
     
-    func songEnded(notification: NSNotification){
-        player?.seekToTime(kCMTimeZero)
+    func songEnded(_ notification: Notification){
+        player?.seek(to: kCMTimeZero)
     }
     var player : AVPlayer?
     
-    private func prepareToPlayMusicFromFileSystem(fileName:String){
-        let playerItem = AVPlayerItem(URL : getURlFromFileSystem(fileName))
+    fileprivate func prepareToPlayMusicFromFileSystem(_ fileName:String){
+        let playerItem = AVPlayerItem(url : getURlFromFileSystem(fileName))
         player = AVPlayer(playerItem: playerItem)
     }
-    private func prepareToPlayMusicFromDefault(defaultSongName :String) {
-        let url = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(defaultSongName, ofType: "wav")!)
-        let playerItem = AVPlayerItem(URL : url)
+    fileprivate func prepareToPlayMusicFromDefault(_ defaultSongName :String) {
+        let url = URL(fileURLWithPath: Bundle.main.path(forResource: defaultSongName, ofType: "wav")!)
+        let playerItem = AVPlayerItem(url : url)
         player = AVPlayer(playerItem: playerItem)
         
     }
     
-    private func setWakeupMessage(){
+    fileprivate func setWakeupMessage(){
         self.wakeupMessage = UserDefaults.getWakeUpMessage()
     }
     
-    private func setAlarmSetBy() {
+    fileprivate func setAlarmSetBy() {
         self.alarmSetBy = UserDefaults.getFriendWhoSetAlarm()
     }
     
     @IBOutlet weak var playAlarmButton: UIButton!
     
-    @IBAction func playPushed(sender: UIButton) {
+    @IBAction func playPushed(_ sender: UIButton) {
         player?.play()
     }
     
     
-    @IBAction func PausePushed(sender: UIButton) {
+    @IBAction func PausePushed(_ sender: UIButton) {
         player?.pause()
     }
     
@@ -150,18 +150,18 @@ class AlarmGoingOffViewController: UIViewController {
     /*
      Get the sound from the local file system so that the user can play it again if they want to.
      */
-    private func getURlFromFileSystem(fileName: String) -> NSURL{
-        let libraryPath = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)[0]
+    fileprivate func getURlFromFileSystem(_ fileName: String) -> URL{
+        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
         let soundsPath = libraryPath + "/Sounds"
         let filePath = soundsPath + "/" + fileName
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default
         
         do {
-            try fileManager.createDirectoryAtPath(soundsPath, withIntermediateDirectories: false, attributes: nil)
+            try fileManager.createDirectory(atPath: soundsPath, withIntermediateDirectories: false, attributes: nil)
         } catch let error1 as NSError {
             print("error" + error1.description)
         }
-        let myURL = NSURL(fileURLWithPath: filePath)
+        let myURL = URL(fileURLWithPath: filePath)
         return myURL
     }
     

@@ -16,18 +16,18 @@ class SetAlarmController: UIViewController {
         
     @IBOutlet weak var datePicker: UIDatePicker!
     //We rely on previous view controller to set if we have a previous date.
-    var previousDate : NSDate?
-    private var remoteDB = Database()
+    var previousDate : Date?
+    fileprivate var remoteDB = Database()
     
     @IBAction func removeAlarm() {
         //Make alarm needs to be set false in database
-        let userId = NSUserDefaults.standardUserDefaults().valueForKey("PhoneNumber") as? String
+        let userId = Foundation.UserDefaults.standard.value(forKey: "PhoneNumber") as? String
         let x = userId! //It was crashing without this, maybe later we can change but im confuesd
         remoteDB.userNeedsAlarmToBeSet(forUser: x, toBeSet: false)
         remoteDB.userInProcessOfBeingSet(forUser: x, inProcess: false)
         
         
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        UIApplication.shared.cancelAllLocalNotifications()
         UserDefaults.clearAlarmDate()
     }
     
@@ -43,11 +43,11 @@ class SetAlarmController: UIViewController {
         }
     
     //If they set an alarm for earlier than the current time, then set that alarm to go off the following day
-    private func ensureDateIsTomorrow(date: NSDate) -> NSDate{
-        let currentDay = NSDate()
+    fileprivate func ensureDateIsTomorrow(_ date: Date) -> Date{
+        let currentDay = Date()
         var newDate = date
-        if currentDay.earlierDate(date) == date {
-            newDate = date.dateByAddingTimeInterval(60*60*24)
+        if (currentDay as NSDate).earlierDate(date) == date {
+            newDate = date.addingTimeInterval(60*60*24)
         }
         return newDate
         //if the set date is earlier than current date, return less date + a day.
@@ -62,6 +62,6 @@ class SetAlarmController: UIViewController {
             datePicker.date = previousDate!
         }
         
-        datePicker.datePickerMode = UIDatePickerMode.Time        
+        datePicker.datePickerMode = UIDatePickerMode.time        
     }
 }

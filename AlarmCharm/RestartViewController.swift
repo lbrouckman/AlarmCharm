@@ -33,18 +33,18 @@ class RestartViewController: UIViewController, UIPageViewControllerDataSource {
 //        title7, title8, title9, title10, title11)
         self.pageImages = NSArray(objects: "AlarmCharmLogo", "UnsetPreferences", "EarlyBirdAlarm", "UnsetPreferences", "ChooseJohnCena", "UnsetPreferences", "WakeUpMessage")
 //        "tut7", "tut8", "tut9", "tut10", "tut11")
-        self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("PageViewControllerNew") as! UIPageViewController
+        self.pageViewController = self.storyboard?.instantiateViewController(withIdentifier: "PageViewControllerNew") as! UIPageViewController
         self.pageViewController.dataSource = self
         
         let startVC = self.viewControllerAtIndex(0) as ContentViewController
         let viewControllers = NSArray(object: startVC) as! [UIViewController]
         self.view.backgroundColor = Colors.cheesecakeCrust
-        self.pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
-        self.pageViewController.view.frame = CGRectMake(0,30, self.view.frame.size.width, self.view.frame.size.height - 2 * self.restartButton.frame.height)
+        self.pageViewController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
+        self.pageViewController.view.frame = CGRect(x: 0,y: 30, width: self.view.frame.size.width, height: self.view.frame.size.height - 2 * self.restartButton.frame.height)
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
-        self.pageViewController.didMoveToParentViewController(self)
-        self.restartButton.setTitleColor(Colors.offwhite, forState: .Normal) 
+        self.pageViewController.didMove(toParentViewController: self)
+        self.restartButton.setTitleColor(Colors.offwhite, for: UIControlState()) 
         
         // Do any additional setup after loading the view.
     }
@@ -54,18 +54,18 @@ class RestartViewController: UIViewController, UIPageViewControllerDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func restartTutorial(sender: AnyObject) {
-        var startVC = self.viewControllerAtIndex(0) as ContentViewController
-        var viewControllers = NSArray(object: startVC) as! [UIViewController]
-        self.pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+    @IBAction func restartTutorial(_ sender: AnyObject) {
+        let startVC = self.viewControllerAtIndex(0) as ContentViewController
+        let viewControllers = NSArray(object: startVC) as! [UIViewController]
+        self.pageViewController.setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
     }
     
-    func viewControllerAtIndex(index: Int) -> ContentViewController{
+    func viewControllerAtIndex(_ index: Int) -> ContentViewController{
         if( (self.pageTitles.count == 0) || (index > self.pageTitles.count)){
             print("count is 0")
             return ContentViewController()
         }
-        let vc : ContentViewController =  self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewControllerNew") as! ContentViewController
+        let vc : ContentViewController =  self.storyboard?.instantiateViewController(withIdentifier: "ContentViewControllerNew") as! ContentViewController
         vc.imageFile = self.pageImages[index] as! String
         vc.titleText = self.pageTitles[index] as! String
         vc.pageIndex = index
@@ -74,36 +74,36 @@ class RestartViewController: UIViewController, UIPageViewControllerDataSource {
     }
     
     // Mark page view controller Datasource
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! ContentViewController
         var index = vc.pageIndex
         if (index == 0 || index == NSNotFound){
             return nil
         }
-        index = index - 1
-        return self.viewControllerAtIndex(index)
+        index = index! - 1
+        return self.viewControllerAtIndex(index!)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let vc = viewController as! ContentViewController
         var index = vc.pageIndex
         if ( index == NSNotFound){
             print("index not found")
             return nil
         }
-        index = index + 1
+        index = index! + 1
         if (index == self.pageTitles.count){
             print("index is same as count")
             return nil
         }
-        return self.viewControllerAtIndex(index)
+        return self.viewControllerAtIndex(index!)
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         print("asking for count")
         return self.pageTitles.count
     }
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         print("asking for index")
         return 0
     }
