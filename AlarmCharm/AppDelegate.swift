@@ -29,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        var pageController = UIPageControl.appearance()
+        pageController.pageIndicatorTintColor = Colors.offwhite
+        pageController.currentPageIndicatorTintColor = Colors.cherry
+        pageController.backgroundColor = Colors.cheesecakeCrust
+        
         //Note for actualy builds the below line should be deleted,
         // The only time it isn't commented out is so that if laura or I has the app downloaded and number is inputted, we don't have to go back to 
         // welcome screen controller. 

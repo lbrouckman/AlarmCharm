@@ -41,6 +41,8 @@
 		B307AD431CFB729B004852CD /* DefaultMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */; };
 		B307AD451CFEBD4B004852CD /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD441CFEBD4B004852CD /* UserDefaults.swift */; };
 		B307AD491D02AB4A004852CD /* John Cena.wav in Resources */ = {isa = PBXBuildFile; fileRef = B307AD481D02AB4A004852CD /* John Cena.wav */; };
+		B32777A91D6A8B5400CCA996 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32777A81D6A8B5400CCA996 /* ContentViewController.swift */; };
+		B32777AB1D6A8BEF00CCA996 /* RestartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32777AA1D6A8BEF00CCA996 /* RestartViewController.swift */; };
 		B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38CBFE31CEE71DF0099899D /* Constants.swift */; };
 		B3B2D5231D3C8AD00081F4AA /* AppTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B2D5221D3C8AD00081F4AA /* AppTutorialViewController.swift */; };
 		B3E0D7DC1CF282790071798A /* SetDefaultSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */; };
@@ -89,6 +91,8 @@
 		B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMessageViewController.swift; sourceTree = "<group>"; };
 		B307AD441CFEBD4B004852CD /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		B307AD481D02AB4A004852CD /* John Cena.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "John Cena.wav"; sourceTree = "<group>"; };
+		B32777A81D6A8B5400CCA996 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		B32777AA1D6A8BEF00CCA996 /* RestartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartViewController.swift; sourceTree = "<group>"; };
 		B38CBFE31CEE71DF0099899D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B3B2D5221D3C8AD00081F4AA /* AppTutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTutorialViewController.swift; sourceTree = "<group>"; };
 		B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDefaultSoundTableViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 		30DF3F421CE6789800910E9F /* AlarmCharm */ = {
 			isa = PBXGroup;
 			children = (
+				B32777AA1D6A8BEF00CCA996 /* RestartViewController.swift */,
 				B3B2D5221D3C8AD00081F4AA /* AppTutorialViewController.swift */,
 				3042B8A61D03E73B0044152F /* AlarmCharm-Bridging-Header.h */,
 				303B8F4F1CFD279B00995E77 /* DefaultsTableViewController.swift */,
@@ -191,6 +196,7 @@
 				304094F81CF236930054D4EF /* FriendTableViewCell.swift */,
 				304094F61CF230C70054D4EF /* FriendsListTableViewController.swift */,
 				30DF3F471CE6789800910E9F /* Main.storyboard */,
+				B32777A81D6A8B5400CCA996 /* ContentViewController.swift */,
 				B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */,
 				302174C71CFA13A700AD3134 /* Database.swift */,
 				30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */,
@@ -403,11 +409,13 @@
 				304095011CF247650054D4EF /* Alarm+CoreDataProperties.swift in Sources */,
 				B3B2D5231D3C8AD00081F4AA /* AppTutorialViewController.swift in Sources */,
 				30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */,
+				B32777A91D6A8B5400CCA996 /* ContentViewController.swift in Sources */,
 				303B8F501CFD279B00995E77 /* DefaultsTableViewController.swift in Sources */,
 				304095021CF247650054D4EF /* Alarm.swift in Sources */,
 				304094FB1CF244A40054D4EF /* SavedAlarmsTableViewController.swift in Sources */,
 				B307AD451CFEBD4B004852CD /* UserDefaults.swift in Sources */,
 				B307AD411CFADA88004852CD /* AlarmGoingOffViewController.swift in Sources */,
+				B32777AB1D6A8BEF00CCA996 /* RestartViewController.swift in Sources */,
 				B38CBFE41CEE71DF0099899D /* Constants.swift in Sources */,
 				304095051CF247EC0054D4EF /* CoreDataTableViewController.swift in Sources */,
 			);
