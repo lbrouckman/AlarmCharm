@@ -49,6 +49,10 @@ class WelcomeScreenViewController: UIViewController {
             }
             remoteDB.userInDatabase(phonenumber) { alreadyInDB in
                 if alreadyInDB {
+                    print(phonenumber)
+                    print(alreadyInDB)
+                    self.performSegue(withIdentifier: "StorePhoneNumber", sender: nil)
+
                     self.errorLabel.text = "Error: Phone number has already been used"
                 } else {
                     self.performSegue(withIdentifier: "StorePhoneNumber", sender: nil)
@@ -65,7 +69,6 @@ class WelcomeScreenViewController: UIViewController {
             Foundation.UserDefaults.standard.setValue(phoneNumber, forKey: "PhoneNumber")
             Foundation.UserDefaults.standard.setValue(username, forKey: "Username")
             remoteDB.addNewUserToDB(phoneNumber, username: username)
-            
         }
     }
 }

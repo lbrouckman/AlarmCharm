@@ -29,8 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-
         //Make sure that current alarm is set for later than the current time
         UserDefaults.ensureAlarmTime()
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
@@ -42,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
   //  Function that is called every 5ish minutes to fetch alarms from DB
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-            UserDefaults.ensureAlarmTime()
             FetchViewController.fetch {
                 completionHandler(.newData)
             }

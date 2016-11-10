@@ -15,7 +15,7 @@ class Alarm: NSManagedObject {
 
     //Add an alarm to CoreData so that a user can reuse previously saved alarms
     class func addAlarmToDB(_ name: String, alarmMessage: String?, audioFilename: String?, imageFilename: String?,inManagedObjectContext context: NSManagedObjectContext) -> Alarm? {
-        let request : NSFetchRequest = NSFetchRequest(entityName: "Alarm")
+        let request : NSFetchRequest<NSFetchRequestResult>  = NSFetchRequest(entityName: "Alarm")
         request.predicate = NSPredicate(format: "alarmName = %@", name)
         
         if let result = (try? context.fetch(request))?.first as? Alarm {

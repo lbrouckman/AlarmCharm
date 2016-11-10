@@ -43,12 +43,12 @@ class FriendsListTableViewController: UITableViewController {
     fileprivate func getContacts() {
         let store = CNContactStore()
         if CNContactStore.authorizationStatus(for: .contacts) == .notDetermined {
-            store.requestAccess(for: .contacts) { (authorized: Bool, error: NSError?) -> Void in
+            store.requestAccess(for: .contacts) { (authorized: Bool, error: Error?) -> Void in
                 if authorized {
                     self.retrieveContactsWithStore(store)
                     self.editContactsList()
                 }
-                } as! (Bool, Error?) -> Void as! (Bool, Error?) -> Void as! (Bool, Error?) -> Void as! (Bool, Error?) -> Void as! (Bool, Error?) -> Void as! (Bool, Error?) -> Void as! (Bool, Error?) -> Void
+                }
         } else if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
             self.retrieveContactsWithStore(store)
             editContactsList()
@@ -121,7 +121,6 @@ class FriendsListTableViewController: UITableViewController {
         ref.child("users").child(hashedID).observeSingleEvent(of: .value, with: { (snapshot) in
             print("back from database")
             if let snapshotDictionary = snapshot.value as? NSDictionary{
-                
                 if let x = snapshotDictionary["alarm_time"] as? Double , x != 0 {
                     if self.friendList.count == 0 {
                         self.friendList.append([Friend]())

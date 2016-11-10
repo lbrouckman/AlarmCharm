@@ -28,7 +28,7 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
     //Load the alarms from CoreData into the fetchedResultsController
     fileprivate func loadAlarms() {
         if let context = managedObjectContext {
-            let request = NSFetchRequest(entityName: "Alarm")
+            let request:  NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Alarm")
             request.sortDescriptors = [NSSortDescriptor(key: "alarmName", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))]
             fetchedResultsController = NSFetchedResultsController(
                 fetchRequest: request,

@@ -32,7 +32,7 @@ class Database {
      bridged in */
     fileprivate func sha256(_ data: Data) -> Data? {
         guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
-        CC_SHA256((data as NSData).bytes, CC_LONG(data.count), UnsafeMutablePointer(res.mutableBytes))
+        //CC_SHA256((data as NSData).bytes, CC_LONG(data.count), UnsafeMutablePointer(res.mutableBytes))
         return res as Data
     }
     
@@ -109,7 +109,7 @@ class Database {
                     let hasBeenSet = !needFriendToSet
                     if let wakeUpMessage = snapshotDictionary["wakeup_message"] as? String{
                         if let friendWhoSetAlarm = snapshotDictionary["friend_who_set_alarm"] as? String{
-                            completionHandler(user: userID, hasBeenSet: hasBeenSet, wakeUpMessage: wakeUpMessage, friendWhoSetAlarm: friendWhoSetAlarm)
+                            completionHandler(userID, hasBeenSet, wakeUpMessage, friendWhoSetAlarm)
                         }
                     }
                     
@@ -148,21 +148,23 @@ class Database {
     func downloadFileToLocal(forUser userID: String, fileType: String, completionHandler: @escaping (Bool) -> ()) {
         let hashedID = sha256(userID)!
         usersRef.child(hashedID).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let file = snapshot.value![fileType] as? String , file != ""{
-                let storage = FIRStorage.storage()
-                let gsReference = storage.reference(forURL: "gs://project-5208532535641760898.appspot.com")
-                let mediaRef = gsReference.child(file)
-                mediaRef.downloadURL { (URL, error) -> Void in
-                    if (error != nil) {
-                        print(error)
-                        completionHandler(false)
-                    } else {
-                        if fileType == "image_file" {
-                            self.saveToFileSystem(URL!, filetype: "/Images", fileName: "alarmImage.png")
-                        } else if fileType == "audio_file" {
-                            self.saveToFileSystem(URL!, filetype: "/Sounds", fileName: "alarmSound.caf")
+            if let snapshotDictionary = snapshot.value as? NSDictionary {
+                if let file = snapshotDictionary[fileType] as? String , file != ""{
+                    let storage = FIRStorage.storage()
+                    let gsReference = storage.reference(forURL: "gs://project-5208532535641760898.appspot.com")
+                    let mediaRef = gsReference.child(file)
+                    mediaRef.downloadURL { (URL, error) -> Void in
+                        if (error != nil) {
+                            print(error)
+                            completionHandler(false)
+                        } else {
+                            if fileType == "image_file" {
+                                self.saveToFileSystem(URL!, filetype: "/Images", fileName: "alarmImage.png")
+                            } else if fileType == "audio_file" {
+                                self.saveToFileSystem(URL!, filetype: "/Sounds", fileName: "alarmSound.caf")
+                            }
+                            completionHandler(true)
                         }
-                        completionHandler(true)
                     }
                 }
             }
