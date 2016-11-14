@@ -25,8 +25,7 @@ class SetAlarmController: UIViewController {
         let x = userId! //It was crashing without this, maybe later we can change but im confuesd
         remoteDB.userNeedsAlarmToBeSet(forUser: x, toBeSet: false)
         remoteDB.userInProcessOfBeingSet(forUser: x, inProcess: false)
-        
-        
+    
         UIApplication.shared.cancelAllLocalNotifications()
         UserDefaults.clearAlarmDate()
     }

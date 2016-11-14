@@ -46,7 +46,7 @@ class Notifications{
         let notification = UILocalNotification()
         notification.alertBody = friendName + " has set your alarm!"
         notification.category = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
-        notification.fireDate = Date(timeIntervalSinceNow: 60)
+        notification.fireDate = Date(timeIntervalSinceNow: 10)
         UIApplication.shared.scheduleLocalNotification(notification)
     }
     

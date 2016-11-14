@@ -10,9 +10,11 @@
 import UIKit
 import CoreData
 import Firebase
+//import FirebaseMessaging
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, FIRMessagingDelegate{
     
     var window: UIWindow?
     
@@ -27,24 +29,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         super.init()
         FIRApp.configure()
     }
+    func registerForRemoteNotifications(_ application: UIApplication){
+        if #available(iOS 10.0, *) {
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+            
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            FIRMessaging.messaging().remoteMessageDelegate = self
+        }
+        application.registerForRemoteNotifications()
+    }
+   
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //Make sure that current alarm is set for later than the current time
         UserDefaults.ensureAlarmTime()
         application.registerUserNotificationSettings(Notifications.getNotificationSettings())
+        registerForRemoteNotifications(application)
+        print(FIRInstanceID.instanceID().token(), "is the token")
         //Wake up about every 5 minutes to fetch alarms from DB
         UIApplication.shared.setMinimumBackgroundFetchInterval(300)
         FetchViewController.fetch {}
+        connectToFcm()
+        
+        print(FIRInstanceID.instanceID().token(), "is real token")
+        print(FIRInstanceID.instanceID().token()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!, "is the token string")
         return true
     }
-    
+    func tokenRefreshNotification(_ notification: Notification) {
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            print("BOOOM WE GOT REFRESHED")
+        }
+        
+        // Connect to FCM since connection may have failed when attempted before having a token.
+        connectToFcm()
+    }
+    func connectToFcm() {
+        FIRMessaging.messaging().connect { (error) in
+            if error != nil {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
+    }
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .prod)
+        print(FIRInstanceID.instanceID().token(), "is allowed token now")
+        connectToFcm()
+    }
   //  Function that is called every 5ish minutes to fetch alarms from DB
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
             FetchViewController.fetch {
                 completionHandler(.newData)
+                UserDefaults.addWakeUpMessage("CHECKED IN BACKGROUND")
             }
     }
-    
+   
     //Handling a notification response
     func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?,
                        for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable: Any],completionHandler: @escaping () -> Void){
@@ -82,7 +128,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    //PRINTING RECEIVED NOTIFICATION ON IOS 9 or LESS
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    // If you are receiving a notification message while your app is in the background,
+    // this callback will not be fired till the user taps on the notification launching the application.
+    // TODO: Handle data of notification
     
+    // Print message ID.
+    print("Message ID: \(userInfo["gcm.message_id"]!)")
+    
+    // Print full message.
+    print("%@", userInfo)
+    }
+   
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -90,6 +149,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        FIRMessaging.messaging().disconnect()
+        print("Disconnected from FCM.")
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
@@ -170,6 +231,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
+}
+//
+@available(iOS 10, *)
+extension AppDelegate {
+    // Receive displayed notifications for iOS 10 devices.
+    @objc(userNotificationCenter:willPresentNotification:withCompletionHandler:) func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        // Print message ID.
+        print("Message ID: \(userInfo["gcm.message_id"]!)")
+        print("Receiving it in ios 10 letsss gooo")
+        // Print full message.
+        print("%@", userInfo)
+    }
 }
 
+extension AppDelegate {
+    // Receive data message on iOS 10 devices.
+    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+        print("GOT IT DONE")
+        print("%@", remoteMessage.appData)
+    }
+}

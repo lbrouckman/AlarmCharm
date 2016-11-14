@@ -8,6 +8,7 @@
 // Both
 import UIKit
 import Contacts
+import FirebaseDatabase
 import Firebase
 
 /* This table holds all of the friends of the current user. The friends are the intersection of the persons contacts and the people in the remote database

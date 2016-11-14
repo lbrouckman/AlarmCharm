@@ -8,7 +8,9 @@
 // Both
 
 import Foundation
+import FirebaseDatabase
 import Firebase
+
 import AVFoundation
 
 /* Databse class has all the remote database functionality needed. We used Firebase and got help from the following sources:
@@ -29,21 +31,32 @@ class Database {
     }
     
     /* We got the 2 functions below from http://stackoverflow.com/questions/25388747/sha256-in-swift and they use the objective C code
-     bridged in */
-    fileprivate func sha256(_ data: Data) -> Data? {
-        guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
-        //CC_SHA256((data as NSData).bytes, CC_LONG(data.count), UnsafeMutablePointer(res.mutableBytes))
-        return res as Data
-    }
+//     bridged in */
+//    fileprivate func sha256(_ data: Data) -> Data? {
+//        guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
+//        CC_SHA256((data as NSData).bytes, CC_LONG(data.count), UnsafeMutablePointer(res.mutableBytes))
+//        return res as Data
+//    }
     
+    func sha257(data: String) -> Data {
+        var hash = Data(count: Int(CC_SHA256_DIGEST_LENGTH))
+        
+        if let newData: Data = data.data(using: .utf8) {
+            _ = hash.withUnsafeMutableBytes {mutableBytes in
+                newData.withUnsafeBytes {bytes in
+                    CC_SHA256(bytes, CC_LONG(newData.count), mutableBytes)
+                }
+            }
+        }
+        return hash
+    }
     func sha256(_ string: String) -> String? {
-        guard
-            let data = string.data(using: String.Encoding.utf8),
-            let shaData = sha256(data)
-            else { return nil }
+//            let data = string.data(using: String.Encoding.utf8),
+        var shaData = sha257(data: string)
         let rc = shaData.base64EncodedString(options: [])
         return rc
     }
+    
     
     func uploadFileToDatabase(_ fileURL: URL, forUser userID: String, fileType: String) {
         let filename = fileURL.lastPathComponent
@@ -210,9 +223,9 @@ class Database {
         try? songData?.write(to: soundPathUrl,  options: [.atomic])
     }
     
-    func addNewUserToDB(_ phoneNumber: String, username: String) {
+    func addNewUserToDB(_ phoneNumber: String, username: String, token: String) {
         let phoneNumberHash = sha256(phoneNumber)
-        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : "", "username": username] as [String : Any]
+        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : "", "username": username, "notification_token" : token] as [String : Any]
         let newUserRef = usersRef.child(phoneNumberHash!)
         newUserRef.setValue(newUser)
     }

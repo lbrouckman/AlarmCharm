@@ -27,6 +27,7 @@ class FetchViewController: UIViewController {
                     UserDefaults.addWakeUpMessage(wakeUpMessage)
                     UserDefaults.storeFriendWhoSetAlarm(friendWhoSetAlarm)
                     Notifications.addFriendSetAlarmNotification(friendWhoSetAlarm)
+                    UserDefaults.userAlarmBeenSet(true)
                     db.downloadFileToLocal(forUser: user, fileType: "image_file") { wasSuccessful in
                         UserDefaults.userAlarmBeenSet(true)
                         if wasSuccessful {

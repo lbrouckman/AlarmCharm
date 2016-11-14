@@ -10,6 +10,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseMessaging
 
 /* Home screen when the user first enters the app. It asks for their phone number (to be able to connect them with their friends from contacts) and a username
  Ensures that the user's phone number is not already in the database. Adds the user to the database under a hash of their phonenumber
@@ -66,9 +67,13 @@ class WelcomeScreenViewController: UIViewController {
             let phoneNumber = textBox.text!
             let username = usernameTextBox.text!
             
+            // Remember to update token if token changes...
             Foundation.UserDefaults.standard.setValue(phoneNumber, forKey: "PhoneNumber")
             Foundation.UserDefaults.standard.setValue(username, forKey: "Username")
-            remoteDB.addNewUserToDB(phoneNumber, username: username)
+            
+            let tokenString = FIRInstanceID.instanceID().token()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            print(tokenString, "is the token string")
+            remoteDB.addNewUserToDB(phoneNumber, username: username, token:tokenString!)
         }
     }
 }
