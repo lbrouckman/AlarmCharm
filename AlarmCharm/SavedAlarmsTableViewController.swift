@@ -86,6 +86,7 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
                     remoteDB.userNeedsAlarmToBeSet(forUser: friendSelected!, toBeSet: false)
                     if let username = Foundation.UserDefaults.standard.value(forKey: "Username") as? String{
                         remoteDB.changeWhoSetAlarm(username, forUser: friendSelected!)
+                        remoteDB.addNotification(forUser: friendSelected!, setBy: username)
                     }
                      if let audioFilename = selected.audioFilename {
                         if let audioURL = URL(string: audioFilename) {

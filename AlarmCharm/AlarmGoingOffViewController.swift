@@ -28,7 +28,7 @@ class AlarmGoingOffViewController: UIViewController {
     
     fileprivate var alarmSetBy : String? {
         didSet {
-            alarmSetByLabel?.text = "Set by: " + alarmSetBy!
+            alarmSetByLabel?.text = "Charmed by: " + alarmSetBy!
         }
     }
     
@@ -54,6 +54,7 @@ class AlarmGoingOffViewController: UIViewController {
             name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
             object: self.player?.currentItem
         )
+        self.player?.play()
     }
     
     //If the default alarm went off, give them a default picture

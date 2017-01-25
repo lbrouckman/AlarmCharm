@@ -7,6 +7,7 @@
 //
 // Alexander Carlisle
 
+import UserNotifications
 import UIKit
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
@@ -39,6 +40,8 @@ class Notifications{
         static let WAKE_TILE = "Wake up silly gooose"
         static let ALARM_GOES_OFF_IDENTIFER = "WAKE UP"
         static let FRIENDS_SETS_ALARM_CATEGORY = "friend has set alarm"
+        static let DOWNLOAD_CATEGORY = "download category"
+        static let DOWNLOAD_ACTION = "download action"
     }
     
     //Notification that tells user someone set their alarm
@@ -46,14 +49,44 @@ class Notifications{
         let notification = UILocalNotification()
         notification.alertBody = friendName + " has set your alarm!"
         notification.category = ActionConstants.FRIENDS_SETS_ALARM_CATEGORY
-        notification.fireDate = Date(timeIntervalSinceNow: 10)
+        notification.fireDate = Date(timeIntervalSinceNow: 1)
         UIApplication.shared.scheduleLocalNotification(notification)
     }
     
-    //Wake up notification
-    static func AddAlarmNotification(_ date: Date){
-        let notification = UILocalNotification()
+    @available(iOS 10.0, *)
+    static func removeAlarmNotification(){
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+    
+    
+    @available(iOS 10, *)
+    static func AddAlarmNotification10(at date: Date) {
+        print("ADDED ALARM VERSION 10")
+        let calendar = Calendar(identifier: .gregorian)
+        let components = calendar.dateComponents(in: .current, from: date)
+        let newComponents = DateComponents(calendar: calendar, timeZone: .current, month: components.month, day: components.day, hour: components.hour, minute: components.minute)
         
+        let trigger = UNCalendarNotificationTrigger(dateMatching: newComponents, repeats: false)
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Wake up!!"
+        content.body = ":) :) :)"
+        
+        content.sound = UNNotificationSound(named: UserDefaults.getDefaultSongName() + ".wav")
+        content.categoryIdentifier = ActionConstants.ALARM_GOES_OFF_IDENTIFER
+        let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().add(request) {(error) in
+            if let error = error {
+                print("Uh oh! We had an error: \(error)")
+            }
+        }
+    }
+    //Wake up notification
+    static func AddAlarmNotification(at date: Date){
+        let notification = UILocalNotification()
+        print("Version Nine add alarm notification")
         notification.alertBody = "Wake up!"
         //If a friend has set your alarm for you, change the notification message
         if UserDefaults.hasAlarmBeenSet() {
@@ -71,6 +104,18 @@ class Notifications{
         //CANCEL ALL PREVIOUS NOTIFICATIONS BECAUSE USER HAS CHANGED THEIR ALARM TIME
         UIApplication.shared.cancelAllLocalNotifications()
         UIApplication.shared.scheduleLocalNotification(notification)
+    }
+    @available(iOS 10, *)
+    static func setNoticationsSettings10(){
+        let friendSetAlarmCategory = UNNotificationCategory(identifier: ActionConstants.FRIENDS_SETS_ALARM_CATEGORY, actions: [], intentIdentifiers: [], options: [])
+        //Snooze
+        let snoozeAction = UNNotificationAction(identifier: ActionConstants.SNOOZE_IDENTIFIER, title: "Snooze", options: [])
+        let wakeAction = UNNotificationAction(identifier: ActionConstants.WAKE_IDENTIFIER, title: "See Alarm", options: [UNNotificationActionOptions.foreground])
+        let alarmGoesOffCategory = UNNotificationCategory(identifier: ActionConstants.ALARM_GOES_OFF_IDENTIFER, actions: [wakeAction, snoozeAction], intentIdentifiers: [], options: [])
+        
+        let downloadAction =  UNNotificationAction(identifier: ActionConstants.DOWNLOAD_ACTION, title: "Download alarm", options: [UNNotificationActionOptions.foreground])
+        let downloadAlarmCategory = UNNotificationCategory(identifier: ActionConstants.DOWNLOAD_CATEGORY, actions: [downloadAction], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([friendSetAlarmCategory, alarmGoesOffCategory, downloadAlarmCategory])
     }
     
     static func getNotificationSettings()-> UIUserNotificationSettings{
@@ -107,18 +152,47 @@ class Notifications{
     }
     
     
+    static func changeDefaultSound(_ songName : String){
+    
+    }
     /*
      Grabs the notificationm and changes the soundName to be the sound name of the user
      */
     static func setNotificationFromFileSystem(){
-        Notifications.changeDefaultSong("alarmSound.caf")
+        if #available(iOS 10, *){
+            print("using ios 10 to change notification")
+            Notifications.changeNotificationSound10("alarmSound.caf")
+        }
+        else{
+            Notifications.changeNotificationSound("alarmSound.caf")
+        }
     }
     
-    static func changeDefaultSong(_ songName : String){
+   
+    //Change Notification if ios 10 to be the download song that is stored at alarmSound... JUST RESCHEDULE A NEW ONE IS PROBABLY EASIEST .
+    @available(iOS 10.0, *)
+    static func changeSoundForNotificationHelperFS(_ requests : [UNNotificationRequest]) -> Void{
+        for request in requests{
+        print("looking through each request")
+        if request.content.categoryIdentifier == ActionConstants.ALARM_GOES_OFF_IDENTIFER{
+//            let newSound = UNNotificationSound(named: "alarmSound.caf")
+            let newSound = UNNotificationSound(named: "Soft Piano.wav")
+
+            request.content.setValue(newSound, forKey: "sound")
+        }
+        }
+    }
+    
+    @available(iOS 10, *)
+    static func changeNotificationSound10(_ songName: String){
+        UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: changeSoundForNotificationHelperFS)
+    }
+    
+    static func changeNotificationSound(_ songName : String){
+        //Bug when we set the default alarm
         let notifications = UIApplication.shared.scheduledLocalNotifications
         if notifications?.count > 0 {
             for notif in notifications!{
-                print("checking")
                 if notif.category! == ActionConstants.ALARM_GOES_OFF_IDENTIFER{
                     //Try cancel all notifications...
                     UIApplication.shared.cancelAllLocalNotifications()

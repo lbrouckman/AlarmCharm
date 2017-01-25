@@ -34,6 +34,7 @@
 		30DF3F511CE6789800910E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DF3F4F1CE6789800910E9F /* LaunchScreen.storyboard */; };
 		30DF3F5A1CE68A3D00910E9F /* SetAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DF3F591CE68A3D00910E9F /* SetAlarmController.swift */; };
 		447D95222AD3A038D7C176A5 /* Pods_AlarmCharm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3B4B7685778B5FE61908DF /* Pods_AlarmCharm.framework */; };
+		B305936A1E392F3F00BE7944 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30593691E392F3F00BE7944 /* ConfirmViewController.swift */; };
 		B307AD411CFADA88004852CD /* AlarmGoingOffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */; };
 		B307AD431CFB729B004852CD /* DefaultMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */; };
 		B307AD451CFEBD4B004852CD /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B307AD441CFEBD4B004852CD /* UserDefaults.swift */; };
@@ -84,6 +85,7 @@
 		6A3B4B7685778B5FE61908DF /* Pods_AlarmCharm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmCharm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		933ED86C306ABFCD0EC676A8 /* Pods-AlarmCharm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.debug.xcconfig"; sourceTree = "<group>"; };
 		A108AC43AD0707B2723AC65E /* Pods-AlarmCharm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmCharm.release.xcconfig"; path = "Pods/Target Support Files/Pods-AlarmCharm/Pods-AlarmCharm.release.xcconfig"; sourceTree = "<group>"; };
+		B30593691E392F3F00BE7944 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
 		B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmGoingOffViewController.swift; sourceTree = "<group>"; };
 		B307AD421CFB729B004852CD /* DefaultMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultMessageViewController.swift; sourceTree = "<group>"; };
 		B307AD441CFEBD4B004852CD /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				B3E0D7DB1CF282790071798A /* SetDefaultSoundTableViewController.swift */,
 				B3E0D7DD1CF2829C0071798A /* DefaultSoundTableViewCell.swift */,
 				B307AD401CFADA88004852CD /* AlarmGoingOffViewController.swift */,
+				B30593691E392F3F00BE7944 /* ConfirmViewController.swift */,
 			);
 			path = AlarmCharm;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				305DC3131CF4D4A500CE10A7 /* CreateNewAlarmViewController.swift in Sources */,
 				B3E0D7DE1CF2829C0071798A /* DefaultSoundTableViewCell.swift in Sources */,
 				B31BF32C1DD4FED900123087 /* FriendsListTableViewController.swift in Sources */,
+				B305936A1E392F3F00BE7944 /* ConfirmViewController.swift in Sources */,
 				305DC3151CF4D8B000CE10A7 /* WelcomeScreenViewController.swift in Sources */,
 				304094FE1CF246F10054D4EF /* Model.xcdatamodeld in Sources */,
 				B3F03F321CFABE0F00B52980 /* Notifications.swift in Sources */,

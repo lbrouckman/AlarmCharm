@@ -25,17 +25,29 @@ class SetAlarmController: UIViewController {
         let x = userId! //It was crashing without this, maybe later we can change but im confuesd
         remoteDB.userNeedsAlarmToBeSet(forUser: x, toBeSet: false)
         remoteDB.userInProcessOfBeingSet(forUser: x, inProcess: false)
-    
+        if #available(iOS 10, *){
+        Notifications.removeAlarmNotification()
+        }
         UIApplication.shared.cancelAllLocalNotifications()
         UserDefaults.clearAlarmDate()
+        UserDefaults.userAlarmBeenSet(false)
+        UserDefaults.storeFriendWhoSetAlarm("")
+        UserDefaults.setState(State.noAlarmSet)
     }
-    
-    
+
     @IBAction func setAlarm() {
         let date = ensureDateIsTomorrow(datePicker.date)
+        UserDefaults.setState(State.userHasSetAlarm)
         UserDefaults.setAlarmDate(date)
+        UserDefaults.userAlarmBeenSet(false)
+        UserDefaults.storeFriendWhoSetAlarm("")
         remoteDB.addAlarmTimeToDatabase(date)
-        Notifications.AddAlarmNotification(date)
+        if #available(iOS 10, *){
+            Notifications.AddAlarmNotification10(at: date)
+        }
+        else{
+        Notifications.AddAlarmNotification(at: date)
+        }
         }
     
     //If they set an alarm for earlier than the current time, then set that alarm to go off the following day
@@ -53,7 +65,6 @@ class SetAlarmController: UIViewController {
         super.viewDidLoad()
         datePicker.backgroundColor = Colors.offwhite
         datePicker.setValue(Colors.cherry, forKeyPath: "textColor")
-        
         if previousDate != nil{
             datePicker.date = previousDate!
         }

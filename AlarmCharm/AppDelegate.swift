@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         static let SNOOZE_IDENTIFIER = "snooze"
         static let WAKE_IDENTIFIER = "WAKE UP"
         static let SNOOZE_TIME = 300.0
+        static let DOWNLOAD_CATEGORY = "download category"
+        static let DOWNLOAD_ACTION = "download action"
     }
     
     override init(){
@@ -42,31 +44,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         application.registerForRemoteNotifications()
     }
-   
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //THIS gets called a billion times.
+        NotificationCenter.default.addObserver(self, selector: #selector(tokenRefreshNotification(_:)), name: NSNotification.Name.firInstanceIDTokenRefresh, object:nil )
+        
         //Make sure that current alarm is set for later than the current time
         UserDefaults.ensureAlarmTime()
-        application.registerUserNotificationSettings(Notifications.getNotificationSettings())
+        if #available(iOS 10, *){
+            Notifications.setNoticationsSettings10()
+        }
+        else{
+            application.registerUserNotificationSettings(Notifications.getNotificationSettings())
+        }
         registerForRemoteNotifications(application)
         print(FIRInstanceID.instanceID().token(), "is the token")
         //Wake up about every 5 minutes to fetch alarms from DB
-        UIApplication.shared.setMinimumBackgroundFetchInterval(300)
+        //        UIApplication.shared.setMinimumBackgroundFetchInterval(300)
         FetchViewController.fetch {}
         connectToFcm()
         
         print(FIRInstanceID.instanceID().token(), "is real token")
         print(FIRInstanceID.instanceID().token()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!, "is the token string")
+        
         return true
     }
     func tokenRefreshNotification(_ notification: Notification) {
+        
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
-            print("BOOOM WE GOT REFRESHED")
+            if let userNameStored = Foundation.UserDefaults.standard.value(forKey: "Username"){
+                //update token in database
+                let userID = Foundation.UserDefaults.standard.value(forKey: "PhoneNumber")
+                //            let tokenName =  refreshedToken.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                let remoteDB = Database()
+                remoteDB.updateTokenForUser( forUser: userID as! String, forToken:refreshedToken)
+            }
+            // ADD TO USER DEFAULTS
+            // IF THE USER HAS A NAME,IF NOT THEN WAIT.
+            connectToFcm()
         }
         
         // Connect to FCM since connection may have failed when attempted before having a token.
-        connectToFcm()
     }
     func connectToFcm() {
         FIRMessaging.messaging().connect { (error) in
@@ -79,21 +99,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .prod)
-        print(FIRInstanceID.instanceID().token(), "is allowed token now")
+        print(deviceToken, "is our device token")
         connectToFcm()
+        FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox)
+        print(FIRInstanceID.instanceID().token(), "is allowed token now")
     }
-  //  Function that is called every 5ish minutes to fetch alarms from DB
-    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-            FetchViewController.fetch {
-                completionHandler(.newData)
-                UserDefaults.addWakeUpMessage("CHECKED IN BACKGROUND")
-            }
-    }
-   
-    //Handling a notification response
+    
+    //Handling a notification response in ios < 10.
     func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?,
-                       for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable: Any],completionHandler: @escaping () -> Void){
+                     for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable: Any],completionHandler: @escaping () -> Void){
         if identifier != nil{
             switch identifier!{
             case ActionConstants.SNOOZE_IDENTIFIER:
@@ -102,14 +116,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 notification.fireDate = date
                 notification.alertBody = "Has been Snoozed"
                 UIApplication.shared.scheduleLocalNotification(notification)
-                
             case ActionConstants.WAKE_IDENTIFIER:
-                let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewController(withIdentifier: "AlarmGoingOff") as! AlarmGoingOffViewController
-                self.window = UIWindow(frame: UIScreen.main.bounds)
-                self.window?.rootViewController = goingOff
-                
-                self.window?.makeKeyAndVisible()
+                alarmGoesOff()
             default:
                 break
             }
@@ -119,6 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        print("IN did recieve notification for local")
         if notification.category == ActionConstants.WAKE_IDENTIFIER{
             let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewController(withIdentifier: "AlarmGoingOff") as! AlarmGoingOffViewController
@@ -128,20 +137,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    //PRINTING RECEIVED NOTIFICATION ON IOS 9 or LESS
+    //Remote Notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    // If you are receiving a notification message while your app is in the background,
-    // this callback will not be fired till the user taps on the notification launching the application.
-    // TODO: Handle data of notification
-    
-    // Print message ID.
-    print("Message ID: \(userInfo["gcm.message_id"]!)")
-    
-    // Print full message.
-    print("%@", userInfo)
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // Print message ID.
+        UserDefaults.setState(State.friendHasSetAlarm)
+        print("receiving in old ios, calling handler now")
+        completionHandler(UIBackgroundFetchResult.newData)
     }
-   
+    
+    func alarmGoesOff(){
+        let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let goingOff : AlarmGoingOffViewController = mainStoryboard.instantiateViewController(withIdentifier: "AlarmGoingOff") as! AlarmGoingOffViewController
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = goingOff
+        self.window?.makeKeyAndVisible()
+    }
+    func goToConfirmPage(_ friendWhoSetAlarm: String?){
+        let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let goingOff : ConfirmViewController = mainStoryboard.instantiateViewController(withIdentifier: "ConfirmViewControllerIdentifier") as! ConfirmViewController
+        goingOff.charmer = friendWhoSetAlarm
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = goingOff
+        self.window?.makeKeyAndVisible()
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -232,26 +253,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 }
-//
+//Receiving notifications in the foreground ios 10!
 @available(iOS 10, *)
 extension AppDelegate {
     // Receive displayed notifications for iOS 10 devices.
     @objc(userNotificationCenter:willPresentNotification:withCompletionHandler:) func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
-        // Print message ID.
-        print("Message ID: \(userInfo["gcm.message_id"]!)")
-        print("Receiving it in ios 10 letsss gooo")
-        // Print full message.
-        print("%@", userInfo)
+                                                                                                             willPresent notification: UNNotification,
+                                                                                                             withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        //Same logic on switching if it is local...
+        completionHandler( [.alert,.sound])
+        
     }
 }
 
+
+// To deal with handling actions the user made to our notifications...
+extension AppDelegate{
+    @objc(userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:) @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("download in withCompletionHandler", response)
+        // If we get a remote notification and they say download this is where it is handled (Once confirmed, do a download and grab info).
+        //Handles Alarm going off
+        //When we add the request the completion handler is easy to define, so maybe to that later.
+        if response.actionIdentifier ==  ActionConstants.SNOOZE_IDENTIFIER{
+            let snoozeDate = Date().addingTimeInterval(ActionConstants.SNOOZE_TIME)
+            Notifications.AddAlarmNotification10(at: snoozeDate as Date)
+        }
+        else if response.actionIdentifier ==  ActionConstants.WAKE_IDENTIFIER{
+            alarmGoesOff()
+        }
+        else if response.actionIdentifier == ActionConstants.DOWNLOAD_ACTION{
+            print("User said to download alarm")
+            //Go to a confirm page, this should happen whenever we get our alarm set by a friend
+            //Should be (blank set your alarm, consent to the charm?
+            FetchViewController.fetch {
+                goToConfirmPage(UserDefaults.getFriendWhoSetAlarm())
+                print("all fetched")
+            }
+        }
+    }
+}
 extension AppDelegate {
     // Receive data message on iOS 10 devices.
     func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
-        print("GOT IT DONE")
+        FetchViewController.fetch {}
+        print("receiving it in firebase handler")
         print("%@", remoteMessage.appData)
     }
 }

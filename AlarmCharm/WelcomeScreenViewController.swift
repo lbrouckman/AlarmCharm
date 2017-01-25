@@ -70,10 +70,12 @@ class WelcomeScreenViewController: UIViewController {
             // Remember to update token if token changes...
             Foundation.UserDefaults.standard.setValue(phoneNumber, forKey: "PhoneNumber")
             Foundation.UserDefaults.standard.setValue(username, forKey: "Username")
-            
-            let tokenString = FIRInstanceID.instanceID().token()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            print(tokenString, "is the token string")
-            remoteDB.addNewUserToDB(phoneNumber, username: username, token:tokenString!)
+            var tokenName = "notGivenYet"
+            if let tokenString = FIRInstanceID.instanceID().token()?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
+                tokenName = tokenString
+                print(tokenString, "is the token string")
+            }
+            remoteDB.addNewUserToDB(phoneNumber, username: username, token:tokenName)
         }
     }
 }

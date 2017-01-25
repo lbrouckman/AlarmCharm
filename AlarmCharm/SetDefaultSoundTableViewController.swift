@@ -85,7 +85,7 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
         UserDefaults.setDefaultSongName(songName)
         if UserDefaults.hasAlarmBeenSet() == false {
             //If no friend has set the user's alarm, we want to set the default song to be the notification noise
-                Notifications.changeDefaultSong(songName + ".wav")
+                Notifications.changeNotificationSound(songName + ".wav")
         }
     }
     

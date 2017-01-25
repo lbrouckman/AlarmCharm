@@ -315,6 +315,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
                 
                 if let username = Foundation.UserDefaults.standard.value(forKey: "Username") as? String{
                     remoteDB.changeWhoSetAlarm(username, forUser: userID!)
+                    remoteDB.addNotification(forUser: userID!, setBy : username)
                 }
                 
                 let message = alarmMessageLabel.text

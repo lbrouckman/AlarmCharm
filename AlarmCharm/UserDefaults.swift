@@ -13,7 +13,9 @@ import Foundation
  User defaults stores the current alarm time, whether or not a friend has set the alarm, the wake up message, who set the alarm, 
  whether or not an image has been set, the default sound.
  */
-
+enum State : Int {
+    case noAlarmSet = 0, userHasSetAlarm, friendHasSetAlarm, confirmedFriendHasSetAlarm
+}
 class UserDefaults{
     
     static var messageKey       =   "messageKey"
@@ -22,6 +24,8 @@ class UserDefaults{
     static var dateKey          =   "dateKey"
     static var setKey           =   "setKey"
     static var hasImageKey      =   "imageKey"
+    static var stateKey = "state"
+   
     
     static func addWakeUpMessage(_ wakeUpMessage: String){
         Foundation.UserDefaults.standard.setValue(wakeUpMessage, forKey: messageKey)
@@ -41,7 +45,15 @@ class UserDefaults{
         if hasBeenSet != nil { return hasBeenSet!}
         else { return false }
     }
-    
+    static func getState()->State{
+        if let currentState = Foundation.UserDefaults.standard.value(forKey: stateKey) as? Int{
+            return State(rawValue: currentState)!
+        }
+        return State.noAlarmSet
+    }
+    static func setState(_ newState: State){
+       Foundation.UserDefaults.standard.setValue(newState.rawValue, forKey: stateKey)
+    }
     static func getWakeUpMessage() -> String?{
         return Foundation.UserDefaults.standard.value(forKey: messageKey) as? String
     }
@@ -60,7 +72,7 @@ class UserDefaults{
     static func getAlarmDate() -> Date?{
        return Foundation.UserDefaults.standard.value(forKey: dateKey) as? Date
     }
-    //THis function ensures that if a user cancels out a notification, we set their has been set to false
+    //This function ensures that if a user cancels out a notification, we set their has been set to false
     static func ensureAlarmTime(){
         let currentDay = Date()
         let userDate = UserDefaults.getAlarmDate()
@@ -76,7 +88,6 @@ class UserDefaults{
         }
     }
     static func clearAlarmDate(){
-        
         Foundation.UserDefaults.standard.removeObject(forKey: dateKey)
         Foundation.UserDefaults.standard.setValue(false, forKey: setKey)
     }

@@ -105,12 +105,15 @@ class Database {
         currentUserRef.updateChildValues(newMessage)
     }
     
+    //If I set a friend's alarm, then change the friend's bool
     func userNeedsAlarmToBeSet(forUser userID: String , toBeSet: Bool){
         let uRef = FIRDatabase.database().reference().child("users")
         let hashedID = sha256(userID)!
         let currentUserRef = uRef.child(hashedID)
         let needsSetting = ["need_friend_to_set" : toBeSet]
+
         currentUserRef.updateChildValues(needsSetting)
+      
     }
     
     //Checks to see if a friend has set the alarm and if so, it gets the alarm and calls the completion handler that is in charge of storing it
@@ -119,6 +122,7 @@ class Database {
         usersRef.child(hashedID).observeSingleEvent(of: .value, with: { (snapshot) in
             if let snapshotDictionary = snapshot.value as? NSDictionary{
                 if let needFriendToSet = snapshotDictionary["need_friend_to_set"] as? Bool , needFriendToSet == false{
+                    UserDefaults.setState(State.friendHasSetAlarm)
                     let hasBeenSet = !needFriendToSet
                     if let wakeUpMessage = snapshotDictionary["wakeup_message"] as? String{
                         if let friendWhoSetAlarm = snapshotDictionary["friend_who_set_alarm"] as? String{
@@ -134,6 +138,13 @@ class Database {
         }
     }
     
+    func updateTokenForUser(forUser userID: String, forToken tokenName: String){
+        let uRef = FIRDatabase.database().reference().child("users")
+        let hashedID = sha256(userID)!
+        let currentUserRef = uRef.child(hashedID)
+        let process = ["notification_token" : tokenName]
+        currentUserRef.updateChildValues(process)
+    }
     func addAlarmTimeToDatabase(_ date: Date){
         if let userId = Foundation.UserDefaults.standard.value(forKey: "PhoneNumber") as? String {
             let hashedID = sha256(userId)!
@@ -143,9 +154,11 @@ class Database {
             let currUserRef = usersRef.child(hashedID)
             let newTime = ["alarm_time": timestamp]
             let needsToBeSet = ["need_friend_to_set" : true]
-            
+            let myState = ["state" : UserDefaults.getState().rawValue]
             currUserRef.updateChildValues(needsToBeSet)
             currUserRef.updateChildValues(newTime)
+            currUserRef.updateChildValues(myState)
+
         }
     }
     
@@ -174,6 +187,7 @@ class Database {
                             if fileType == "image_file" {
                                 self.saveToFileSystem(URL!, filetype: "/Images", fileName: "alarmImage.png")
                             } else if fileType == "audio_file" {
+                                print(URL!, "Trying to be saved with file name", "alarmSound.caf")
                                 self.saveToFileSystem(URL!, filetype: "/Sounds", fileName: "alarmSound.caf")
                             }
                             completionHandler(true)
@@ -196,43 +210,47 @@ class Database {
         let path = libraryPath + filetype
         let filePath = path + "/" + fileName
         do {
+            //Try to remove old file if it was there
+            do {
+                try fileManager.removeItem(atPath: filePath)
+            } catch let error as NSError {
+                print(error.debugDescription, "trying to remove at alarm sounds")
+            }
             try fileManager.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
         } catch let error1 as NSError {
-            print("error" + error1.description)
+            print("trying to overwrite sounnds" + error1.description)
         }
         let pathURL = Foundation.URL(fileURLWithPath: filePath)
         try? data?.write(to: pathURL,  options: [.atomic])
-    }
-    
-    /*
-     Given the url, it turns url into NSDATA and then saves the file in the libray/sounds folder.
-     */
-    fileprivate func saveToFileSystem(_ URL : Foundation.URL, fileName: String){
-        let songData =  try? Data(contentsOf: URL)
-        let fileManager = FileManager.default
-        
-        let libraryPath = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
-        let soundsPath = libraryPath + "/Sounds"
-        let filePath = soundsPath + "/" + fileName
-        do {
-            try fileManager.createDirectory(atPath: soundsPath, withIntermediateDirectories: false, attributes: nil)
-        } catch let error1 as NSError {
-            print("error" + error1.description)
-        }
-        let soundPathUrl = Foundation.URL(fileURLWithPath: filePath)
-        try? songData?.write(to: soundPathUrl,  options: [.atomic])
+        print("hopefully wrote it out")
     }
     
     func addNewUserToDB(_ phoneNumber: String, username: String, token: String) {
         let phoneNumberHash = sha256(phoneNumber)
-        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : "", "username": username, "notification_token" : token] as [String : Any]
+        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : "", "username": username, "notification_token" : token, "state" : 0] as [String : Any]
         let newUserRef = usersRef.child(phoneNumberHash!)
         newUserRef.setValue(newUser)
     }
     
+    func addNotification(forUser phoneNumber : String, setBy charmerName : String){
+        let phoneNumberHash = sha256(phoneNumber)
+        // get token of user whose alarm is getting set, and add them to notifications queue.
+        FIRDatabase.database().reference().child("users").child(phoneNumberHash!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let snapshotDictionary = snapshot.value as? NSDictionary{
+                if let userToken = snapshotDictionary["notification_token"] as? String{
+                    let newNotification = [ "notificationId" : userToken,"setBy" : charmerName ]
+                    let timeStamp = NSDate().timeIntervalSince1970.description
+                    let notificationKey = timeStamp + charmerName
+                    var newChildRef = FIRDatabase.database().reference().child("notificationQueue").childByAutoId()
+                    newChildRef.setValue(newNotification)
+                }
+            }
+            
+        })
+    }
+    
     func userInDatabase(_ phoneNumber: String, completionHandler: @escaping (Bool) -> ()) {
         let phoneNumberHash = sha256(phoneNumber)
-        
         usersRef.child(phoneNumberHash!).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.value is NSNull {
                 completionHandler(false)
