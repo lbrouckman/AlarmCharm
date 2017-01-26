@@ -146,10 +146,10 @@ class Notifications{
     static func setNotificationFromFileSystem(){
         if #available(iOS 10, *){
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-            Notifications.AddAlarmNotification10(at: UserDefaults.getAlarmDate()!, title: "Wake up from: " + UserDefaults.getFriendWhoSetAlarm()!, body: UserDefaults.getWakeUpMessage()!, songName: "alarmSound.caf")
+            Notifications.AddAlarmNotification10(at: UserDefaults.getAlarmDate()!, title: "Wake up from: " + UserDefaults.getFriendWhoSetAlarm(), body: UserDefaults.getWakeUpMessage(), songName: "alarmSound.caf")
         }
         else{
-            Notifications.AddAlarmNotification9(at: UserDefaults.getAlarmDate()!, title: "Wake up from: " + UserDefaults.getFriendWhoSetAlarm()!, body: UserDefaults.getWakeUpMessage()!, songName: UserDefaults.getDefaultSongName() + ".wav")
+            Notifications.AddAlarmNotification9(at: UserDefaults.getAlarmDate()!, title: "Wake up from: " + UserDefaults.getFriendWhoSetAlarm(), body: UserDefaults.getWakeUpMessage(), songName: UserDefaults.getDefaultSongName() + ".wav")
         }
     }
     

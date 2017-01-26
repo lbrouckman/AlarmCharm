@@ -250,8 +250,9 @@ extension AppDelegate{
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if response.actionIdentifier ==  ActionConstants.SNOOZE_IDENTIFIER{
             let snoozeDate = Date().addingTimeInterval(ActionConstants.SNOOZE_TIME)
+            UserDefaults.setAlarmDate(snoozeDate)
             if UserDefaults.getState() == State.confirmedFriendHasSetAlarm{
-                Notifications.AddAlarmNotification10(at: snoozeDate, title: "Wake up from: " + UserDefaults.getFriendWhoSetAlarm()!, body: UserDefaults.getWakeUpMessage()!, songName: "alarmSound.caf")
+                Notifications.AddAlarmNotification10(at: snoozeDate, title: "Wake up from: " + UserDefaults.getFriendWhoSetAlarm(), body: UserDefaults.getWakeUpMessage(), songName: "alarmSound.caf")
             }else{
                 Notifications.AddAlarmNotification10(at: snoozeDate, title: "Wake up", body: "You charmed yourself", songName: UserDefaults.getDefaultSongName() + ".wav")
             }

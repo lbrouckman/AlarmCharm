@@ -31,8 +31,11 @@ class UserDefaults{
     static func storeFriendWhoSetAlarm(_ friend: String){
         Foundation.UserDefaults.standard.setValue(friend, forKey: friendKey)
     }
-    static func getFriendWhoSetAlarm() -> String?{
-        return Foundation.UserDefaults.standard.value(forKey: friendKey) as? String
+    static func getFriendWhoSetAlarm() -> String{
+        if let friendName = Foundation.UserDefaults.standard.value(forKey: friendKey) as? String{
+            return friendName
+        }
+        return ""
     }
     
     static func userAlarmBeenSet(_ hasBeenSet: Bool){
@@ -52,8 +55,11 @@ class UserDefaults{
     static func setState(_ newState: State){
        Foundation.UserDefaults.standard.setValue(newState.rawValue, forKey: stateKey)
     }
-    static func getWakeUpMessage() -> String?{
-        return Foundation.UserDefaults.standard.value(forKey: messageKey) as? String
+    static func getWakeUpMessage() -> String{
+        if let message = Foundation.UserDefaults.standard.value(forKey: messageKey) as? String{
+            return message
+        }
+        return ""
     }
     static func setDefaultSongName(_ songName: String){
         Foundation.UserDefaults.standard.setValue(songName, forKey: defaultSongKey)

@@ -12,7 +12,7 @@ import FirebaseDatabase
 import Firebase
 
 /* This table holds all of the friends of the current user. The friends are the intersection of the persons contacts and the people in the remote database
- The friends are divided into 3 sections - if they need their alarm to be set, if someone else is already setting it, or if their alarm is done being set.
+ The friends are divided into 2 sections - if they need their alarm to be set or if their alarm is done being set.
  */
 
 class FriendsListTableViewController: UITableViewController {
@@ -171,7 +171,6 @@ class FriendsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendList[section].count
     }
-    
     //Populates a FriendCell with the correct information
     fileprivate func fillCell(_ cell: UITableViewCell, forIndexPath indexPath: IndexPath) -> UITableViewCell {
         let friend = friendList[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
@@ -187,7 +186,6 @@ class FriendsListTableViewController: UITableViewController {
         }
         return cell
     }
-    
     //Switch on the section the cell is in to dequeue the correct type of cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()

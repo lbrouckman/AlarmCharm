@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "228"
             endingLineNumber = "228"
-            landmarkName = "addNewUserToDB(_:username:token:)"
+            landmarkName = "addNotification(forUser:setBy:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -303,8 +303,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
             endingLineNumber = "119"
-            landmarkName = "Database"
-            landmarkType = "3">
+            landmarkName = "hasUserAlarmBeenSet(forUser:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -319,8 +319,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
             endingLineNumber = "118"
-            landmarkName = "Database"
-            landmarkType = "3">
+            landmarkName = "hasUserAlarmBeenSet(forUser:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -474,7 +474,7 @@
                   moduleName = "AlarmCharm"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alecarlisle/Developer/AlarmCharm/AlarmCharm/FetchViewController.swift"
-                  timestampString = "507079896.856508"
+                  timestampString = "507098370.540847"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -489,7 +489,7 @@
                   moduleName = "AlarmCharm"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alecarlisle/Developer/AlarmCharm/AlarmCharm/FetchViewController.swift"
-                  timestampString = "507079896.858261"
+                  timestampString = "507098370.542916"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "29"

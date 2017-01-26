@@ -15,10 +15,11 @@ class DefaultsTableViewController: UITableViewController {
     @IBOutlet weak var messageCell: UITableViewCell!
     @IBOutlet weak var soundCell: UITableViewCell!
     
+    @IBOutlet weak var confirmCell: UITableViewCell!
     //Set the tab bar and navigation controller styles to match the color scheme (since this is one of the 2 root navigation controllers)
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.barTintColor = Colors.offyellow
+                self.navigationController?.navigationBar.barTintColor = Colors.offyellow
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Colors.plum]
         self.navigationController?.navigationBar.tintColor = Colors.plum
         tableView.backgroundColor = Colors.offwhite
@@ -28,6 +29,15 @@ class DefaultsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("state is ", UserDefaults.getState())
+        confirmCell.backgroundColor = Colors.cherry
+        confirmCell.textLabel?.textColor = Colors.offwhite
+        if UserDefaults.getState() != State.friendHasSetAlarm{
+            confirmCell.isHidden = true
+        }else{
+            confirmCell.textLabel?.text = UserDefaults.getFriendWhoSetAlarm() + "wants to charm your alarm..."
+            confirmCell.isHidden = false
+        }
         setLabels()
     }
     
@@ -40,10 +50,10 @@ class DefaultsTableViewController: UITableViewController {
             formatter.timeStyle = .short
             alarmTime = formatter.string(from: date! as Date)
             if UserDefaults.hasAlarmBeenSet(){
-                if let friendName = UserDefaults.getFriendWhoSetAlarm(){
-                    let suffix = " set by " + friendName
-                    alarmTime = alarmTime! + suffix
-                }
+                let friendName = UserDefaults.getFriendWhoSetAlarm()
+                let suffix = " set by " + friendName
+                alarmTime = alarmTime! + suffix
+                
             }
         }
         else {
@@ -51,7 +61,6 @@ class DefaultsTableViewController: UITableViewController {
         }
         
         timeCell.textLabel?.text = alarmTime!
-        
         if let defaultMessage = Foundation.UserDefaults.standard.value(forKey: "User Default Message") as? String {
             messageCell.textLabel?.text = "'" + defaultMessage + "'"
         } else {

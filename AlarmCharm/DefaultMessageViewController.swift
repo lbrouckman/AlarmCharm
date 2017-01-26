@@ -18,8 +18,6 @@ class DefaultMessageViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         messageTextField.delegate = self
-        
-        
         // Do any additional setup after loading the view.
     }
     
@@ -29,8 +27,6 @@ class DefaultMessageViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBOutlet weak var messageTextField: UITextField!
-    
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
