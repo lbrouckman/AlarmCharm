@@ -30,14 +30,6 @@ class Database {
         currentUserRef.updateChildValues(newSetter)
     }
     
-    /* We got the 2 functions below from http://stackoverflow.com/questions/25388747/sha256-in-swift and they use the objective C code
-//     bridged in */
-//    fileprivate func sha256(_ data: Data) -> Data? {
-//        guard let res = NSMutableData(length: Int(CC_SHA256_DIGEST_LENGTH)) else { return nil }
-//        CC_SHA256((data as NSData).bytes, CC_LONG(data.count), UnsafeMutablePointer(res.mutableBytes))
-//        return res as Data
-//    }
-    
     func sha257(data: String) -> Data {
         var hash = Data(count: Int(CC_SHA256_DIGEST_LENGTH))
         
@@ -50,14 +42,13 @@ class Database {
         }
         return hash
     }
+    
     func sha256(_ string: String) -> String? {
-//            let data = string.data(using: String.Encoding.utf8),
         var shaData = sha257(data: string)
         let rc = shaData.base64EncodedString(options: [])
         return rc
     }
-    
-    
+
     func uploadFileToDatabase(_ fileURL: URL, forUser userID: String, fileType: String) {
         let filename = fileURL.lastPathComponent
         let storage = FIRStorage.storage()
@@ -105,15 +96,12 @@ class Database {
         currentUserRef.updateChildValues(newMessage)
     }
     
-    //If I set a friend's alarm, then change the friend's bool
     func userNeedsAlarmToBeSet(forUser userID: String , toBeSet: Bool){
         let uRef = FIRDatabase.database().reference().child("users")
         let hashedID = sha256(userID)!
         let currentUserRef = uRef.child(hashedID)
         let needsSetting = ["need_friend_to_set" : toBeSet]
-
         currentUserRef.updateChildValues(needsSetting)
-      
     }
     
     //Checks to see if a friend has set the alarm and if so, it gets the alarm and calls the completion handler that is in charge of storing it
@@ -158,17 +146,9 @@ class Database {
             currUserRef.updateChildValues(needsToBeSet)
             currUserRef.updateChildValues(newTime)
             currUserRef.updateChildValues(myState)
-
         }
     }
     
-    func userInProcessOfBeingSet(forUser userID: String, inProcess : Bool){
-        let uRef = FIRDatabase.database().reference().child("users")
-        let hashedID = sha256(userID)!
-        let currentUserRef = uRef.child(hashedID)
-        let process = ["in_process_of_being_set" : inProcess]
-        currentUserRef.updateChildValues(process)
-    }
     
     //Downloads an image or audio file to the local file system, completion handler since this will be handled ansynchronously
     func downloadFileToLocal(forUser userID: String, fileType: String, completionHandler: @escaping (Bool) -> ()) {

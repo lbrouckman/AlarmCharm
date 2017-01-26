@@ -83,7 +83,8 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
                 }
                 let selectedAlarm = fetchedResultsController?.fetchedObjects?[(indexPath as NSIndexPath).row] as? Alarm
                 if let selected = selectedAlarm {
-                    remoteDB.userNeedsAlarmToBeSet(forUser: friendSelected!, toBeSet: false)
+                    //Let's allow other people to keep charming until accepted.
+//                    remoteDB.userNeedsAlarmToBeSet(forUser: friendSelected!, toBeSet: false)
                     if let username = Foundation.UserDefaults.standard.value(forKey: "Username") as? String{
                         remoteDB.changeWhoSetAlarm(username, forUser: friendSelected!)
                         remoteDB.addNotification(forUser: friendSelected!, setBy: username)
@@ -112,14 +113,14 @@ class SavedAlarmsTableViewController: CoreDataTableViewController {
     override func willMove(toParentViewController parent: UIViewController?) {
         super.willMove(toParentViewController: parent)
         if parent == nil {
-            remoteDB.userInProcessOfBeingSet(forUser: friendSelected!, inProcess: false)
+//            remoteDB.userInProcessOfBeingSet(forUser: friendSelected!, inProcess: false)
         }
     }
     
     //If the view disappears for some other reason (other than back button) also toggle the inProcess for the friend
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        remoteDB.userInProcessOfBeingSet(forUser: friendSelected!, inProcess: false)
+//        remoteDB.userInProcessOfBeingSet(forUser: friendSelected!, inProcess: false)
     }
 
     //send the next VC the managedObjectContext and what friend they're setting the alarm of

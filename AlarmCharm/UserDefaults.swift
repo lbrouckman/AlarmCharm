@@ -17,16 +17,14 @@ enum State : Int {
     case noAlarmSet = 0, userHasSetAlarm, friendHasSetAlarm, confirmedFriendHasSetAlarm
 }
 class UserDefaults{
-    
     static var messageKey       =   "messageKey"
     static var friendKey        =   "friendKey"
     static var defaultSongKey   =   "defaultKey"
     static var dateKey          =   "dateKey"
     static var setKey           =   "setKey"
     static var hasImageKey      =   "imageKey"
-    static var stateKey = "state"
+    static var stateKey =           "state"
    
-    
     static func addWakeUpMessage(_ wakeUpMessage: String){
         Foundation.UserDefaults.standard.setValue(wakeUpMessage, forKey: messageKey)
     }

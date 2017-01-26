@@ -15,9 +15,9 @@ class ConfirmViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = Colors.cherry
-        confirmButton.setTitleColor( Colors.offwhite, for: UIControlState.normal)
+        confirmButton.setTitleColor(Colors.offwhite, for: UIControlState.normal)
          confirmButton.alpha = 0.5
-         goHomeButton.setTitleColor( Colors.offwhite, for: UIControlState.normal)
+         goHomeButton.setTitleColor(Colors.offwhite, for: UIControlState.normal)
         if charmer != nil{
             let buttonTitle = "Accept " + charmer! + " alarm?"
             confirmButton.setTitle(buttonTitle, for: UIControlState.normal)
@@ -37,7 +37,9 @@ class ConfirmViewController: UIViewController {
     @IBAction func confirmCharm(_ sender: Any) {
         confirmButton.isEnabled = false
         confirmButton.alpha = 1.0
-        confirmButton.setTitle("Accepted", for: UIControlState.disabled)
+        confirmButton.setTitle("Accepted ✓", for: UIControlState.disabled)
+        //Fetch first??
+        Notifications.setNotificationFromFileSystem()
         UserDefaults.setState(State.confirmedFriendHasSetAlarm)
     }
     /*

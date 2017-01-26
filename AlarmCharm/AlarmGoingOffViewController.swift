@@ -34,7 +34,7 @@ class AlarmGoingOffViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if UserDefaults.hasAlarmBeenSet(){
+        if UserDefaults.getState() == State.confirmedFriendHasSetAlarm{
             prepareToPlayMusicFromFileSystem(Constants.ALARM_SOUND_STORED_FILENAME)
             setWakeupMessage()
             setAlarmSetBy()
@@ -47,6 +47,7 @@ class AlarmGoingOffViewController: UIViewController {
         }
         
         UserDefaults.clearAlarmDate()
+        UserDefaults.setState(State.noAlarmSet)
         UserDefaults.hasImage(false)
         NotificationCenter.default.addObserver(
             self,
@@ -130,7 +131,9 @@ class AlarmGoingOffViewController: UIViewController {
     fileprivate func setWakeupMessage(){
         self.wakeupMessage = UserDefaults.getWakeUpMessage()
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.player?.pause()
+    }
     fileprivate func setAlarmSetBy() {
         self.alarmSetBy = UserDefaults.getFriendWhoSetAlarm()
     }
@@ -145,8 +148,6 @@ class AlarmGoingOffViewController: UIViewController {
     @IBAction func PausePushed(_ sender: UIButton) {
         player?.pause()
     }
-    
-    
     
     /*
      Get the sound from the local file system so that the user can play it again if they want to.

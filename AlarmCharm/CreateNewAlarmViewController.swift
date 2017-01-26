@@ -226,14 +226,14 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
     //Before the user goes back to the parent controller, mark that the user is no longer in the process of being set
     override func willMove(toParentViewController parent: UIViewController?) {
         super.willMove(toParentViewController: parent)
-        if parent == nil {
-            remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
-        }
+//        if parent == nil {
+//            remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
+//        remoteDB.userInProcessOfBeingSet(forUser: userID!, inProcess: false)
     }
     
     //Alert the user before they go back that their alarm has not been saved; give them the option to save (and go back) not save (and go back) or cancel
@@ -244,7 +244,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             style: .default)
         {  [weak weakSelf = self] (action: UIAlertAction) ->  Void in
             weakSelf?.saveAlarm()
-            weakSelf?.remoteDB.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
+//            weakSelf?.remoteDB.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
             weakSelf?.navigationController?.popViewController(animated: true)
             }
         )
@@ -252,7 +252,7 @@ class CreateNewAlarmViewController: UIViewController, AVAudioRecorderDelegate, A
             title: "Don't Save",
             style: .default)
         {  [weak weakSelf = self] (action: UIAlertAction) ->  Void in
-            weakSelf?.remoteDB.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
+//            weakSelf?.remoteDB.userInProcessOfBeingSet(forUser: (weakSelf?.userID)!, inProcess: false)
             weakSelf?.navigationController?.popViewController(animated: true)
             }
         )

@@ -24,8 +24,7 @@ class FriendsListTableViewController: UITableViewController {
     
     fileprivate enum FriendStatus : Int {
         case needsToBeSet = 0
-        case inProgress   = 1
-        case alreadySet   = 2
+        case alreadySet   = 1
     }
     
     fileprivate struct Friend {
@@ -37,7 +36,7 @@ class FriendsListTableViewController: UITableViewController {
         var setBy: String?
     }
     
-    fileprivate var sectionTitles = [0: "Needs to be charmed", 1 : "Being charmed now", 2: "Already been charmed" ]
+    fileprivate var sectionTitles = [0: "Needs to be charmed", 1: "Already been charmed" ]
     
     //http://www.appcoda.com/ios-contacts-framework/ and http://code.tutsplus.com/tutorials/ios-9-an-introduction-to-the-contacts-framework--cms-25599
     //were used as guidance on how to use ContactsKit
@@ -125,15 +124,11 @@ class FriendsListTableViewController: UITableViewController {
                     if self.friendList.count == 0{
                         self.friendList.append([Friend]())
                         self.friendList.append([Friend]())
-                        self.friendList.append([Friend]())
                     }
                     var friendStatus: FriendStatus
                     let should_be_set = snapshotDictionary["need_friend_to_set"] as? Bool
-                    let getting_set = snapshotDictionary["in_process_of_being_set"] as? Bool
                     var setBy: String? = nil
-                    if getting_set!{
-                        friendStatus = FriendStatus.inProgress
-                    } else if !should_be_set! {
+                    if !should_be_set! {
                         friendStatus = FriendStatus.alreadySet
                         setBy = snapshotDictionary["friend_who_set_alarm"] as? String
                     } else {
@@ -164,12 +159,12 @@ class FriendsListTableViewController: UITableViewController {
     //Clear out the friendsList to avoid duplicates, load in all the data
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        friendList.removeAll() // Maybe throwing a bug here?
+        friendList.removeAll()
         getContacts()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Should be 3
+        // Should be 2
         return friendList.count
     }
     
@@ -183,7 +178,7 @@ class FriendsListTableViewController: UITableViewController {
         if let friendCell = cell as? FriendTableViewCell {
             friendCell.contact = friend.contact
             friendCell.alarmTime = friend.alarmTime
-            if (indexPath as NSIndexPath).section == 2 {
+            if (indexPath as NSIndexPath).section == FriendStatus.alreadySet.rawValue{
                 friendCell.message = "Set by: " + friend.setBy!
             } else {
                 friendCell.message = friend.message
@@ -201,9 +196,6 @@ class FriendsListTableViewController: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "AvailableFriendCell", for: indexPath)
             cell = fillCell(cell, forIndexPath: indexPath)
         case 1:
-            cell = tableView.dequeueReusableCell(withIdentifier: "InProgressFriendCell", for: indexPath)
-            cell = fillCell(cell, forIndexPath: indexPath)
-        case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "AlreadySetFriendCell", for: indexPath)
             cell = fillCell(cell, forIndexPath: indexPath)
         default:
@@ -230,7 +222,6 @@ class FriendsListTableViewController: UITableViewController {
                     let savedvc = segue.destination as? SavedAlarmsTableViewController {
                     let friend = friendList[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
                     savedvc.friendSelected = friend.phoneNumber
-                    remoteDB.userInProcessOfBeingSet(forUser: friend.phoneNumber, inProcess: true)
                 }
             }
         }

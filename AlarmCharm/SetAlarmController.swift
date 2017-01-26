@@ -24,7 +24,6 @@ class SetAlarmController: UIViewController {
         let userId = Foundation.UserDefaults.standard.value(forKey: "PhoneNumber") as? String
         let x = userId! //It was crashing without this, maybe later we can change but im confuesd
         remoteDB.userNeedsAlarmToBeSet(forUser: x, toBeSet: false)
-        remoteDB.userInProcessOfBeingSet(forUser: x, inProcess: false)
         if #available(iOS 10, *){
         Notifications.removeAlarmNotification()
         }
@@ -43,11 +42,10 @@ class SetAlarmController: UIViewController {
         UserDefaults.storeFriendWhoSetAlarm("")
         remoteDB.addAlarmTimeToDatabase(date)
         if #available(iOS 10, *){
-            Notifications.AddAlarmNotification10(at: date)
+            Notifications.AddAlarmNotification10(at: date, title: "Wake up", body: "You charmed yourself", songName: UserDefaults.getDefaultSongName() + ".wav")
         }
         else{
-        Notifications.AddAlarmNotification(at: date)
-        }
+            Notifications.AddAlarmNotification9(at: date, title: "Wake up", body: "You charmed yourself", songName: UserDefaults.getDefaultSongName() + ".wav")}
         }
     
     //If they set an alarm for earlier than the current time, then set that alarm to go off the following day

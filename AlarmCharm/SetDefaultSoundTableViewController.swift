@@ -83,12 +83,11 @@ class SetDefaultSoundTableViewController: UITableViewController, DefaultSoundTab
     //If the user's alarm has not been set already, it will change the user's alarm notification sound to be the new default ringtone
     fileprivate func setUserPreference(_ songName: String){
         UserDefaults.setDefaultSongName(songName)
-        if UserDefaults.hasAlarmBeenSet() == false {
-            //If no friend has set the user's alarm, we want to set the default song to be the notification noise
-                Notifications.changeNotificationSound(songName + ".wav")
+        //do by states
+        if UserDefaults.getState() == State.userHasSetAlarm{
+            Notifications.changeDefaultNotificationSound(songName + ".wav")
         }
     }
-    
     
     // MARK: - Table view data source
     

@@ -28,7 +28,7 @@ class FetchViewController: UIViewController {
             db.downloadFileToLocal(forUser: user, fileType: "audio_file") { wasDownloadedToLocal in
                 if wasDownloadedToLocal{
                     print("was downloaded to local")
-                    Notifications.setNotificationFromFileSystem()
+//                    Notifications.setNotificationFromFileSystem()
                     db.downloadFileToLocal(forUser: user, fileType: "image_file") { wasSuccessful in
                         print("image downloaded as well")
                         UserDefaults.userAlarmBeenSet(true)
