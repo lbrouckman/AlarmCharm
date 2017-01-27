@@ -10,7 +10,7 @@
 import UIKit
 import CoreData
 import Firebase
-//import FirebaseMessaging
+import FirebaseMessaging
 import UserNotifications
 
 @UIApplicationMain
