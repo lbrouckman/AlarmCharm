@@ -133,6 +133,7 @@ class Database {
         let process = ["notification_token" : tokenName]
         currentUserRef.updateChildValues(process)
     }
+    
     func addAlarmTimeToDatabase(_ date: Date){
         if let userId = Foundation.UserDefaults.standard.value(forKey: "PhoneNumber") as? String {
             let hashedID = sha256(userId)!
@@ -205,9 +206,10 @@ class Database {
         print("hopefully wrote it out")
     }
     
-    func addNewUserToDB(_ phoneNumber: String, username: String, token: String) {
+    func addNewUserToDB(_ phoneNumber: String, username: String, token: String, password: String) {
         let phoneNumberHash = sha256(phoneNumber)
-        let newUser = ["alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : "", "username": username, "notification_token" : token, "state" : 0] as [String : Any]
+        let passwordHash = sha256(password)
+        let newUser = ["password": passwordHash ?? "Password", "alarm_time": 0, "image_file": "", "audio_file": "", "wakeup_message" : "", "user_message" : "", "need_friend_to_set" : false, "in_process_of_being_set" : false, "friend_who_set_alarm" : "", "username": username, "notification_token" : token, "state" : 0] as [String : Any]
         let newUserRef = usersRef.child(phoneNumberHash!)
         newUserRef.setValue(newUser)
     }
@@ -223,19 +225,21 @@ class Database {
                     let notificationKey = timeStamp + charmerName
                     var newChildRef = FIRDatabase.database().reference().child("notificationQueue").childByAutoId()
                     newChildRef.setValue(newNotification)
+                    Foundation.UserDefaults.standard.set(true, forKey: "launchedBefore")
                 }
             }
             
         })
     }
     
-    func userInDatabase(_ phoneNumber: String, completionHandler: @escaping (Bool) -> ()) {
+    
+    func userInDatabase(_ phoneNumber: String, completionHandler: @escaping (Any?) -> ()) {
         let phoneNumberHash = sha256(phoneNumber)
         usersRef.child(phoneNumberHash!).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.value is NSNull {
-                completionHandler(false)
+                completionHandler(nil)
             } else {
-                completionHandler(true)
+                completionHandler(snapshot.value)
             }
         })
     }

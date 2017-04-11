@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## Firebase
 
-Copyright 2016 Google
+Copyright 2017 Google
 
 ## FirebaseAnalytics
 

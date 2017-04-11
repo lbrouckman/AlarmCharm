@@ -7,6 +7,7 @@
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)edu.stanford.alecarlisle.AlarmCharm</string>
+		<string>$(AppIdentifierPrefix)edu.stanford.lbrouckm.AlarmCharm</string>
 	</array>
 </dict>
 </plist>

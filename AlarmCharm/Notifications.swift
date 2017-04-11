@@ -154,6 +154,9 @@ class Notifications{
     }
     
     static func changeDefaultNotificationSound(_ songName : String){
-        Notifications.AddAlarmNotification9(at: UserDefaults.getAlarmDate()!, title: "Wake up", body: "You charmed yourself", songName: UserDefaults.getDefaultSongName() + ".wav")
+        if let date = UserDefaults.getAlarmDate() {
+            Notifications.AddAlarmNotification9(at: date, title: "Wake up", body: "You charmed yourself", songName: UserDefaults.getDefaultSongName() + ".wav")
+        }
+//        Notifications.AddAlarmNotification9(at: UserDefaults.getAlarmDate()!, title: "Wake up", body: "You charmed yourself", songName: UserDefaults.getDefaultSongName() + ".wav")
     }
 }

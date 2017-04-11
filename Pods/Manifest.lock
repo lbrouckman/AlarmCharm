@@ -1,16 +1,16 @@
 PODS:
-  - Firebase (3.11.1):
-    - Firebase/Core (= 3.11.1)
-  - Firebase/Core (3.11.1):
+  - Firebase (3.12.0):
+    - Firebase/Core (= 3.12.0)
+  - Firebase/Core (3.12.0):
     - FirebaseAnalytics (= 3.6.0)
     - FirebaseCore (= 3.4.7)
-  - Firebase/Database (3.11.1):
+  - Firebase/Database (3.12.0):
     - Firebase/Core
     - FirebaseDatabase (= 3.1.1)
-  - Firebase/Messaging (3.11.1):
+  - Firebase/Messaging (3.12.0):
     - Firebase/Core
     - FirebaseMessaging (= 1.2.1)
-  - Firebase/Storage (3.11.1):
+  - Firebase/Storage (3.12.0):
     - Firebase/Core
     - FirebaseStorage (= 1.0.5)
   - FirebaseAnalytics (3.6.0):
@@ -53,7 +53,7 @@ DEPENDENCIES:
   - Firebase/Storage
 
 SPEC CHECKSUMS:
-  Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
+  Firebase: 8e99eb1ff553ad5bcc6072cc3d925bb89c1244d6
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseCore: 46afaf2c2e0419ea7d3acfb08cf26a461a75fe85
   FirebaseDatabase: 6de92187481ff0e8e124064f21742e95ee883b02
@@ -65,6 +65,6 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
 
-PODFILE CHECKSUM: 1e73b8e4250094f78eb3a589b4d3ac62ea83fd8a
+PODFILE CHECKSUM: ccc8c373149297fd6e02d7d84c494902d0113f13
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0.rc.1

@@ -6,9 +6,9 @@ target 'AlarmCharm' do
  use_frameworks!
 
   # Pods for AlarmCharm
-pod 'Firebase'
-pod 'Firebase/Database'
-pod 'Firebase/Storage'
-pod 'Firebase/Messaging'
-pod 'Firebase/Core' 
+  pod ‘Firebase’
+ pod 'Firebase/Database'
+ pod 'Firebase/Storage’
+  pod 'Firebase/Messaging'
+  pod ‘Firebase/Core’
 end

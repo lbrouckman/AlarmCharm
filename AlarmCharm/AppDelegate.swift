@@ -13,6 +13,7 @@ import Firebase
 import FirebaseMessaging
 import UserNotifications
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, FIRMessagingDelegate{
     
@@ -58,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         else{
             application.registerUserNotificationSettings(Notifications.getNotificationSettings())
         }
+        
         registerForRemoteNotifications(application)
         print(FIRInstanceID.instanceID().token(), "is the token")
         FetchViewController.fetch {}
@@ -94,7 +96,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print(deviceToken, "is our device token")
-        connectToFcm()
+        
+        print(deviceToken.description)
+        print(deviceToken.debugDescription)
+        print("WE ARE HERE!!!!!\n\n\n")
+        
+//        connectToFcm()
         FIRInstanceID.instanceID().setAPNSToken(deviceToken as Data, type: .sandbox)
         print(FIRInstanceID.instanceID().token(), "is allowed token now")
     }
